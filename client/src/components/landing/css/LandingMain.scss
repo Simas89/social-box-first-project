@@ -9,7 +9,7 @@ body {
 	display: none;
 }
 .landing-main {
-	overflow: hidden;
+	// overflow: hidden;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	height: 100vh;
@@ -17,8 +17,18 @@ body {
 	background-image: url("../../../img/bg.jpg");
 	background-size: cover;
 	background-position: center;
+	.simas {
+		position: absolute;
+		color: white;
+		font-size: 3rem;
+		top: -30px;
+		left: 20px;
+		z-index: 1;
+	}
 
 	.landing-box {
+		// overflow: hidden;
+		position: relative;
 		display: grid;
 		height: 70vh;
 		min-height: 320px;
@@ -27,6 +37,14 @@ body {
 		padding: 40px 15px 15px 15px;
 		// background-color: lightgray;
 		border: 1px solid orange;
+		&:before {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			border: 1px solid blue;
+			backdrop-filter: blur(10px);
+		}
 	}
 	.box-1 {
 		// instance of one of .landing-box
@@ -41,13 +59,34 @@ body {
 	.box-3 {
 		// instance of one of .landing-box
 		display: none;
+		margin-left: 1vw;
+		margin-right: 2vw;
 	}
 	.box-content {
+		position: relative;
+		display: grid;
 		overflow: hidden;
 		position: relative;
 		height: 100%;
 		border: 1px solid gray;
 		// background-color: gray;
+		.informacione {
+			// overflow: hidden;
+			display: grid;
+			// position: absolute;
+			border: 1px solid green;
+			.react {
+				border: 1px solid blue;
+				height: 150px;
+				width: 150px;
+				background-image: url("../../../img/react.png");
+				background-size: cover;
+				background-position: center;
+			}
+			p {
+				color: white;
+			}
+		}
 
 		.form-navigaror {
 			position: absolute;
@@ -136,19 +175,19 @@ body {
 			}
 		}
 		.box-1 {
-			margin-left: 2vw;
-			margin-right: 2vw;
+			margin-left: 0;
+			margin-right: 0;
 		}
 		.box-2 {
-			margin-left: 2vw;
-			margin-right: 2vw;
+			margin-left: 0;
+			margin-right: 0;
+		}
+		.box-3 {
+			display: grid;
+			margin-left: 0;
+			margin-right: 0;
 		}
 
-		.box-3 {
-			display: block;
-			margin-left: 2vw;
-			margin-right: 2vw;
-		}
 		.mobile-navigator {
 			position: fixed;
 			display: flex;

@@ -6,7 +6,6 @@ const Formike = (props) => {
 	const [LR, setLR] = React.useState(0);
 	const [rememberMe, setRememberMe] = React.useState(0);
 	const [textAreaFocused, setTextAreaFocused] = React.useState(false);
-	console.log(textAreaFocused);
 	return (
 		<div className='form-wrapper'>
 			{props.type === "LOGIN" && (
@@ -60,7 +59,7 @@ const Formike = (props) => {
 						</Button>
 					</Form>
 					<div className='log-reg-switch'>
-						{LR ? "Already a user? " : "Dont have an account yet? "}
+						{LR ? "Already a user? " : "Dont have an account? "}
 						<span onClick={() => setLR(!LR)}>
 							{LR ? " Log in" : " Register"}
 						</span>

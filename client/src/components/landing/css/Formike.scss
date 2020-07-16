@@ -1,28 +1,37 @@
 .form-wrapper {
 	border: 1px solid white;
 	h1 {
-		color: rgb(200, 200, 200);
+		position: relative;
+		// top: -20px;
+		margin-bottom: 50px;
+		color: white;
+		// z-index: 1;
 	}
+
 	.txt-input {
-		width: 100%;
+		// margin-top: 2%;
+		padding: 20px 0px;
+		width: 70%;
+		margin-left: 20px;
+
 		border-bottom: 1px solid rgb(200, 200, 200);
 		color: white !important;
+		border: 1px orange solid;
 	}
 	.txt-input input {
+		font-size: 1.5rem;
 		color: white !important;
 	}
 	.forma {
-		position: relative;
-		bottom: 0px;
-		margin: auto auto 30px auto;
-
 		.WHITE {
 			color: white !important;
 			opacity: 1 !important;
 			border-bottom: 2px solid white !important;
 		}
+		width: 70%;
 
 		.radio {
+			left: 20px;
 			position: absolute;
 			display: flex;
 			// justify-content: center;
@@ -64,9 +73,11 @@
 		}
 		.text-area {
 			overflow: auto;
-			padding: 15px 15px 10px 30px;
-			max-height: 100px;
+			padding: 15px 15px 10px 45px;
+			max-height: 200px;
+			min-height: 80px;
 			color: white !important;
+			margin-left: 20px;
 
 			outline: none;
 			border: none;
@@ -83,14 +94,16 @@
 
 		.batonas {
 			// height: 20px;
-			width: 30%;
-			// padding: 20px;
+			left: 20px;
+			width: 45%;
+			padding: 24px;
 			border-radius: 0;
 			border-bottom: 1px solid white;
 			color: rgb(190, 190, 190);
 			background-color: rgba(0, 0, 0, 0) !important;
 			.visible {
-				color: white;
+				color: white !important;
+				font-size: 1.2rem;
 				// bottom: 5px;
 			}
 
@@ -106,27 +119,103 @@
 		}
 		/////   GLOBAL EXTRA CLASS
 		.left35 {
-			left: 35px;
+			left: 55px;
 		}
 		.iconas-grey {
 			position: absolute;
 			top: 20px;
+			margin-left: 20px;
 			color: rgb(149, 150, 173) !important;
 		}
 		.iconas-white {
 			position: absolute;
 			top: 20px;
+			margin-left: 20px;
 			color: white !important;
 		}
 	}
 	.log-reg-switch {
-		margin-bottom: 40px;
+		position: absolute;
+		// bottom: 0;
+		margin-top: 10px;
+		margin-left: 20px;
 		color: rgb(200, 200, 200);
 
 		span {
 			font-weight: bold;
 			cursor: pointer;
 			color: #01a4e9;
+		}
+	}
+}
+@media (max-width: 1000px) {
+	.log-reg-switch {
+		// font-size: 0.8rem;
+	}
+}
+@media (max-width: 768px) {
+	.form-wrapper {
+		.txt-input {
+			width: 100%;
+			margin-left: 0px;
+		}
+		.forma {
+			width: 99%;
+			.radio {
+				left: 0px;
+			}
+			.text-area {
+				margin-left: 0px;
+			}
+			.batonas {
+				left: 0px;
+			}
+			.iconas-grey {
+				margin-left: 0px;
+			}
+			.iconas-white {
+				margin-left: 0px;
+			}
+			.left35 {
+				left: 35px;
+			}
+		}
+	}
+}
+
+@media (max-height: 800px) {
+	.form-wrapper {
+		.forma {
+			.text-area {
+				max-height: 60px;
+			}
+		}
+	}
+}
+@media (max-height: 650px) {
+	.form-wrapper {
+		h1 {
+			font-size: 1.8rem;
+			margin-bottom: 20px;
+		}
+
+		.txt-input {
+			padding: 10px 0px 10px 20px;
+		}
+		.txt-input input {
+			font-size: 1rem;
+		}
+		.forma {
+			.batonas {
+				padding: 12px;
+				.visible {
+					font-size: 1rem;
+					// bottom: 5px;
+				}
+			}
+			.text-area {
+				max-height: 80px;
+			}
 		}
 	}
 }
