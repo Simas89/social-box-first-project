@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/LandingMain.css";
-import Form from "./Form";
+import Formike from "./Formike";
 
 const MovingContainer = (props) => {
 	const style = {
@@ -16,8 +16,8 @@ const MovingContainer = (props) => {
 	};
 	return (
 		<div style={style}>
-			<Form type={1} />
-			<Form type={2} />
+			<Formike type='LOGIN' />
+			<Formike type='CONTACT' />
 		</div>
 	);
 };
@@ -57,7 +57,7 @@ const LandingMain = () => {
 						{windowWidth > 768 ? (
 							<MovingContainer page={page} />
 						) : (
-							<Form type={1} />
+							<Formike type='LOGIN' />
 						)}
 						<div className='form-navigaror'>
 							<div
@@ -85,7 +85,7 @@ const LandingMain = () => {
 				</div>
 				<div className='landing-box box-3'>
 					<div className='box-content'>
-						<Form type={2} />
+						<Formike type='CONTACT' />
 					</div>
 				</div>
 				{/* MOBILE MENU SCROLL */}

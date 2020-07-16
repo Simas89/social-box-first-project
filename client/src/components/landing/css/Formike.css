@@ -1,0 +1,136 @@
+.form-wrapper {
+  border: 1px solid white;
+}
+
+.form-wrapper h1 {
+  color: #c8c8c8;
+}
+
+.form-wrapper .txt-input {
+  width: 100%;
+  border-bottom: 1px solid #c8c8c8;
+  color: white !important;
+}
+
+.form-wrapper .txt-input input {
+  color: white !important;
+}
+
+.form-wrapper .forma {
+  position: relative;
+  bottom: 0px;
+  margin: auto auto 30px auto;
+}
+
+.form-wrapper .forma .WHITE {
+  color: white !important;
+  opacity: 1 !important;
+  border-bottom: 2px solid white !important;
+}
+
+.form-wrapper .forma .radio {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 35px;
+  border-bottom: 1px solid white;
+}
+
+.form-wrapper .forma .radio .radio-ring {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  border: 2px solid #9596ad;
+  transition: 0.1s;
+}
+
+.form-wrapper .forma .radio .radio-ring:hover {
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.form-wrapper .forma .radio .radio-ring:hover .radio-ring-inside {
+  opacity: 0.5;
+  transition: 0.2s;
+}
+
+.form-wrapper .forma .radio .radio-ring .radio-ring-inside {
+  height: 11px;
+  width: 11px;
+  border-radius: 50%;
+  opacity: 0;
+  background-color: #9596ad;
+  transition: 0.2s;
+}
+
+.form-wrapper .forma .text-area {
+  overflow: auto;
+  padding: 15px 15px 10px 30px;
+  max-height: 100px;
+  color: white !important;
+  outline: none;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid white;
+  background-color: transparent !important;
+}
+
+.form-wrapper .forma .text-area:focus {
+  border-radius: 0;
+  border-bottom: 1px solid white;
+}
+
+.form-wrapper .forma .batonas {
+  width: 30%;
+  border-radius: 0;
+  border-bottom: 1px solid white;
+  color: #bebebe;
+  background-color: transparent !important;
+}
+
+.form-wrapper .forma .batonas .visible {
+  color: white;
+}
+
+.form-wrapper .forma .batonas:hover {
+  color: white;
+}
+
+.form-wrapper .forma .batonas:active {
+  color: white;
+}
+
+.form-wrapper .forma .batonas:focus {
+  color: white;
+}
+
+.form-wrapper .forma .left35 {
+  left: 35px;
+}
+
+.form-wrapper .forma .iconas-grey {
+  position: absolute;
+  top: 20px;
+  color: #9596ad !important;
+}
+
+.form-wrapper .forma .iconas-white {
+  position: absolute;
+  top: 20px;
+  color: white !important;
+}
+
+.form-wrapper .log-reg-switch {
+  margin-bottom: 40px;
+  color: #c8c8c8;
+}
+
+.form-wrapper .log-reg-switch span {
+  font-weight: bold;
+  cursor: pointer;
+  color: #01a4e9;
+}

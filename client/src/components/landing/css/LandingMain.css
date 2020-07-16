@@ -27,7 +27,7 @@ body {
   margin-top: auto;
   margin-bottom: auto;
   padding: 40px 15px 15px 15px;
-  background-color: lightgray;
+  border: 1px solid orange;
 }
 
 .landing-main .box-1 {
@@ -48,7 +48,7 @@ body {
   overflow: hidden;
   position: relative;
   height: 100%;
-  background-color: gray;
+  border: 1px solid gray;
 }
 
 .landing-main .box-content .form-navigaror {
@@ -120,7 +120,6 @@ body {
     min-height: 320px;
     margin-top: auto;
     margin-bottom: auto;
-    background-color: lightgray;
   }
   .landing-main .landing-box .box-content {
     display: grid;

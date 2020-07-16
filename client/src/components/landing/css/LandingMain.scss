@@ -1,3 +1,4 @@
+$lightBlue: #01a4e9;
 * {
 	box-sizing: border-box;
 }
@@ -13,20 +14,19 @@ body {
 	grid-template-columns: 1fr 1fr;
 	height: 100vh;
 	// border: 1px solid red;
-	// background-color: black;
 	background-image: url("../../../img/bg.jpg");
 	background-size: cover;
 	background-position: center;
 
 	.landing-box {
-		// border: 1px solid orange;
 		display: grid;
 		height: 70vh;
 		min-height: 320px;
 		margin-top: auto;
 		margin-bottom: auto;
 		padding: 40px 15px 15px 15px;
-		background-color: lightgray;
+		// background-color: lightgray;
+		border: 1px solid orange;
 	}
 	.box-1 {
 		// instance of one of .landing-box
@@ -46,8 +46,8 @@ body {
 		overflow: hidden;
 		position: relative;
 		height: 100%;
-		// border: 1px solid gray;
-		background-color: gray;
+		border: 1px solid gray;
+		// background-color: gray;
 
 		.form-navigaror {
 			position: absolute;
@@ -121,13 +121,13 @@ body {
 		background-image: none;
 
 		.landing-box {
-			// border: 1px solid orange;
 			height: 85vh;
 			min-height: 320px;
 			margin-top: auto;
 			margin-bottom: auto;
 
-			background-color: lightgray;
+			// background-color: lightgray;
+			// border: 1px solid orange;
 			.box-content {
 				display: grid;
 				.form-navigaror {
@@ -204,7 +204,7 @@ body {
 		box-sizing: border-box;
 
 		border-radius: 45px;
-		background-color: #01a4e9;
+		background-color: $lightBlue;
 		animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
 	}
 
