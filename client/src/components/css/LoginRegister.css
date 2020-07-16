@@ -1,0 +1,137 @@
+* {
+  font-weight: 100;
+}
+
+.WrapperLoginRegister {
+  height: 100%;
+  position: relative;
+  transition: 0.4s;
+  width: 50%;
+  /* border: 1px solid white; */
+  padding: 20px 50px 0 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.WrapperLoginRegister h1 {
+  color: #c8c8c8;
+  align-self: flex-start;
+}
+
+.WrapperLoginRegister .input-fields {
+  /* border: 1px solid blue; */
+  height: 100%;
+}
+
+.WrapperLoginRegister .input-fields .txt-input {
+  width: 100%;
+  height: 4rem;
+  color: white !important;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  /* margin-top: 30px; */
+  transition: 0.3s;
+}
+
+.WrapperLoginRegister .input-fields .txt-input input {
+  color: white !important;
+  font-size: 1.5rem;
+}
+
+.WrapperLoginRegister .input-fields .forgot-password {
+  color: white;
+  margin: auto;
+  margin-top: 10px;
+  /* border: 1px solid white; */
+  /* top: 0; */
+  /* float: right; */
+}
+
+.WrapperLoginRegister .forma {
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  margin: auto auto 30px auto;
+  /* border: 1px solid white; */
+}
+
+.WrapperLoginRegister .forma .WHITE {
+  color: white !important;
+  opacity: 1 !important;
+  border: 2px solid white !important;
+}
+
+.WrapperLoginRegister .forma .radio {
+  position: absolute;
+  border-bottom: 1px solid white;
+  height: 100%;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.WrapperLoginRegister .forma .radio .radio-ring {
+  border: 2px solid #9596ad;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  transition: 0.1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.WrapperLoginRegister .forma .radio .radio-ring:hover {
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.WrapperLoginRegister .forma .radio .radio-ring:hover .radio-ring-inside {
+  transition: 0.2s;
+  opacity: 0.5;
+}
+
+.WrapperLoginRegister .forma .radio .radio-ring .radio-ring-inside {
+  opacity: 0;
+  height: 11px;
+  width: 11px;
+  border-radius: 50%;
+  background-color: #9596ad;
+  transition: 0.2s;
+}
+
+.WrapperLoginRegister .forma .batonas-log-reg {
+  background-color: transparent !important;
+  color: #bebebe;
+  font-size: 1.2rem;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  width: 30%;
+  padding: 20px;
+  left: 50px;
+}
+
+.WrapperLoginRegister .forma .batonas-log-reg:hover {
+  color: white;
+}
+
+.WrapperLoginRegister .forma .batonas-log-reg:active {
+  color: white;
+}
+
+.WrapperLoginRegister .forma .batonas-log-reg:focus {
+  color: white;
+}
+
+.WrapperLoginRegister .log-reg-switch {
+  color: #c8c8c8;
+  /* border: 1px solid white; */
+  margin-bottom: 40px;
+}
+
+.WrapperLoginRegister .log-reg-switch span {
+  font-weight: bold;
+  cursor: pointer;
+  color: #01a4e9;
+}

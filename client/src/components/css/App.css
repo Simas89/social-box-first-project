@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+}
+
+.nav {
+  height: 10rem;
+  background-color: #007fed;
+}
+
+.nav-content {
+  color: seashell;
+  height: inherit;
+  border: 1px solid black;
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.nav-content h1 {
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.nav-content li {
+  display: inline-block;
+  margin-left: 2rem;
+}
+
+.App {
+  max-width: 1000px;
+  border: solid gray 1px;
+  margin: auto;
+  height: 1000px;
+}

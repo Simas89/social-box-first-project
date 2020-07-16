@@ -1,0 +1,30 @@
+{
+	"name": "my-container",
+	"version": "1.0.0",
+	"description": "My Container App Server Side",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node server.js",
+		"dev": "nodemon server.js"
+	},
+	"keywords": [],
+	"author": "Simas Zurauskas",
+	"license": "ISC",
+	"dependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.7.0",
+		"bcrypt-nodejs": "0.0.3",
+		"config": "^3.3.1",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"express-fileupload": "^1.1.7-alpha.3",
+		"express-graphql": "^0.11.0",
+		"graphql": "^15.3.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.9.17",
+		"nodemailer": "^6.4.8",
+		"nodemon": "^2.0.4",
+		"sharp": "^0.25.4"
+	}
+}
