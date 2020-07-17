@@ -1,11 +1,8 @@
-.form-wrapper {
-  border: 1px solid white;
-}
-
 .form-wrapper h1 {
   position: relative;
   margin-bottom: 50px;
   color: white;
+  z-index: 1;
 }
 
 .form-wrapper .txt-input {
@@ -14,7 +11,6 @@
   margin-left: 20px;
   border-bottom: 1px solid #c8c8c8;
   color: white !important;
-  border: 1px orange solid;
 }
 
 .form-wrapper .txt-input input {
@@ -75,7 +71,7 @@
 .form-wrapper .forma .text-area {
   overflow: auto;
   padding: 15px 15px 10px 45px;
-  max-height: 200px;
+  max-height: 30%;
   min-height: 80px;
   color: white !important;
   margin-left: 20px;
@@ -126,7 +122,7 @@
   position: absolute;
   top: 20px;
   margin-left: 20px;
-  color: #9596ad !important;
+  color: #a3b4b8 !important;
 }
 
 .form-wrapper .forma .iconas-white {
@@ -146,7 +142,7 @@
 .form-wrapper .log-reg-switch span {
   font-weight: bold;
   cursor: pointer;
-  color: #01a4e9;
+  color: #73ac62;
 }
 
 @media (max-width: 768px) {

@@ -1,11 +1,11 @@
 .form-wrapper {
-	border: 1px solid white;
+	// border: 1px solid white;
 	h1 {
 		position: relative;
 		// top: -20px;
 		margin-bottom: 50px;
 		color: white;
-		// z-index: 1;
+		z-index: 1;
 	}
 
 	.txt-input {
@@ -16,7 +16,7 @@
 
 		border-bottom: 1px solid rgb(200, 200, 200);
 		color: white !important;
-		border: 1px orange solid;
+		// border: 1px orange solid;
 	}
 	.txt-input input {
 		font-size: 1.5rem;
@@ -74,7 +74,7 @@
 		.text-area {
 			overflow: auto;
 			padding: 15px 15px 10px 45px;
-			max-height: 200px;
+			max-height: 30%;
 			min-height: 80px;
 			color: white !important;
 			margin-left: 20px;
@@ -125,7 +125,7 @@
 			position: absolute;
 			top: 20px;
 			margin-left: 20px;
-			color: rgb(149, 150, 173) !important;
+			color: rgb(163, 180, 184) !important;
 		}
 		.iconas-white {
 			position: absolute;
@@ -144,7 +144,7 @@
 		span {
 			font-weight: bold;
 			cursor: pointer;
-			color: #01a4e9;
+			color: rgb(115, 172, 98);
 		}
 	}
 }

@@ -11,7 +11,7 @@ const MovingContainer = (props) => {
 		position: "absolute",
 		display: "flex",
 		transition: ".5s",
-		border: "2px solid red",
+		// border: "2px solid red",
 		left: props.page ? "-100%" : "0%",
 	};
 	return (

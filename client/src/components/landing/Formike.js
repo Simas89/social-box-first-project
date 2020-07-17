@@ -10,7 +10,7 @@ const Formike = (props) => {
 		<div className='form-wrapper'>
 			{props.type === "LOGIN" && (
 				<React.Fragment>
-					<h1>{LR ? "Register new account" : "Log in"}</h1>
+					<h1>{LR ? "Create new account" : "Log in"}</h1>
 					<Input
 						icon={<Icon name='user' size='large' />}
 						iconPosition='left'

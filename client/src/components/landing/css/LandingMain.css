@@ -1,5 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   box-sizing: border-box;
+  font-family: "MuseoModerno", cursive;
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.3rem;
 }
 
 body {
@@ -14,12 +19,14 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100vh;
-  background-image: url("../../../img/bg.jpg");
+  background-image: url("../../../img/bg8.png");
   background-size: cover;
   background-position: center;
 }
 
 .landing-main .simas {
+  font-family: "MuseoModerno", cursive;
+  font-weight: 500;
   position: absolute;
   color: white;
   font-size: 3rem;
@@ -36,7 +43,6 @@ body {
   margin-top: auto;
   margin-bottom: auto;
   padding: 40px 15px 15px 15px;
-  border: 1px solid orange;
 }
 
 .landing-main .landing-box:before {
@@ -44,7 +50,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  border: 1px solid blue;
+  background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
 }
 
@@ -70,25 +76,58 @@ body {
   overflow: hidden;
   position: relative;
   height: 100%;
-  border: 1px solid gray;
 }
 
 .landing-main .box-content .informacione {
+  background-color: white;
+  padding: 20px;
+  margin: 0 5px 0 0;
   display: grid;
-  border: 1px solid green;
+  grid-template-columns: auto auto auto auto;
+  margin-bottom: 50px;
 }
 
-.landing-main .box-content .informacione .react {
-  border: 1px solid blue;
-  height: 150px;
-  width: 150px;
-  background-image: url("../../../img/react.png");
+.landing-main .box-content .informacione .mongo {
+  margin: auto;
+  height: 100px;
+  width: 190px;
+  background-image: url("../../../img/mongo.png");
   background-size: cover;
   background-position: center;
 }
 
-.landing-main .box-content .informacione p {
-  color: white;
+.landing-main .box-content .informacione .express {
+  margin: auto;
+  height: 100px;
+  width: 290px;
+  background-image: url("../../../img/express.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.landing-main .box-content .informacione .react {
+  margin: auto;
+  height: 100px;
+  width: 100px;
+  background-image: url("../../../img/react.png");
+  background-size: cover;
+  background-position: center;
+  animation: rotation 12s infinite linear;
+}
+
+.landing-main .box-content .informacione .node {
+  margin: auto;
+  height: 100px;
+  width: 162px;
+  background-image: url("../../../img/node.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.landing-main .box-content p {
+  color: whitesmoke;
+  margin: 0 5px 0 0;
+  user-select: none;
 }
 
 .landing-main .box-content .form-navigaror {
@@ -96,10 +135,9 @@ body {
   display: flex;
   justify-content: space-between;
   bottom: 0;
-  width: 80px;
+  width: 120px;
   height: 30px;
   margin-left: 45%;
-  border: 1px solid white;
 }
 
 .landing-main .box-content .form-navigaror .form-navigator-button-hide {
@@ -144,7 +182,7 @@ body {
     height: 180vh;
     width: 100vw;
     z-index: -1;
-    background-image: url("../../../img/bg.jpg");
+    background-image: url("../../../img/bg2.jpg");
     background-size: cover;
     background-position: center;
   }
@@ -189,14 +227,12 @@ body {
     height: 33vh;
     right: 0;
     top: 33vh;
-    border: 1px solid white;
   }
   .landing-main .mobile-navigator .mobile-navigator-button-hide {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
-    border: 1px solid white;
   }
   .landing-main .mobile-navigator .mobile-navigator-button-hide.mobile-navigator-button-hide:hover > .mobile-navigator-button {
     transform: scale(2);
@@ -289,5 +325,14 @@ body {
   }
   100% {
     transform: scale(0.8);
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
   }
 }
