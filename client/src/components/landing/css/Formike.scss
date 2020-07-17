@@ -1,158 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap");
+$colorPrimary: white;
+$colorTone: rgb(115, 172, 98);
 .form-wrapper {
 	// border: 1px solid white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
 	h1 {
-		position: relative;
+		font-family: "MuseoModerno", cursive;
+		font-weight: 300;
+		position: absolute;
+		top: 0;
 		// top: -20px;
 		margin-bottom: 50px;
-		color: white;
+		color: $colorPrimary;
 		z-index: 1;
 	}
+	.inputs-wrapper {
+		border: 1px solid red;
+		width: 80%;
+		margin: auto;
+		// align-self: center;
 
-	.txt-input {
-		// margin-top: 2%;
-		padding: 20px 0px;
-		width: 70%;
-		margin-left: 20px;
+		// border: 1px solid white;
+		// margin-top: auto;
+		.txt-input {
+			// margin-top: 2%;
+			padding: 20px 0px;
+			width: 100%;
+			// margin-left: 20px;
+			// margin-right: 20px;
 
-		border-bottom: 1px solid rgb(200, 200, 200);
-		color: white !important;
-		// border: 1px orange solid;
-	}
-	.txt-input input {
-		font-size: 1.5rem;
-		color: white !important;
-	}
-	.forma {
-		.WHITE {
+			border-bottom: 1px solid rgb(200, 200, 200);
 			color: white !important;
-			opacity: 1 !important;
-			border-bottom: 2px solid white !important;
+			// border: 1px orange solid;
 		}
-		width: 70%;
+		.txt-input input {
+			font-family: "MuseoModerno", cursive;
+			font-size: 1.5rem;
+			color: white !important;
+		}
+		.forma {
+			position: relative;
+			// .WHITE {
+			// 	color: white !important;
+			// 	opacity: 1 !important;
+			// 	border-bottom: 2px solid white !important;
+			// }
+			width: 100%;
 
-		.radio {
-			left: 20px;
-			position: absolute;
-			display: flex;
-			// justify-content: center;
-			align-items: center;
-			height: 100%;
-			width: 35px;
-			border-bottom: 1px solid white;
-
-			.radio-ring {
+			.radio {
+				// left: 20px;
+				position: absolute;
 				display: flex;
-				justify-content: center;
+				// justify-content: center;
 				align-items: center;
+				height: 100%;
+				width: 35px;
+				border-bottom: 1px solid white;
 
-				height: 25px;
-				width: 25px;
+				.radio-ring {
+					display: flex;
+					justify-content: center;
+					align-items: center;
 
-				border-radius: 50%;
-				border: 2px solid rgb(149, 150, 173);
-				transition: 0.1s;
+					height: 25px;
+					width: 25px;
+
+					border-radius: 50%;
+					border: 2px solid $colorPrimary;
+					opacity: 0.6;
+					transition: 0.1s;
+
+					&:hover {
+						cursor: pointer;
+						transition: 0.1s;
+					}
+
+					&:hover .radio-ring-inside {
+						opacity: 0.5;
+						transition: 0.2s;
+					}
+					.radio-ring-inside {
+						height: 11px;
+						width: 11px;
+						border-radius: 50%;
+						opacity: 0;
+						background-color: $colorPrimary;
+						transition: 0.2s;
+					}
+				}
+			}
+			.text-area {
+				overflow: auto;
+				padding: 15px 15px 10px 45px;
+				max-height: 30vh;
+				min-height: 100px;
+				color: $colorPrimary !important;
+				// margin-left: 20px;
+
+				font-family: "MuseoModerno", cursive;
+				outline: none;
+				border: none;
+				border-radius: 0;
+				border-bottom: 1px solid $colorPrimary;
+
+				background-color: rgba(0, 0, 0, 0) !important;
+
+				&:focus {
+					border-radius: 0;
+					border-bottom: 1px solid $colorPrimary;
+				}
+			}
+
+			.batonas {
+				// height: 20px;
+				// left: 20px;
+				width: 50%;
+				padding: 24px;
+				border-radius: 0;
+				border-bottom: 1px solid $colorPrimary;
+				color: rgb(190, 190, 190);
+				background-color: rgba(0, 0, 0, 0) !important;
+				.visible {
+					color: $colorPrimary !important;
+					font-size: 1.2rem;
+					// bottom: 5px;
+				}
 
 				&:hover {
-					cursor: pointer;
-					transition: 0.1s;
+					color: $colorPrimary;
 				}
-
-				&:hover .radio-ring-inside {
-					opacity: 0.5;
-					transition: 0.2s;
+				&:active {
+					color: $colorPrimary;
 				}
-				.radio-ring-inside {
-					height: 11px;
-					width: 11px;
-					border-radius: 50%;
-					opacity: 0;
-					background-color: rgb(149, 150, 173);
-					transition: 0.2s;
+				&:focus {
+					color: $colorPrimary;
 				}
 			}
+			/////   GLOBAL EXTRA CLASS
+			.left35 {
+				left: 35px;
+			}
+			.iconas-grey {
+				position: absolute;
+				top: 20px;
+				// margin-left: 20px;
+				color: $colorPrimary !important;
+				opacity: 0.6;
+				transition: 0.2s;
+			}
+			.iconas-white {
+				position: absolute;
+				top: 20px;
+				// margin-left: 20px;
+				color: $colorPrimary !important;
+				opacity: 1;
+				transition: 0.2s;
+			}
 		}
-		.text-area {
-			overflow: auto;
-			padding: 15px 15px 10px 45px;
-			max-height: 30%;
-			min-height: 80px;
-			color: white !important;
+		.log-reg-switch {
+			// position: absolute;
+			// bottom: 0;
+			margin-top: 10px;
 			margin-left: 20px;
+			color: $colorPrimary;
+			opacity: 0.8;
 
-			outline: none;
-			border: none;
-			border-radius: 0;
-			border-bottom: 1px solid white;
-
-			background-color: rgba(0, 0, 0, 0) !important;
-
-			&:focus {
-				border-radius: 0;
-				border-bottom: 1px solid white;
+			span {
+				font-weight: bold;
+				cursor: pointer;
+				color: $colorTone;
 			}
-		}
-
-		.batonas {
-			// height: 20px;
-			left: 20px;
-			width: 45%;
-			padding: 24px;
-			border-radius: 0;
-			border-bottom: 1px solid white;
-			color: rgb(190, 190, 190);
-			background-color: rgba(0, 0, 0, 0) !important;
-			.visible {
-				color: white !important;
-				font-size: 1.2rem;
-				// bottom: 5px;
-			}
-
-			&:hover {
-				color: white;
-			}
-			&:active {
-				color: white;
-			}
-			&:focus {
-				color: white;
-			}
-		}
-		/////   GLOBAL EXTRA CLASS
-		.left35 {
-			left: 55px;
-		}
-		.iconas-grey {
-			position: absolute;
-			top: 20px;
-			margin-left: 20px;
-			color: rgb(163, 180, 184) !important;
-		}
-		.iconas-white {
-			position: absolute;
-			top: 20px;
-			margin-left: 20px;
-			color: white !important;
-		}
-	}
-	.log-reg-switch {
-		position: absolute;
-		// bottom: 0;
-		margin-top: 10px;
-		margin-left: 20px;
-		color: rgb(200, 200, 200);
-
-		span {
-			font-weight: bold;
-			cursor: pointer;
-			color: rgb(115, 172, 98);
 		}
 	}
 }
-@media (max-width: 1000px) {
-	.log-reg-switch {
-		// font-size: 0.8rem;
-	}
-}
+
 @media (max-width: 768px) {
 	.form-wrapper {
 		.txt-input {

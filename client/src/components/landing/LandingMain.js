@@ -23,7 +23,7 @@ const MovingContainer = (props) => {
 		</div>
 	);
 };
-console.log("//////a//xs/////xx//s////x///x//");
+// console.log("/////a/aaaazaz/ss/xs//a/x//xxa/x/s////x///x//");
 
 const LandingMain = () => {
 	// UI >
