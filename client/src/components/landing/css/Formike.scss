@@ -2,12 +2,29 @@
 $colorPrimary: white;
 $colorTone: rgb(115, 172, 98);
 
+$singleInputWrapper-height-full: calc(47px + 1.5rem);
+$singleInputWrapper-height-800: calc(37px + 1.5rem);
+$singleInputWrapper-height-600: calc(30px + 1.2rem);
+
 .form-wrapper {
 	// border: 1px solid white;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	.input-expand {
+		animation: animation-expand;
+		animation-duration: 0.4s;
+		animation-fill-mode: forwards;
+		animation-timing-function: ease-in-out;
+	}
+	.input-collapse {
+		animation: animation-collapse;
+		animation-duration: 0.4s;
+		animation-fill-mode: forwards;
+		animation-timing-function: ease-in-out;
+	}
 
 	h1 {
 		position: absolute;
@@ -22,11 +39,13 @@ $colorTone: rgb(115, 172, 98);
 		z-index: 1;
 	}
 	.inputs-wrapper {
+		position: relative;
 		width: 80%;
 		// border: 1px solid red;
 		.single-input-wrapper {
 			position: relative;
-			// border: 1px solid blue;
+			border-bottom: 1px solid $colorPrimary;
+			height: $singleInputWrapper-height-full;
 
 			.single-input-wrapper-subIcon {
 				position: absolute;
@@ -44,7 +63,7 @@ $colorTone: rgb(115, 172, 98);
 			overflow: hidden;
 
 			width: 100%;
-			border-bottom: 1px solid rgb(200, 200, 200);
+			border-bottom: 1px solid $colorPrimary;
 			color: white !important;
 			// border: 1px orange solid;
 		}
@@ -57,8 +76,6 @@ $colorTone: rgb(115, 172, 98);
 		}
 		.forma {
 			position: relative;
-			// width: 100%;
-
 			.radio {
 				position: absolute;
 				display: flex;
@@ -77,14 +94,13 @@ $colorTone: rgb(115, 172, 98);
 
 					border-radius: 50%;
 					border: 2px solid $colorPrimary;
-					opacity: 0.6;
+					opacity: 0.5;
 					transition: 0.1s;
 
 					&:hover {
 						cursor: pointer;
 						transition: 0.1s;
 					}
-
 					&:hover .radio-ring-inside {
 						opacity: 0.5;
 						transition: 0.2s;
@@ -121,10 +137,9 @@ $colorTone: rgb(115, 172, 98);
 				&::-webkit-resizer {
 					display: none;
 				}
-
 				&:focus {
 					border-radius: 0;
-					border-bottom: 1px solid $colorPrimary;
+					// border-bottom: 1px solid $colorPrimary;
 				}
 			}
 
@@ -141,7 +156,6 @@ $colorTone: rgb(115, 172, 98);
 					font-size: 1.2rem;
 					letter-spacing: 0.2rem;
 				}
-
 				&:hover {
 					color: $colorPrimary;
 				}
@@ -183,19 +197,58 @@ $colorTone: rgb(115, 172, 98);
 			opacity: 1;
 			transition: opacity 0.2s;
 		}
-
 		.log-reg-switch {
 			margin-top: 10px;
 			margin-left: 20px;
 			color: $colorPrimary;
 			opacity: 0.8;
-
 			span {
 				font-weight: bold;
 				cursor: pointer;
 				color: $colorTone;
 			}
 		}
+	}
+}
+
+@keyframes animation-expand {
+	0% {
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+	25% {
+		opacity: 0.6;
+	}
+	50% {
+		height: $singleInputWrapper-height-full;
+		display: none;
+		width: 0;
+		opacity: 0.6;
+	}
+	100% {
+		width: 100%;
+	}
+}
+@keyframes animation-collapse {
+	0% {
+		opacity: 0.6;
+		// height: 0;
+		width: 100%;
+	}
+	25% {
+		opacity: 0.6;
+	}
+
+	50% {
+		opacity: 0;
+		width: 0;
+		display: none;
+		height: $singleInputWrapper-height-full;
+	}
+	100% {
+		height: 0px;
+		opacity: 0;
 	}
 }
 @media (max-width: 1000px) {
@@ -215,7 +268,6 @@ $colorTone: rgb(115, 172, 98);
 					right: 20px;
 				}
 			}
-
 			.forma {
 				.batonas {
 					width: 100%;
@@ -227,9 +279,13 @@ $colorTone: rgb(115, 172, 98);
 		}
 	}
 }
+////////////////////////////////////////   800
 @media (max-height: 800px) {
 	.form-wrapper {
 		.inputs-wrapper {
+			.single-input-wrapper {
+				height: $singleInputWrapper-height-800;
+			}
 			.txt-input {
 				padding: 15px 0px;
 			}
@@ -256,13 +312,56 @@ $colorTone: rgb(115, 172, 98);
 			}
 		}
 	}
+	@keyframes animation-expand {
+		0% {
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+		25% {
+			opacity: 0.6;
+		}
+		50% {
+			height: $singleInputWrapper-height-800;
+			display: none;
+			width: 0;
+			opacity: 0.6;
+		}
+		100% {
+			width: 100%;
+		}
+	}
+	@keyframes animation-collapse {
+		0% {
+			opacity: 0.6;
+			width: 100%;
+		}
+		25% {
+			opacity: 0.6;
+		}
+		50% {
+			opacity: 0;
+			width: 0;
+			display: none;
+			height: $singleInputWrapper-height-800;
+		}
+		100% {
+			height: 0px;
+			opacity: 0;
+			// display: none;
+		}
+	}
 }
+//////////////////////////////////////    600
 @media (max-height: 600px) {
 	.form-wrapper {
 		h1 {
 			font-size: 1.8rem;
 		}
 		.inputs-wrapper {
+			.single-input-wrapper {
+				height: $singleInputWrapper-height-600;
+			}
 			.txt-input {
 				padding: 12px 0px;
 			}
@@ -285,6 +384,48 @@ $colorTone: rgb(115, 172, 98);
 					top: 12px;
 				}
 			}
+		}
+	}
+	///////////////// -----  GLOBAL  ANIMATIONS   -----  //////////////////
+	@keyframes animation-expand {
+		0% {
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+		25% {
+			opacity: 0.6;
+		}
+		50% {
+			height: $singleInputWrapper-height-600;
+			display: none;
+			width: 0;
+			opacity: 0.6;
+		}
+		100% {
+			width: 100%;
+		}
+	}
+	@keyframes animation-collapse {
+		0% {
+			opacity: 0.6;
+			// height: 0;
+			width: 100%;
+		}
+		25% {
+			opacity: 0.6;
+		}
+
+		50% {
+			opacity: 0;
+			width: 0;
+			display: none;
+			height: $singleInputWrapper-height-600;
+		}
+		100% {
+			height: 0px;
+			opacity: 0;
+			// display: none;
 		}
 	}
 }
