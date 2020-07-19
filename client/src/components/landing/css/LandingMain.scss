@@ -31,7 +31,7 @@ body {
 		color: white;
 		font-size: 3rem;
 		top: -30px;
-		left: 20px;
+		left: 40px;
 		z-index: 1;
 	}
 
@@ -53,7 +53,8 @@ body {
 			height: 100%;
 			background-color: rgba(0, 0, 0, 0.2);
 			// border: 1px solid blue;
-			backdrop-filter: blur(10px);
+			// backdrop-filter: blur(10px);
+			// transform: translateZ(0);
 		}
 	}
 	.box-1 {
@@ -177,6 +178,9 @@ body {
 //////////////////////////////////////  --- MEDIA ---
 @media (max-width: 1000px) {
 	.landing-main {
+		.simas {
+			font-size: 2.5rem;
+		}
 		.landing-box {
 			.form-navigaror {
 				margin-left: 40%;
@@ -189,7 +193,7 @@ body {
 		position: absolute;
 		display: block;
 		height: 180vh;
-		width: 100vw;
+		width: calc(100vw);
 		z-index: -1;
 
 		background-image: $bgImage;
@@ -306,9 +310,7 @@ body {
 		z-index: 1;
 	}
 }
-
 //////////////// -----    ANIMATIONS   -----
-
 @keyframes pulse-ring {
 	0% {
 		transform: scale(0.33);
@@ -318,7 +320,6 @@ body {
 		opacity: 0;
 	}
 }
-
 @keyframes pulse-dot {
 	0% {
 		transform: scale(1.2);
@@ -330,7 +331,6 @@ body {
 		transform: scale(1.2);
 	}
 }
-
 @keyframes rotation {
 	from {
 		transform: rotate(0deg);
