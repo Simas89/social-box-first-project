@@ -4,6 +4,7 @@ import App from "./components/App";
 import { BrowserRouter, Route } from "react-router-dom";
 import ContextState from "./components/context/account/ContextState";
 import SocialState from "./components/context/social/SocialState";
+import LandingState from "./components/landing/landingState/LandingState";
 // import Landing from "./Landing";
 import LandingMain from "./components/landing/LandingMain";
 
@@ -17,7 +18,9 @@ ReactDOM.render(
 		<BrowserRouter>
 			<ContextState>
 				<SocialState>
-					<Route exact path='/' component={LandingMain} />
+					<LandingState>
+						<Route exact path='/' component={LandingMain} />
+					</LandingState>
 					<Route path='/container' component={App} />
 				</SocialState>
 			</ContextState>

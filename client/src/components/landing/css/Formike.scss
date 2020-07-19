@@ -46,6 +46,7 @@ $singleInputWrapper-height-600: calc(30px + 1.2rem);
 			position: relative;
 			border-bottom: 1px solid $colorPrimary;
 			height: $singleInputWrapper-height-full;
+			// border: 1px solid red;
 
 			.single-input-wrapper-subIcon {
 				position: absolute;
@@ -189,7 +190,7 @@ $singleInputWrapper-height-600: calc(30px + 1.2rem);
 
 		.icon-fade {
 			color: $colorPrimary;
-			opacity: 0.6;
+			opacity: 0.7;
 			transition: opacity 0.2s;
 		}
 		.icon-bright {
@@ -213,18 +214,18 @@ $singleInputWrapper-height-600: calc(30px + 1.2rem);
 
 @keyframes animation-expand {
 	0% {
-		opacity: 0;
+		// opacity: 0;
 		width: 0;
 		height: 0;
 	}
 	25% {
-		opacity: 0.6;
+		// opacity: 0.6;
 	}
 	50% {
 		height: $singleInputWrapper-height-full;
 		display: none;
 		width: 0;
-		opacity: 0.6;
+		// opacity: 0.6;
 	}
 	100% {
 		width: 100%;

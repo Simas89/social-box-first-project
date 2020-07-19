@@ -189,7 +189,7 @@
 
 .form-wrapper .inputs-wrapper .icon-fade {
   color: white;
-  opacity: 0.6;
+  opacity: 0.7;
   transition: opacity 0.2s;
 }
 
@@ -214,18 +214,15 @@
 
 @keyframes animation-expand {
   0% {
-    opacity: 0;
     width: 0;
     height: 0;
   }
   25% {
-    opacity: 0.6;
   }
   50% {
     height: calc(47px + 1.5rem);
     display: none;
     width: 0;
-    opacity: 0.6;
   }
   100% {
     width: 100%;
