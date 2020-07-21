@@ -4,7 +4,7 @@ import App from "./components/App";
 import { BrowserRouter, Route } from "react-router-dom";
 import ContextState from "./components/context/account/ContextState";
 import SocialState from "./components/context/social/SocialState";
-import LandingState from "./components/landing/landingState/LandingState";
+import LandingState from "./components/context/landing/LandingState";
 // import Landing from "./Landing";
 import LandingMain from "./components/landing/LandingMain";
 

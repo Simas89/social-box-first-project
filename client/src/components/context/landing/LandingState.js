@@ -1,15 +1,16 @@
 import React from "react";
-import formikeReducer from "./formikeReducer";
+import landingReducer from "./landingReducer";
 import landingContext from "./landingContext";
 
-const PERSIST = "PERSIST";
-const TOGGLE_LR = "TOGGLE_LR";
-const TOGGLE_REMEMBER_ME = "TOGGLE_REMEMBER_ME";
-const SET_USER_INPUT = "SET_USER_INPUT";
-const TOGGLE_FOCUSED = "TOGGLE_FOCUSED";
+import {
+	TOGGLE_LR,
+	TOGGLE_REMEMBER_ME,
+	SET_USER_INPUT,
+	TOGGLE_FOCUSED,
+	INITIAL_RENDER,
+} from "../types";
 
 const LandingState = (props) => {
-	const context = React.useContext(landingContext);
 	const initialState = {
 		LR: false,
 		rememberMe: 1,
@@ -23,33 +24,42 @@ const LandingState = (props) => {
 			senderMail: false,
 			textArea: false,
 		},
+		initialRender: true,
 	};
+	const [state, dispatch] = React.useReducer(landingReducer, initialState);
 
-	const [state, dispatch] = React.useReducer(formikeReducer, initialState);
-	const persist = (data) => {
-		console.log(data);
+	const toggle_lr = () => {
+		dispatch({ type: TOGGLE_LR });
+	};
+	const toggle_remember_me = () => {
+		dispatch({ type: TOGGLE_REMEMBER_ME });
+	};
+	const set_user_input = (payload) => {
+		console.log(payload);
 		dispatch({
-			type: PERSIST,
-			payload: data,
+			type: SET_USER_INPUT,
+			payload: { type: payload.type, value: payload.value },
 		});
 	};
 	const toggle_focused = (payload) => {
-		console.log(payload);
 		dispatch({
 			type: TOGGLE_FOCUSED,
 			payload: { type: payload.type, value: payload.value },
 		});
 	};
-	const toggle_remember_me = () => {
-		dispatch({ type: TOGGLE_REMEMBER_ME });
+	const initial_render_off = () => {
+		dispatch({ type: INITIAL_RENDER });
 	};
 
 	return (
 		<landingContext.Provider
 			value={{
 				state,
-				toggle_focused,
+				toggle_lr,
 				toggle_remember_me,
+				set_user_input,
+				toggle_focused,
+				initial_render_off,
 			}}>
 			{props.children}
 		</landingContext.Provider>

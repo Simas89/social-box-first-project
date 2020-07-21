@@ -1,8 +1,10 @@
-const TOGGLE_LR = "TOGGLE_LR";
-const TOGGLE_REMEMBER_ME = "TOGGLE_REMEMBER_ME";
-const SET_USER_INPUT = "SET_USER_INPUT";
-const TOGGLE_FOCUSED = "TOGGLE_FOCUSED";
-const PERSIST = "PERSIST";
+import {
+	TOGGLE_LR,
+	TOGGLE_REMEMBER_ME,
+	SET_USER_INPUT,
+	TOGGLE_FOCUSED,
+	INITIAL_RENDER,
+} from "../types";
 
 export default (state, action) => {
 	switch (action.type) {
@@ -31,6 +33,9 @@ export default (state, action) => {
 					[action.payload.type]: action.payload.value,
 				},
 			};
+		}
+		case INITIAL_RENDER: {
+			return { ...state, initialRender: false };
 		}
 		default:
 			return state;

@@ -1,0 +1,113 @@
+.top-kiautas {
+  position: relative;
+  height: 60px;
+  width: 50%;
+  display: grid;
+  border: 1px solid blue;
+  display: grid;
+}
+
+.top-kiautas .master-button-wrapper {
+  position: relative;
+  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid white;
+  width: 100%;
+}
+
+.top-kiautas .master-button-wrapper .contents {
+  position: relative;
+  left: -100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border: 1px solid red;
+  width: 400%;
+  transition: 0.2s;
+}
+
+.top-kiautas .master-button-wrapper .contents .box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px black solid;
+  color: white;
+}
+
+.top-kiautas .master-button-wrapper .contents .stage1-box p {
+  font-size: 1.2rem;
+}
+
+.top-kiautas .master-button-wrapper .shift-0 {
+  left: 0px;
+  transition: 0.2s;
+}
+
+.top-kiautas .master-button-wrapper .shift-1 {
+  left: -100%;
+  transition: 0.2s;
+}
+
+.top-kiautas .master-button-wrapper .shift-2 {
+  left: -200%;
+  transition: 0.2s;
+}
+
+.top-kiautas .master-button-wrapper .shift-3 {
+  left: -300%;
+  transition: 0.2s;
+}
+
+.top-kiautas .radio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 30px;
+  border-bottom: 1px solid white;
+}
+
+.top-kiautas .radio .radio-ring {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  border: 2px solid white;
+  opacity: 0.5;
+  transition: 0.1s;
+}
+
+.top-kiautas .radio .radio-ring:hover {
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.top-kiautas .radio .radio-ring:hover .radio-ring-inside {
+  opacity: 0.5;
+  transition: 0.2s;
+}
+
+.top-kiautas .radio .radio-ring .radio-ring-inside {
+  height: 11px;
+  width: 11px;
+  border-radius: 50%;
+  opacity: 0;
+  background-color: white;
+  transition: 0.2s;
+}
+
+.with-remember-space {
+  grid-template-columns: 30px 1fr;
+}
+
+.calc-width {
+  width: calc(100% - 30px);
+}
+
+@media (max-height: 600px) {
+  .top-kiautas {
+    height: 40px;
+  }
+}
