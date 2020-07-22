@@ -2,8 +2,9 @@ import React from "react";
 import "./css/MasterButton.css";
 import landingContext from "../context/landing/landingContext";
 import { Icon } from "semantic-ui-react";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
-const MasterButton = (props) => {
+const MasterButtonSend = (props) => {
 	const contextLanding = React.useContext(landingContext);
 	const [stage, setStage] = React.useState(1);
 	const stageClassReturn = () => {
@@ -12,31 +13,29 @@ const MasterButton = (props) => {
 		if (stage === 2) return "shift-2";
 		if (stage === 3) return "shift-3";
 	};
+
+	let ref = React.useRef();
+	useOutsideClick(ref, () => {
+		setStage(1);
+	});
+
+	const buttonManager = () => {
+		if (props.msg1 !== "OK") {
+			setStage(0);
+		} else {
+			setStage(2);
+		}
+	};
+
 	return (
-		<div className={`top-kiautas ${props.remember && " with-remember-space"}`}>
-			{props.remember ? (
-				<div
-					onClick={() => contextLanding.toggle_remember_me()}
-					className='radio'>
-					<div
-						className='radio-ring'
-						style={contextLanding.state.rememberMe ? { opacity: 0.8 } : {}}>
-						<div
-							className='radio-ring-inside'
-							style={
-								contextLanding.state.rememberMe ? { opacity: 0.8 } : {}
-							}></div>
-					</div>
-				</div>
-			) : null}
+		<div ref={ref} className={"top-kiautas"}>
 			<div className={`master-button-wrapper `}>
 				<div
 					className={`contents ${stageClassReturn()}`}
-					onClick={() => setStage(2)}
-					onMouseEnter={() => setStage(0)}
-					onMouseLeave={() => setStage(1)}>
+					onClick={(e) => buttonManager(e)}
+					onBlur={() => console.log("blur")}>
 					<div className='box'>
-						<p>Minus</p>
+						<p>{props.msg1}</p>
 					</div>
 					<div className='box stage1-box'>
 						<p>{props.stage1}</p>
@@ -53,4 +52,4 @@ const MasterButton = (props) => {
 	);
 };
 
-export default MasterButton;
+export default MasterButtonSend;

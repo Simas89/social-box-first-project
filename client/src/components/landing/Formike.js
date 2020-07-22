@@ -1,25 +1,74 @@
 import React from "react";
 import "./css/Formike.css";
-// import "./css/_scss-variables.scss";
-import { Input, Icon, Button, Form, TextArea } from "semantic-ui-react";
+import { Input, Icon, Form, TextArea } from "semantic-ui-react";
 import landingContext from "../context/landing/landingContext";
-import MasterButton from "./MasterButton";
+import MasterButtonLogin from "./MasterButtonLogin";
+import MasterButtonSend from "./MasterButtonSend";
 
 const Formike = (props) => {
 	const contextLanding = React.useContext(landingContext);
-	const [canAnimatePsw2, setCanAnimatePsw2] = React.useState({
-		expand: false,
-		collapse: false,
-		display: false,
-	});
 
-	// SET AND CORRECT INPUTS
 	const minLengthUser = 3;
 	const minLengthPsw = 6;
 	const userInputsChange = (e, type) => {
 		const value = e.target.value.replace(/[^A-Za-z0-9]/gi, "");
-		// dispatch({ type: SET_USER_INPUT, payload: { type: type, value: value } });
 		contextLanding.set_user_input({ type: type, value: value });
+	};
+
+	const isInputsValid = (type) => {
+		const results = {
+			userName:
+				contextLanding.state.userInputs.userName.length >= minLengthUser
+					? "OK"
+					: "User name must contain atleast 3 characters",
+			psw1:
+				contextLanding.state.userInputs.psw1.length >= minLengthPsw
+					? "OK"
+					: "Password must contain atleast 6 characters",
+			psw2:
+				contextLanding.state.userInputs.psw2.length >= minLengthPsw
+					? "OK"
+					: "Password must contain atleast 6 characters",
+			pswMach:
+				contextLanding.state.userInputs.psw1 ===
+				contextLanding.state.userInputs.psw2
+					? "OK"
+					: "Passwords do not mach",
+		};
+
+		switch (type) {
+			case "userName":
+				return results.userName;
+
+			case "psw1":
+				return results.psw1;
+
+			case "psw2":
+				return results.psw2;
+
+			case "pswMach":
+				return results.pswMach;
+
+			case "buttonProp": {
+				if (results.userName !== "OK") {
+					return results.userName;
+				} else {
+					if (results.psw1 !== "OK") {
+						return results.psw1;
+					} else {
+						if (!contextLanding.state.LR) {
+							return "OK";
+						} else {
+							if (results.pswMach !== "OK") {
+								return results.pswMach;
+							} else {
+								return "OK";
+							}
+						}
+					}
+				}
+			}
+		}
 	};
 
 	return (
@@ -44,8 +93,7 @@ const Formike = (props) => {
 							<div className='single-input-wrapper-subIcon'>
 								<Icon
 									style={
-										contextLanding.state.userInputs.userName.length >=
-										minLengthUser
+										isInputsValid("userName") === "OK"
 											? { display: "block" }
 											: { display: "none" }
 									}
@@ -88,7 +136,7 @@ const Formike = (props) => {
 							<div className='single-input-wrapper-subIcon'>
 								<Icon
 									style={
-										contextLanding.state.userInputs.psw1.length >= minLengthPsw
+										isInputsValid("psw1") === "OK"
 											? { display: "block" }
 											: { display: "none" }
 									}
@@ -97,11 +145,7 @@ const Formike = (props) => {
 											? "icon-bright"
 											: "icon-fade"
 									}
-									name={
-										contextLanding.state.userInputs.psw1.length >= minLengthPsw
-											? "check"
-											: "delete"
-									}
+									name={isInputsValid("psw1") === "OK" ? "check" : "delete"}
 									size='small'
 								/>
 							</div>
@@ -121,21 +165,18 @@ const Formike = (props) => {
 								spellCheck='false'
 								transparent></Input>
 						</div>
-						{/*-------------     PASSWORD 2  ---------------  */}
-						{!contextLanding.state.initialRender ? (
+						{/*-------------     PASSWORD 2  --------------- !contextLanding.state.initialRender contextLanding.state.LR ? "input-expand" : "input-collapse"*/}
+						{contextLanding.state.canAnimatePsw2.display ? (
 							<div
 								className={`single-input-wrapper ${
-									contextLanding.state.LR ? "input-expand" : "input-collapse"
-								} ${
-									contextLanding.state.focused.psw2
-										? "icon-bright"
-										: "icon-fade"
-								}`}>
+									contextLanding.state.canAnimatePsw2.expand && "input-expand"
+								} 
+									${contextLanding.state.canAnimatePsw2.collapse && "input-collapse"}
+								 ${contextLanding.state.focused.psw2 ? "icon-bright" : "icon-fade"}`}>
 								<div className='single-input-wrapper-subIcon'>
 									<Icon
 										style={
-											contextLanding.state.userInputs.psw2.length >=
-											minLengthPsw
+											isInputsValid("psw2") === "OK"
 												? { display: "block" }
 												: { display: "none" }
 										}
@@ -143,12 +184,10 @@ const Formike = (props) => {
 											contextLanding.state.focused.psw2
 												? "icon-bright"
 												: "icon-fade"
-										} // add display one or opacity 0 depending on LR
+										}
 										name={
-											contextLanding.state.userInputs.psw2.length >=
-												minLengthPsw &&
-											contextLanding.state.userInputs.psw2 ===
-												contextLanding.state.userInputs.psw1
+											isInputsValid("psw2") === "OK" &&
+											isInputsValid("pswMach") === "OK"
 												? "check"
 												: "delete"
 										}
@@ -177,21 +216,57 @@ const Formike = (props) => {
 						) : (
 							""
 						)}
-
-						<MasterButton remember={0} stage1='SEND' stage2='send' />
-						<MasterButton
-							remember={1}
-							stage1='Log in'
+						<MasterButtonLogin
+							msg1={isInputsValid("buttonProp")}
+							stage1={contextLanding.state.LR ? "Register" : "Log in"}
 							stage2={contextLanding.state.LR ? "user plus" : "sign in"}
 						/>
+						<MasterButtonSend
+							msg1={"Send msg err"}
+							stage1='SEND'
+							stage2='send'
+						/>
+
 						<div className='log-reg-switch'>
 							{contextLanding.state.LR
 								? "Already a user? "
 								: "Don't have an account? "}
 							<span
 								onClick={() => {
+									if (contextLanding.state.LR) {
+										contextLanding.can_animate_psw2({
+											expand: false,
+											collapse: true,
+											display: true,
+										});
+
+										setTimeout(
+											() =>
+												contextLanding.can_animate_psw2({
+													expand: false,
+													collapse: false,
+													display: false,
+												}),
+											400
+										);
+									} else {
+										contextLanding.can_animate_psw2({
+											expand: true,
+											collapse: false,
+											display: true,
+										});
+										setTimeout(
+											() =>
+												contextLanding.can_animate_psw2({
+													expand: false,
+													collapse: false,
+													display: true,
+												}),
+											400
+										);
+									}
+
 									contextLanding.toggle_lr();
-									contextLanding.initial_render_off();
 								}}>
 								{contextLanding.state.LR ? " Log in" : " Register"}
 							</span>
@@ -290,13 +365,7 @@ const Formike = (props) => {
 									spellCheck='false'
 								/>
 							</div>
-							<Button className='batonas' animated>
-								<Button.Content visible>SEND</Button.Content>
-								<Button.Content hidden>
-									<Icon size='large' name='send' />
-								</Button.Content>
-							</Button>
-							{/* <Button className='batonas'>SEND</Button> */}
+							{/* <MasterButton remember={0} stage1='SEND' stage2='send' /> */}
 						</Form>
 					</div>
 				</React.Fragment>

@@ -8,6 +8,7 @@
 }
 
 .top-kiautas .master-button-wrapper {
+  overflow: hidden;
   position: relative;
   display: flex;
   display: grid;

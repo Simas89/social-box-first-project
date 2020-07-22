@@ -7,7 +7,8 @@ import {
 	TOGGLE_REMEMBER_ME,
 	SET_USER_INPUT,
 	TOGGLE_FOCUSED,
-	INITIAL_RENDER,
+	CAN_ANIMATE_PSW2,
+	MASTER_BUTTON_BLUR,
 } from "../types";
 
 const LandingState = (props) => {
@@ -24,9 +25,11 @@ const LandingState = (props) => {
 			senderMail: false,
 			textArea: false,
 		},
-		initialRender: true,
+		canAnimatePsw2: { expand: false, collapse: false, display: false },
 	};
 	const [state, dispatch] = React.useReducer(landingReducer, initialState);
+
+	// console.log(state.userInputs.userName);
 
 	const toggle_lr = () => {
 		dispatch({ type: TOGGLE_LR });
@@ -35,7 +38,6 @@ const LandingState = (props) => {
 		dispatch({ type: TOGGLE_REMEMBER_ME });
 	};
 	const set_user_input = (payload) => {
-		console.log(payload);
 		dispatch({
 			type: SET_USER_INPUT,
 			payload: { type: payload.type, value: payload.value },
@@ -47,9 +49,10 @@ const LandingState = (props) => {
 			payload: { type: payload.type, value: payload.value },
 		});
 	};
-	const initial_render_off = () => {
-		dispatch({ type: INITIAL_RENDER });
+	const can_animate_psw2 = (payload) => {
+		dispatch({ type: CAN_ANIMATE_PSW2, payload: payload });
 	};
+	const master_button_blur = () => {};
 
 	return (
 		<landingContext.Provider
@@ -59,7 +62,8 @@ const LandingState = (props) => {
 				toggle_remember_me,
 				set_user_input,
 				toggle_focused,
-				initial_render_off,
+				can_animate_psw2,
+				master_button_blur,
 			}}>
 			{props.children}
 		</landingContext.Provider>

@@ -3,7 +3,7 @@ import {
 	TOGGLE_REMEMBER_ME,
 	SET_USER_INPUT,
 	TOGGLE_FOCUSED,
-	INITIAL_RENDER,
+	CAN_ANIMATE_PSW2,
 } from "../types";
 
 export default (state, action) => {
@@ -34,8 +34,8 @@ export default (state, action) => {
 				},
 			};
 		}
-		case INITIAL_RENDER: {
-			return { ...state, initialRender: false };
+		case CAN_ANIMATE_PSW2: {
+			return { ...state, canAnimatePsw2: action.payload };
 		}
 		default:
 			return state;
