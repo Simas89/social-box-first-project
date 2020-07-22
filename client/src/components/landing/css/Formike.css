@@ -127,6 +127,11 @@
   transition: opacity 0.2s;
 }
 
+.form-wrapper .inputs-wrapper .icon-no-opacity {
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
 .form-wrapper .inputs-wrapper .log-reg-switch {
   margin-top: 10px;
   margin-left: 20px;

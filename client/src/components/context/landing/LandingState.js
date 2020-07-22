@@ -6,9 +6,10 @@ import {
 	TOGGLE_LR,
 	TOGGLE_REMEMBER_ME,
 	SET_USER_INPUT,
+	USER_INPUTS_CLEAR,
+	SET_MSG_INPUT,
 	TOGGLE_FOCUSED,
 	CAN_ANIMATE_PSW2,
-	MASTER_BUTTON_BLUR,
 } from "../types";
 
 const LandingState = (props) => {
@@ -17,6 +18,7 @@ const LandingState = (props) => {
 		rememberMe: 1,
 
 		userInputs: { userName: "", psw1: "", psw2: "" },
+		msgInputs: { guest: "", email: "", msg: "" },
 		focused: {
 			userName: false,
 			psw1: false,
@@ -43,6 +45,15 @@ const LandingState = (props) => {
 			payload: { type: payload.type, value: payload.value },
 		});
 	};
+	const user_inputs_clear = () => {
+		dispatch({ type: USER_INPUTS_CLEAR });
+	};
+	const set_msg_input = (payload) => {
+		dispatch({
+			type: SET_MSG_INPUT,
+			payload: { type: payload.type, value: payload.value },
+		});
+	};
 	const toggle_focused = (payload) => {
 		dispatch({
 			type: TOGGLE_FOCUSED,
@@ -61,6 +72,8 @@ const LandingState = (props) => {
 				toggle_lr,
 				toggle_remember_me,
 				set_user_input,
+				user_inputs_clear,
+				set_msg_input,
 				toggle_focused,
 				can_animate_psw2,
 				master_button_blur,

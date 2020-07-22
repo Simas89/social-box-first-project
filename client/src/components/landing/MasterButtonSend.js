@@ -7,24 +7,47 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 const MasterButtonSend = (props) => {
 	const contextLanding = React.useContext(landingContext);
 	const [stage, setStage] = React.useState(1);
+	const [freeze, setFreeze] = React.useState(false); // if stage should freeze
 	const stageClassReturn = () => {
-		if (stage === 0) return "shift-0";
-		if (stage === 1) return "shift-1";
-		if (stage === 2) return "shift-2";
-		if (stage === 3) return "shift-3";
+		if (stage === 0) return "shift-0"; // input err
+		if (stage === 1) return "shift-1"; // base
+		if (stage === 2) return "shift-2"; // next
+		if (stage === 3) return "shift-3"; // server err or all good
 	};
 
 	let ref = React.useRef();
 	useOutsideClick(ref, () => {
 		setStage(1);
+		setFreeze(false);
 	});
 
-	const buttonManager = () => {
-		if (props.msg1 !== "OK") {
-			setStage(0);
-		} else {
-			setStage(2);
+	const buttonManager = (type) => {
+		switch (type) {
+			case "exec": {
+				if (props.msg1 !== "OK") {
+					setStage(0);
+				} else {
+					setStage(2);
+					setFreeze(true);
+					sendMeEmail();
+				}
+				break;
+			}
+			case 1: {
+				!freeze && setStage(1);
+				break;
+			}
+			case 2: {
+				setStage(2);
+				break;
+			}
+			default:
+				break;
 		}
+	};
+	const sendMeEmail = () => {
+		console.log("sending email");
+		setTimeout(() => setStage(3), 1000);
 	};
 
 	return (
@@ -32,8 +55,13 @@ const MasterButtonSend = (props) => {
 			<div className={`master-button-wrapper `}>
 				<div
 					className={`contents ${stageClassReturn()}`}
-					onClick={(e) => buttonManager(e)}
-					onBlur={() => console.log("blur")}>
+					onClick={() => buttonManager("exec")}
+					onMouseEnter={() =>
+						props.msg1 === "OK" && stage !== 3 && buttonManager(2)
+					}
+					onMouseLeave={() =>
+						props.msg1 === "OK" && stage !== 3 && buttonManager(1)
+					}>
 					<div className='box'>
 						<p>{props.msg1}</p>
 					</div>

@@ -68,6 +68,8 @@ const Formike = (props) => {
 					}
 				}
 			}
+			default:
+				break;
 		}
 	};
 
@@ -180,11 +182,14 @@ const Formike = (props) => {
 												? { display: "block" }
 												: { display: "none" }
 										}
-										className={
+										className={`${
 											contextLanding.state.focused.psw2
 												? "icon-bright"
 												: "icon-fade"
-										}
+										} ${
+											contextLanding.state.canAnimatePsw2.expand &&
+											"icon-no-opacity"
+										}`}
 										name={
 											isInputsValid("psw2") === "OK" &&
 											isInputsValid("pswMach") === "OK"
@@ -221,11 +226,7 @@ const Formike = (props) => {
 							stage1={contextLanding.state.LR ? "Register" : "Log in"}
 							stage2={contextLanding.state.LR ? "user plus" : "sign in"}
 						/>
-						<MasterButtonSend
-							msg1={"Send msg err"}
-							stage1='SEND'
-							stage2='send'
-						/>
+						<MasterButtonSend msg1={"OK"} stage1='SEND' stage2='send' />
 
 						<div className='log-reg-switch'>
 							{contextLanding.state.LR
@@ -286,6 +287,13 @@ const Formike = (props) => {
 									: "icon-fade"
 							}`}>
 							<Input
+								value={contextLanding.state.msgInputs.guest}
+								onChange={(e) =>
+									contextLanding.set_msg_input({
+										type: "guest",
+										value: e.target.value,
+									})
+								}
 								onFocus={() =>
 									contextLanding.toggle_focused({
 										type: "senderName",
@@ -312,6 +320,13 @@ const Formike = (props) => {
 									: "icon-fade"
 							}`}>
 							<Input
+								value={contextLanding.state.msgInputs.email}
+								onChange={(e) =>
+									contextLanding.set_msg_input({
+										type: "email",
+										value: e.target.value,
+									})
+								}
 								onFocus={() =>
 									contextLanding.toggle_focused({
 										type: "senderMail",
@@ -349,6 +364,13 @@ const Formike = (props) => {
 										: "icon-fade"
 								}`}>
 								<TextArea
+									value={contextLanding.state.msgInputs.msg}
+									onChange={(e) =>
+										contextLanding.set_msg_input({
+											type: "msg",
+											value: e.target.value,
+										})
+									}
 									onFocus={() =>
 										contextLanding.toggle_focused({
 											type: "textArea",
@@ -365,6 +387,11 @@ const Formike = (props) => {
 									spellCheck='false'
 								/>
 							</div>
+							{/* <MasterButtonSend
+								msg1={"Send msg err"}
+								stage1='SEND'
+								stage2='send'
+							/> */}
 							{/* <MasterButton remember={0} stage1='SEND' stage2='send' /> */}
 						</Form>
 					</div>

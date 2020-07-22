@@ -14,6 +14,7 @@ const MasterButtonLogin = (props) => {
 		if (stage === 2) return "shift-2"; // next
 		if (stage === 3) return "shift-3"; // server err
 	};
+	console.log(props);
 
 	let ref = React.useRef();
 	useOutsideClick(ref, () => {
@@ -24,32 +25,31 @@ const MasterButtonLogin = (props) => {
 	const buttonManager = (type) => {
 		switch (type) {
 			case "exec": {
-				console.log(type);
 				if (props.msg1 !== "OK") {
 					setStage(0);
 				} else {
 					setStage(2);
 					setFreeze(true);
-					console.log("SUCCESS!");
+					logIn();
 				}
 				break;
 			}
 			case 1: {
-				console.log(type);
 				!freeze && setStage(1);
 				break;
 			}
 			case 2: {
-				console.log(type);
+				setStage(2);
 				break;
 			}
+			default:
+				break;
 		}
 	};
-	console.log(freeze);
-
-	// console.log(contextLanding.state.LR);
-
-	// console.log(props);
+	const logIn = () => {
+		console.log("logging in");
+		contextLanding.user_inputs_clear();
+	};
 
 	return (
 		<div ref={ref} className={"top-kiautas  with-remember-space"}>

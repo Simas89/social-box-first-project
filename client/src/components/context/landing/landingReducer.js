@@ -2,6 +2,8 @@ import {
 	TOGGLE_LR,
 	TOGGLE_REMEMBER_ME,
 	SET_USER_INPUT,
+	USER_INPUTS_CLEAR,
+	SET_MSG_INPUT,
 	TOGGLE_FOCUSED,
 	CAN_ANIMATE_PSW2,
 } from "../types";
@@ -24,6 +26,25 @@ export default (state, action) => {
 					},
 				};
 			break;
+		}
+		case USER_INPUTS_CLEAR: {
+			return {
+				...state,
+				userInputs: {
+					userName: "",
+					psw1: "",
+					psw2: "",
+				},
+			};
+		}
+		case SET_MSG_INPUT: {
+			return {
+				...state,
+				msgInputs: {
+					...state.msgInputs,
+					[action.payload.type]: action.payload.value,
+				},
+			};
 		}
 		case TOGGLE_FOCUSED: {
 			return {
