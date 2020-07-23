@@ -9,7 +9,7 @@ const Formike = (props) => {
 	const contextLanding = React.useContext(landingContext);
 
 	const minLengthUser = 3;
-	const minLengthPsw = 6;
+	const minLengthPsw = 3;
 	const userInputsChange = (e, type) => {
 		const value = e.target.value.replace(/[^A-Za-z0-9]/gi, "");
 		contextLanding.set_user_input({ type: type, value: value });

@@ -1,10 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   box-sizing: border-box;
-  font-family: "MuseoModerno", cursive;
-  font-weight: 300;
-  letter-spacing: 0.1rem;
-  word-spacing: 0.3rem;
 }
 
 body {
@@ -22,6 +18,10 @@ body {
   background-image: url("../../../img/bg8.png");
   background-size: cover;
   background-position: center;
+  font-family: "MuseoModerno", cursive;
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.3rem;
 }
 
 .landing-main .simas {

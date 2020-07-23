@@ -30,12 +30,25 @@ const LandingMain = () => {
 	const [scrollStage, setScrollStage] = React.useState(1);
 	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 	const [page, setPage] = React.useState(0);
-	window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
-	window.addEventListener("scroll", () => {
+
+	// EVENT LISTENERS AND THEIR FUNCTIONS
+	const scrollEvent = () => {
 		let scrollPosition = window.pageYOffset;
 		const parallax = document.querySelector(".parallax");
 		parallax.style.transform = `translateY(${scrollPosition * 0.6}px)`;
-	});
+	};
+	const resizeEvent = () => {
+		setWindowWidth(window.innerWidth);
+	};
+	document.addEventListener("resize", resizeEvent);
+	document.addEventListener("scroll", scrollEvent);
+
+	React.useEffect(() => {
+		return () => {
+			document.removeEventListener("resize", resizeEvent);
+			document.removeEventListener("scroll", scrollEvent);
+		};
+	}, []);
 
 	// Pge scroll stuff
 	React.useEffect(() => {
@@ -43,6 +56,7 @@ const LandingMain = () => {
 		if (scrollStage === 2) window.scrollTo(0, window.innerHeight);
 		if (scrollStage === 3) window.scrollTo(0, window.innerHeight * 2);
 	}, [scrollStage]);
+
 	if (scrollStage === 1) window.scrollTo(0, 0);
 	if (scrollStage === 2) window.scrollTo(0, window.innerHeight);
 	if (scrollStage === 3) window.scrollTo(0, window.innerHeight * 2);

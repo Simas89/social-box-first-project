@@ -4,10 +4,6 @@ $bgImage: url("../../../img/bg8.png");
 
 * {
 	box-sizing: border-box;
-	font-family: "MuseoModerno", cursive;
-	font-weight: 300;
-	letter-spacing: 0.1rem;
-	word-spacing: 0.3rem;
 }
 body {
 	overflow: hidden;
@@ -24,6 +20,11 @@ body {
 	background-image: $bgImage;
 	background-size: cover;
 	background-position: center;
+
+	font-family: "MuseoModerno", cursive;
+	font-weight: 300;
+	letter-spacing: 0.1rem;
+	word-spacing: 0.3rem;
 	.simas {
 		font-family: "MuseoModerno", cursive;
 		font-weight: 500;

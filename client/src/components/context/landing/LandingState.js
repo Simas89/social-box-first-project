@@ -15,7 +15,7 @@ import {
 const LandingState = (props) => {
 	const initialState = {
 		LR: false,
-		rememberMe: 1,
+		rememberMe: 0,
 
 		userInputs: { userName: "", psw1: "", psw2: "" },
 		msgInputs: { guest: "", email: "", msg: "" },

@@ -1,11 +1,16 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import "./css/MasterButton.css";
 import landingContext from "../context/landing/landingContext";
+import accountContext from "../context/account/myContext";
 import { Icon } from "semantic-ui-react";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import logInFetch from "../../functions/logInFetch";
 
 const MasterButtonLogin = (props) => {
 	const contextLanding = React.useContext(landingContext);
+	const contextAccount = React.useContext(accountContext);
+	const history = useHistory();
 	const [stage, setStage] = React.useState(1);
 	const [freeze, setFreeze] = React.useState(false); // if stage should freeze
 	const stageClassReturn = () => {
@@ -14,7 +19,13 @@ const MasterButtonLogin = (props) => {
 		if (stage === 2) return "shift-2"; // next
 		if (stage === 3) return "shift-3"; // server err
 	};
-	console.log(props);
+	// console.log(props);
+	React.useEffect(() => {
+		if (localStorage.getItem("rememberme")) {
+			console.log("Executing auto-login");
+			logIn();
+		}
+	}, []);
 
 	let ref = React.useRef();
 	useOutsideClick(ref, () => {
@@ -48,8 +59,24 @@ const MasterButtonLogin = (props) => {
 	};
 	const logIn = () => {
 		console.log("logging in");
-		contextLanding.user_inputs_clear();
+		logInFetch(
+			{
+				inputValueName: contextLanding.state.userInputs.userName,
+				inputValuePsw: contextLanding.state.userInputs.psw1,
+				rememberMe: contextLanding.state.rememberMe,
+				aotoLogin: localStorage.getItem("rememberme"),
+			},
+			(data) => {
+				if (data.status === "LOGGING IN") {
+					console.log(data);
+					contextLanding.user_inputs_clear();
+					contextAccount.accountState.logIn(data);
+					history.push("/container");
+				} else console.log(data.status);
+			}
+		);
 	};
+	console.log(localStorage.getItem("rememberme"));
 
 	return (
 		<div ref={ref} className={"top-kiautas  with-remember-space"}>
