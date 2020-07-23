@@ -5,7 +5,7 @@ import { Icon } from "semantic-ui-react";
 import useOutsideClick from "../../hooks/useOutsideClick";
 
 const MasterButtonSend = (props) => {
-	const contextLanding = React.useContext(landingContext);
+	// const contextLanding = React.useContext(landingContext);
 	const [stage, setStage] = React.useState(1);
 	const [freeze, setFreeze] = React.useState(false); // if stage should freeze
 	const stageClassReturn = () => {
@@ -62,17 +62,21 @@ const MasterButtonSend = (props) => {
 					onMouseLeave={() =>
 						props.msg1 === "OK" && stage !== 3 && buttonManager(1)
 					}>
+					{/*stage 0 */}
 					<div className='box'>
 						<p>{props.msg1}</p>
 					</div>
+					{/*stage 1 */}
 					<div className='box stage1-box'>
 						<p>{props.stage1}</p>
 					</div>
+					{/*stage 2 */}
 					<div className='box'>
 						<Icon name={props.stage2} size='large' />
 					</div>
+					{/*stage 3 */}
 					<div className='box'>
-						<p>Item-3</p>
+						<Icon name={"check"} size='large' />
 					</div>
 				</div>
 			</div>

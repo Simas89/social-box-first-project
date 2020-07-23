@@ -386,7 +386,18 @@ const Formike = (props) => {
 									className='text-area'
 									spellCheck='false'
 								/>
+								{navigator.appVersion.indexOf("Chrome/") !== -1 ? (
+									<div className='text-area-resizer'>
+										<div className='text-area-resizer-sub sub-1'></div>
+										<div className='text-area-resizer-sub sub-2'></div>
+										<div className='text-area-resizer-sub sub-3'></div>
+										<div className='text-area-resizer-sub sub-4'></div>
+										<div className='text-area-resizer-sub sub-5'></div>
+										<div className='text-area-resizer-sub sub-6'></div>
+									</div>
+								) : null}
 							</div>
+
 							{/* <MasterButtonSend
 								msg1={"Send msg err"}
 								stage1='SEND'

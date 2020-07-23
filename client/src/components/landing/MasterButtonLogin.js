@@ -72,15 +72,19 @@ const MasterButtonLogin = (props) => {
 					onClick={() => buttonManager("exec")}
 					onMouseEnter={() => props.msg1 === "OK" && buttonManager(2)}
 					onMouseLeave={() => props.msg1 === "OK" && buttonManager(1)}>
-					<div className='box'>
+					{/*stage 0 */}
+					<div className='box stage0-box'>
 						<p>{props.msg1}</p>
 					</div>
+					{/*stage 1 */}
 					<div className='box stage1-box'>
 						<p>{props.stage1}</p>
 					</div>
+					{/*stage 2 */}
 					<div className='box'>
 						<Icon name={props.stage2} size='large' />
 					</div>
+					{/*stage 3 */}
 					<div className='box'>
 						<p>Item-3</p>
 					</div>

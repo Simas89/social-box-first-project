@@ -6,7 +6,7 @@ $colorTone: rgb(115, 172, 98);
 	height: 60px;
 	width: 50%;
 	display: grid;
-	border: 1px solid blue;
+	// border: 1px solid blue;
 	display: grid;
 	.master-button-wrapper {
 		overflow: hidden;
@@ -23,16 +23,18 @@ $colorTone: rgb(115, 172, 98);
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr 1fr;
 
-			border: 1px solid red;
+			// border: 1px solid red;
 			width: 400%;
 			transition: 0.2s;
 			.box {
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				border: 1px black solid;
+				text-align: center;
+				// border: 1px black solid;
 				color: $colorPrimary;
 			}
+
 			.stage1-box {
 				p {
 					font-size: 1.2rem;
@@ -108,5 +110,20 @@ $colorTone: rgb(115, 172, 98);
 @media (max-height: 600px) {
 	.top-kiautas {
 		height: 40px;
+	}
+}
+
+@media (max-width: 1320px) {
+	.top-kiautas {
+		.master-button-wrapper {
+			.contents {
+				.stage0-box {
+					// border: 1px solid green;
+					overflow-wrap: break-word;
+					font-size: 0.6rem;
+					min-width: 100%;
+				}
+			}
+		}
 	}
 }
