@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/MasterButton.css";
-import landingContext from "../context/landing/landingContext";
+// import landingContext from "../context/landing/landingContext";
 import { Icon } from "semantic-ui-react";
 import useOutsideClick from "../../hooks/useOutsideClick";
 

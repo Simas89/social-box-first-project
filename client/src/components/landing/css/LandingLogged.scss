@@ -1,0 +1,30 @@
+$colorPrimary: white;
+$colorTone: rgb(115, 172, 98);
+
+.landing-logged {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	// border: 1px solid white;
+	height: 100%;
+	width: 100%;
+
+	.logged-title {
+		color: $colorPrimary;
+		font-size: 1.3rem;
+	}
+	.logged-button-wrapper {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		margin-top: 1rem;
+		.logged-button-return {
+			color: $colorPrimary;
+			cursor: pointer;
+		}
+		.logged-button-logout {
+			color: $colorPrimary;
+			cursor: pointer;
+		}
+	}
+}

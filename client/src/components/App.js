@@ -1,13 +1,12 @@
 import React from "react";
 import "./css/App.css";
-import { Route, Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Icon } from "semantic-ui-react";
 
 import myContext from "./context/account/myContext";
 import socialContext from "./context/social/socialContext";
 
 import Container from "./Container";
-import Login from "./Login";
-import Register from "./Register";
 import NotificationsContentBlock from "./social/NotificationsContentBlock";
 import NotificationTab from "./social/NotificationTab";
 
@@ -19,42 +18,44 @@ function App(props) {
 	const history = useHistory();
 
 	return (
-		<React.Fragment>
-			<div className='nav'>
-				<div className='nav-content'>
-					<h1
-						onClick={() => {
-							history.push("/");
-						}}>
-						My Container
-					</h1>
-					<ul>
-						<li>
-							<Link to='/about'>About</Link>
-						</li>
-					</ul>
-					{context.accountState.logged && (
-						<p>{`${context.accountState.user}   Cr: ${context.accountState.credits}`}</p>
-					)}
-					<div>
+		context.accountState.logged && (
+			<React.Fragment>
+				<div className='nav'>
+					<div className='nav-content'>
+						<Icon
+							style={{ cursor: "pointer" }}
+							onClick={() => {
+								history.push("/container");
+							}}
+							name='home'
+							size='large'
+						/>
+						<Icon
+							style={{ cursor: "pointer" }}
+							onClick={() => {
+								history.push("/");
+							}}
+							name='sign out'
+							size='large'
+						/>
+
 						{context.accountState.logged && (
-							<button onClick={context.accountState.logOff}>Logout</button>
+							<p>{`${context.accountState.user}   Cr: ${context.accountState.credits}`}</p>
 						)}
 					</div>
 				</div>
-			</div>
 
-			<div
-				className='App'
-				style={{
-					position: "relative",
-				}}>
-				{context.accountState.logged && <NotificationTab />}
-				{contextSocial.isNotificationOpen && context.accountState.logged && (
-					<NotificationsContentBlock />
-				)}
+				<div
+					className='App'
+					style={{
+						position: "relative",
+					}}>
+					{context.accountState.logged && <NotificationTab />}
+					{contextSocial.isNotificationOpen && context.accountState.logged && (
+						<NotificationsContentBlock />
+					)}
 
-				{/* <Route /////////////// Container
+					{/* <Route /////////////// Container
 					exact
 					path='/container'
 					render={() =>
@@ -63,27 +64,10 @@ function App(props) {
 							: history.push("/login")
 					}
 				/> */}
-				<Route /* /////////// Container */
-					path='/container'
-					render={(props) => <Container {...props} />}
-				/>
-				<Route /* /////////// Login */
-					exact
-					path='/login'
-					render={() => (
-						<Login
-							logged={context.accountState.logged}
-							logIn={context.accountState.logIn}
-						/>
-					)}
-				/>
-				<Route /* /////////// Register */
-					exact
-					path='/register'
-					render={() => <Register logIn={context.accountState.logIn} />}
-				/>
-			</div>
-		</React.Fragment>
+					<Container {...props} />
+				</div>
+			</React.Fragment>
+		)
 	);
 }
 

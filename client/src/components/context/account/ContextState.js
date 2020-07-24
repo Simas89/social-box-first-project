@@ -21,6 +21,8 @@ const ContextState = (props) => {
 		const data = JSON.parse(sessionStorage.getItem("MY_CONTAINER_STATE"));
 		if (data) {
 			setAccountState(data);
+		} else {
+			history.push("/");
 		}
 	}, []);
 	const setAccountStateALL = (
@@ -69,8 +71,8 @@ const ContextState = (props) => {
 		localStorage.clear();
 		sessionStorage.clear();
 
-		setAccountStateALL(false, "", 0, [], "", false, "");
-		history.push("/login");
+		// setAccountStateALL(false, "", 0, [], "", false, "");
+		history.push("/");
 		logout(accountState.user);
 	};
 	const trade = (data) => {

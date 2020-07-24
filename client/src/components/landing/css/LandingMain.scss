@@ -1,4 +1,6 @@
-$colorTone: rgb(121, 180, 97);
+$colorPrimary: white;
+$colorTone: rgb(115, 172, 98);
+
 $bgImage: url("../../../img/bg8.png");
 @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
@@ -29,7 +31,7 @@ body {
 		font-family: "MuseoModerno", cursive;
 		font-weight: 500;
 		position: absolute;
-		color: white;
+		color: $colorPrimary;
 		font-size: 3rem;
 		top: -30px;
 		left: 40px;

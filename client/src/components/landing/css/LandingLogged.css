@@ -1,0 +1,29 @@
+.landing-logged {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.landing-logged .logged-title {
+  color: white;
+  font-size: 1.3rem;
+}
+
+.landing-logged .logged-button-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 1rem;
+}
+
+.landing-logged .logged-button-wrapper .logged-button-return {
+  color: white;
+  cursor: pointer;
+}
+
+.landing-logged .logged-button-wrapper .logged-button-logout {
+  color: white;
+  cursor: pointer;
+}

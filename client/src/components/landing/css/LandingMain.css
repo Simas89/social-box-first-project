@@ -269,7 +269,7 @@ body {
   margin-top: -100%;
   box-sizing: border-box;
   border-radius: 50%;
-  background-color: #79b461;
+  background-color: #73ac62;
   animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
 }
 
@@ -282,8 +282,8 @@ body {
   width: 105%;
   height: 105%;
   border-radius: 50%;
-  background-color: #79b461;
-  box-shadow: 0 0 3px #79b461;
+  background-color: #73ac62;
+  box-shadow: 0 0 3px #73ac62;
   animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
   z-index: 1;
 }
