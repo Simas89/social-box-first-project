@@ -47,6 +47,7 @@ const SocialState = (props) => {
 			},
 			body: JSON.stringify({
 				message: "Hello World!",
+				receiver: context.accountState.user,
 			}),
 		})
 			.then((res) => res.json())

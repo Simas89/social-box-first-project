@@ -18,13 +18,21 @@ $colorTone: rgb(115, 172, 98);
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		margin-top: 1rem;
+		// border: 1px solid red;
+
 		.logged-button-return {
+			text-align: center;
+			padding: 0 1rem 0.2rem 1rem;
 			color: $colorPrimary;
 			cursor: pointer;
+			// border-bottom: 1px solid white;
 		}
 		.logged-button-logout {
+			text-align: center;
+			padding: 0 1rem 0.2rem 1rem;
 			color: $colorPrimary;
 			cursor: pointer;
+			// border-bottom: 1px solid white;
 		}
 	}
 }

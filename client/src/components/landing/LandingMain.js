@@ -30,12 +30,15 @@ const LandingMain = () => {
 	const [scrollStage, setScrollStage] = React.useState(1);
 	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 	const [page, setPage] = React.useState(0);
+	document.querySelector("body").style.overflow = "hidden";
 
 	// EVENT LISTENERS AND THEIR FUNCTIONS
 	const scrollEvent = () => {
-		let scrollPosition = window.pageYOffset;
-		const parallax = document.querySelector(".parallax");
-		parallax.style.transform = `translateY(${scrollPosition * 0.6}px)`;
+		try {
+			let scrollPosition = window.pageYOffset;
+			const parallax = document.querySelector(".parallax");
+			parallax.style.transform = `translateY(${scrollPosition * 0.6}px)`;
+		} catch (err) {}
 	};
 	const resizeEvent = () => {
 		setWindowWidth(window.innerWidth);

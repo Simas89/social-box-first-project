@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/Formike.css";
 import { Input, Icon, Form, TextArea } from "semantic-ui-react";
-import landingContext from "../context/landing/landingContext";
+import landingContext from "../../context/landing/landingContext";
 // import accountContext from "../context/account/myContext";
 import MasterButtonLogin from "./MasterButtonLogin";
 import MasterButtonSend from "./MasterButtonSend";
@@ -23,15 +23,15 @@ const Formike = (props) => {
 			userName:
 				contextLanding.state.userInputs.userName.length >= minLengthUser
 					? "OK"
-					: "User name must contain atleast 3 characters",
+					: `User name must contain atleast ${minLengthUser} characters`,
 			psw1:
 				contextLanding.state.userInputs.psw1.length >= minLengthPsw
 					? "OK"
-					: "Password must contain atleast 6 characters",
+					: `Password must contain atleast ${minLengthPsw} characters`,
 			psw2:
 				contextLanding.state.userInputs.psw2.length >= minLengthPsw
 					? "OK"
-					: "Password must contain atleast 6 characters",
+					: `Password must contain atleast ${minLengthPsw} characters`,
 			pswMach:
 				contextLanding.state.userInputs.psw1 ===
 				contextLanding.state.userInputs.psw2
@@ -239,7 +239,6 @@ const Formike = (props) => {
 								stage1={contextLanding.state.LR ? "Register" : "Log in"}
 								stage2={contextLanding.state.LR ? "user plus" : "sign in"}
 							/>
-							<MasterButtonSend msg1={"OK"} stage1='SEND' stage2='send' />
 
 							<div className='log-reg-switch'>
 								{contextLanding.state.LR
@@ -412,14 +411,8 @@ const Formike = (props) => {
 									</div>
 								) : null}
 							</div>
-
-							{/* <MasterButtonSend
-								msg1={"Send msg err"}
-								stage1='SEND'
-								stage2='send'
-							/> */}
-							{/* <MasterButton remember={0} stage1='SEND' stage2='send' /> */}
 						</Form>
+						<MasterButtonSend msg1={"OK"} stage1='SEND' stage2='send' />
 					</div>
 				</React.Fragment>
 			)}

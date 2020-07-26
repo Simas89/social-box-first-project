@@ -1,15 +1,14 @@
 import React from "react";
-import { Route, Link, useLocation, useHistory } from "react-router-dom";
-import myContext from "./context/account/myContext";
-import socialContext from "./context/social/socialContext";
-import styled from "styled-components";
+import { Route, useLocation, useHistory } from "react-router-dom";
+import myContext from "../../context/account/myContext";
+import socialContext from "../../context/social/socialContext";
 import Item from "./Item";
 import UserListItem from "./UserListItem";
 import Account from "./Account";
-import marketItemsDataFetch from "../functions/marketItemsDataFetch";
-import findUsersFetch from "../functions/findUsersFetch";
+import marketItemsDataFetch from "../../functions/marketItemsDataFetch";
+import findUsersFetch from "../../functions/findUsersFetch";
 import UserProfile from "./UserProfile";
-import SocialWindow from "./social/SocialWindow";
+import SocialWindow from "../social/SocialWindow";
 
 function Container(props) {
 	//CONTAINER
@@ -90,30 +89,7 @@ function Container(props) {
 	};
 
 	return (
-		<ContainerWrapper>
-			<h1> Welcome back, {context.accountState.user}</h1>
-			<div className='navTab'>
-				<div className='items'>
-					<Link to='/container/items'>My Items</Link>
-				</div>
-				<div
-					onClick={() =>
-						marketItemsDataFetch((data) => {
-							setMarketState(data);
-						})
-					}>
-					<Link to='/container/market'>Market</Link>
-				</div>
-				<div
-					onClick={() => {
-						passedUpdateToRefreshContacts();
-					}}>
-					<Link to='/container/users'>Users</Link>
-				</div>
-				<div>
-					<Link to='/container/account'>Account</Link>
-				</div>
-			</div>
+		<React.Fragment>
 			<Route ///////////// SOCIAL PLACE
 				exact
 				path='/container'
@@ -123,7 +99,6 @@ function Container(props) {
 				path='/container/items'
 				render={() => (
 					<React.Fragment>
-						{/* {updateState("ITEMS")} */}
 						<p>These are contents of your container</p>
 						{context.accountState.items.map((element) => (
 							<Item
@@ -141,7 +116,7 @@ function Container(props) {
 				path='/container/market'
 				render={() => (
 					<React.Fragment>
-						<p>Items available to trade</p>
+						<p>Cr: {context.accountState.credits}</p>
 						{marketState.map((element) => (
 							<Item
 								key={element.id}
@@ -200,18 +175,8 @@ function Container(props) {
 				path='/container/account'
 				render={() => <Account />}
 			/>
-		</ContainerWrapper>
+		</React.Fragment>
 	);
 }
-const ContainerWrapper = styled.div`
-	.navTab {
-		border: 1px solid red;
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		&:hover {
-			cursor: pointer;
-		}
-	}
-`;
 
 export default Container;

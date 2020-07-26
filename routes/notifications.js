@@ -7,11 +7,12 @@ const auth = require("../middleware/auth");
 const router = express.Router();
 
 router.post("/push", (req, res) => {
+	console.log(req.body);
 	notificationPUSH(
-		"Simas",
+		req.body.receiver,
 		"SIMPLE_TEXT",
 		undefined,
-		`Simple text notification`
+		`${req.body.message}`
 	);
 	res.status(200).json("200");
 });

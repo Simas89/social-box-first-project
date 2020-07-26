@@ -1,9 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import myContext from "./context/account/myContext";
+import myContext from "../../context/account/myContext";
 import axios from "axios";
 import { Input, Button, Form } from "semantic-ui-react";
-import verificationFetch from "../functions/verificationFetch";
+import verificationFetch from "../../functions/verificationFetch";
 
 const Account = () => {
 	const context = React.useContext(myContext);

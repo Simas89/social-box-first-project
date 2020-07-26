@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/LandingLogged.css";
-import accountContext from "../context/account/myContext";
+import accountContext from "../../context/account/myContext";
 import { useHistory } from "react-router-dom";
 
 const LandingLogged = () => {

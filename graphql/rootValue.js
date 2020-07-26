@@ -1,6 +1,39 @@
 const UserModel = require("../schemas/userSchema");
+const mailer = require("../functions/mailer");
 
 const rootValue = {
+	messageToMe: async (args) => {
+		console.log(args);
+		let mailSent = "";
+
+		const myFirstPromise = new Promise((resolve, reject) => {
+			mailer(
+				"simasdevelopment@gmail.com",
+				"Message from a visitor",
+				JSON.stringify(args),
+				(callback) => {
+					if (callback === "OK") {
+						resolve(callback);
+					} else {
+						reject(callback);
+					}
+				}
+			);
+		});
+
+		await myFirstPromise
+			.then((successMessage) => {
+				console.log("Yay! " + successMessage);
+				mailSent = successMessage;
+			})
+			.catch((failMessage) => {
+				console.log("Fail " + failMessage);
+				mailSent = failMessage;
+			});
+
+		return mailSent;
+	},
+
 	User: async (args) => {
 		let userObj = { _id: "Hey" };
 

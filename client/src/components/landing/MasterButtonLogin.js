@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import "./css/MasterButton.css";
-import landingContext from "../context/landing/landingContext";
-import accountContext from "../context/account/myContext";
+import landingContext from "../../context/landing/landingContext";
+import accountContext from "../../context/account/myContext";
 import { Icon } from "semantic-ui-react";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import logInFetch from "../../functions/logInFetch";
@@ -22,7 +22,9 @@ const MasterButtonLogin = (props) => {
 		if (stage.stage === 3) return "shift-3"; // server err
 	};
 
+	//eslint-disable-next-line
 	const logIn = () => {
+		console.log("Login");
 		logInFetch(
 			{
 				inputValueName: contextLanding.state.userInputs.userName,
@@ -97,6 +99,7 @@ const MasterButtonLogin = (props) => {
 				break;
 		}
 	};
+	//eslint-disable-next-line
 	String.prototype.capitalize = function () {
 		return this.charAt(0).toUpperCase() + this.slice(1);
 	};

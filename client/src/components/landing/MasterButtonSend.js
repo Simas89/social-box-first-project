@@ -1,13 +1,15 @@
 import React from "react";
 import "./css/MasterButton.css";
-// import landingContext from "../context/landing/landingContext";
+import landingContext from "../../context/landing/landingContext";
 import { Icon } from "semantic-ui-react";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import graphqlCall from "../../functions/graphqlCall";
 
 const MasterButtonSend = (props) => {
-	// const contextLanding = React.useContext(landingContext);
+	const contextLanding = React.useContext(landingContext);
 	const [stage, setStage] = React.useState(1);
 	const [freeze, setFreeze] = React.useState(false); // if stage should freeze
+	const [emailSuccess, setEmailSuccess] = React.useState(0);
 	const stageClassReturn = () => {
 		if (stage === 0) return "shift-0"; // input err
 		if (stage === 1) return "shift-1"; // base
@@ -27,9 +29,15 @@ const MasterButtonSend = (props) => {
 				if (props.msg1 !== "OK") {
 					setStage(0);
 				} else {
+					console.log("sending email");
 					setStage(2);
 					setFreeze(true);
-					sendMeEmail();
+
+					graphqlCall(query, (res) => {
+						// console.log(res);
+						res.messageToMe === "OK" ? setEmailSuccess(1) : setEmailSuccess(0);
+						setStage(3);
+					});
 				}
 				break;
 			}
@@ -45,10 +53,12 @@ const MasterButtonSend = (props) => {
 				break;
 		}
 	};
-	const sendMeEmail = () => {
-		console.log("sending email");
-		setTimeout(() => setStage(3), 1000);
-	};
+
+	const query = `
+	messageToMe(guest: "${contextLanding.state.msgInputs.guest}" ,
+	email: "${contextLanding.state.msgInputs.email}" ,
+	msg: "${contextLanding.state.msgInputs.msg}"
+	)`;
 
 	return (
 		<div ref={ref} className={"top-kiautas"}>
@@ -76,7 +86,7 @@ const MasterButtonSend = (props) => {
 					</div>
 					{/*stage 3 */}
 					<div className='box'>
-						<Icon name={"check"} size='large' />
+						<Icon name={`${emailSuccess ? "check" : "delete"}`} size='large' />
 					</div>
 				</div>
 			</div>

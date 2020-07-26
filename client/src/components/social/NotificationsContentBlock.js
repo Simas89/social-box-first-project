@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Feed, Icon, Pagination } from "semantic-ui-react";
 import NotificationListItem from "./NotificationListItem";
-import socialContext from "../context/social/socialContext";
+import socialContext from "../../context/social/socialContext";
 
 const NotificationsContentBlock = () => {
 	const contextSocial = React.useContext(socialContext);

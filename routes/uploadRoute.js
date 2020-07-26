@@ -5,39 +5,42 @@ const sharp = require("sharp");
 
 const router = express.Router();
 
-router.post("/", fileUpload(), (req, res) => {
-	console.log(req.files.myFile);
+router.post("/", fileUpload(), async (req, res) => {
+	// console.log(req.files.myFile);
+	// console.log("LOL");
 	// CONVERTING IMAGE
 	let buffer = "";
 	let bufferMini = "";
 	try {
-		sharp(req.files.myFile.data)
+		await sharp(req.files.myFile.data)
 			.rotate()
 			.resize(200)
 			.toBuffer()
 			.then((data) => {
 				buffer = data;
-				console.log(data);
+				// console.log(data);
 			});
 	} catch (error) {
 		console.log(error);
 	}
 	try {
-		sharp(req.files.myFile.data)
+		await sharp(req.files.myFile.data)
 			.rotate()
 			.resize(50)
 			.toBuffer()
 			.then((data) => {
 				bufferMini = data;
-				console.log(data);
+				// console.log(data);
 			});
 	} catch (error) {
-		console.log(error);
+		// console.log(error);
 	}
 
 	UserModel.findOne({ userName: req.header("user") }).then((result) => {
+		// console.log(buffer);
 		///// SAVING TO DB
 		if (buffer) {
+			// console.log(buffer);
 			result.img.data = buffer;
 			result.img.contentType = req.files.myFile.mimetype;
 			result.imgMini.data = bufferMini;

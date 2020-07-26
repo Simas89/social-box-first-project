@@ -137,7 +137,7 @@ body {
   bottom: 0;
   width: 120px;
   height: 30px;
-  margin-left: 45%;
+  margin-left: calc(50% - 60px);
 }
 
 .landing-main .box-content .form-navigaror .form-navigator-button-hide {
@@ -174,7 +174,7 @@ body {
     font-size: 2.5rem;
   }
   .landing-main .landing-box .form-navigaror {
-    margin-left: 40%;
+    margin-left: calc(50% - 60px);
   }
 }
 

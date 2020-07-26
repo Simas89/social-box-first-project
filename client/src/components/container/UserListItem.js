@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Icon } from "semantic-ui-react";
-import addRemoveUser from "../functions/addRemoveUser";
+import addRemoveUser from "../../functions/addRemoveUser";
 
 function UserListItem(props) {
 	const handleClick = () => {

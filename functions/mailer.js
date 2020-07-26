@@ -21,7 +21,7 @@ module.exports = function (email, subject, text, callback) {
 			console.log(error);
 			callback("Error sending email");
 		} else {
-			// console.log("Email sent: " + info.response);
+			console.log("Email sent: " + info.response);
 			callback("OK");
 		}
 	});

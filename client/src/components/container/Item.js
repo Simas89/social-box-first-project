@@ -1,6 +1,6 @@
 import React from "react";
-import "./css/Item.css";
-import myContext from "./context/account/myContext";
+import "../css/Item.css";
+import myContext from "../../context/account/myContext";
 
 function Item(props) {
 	const [inputState, setInputState] = React.useState(1);

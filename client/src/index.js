@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 import { BrowserRouter, Route } from "react-router-dom";
-import ContextState from "./components/context/account/ContextState";
-import SocialState from "./components/context/social/SocialState";
-import LandingState from "./components/context/landing/LandingState";
+import ContextState from "./context/account/ContextState";
+import SocialState from "./context/social/SocialState";
+import LandingState from "./context/landing/LandingState";
 // import Landing from "./Landing";
 import LandingMain from "./components/landing/LandingMain";
 

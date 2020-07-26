@@ -1,8 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose");
 const UserModel = require("../schemas/userSchema");
-const mailer = require("../mailer");
+const mailer = require("../functions/mailer");
 const auth = require("../middleware/auth");
 
 const router = express.Router();

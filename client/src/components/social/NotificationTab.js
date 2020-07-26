@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon, Label, Menu } from "semantic-ui-react";
-import socialContext from "../context/social/socialContext";
+import socialContext from "../../context/social/socialContext";
 
 const NotificationTab = () => {
 	const contextSocial = React.useContext(socialContext);
@@ -22,7 +22,7 @@ const NotificationTab = () => {
 			compact
 			style={{
 				position: "absolute",
-				right: "35px",
+				right: "2vw",
 				top: "-20px",
 				zIndex: "11",
 			}}>

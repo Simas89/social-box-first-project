@@ -19,11 +19,15 @@
 }
 
 .landing-logged .logged-button-wrapper .logged-button-return {
+  text-align: center;
+  padding: 0 1rem 0.2rem 1rem;
   color: white;
   cursor: pointer;
 }
 
 .landing-logged .logged-button-wrapper .logged-button-logout {
+  text-align: center;
+  padding: 0 1rem 0.2rem 1rem;
   color: white;
   cursor: pointer;
 }

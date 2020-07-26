@@ -1,10 +1,10 @@
 import React from "react";
-import socialContext from "../context/social/socialContext";
-import myContext from "../context/account/myContext";
+import socialContext from "../../context/social/socialContext";
+import myContext from "../../context/account/myContext";
 import styled from "styled-components";
 // import Post from "./Post";
 import CreatePost from "./CreatePost";
-import graphqlCall from "../../functions/graphql";
+import graphqlCall from "../../functions/graphqlCall";
 
 const SocialWindow = () => {
 	const context = React.useContext(myContext);
@@ -26,7 +26,9 @@ const SocialWindow = () => {
 
 	return (
 		<SocialWindowStyle>
-			<button onClick={() => contextSocial.notPush("Simas")}>Send me</button>
+			<button onClick={() => contextSocial.notPush(context.accountState.user)}>
+				Send me
+			</button>
 			<button onClick={() => graphqlCallTest(query)}>GraphQL</button>
 			<CreatePost />
 			{/* {arr.map((item) => (

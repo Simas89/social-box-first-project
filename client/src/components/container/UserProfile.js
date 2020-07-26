@@ -1,5 +1,5 @@
 import React from "react";
-import myContext from "./context/account/myContext";
+import myContext from "../../context/account/myContext";
 import styled from "styled-components";
 import { Dropdown, Input, Button, Icon } from "semantic-ui-react";
 

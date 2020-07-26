@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import tradeFetch from "../../../functions/tradeFetch";
+import tradeFetch from "../../functions/tradeFetch";
 import myContext from "./myContext";
-import logout from "../../../functions/logOutFetch";
+import logout from "../../functions/logOutFetch";
 
 const ContextState = (props) => {
 	const [accountState, setAccountState] = React.useState({
@@ -16,6 +16,7 @@ const ContextState = (props) => {
 		dateJoined: Date,
 		profilePic: { base64: null, mimetype: "" },
 	});
+
 	const history = useHistory();
 	React.useEffect(() => {
 		const data = JSON.parse(sessionStorage.getItem("MY_CONTAINER_STATE"));
@@ -24,7 +25,8 @@ const ContextState = (props) => {
 		} else {
 			history.push("/");
 		}
-	}, []);
+	}, [history]);
+
 	const setAccountStateALL = (
 		logged = accountState.logged,
 		user = accountState.user,

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Feed, Image, Icon } from "semantic-ui-react";
-import socialContext from "../context/social/socialContext";
+import socialContext from "../../context/social/socialContext";
 import moment from "moment";
 
 const NotificationListItem = (props) => {

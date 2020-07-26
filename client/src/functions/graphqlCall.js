@@ -14,7 +14,7 @@ const graphqlCall = (query, callback) => {
 	})
 		.then((r) => r.json())
 		.then((data) => {
-			// console.log(data);
+			console.log(data);
 			callback(data.data);
 		});
 };
