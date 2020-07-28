@@ -22,6 +22,7 @@ const SocialState = (props) => {
 	};
 
 	const [state, dispatch] = React.useReducer(socialReducer, initialState);
+	// console.log(state);
 
 	const notificationBarOff = () =>
 		dispatch({

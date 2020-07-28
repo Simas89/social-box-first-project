@@ -2,6 +2,7 @@ import React from "react";
 import "./css/App.css";
 import { useHistory } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
+import MiniConsole from "./other/MiniConsole";
 
 import myContext from "../context/account/myContext";
 import socialContext from "../context/social/socialContext";
@@ -19,7 +20,9 @@ function App(props) {
 
 	const history = useHistory();
 
-	React.useEffect(() => window.scrollTo(0, 0), []);
+	React.useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		context.accountState.logged && (
@@ -27,7 +30,11 @@ function App(props) {
 				<div className='main'>
 					<div className='top-bar'>
 						<div className='top-bar-content'>
-							<h1> {`Welcome back, ${context.accountState.user}`}</h1>
+							<h1>
+								{" "}
+								{`Welcome back, ${context.accountState.user} `}
+								<MiniConsole />
+							</h1>
 							<Icon
 								className='exit-icon'
 								onClick={() => history.push("/")}
@@ -89,7 +96,11 @@ function App(props) {
 						<NotificationTab />
 						{contextSocial.isNotificationOpen && <NotificationsContentBlock />}
 						<div className='message-notification'>
-							<Icon name='mail' size='large' />
+							<Icon
+								className='message-notification-icon'
+								name='mail'
+								size='large'
+							/>
 						</div>
 
 						<Container {...props} />

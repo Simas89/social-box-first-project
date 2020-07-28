@@ -2,6 +2,11 @@ const UserModel = require("../schemas/userSchema");
 const mailer = require("../functions/mailer");
 
 const rootValue = {
+	addPost: (args) => {
+		console.log(args);
+		return "Yes";
+	},
+
 	messageToMe: async (args) => {
 		console.log(args);
 		let mailSent = "";
@@ -33,7 +38,6 @@ const rootValue = {
 
 		return mailSent;
 	},
-
 	User: async (args) => {
 		let userObj = { _id: "Hey" };
 

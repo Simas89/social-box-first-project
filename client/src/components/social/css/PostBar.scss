@@ -1,0 +1,45 @@
+$colorPrimary: black;
+$colorTone: rgb(115, 172, 98);
+
+.post-bar {
+	overflow: hidden;
+	position: relative;
+	// height: 25px;
+	// height: 25px;
+	min-height: 25px;
+	border: 1px solid black;
+	transition: 0.2s all;
+
+	.puiblish-some-shit {
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		// border: 1px solid red;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.drop-icon {
+		cursor: pointer;
+	}
+
+	.TextareaAutosize {
+		// position: relative;
+		margin-top: 5px;
+		overflow: hidden;
+		display: block;
+		// width: 100px;
+		resize: none;
+		bottom: 100%;
+	}
+}
+.drop {
+	// overflow: hidden;
+	// min-height: 200px;
+	// height: 100vh;
+	transition: 0.2s;
+}
+.absolute {
+	position: absolute;
+	transition: 0.2s;
+}

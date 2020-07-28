@@ -1,0 +1,40 @@
+.post-body {
+	border: 2px solid blue;
+	.top-section {
+		display: flex;
+		height: 3rem;
+		.profile-img {
+			background-color: lightgrey;
+			height: 3rem;
+			width: 3rem;
+		}
+		.post-info-top {
+			height: 3rem;
+			border: 1px solid black;
+			.user-name {
+				font-weight: bold;
+			}
+			.date-posted {
+				font-size: 0.8rem;
+			}
+		}
+	}
+	.middle-section {
+		height: 5rem;
+		border: 1px solid green;
+	}
+	.bottom-section {
+		position: relative;
+		height: 2rem;
+		.box-like {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			border: 1px solid red;
+			right: 0;
+			height: 2rem;
+			// width: 2rem;
+		}
+	}
+}

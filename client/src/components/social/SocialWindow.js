@@ -1,9 +1,10 @@
 import React from "react";
+import "./css/SocialWindow.css";
 import socialContext from "../../context/social/socialContext";
 import myContext from "../../context/account/myContext";
-import styled from "styled-components";
 // import Post from "./Post";
-import CreatePost from "./CreatePost";
+import CreatePostBar from "./CreatePostBar";
+import PostItself from "./PostItself";
 import graphqlCall from "../../functions/graphqlCall";
 
 const SocialWindow = () => {
@@ -25,23 +26,16 @@ const SocialWindow = () => {
 	// const query = `Test`;
 
 	return (
-		<SocialWindowStyle>
+		<div className='social-window'>
+			<CreatePostBar />
+			<PostItself />
+			<PostItself />
 			<button onClick={() => contextSocial.notPush(context.accountState.user)}>
 				Send me
 			</button>
 			<button onClick={() => graphqlCallTest(query)}>GraphQL</button>
-			<CreatePost />
-			{/* {arr.map((item) => (
-				<Post key={item} />
-			))} */}
-		</SocialWindowStyle>
+		</div>
 	);
 };
-
-const SocialWindowStyle = styled.div`
-	.wrapper {
-		border: solid 1px blue;
-	}
-`;
 
 export default SocialWindow;

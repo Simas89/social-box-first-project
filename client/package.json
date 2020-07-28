@@ -15,7 +15,7 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-scroll-parallax": "^2.3.3",
+    "react-textarea-autosize": "^8.2.0",
     "semantic-ui-react": "^0.88.2",
     "styled-components": "^5.1.1"
   },

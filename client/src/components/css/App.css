@@ -65,6 +65,7 @@
 }
 
 .main .top-bar .top-bar-content .exit-icon {
+  user-select: none;
   position: absolute;
   top: 21px;
   right: 0;
@@ -94,8 +95,16 @@
   justify-content: center;
   border-radius: 5px;
   background-color: white;
-  box-shadow: grey 0 0 2px;
+  box-shadow: grey 0 0 4px;
   z-index: 500;
+}
+
+.main .App .message-notification .message-notification-icon {
+  margin: auto;
+}
+
+.main .App .message-notification:hover {
+  background-color: #f7f7f7;
 }
 
 @media (max-width: 768px) {
