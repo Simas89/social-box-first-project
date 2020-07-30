@@ -8,9 +8,15 @@
 }
 
 .post-body .top-section .profile-img {
-  background-color: lightgrey;
   height: 3rem;
   width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-body .top-section .profile-img img {
+  width: 100%;
 }
 
 .post-body .top-section .post-info-top {

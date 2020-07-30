@@ -23,6 +23,7 @@ const userSchema = mongoose.Schema({
 		type: mongoose.Schema.ObjectId,
 		ref: "NotificationsList",
 	},
+	imgsmall: { type: mongoose.Schema.ObjectId, ref: "ProfileImgSmall" },
 	img: { data: Buffer, contentType: String },
 	imgMini: { data: Buffer, contentType: String },
 });

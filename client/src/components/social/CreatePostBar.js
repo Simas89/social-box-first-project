@@ -25,8 +25,6 @@ const CreatePostBar = () => {
 	};
 
 	///////////////////  GRAPH QL
-	console.log(sessionStorage.getItem("token"));
-
 	const postPost = () => {
 		const query = `
 		addPost(token: "${sessionStorage.getItem("token")}", textContent: "${

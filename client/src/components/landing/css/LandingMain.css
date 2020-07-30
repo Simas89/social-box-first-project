@@ -3,10 +3,6 @@
   box-sizing: border-box;
 }
 
-body {
-  overflow: hidden;
-}
-
 .parallax {
   display: none;
 }
@@ -15,7 +11,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100vh;
-  background-image: url("../../../img/bg8.png");
+  background-image: url("../../../img/bg7.jpg");
   background-size: cover;
   background-position: center;
   font-family: "MuseoModerno", cursive;
@@ -180,27 +176,27 @@ body {
 
 @media (max-width: 768px) {
   .parallax {
+    top: -300px;
     position: absolute;
     display: block;
-    height: 180vh;
+    height: 2300px;
     width: calc(100vw);
-    z-index: -1;
-    background-image: url("../../../img/bg8.png");
+    z-index: 0;
+    background-image: url("../../../img/bg7.jpg");
     background-size: cover;
     background-position: center;
+    will-change: transform;
+    transition: 0.2s;
   }
   .landing-main {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    height: 300vh;
+    height: 2300px;
     background-image: none;
   }
   .landing-main .landing-box {
-    height: 85vh;
-    min-height: 320px;
-    margin-top: auto;
-    margin-bottom: auto;
+    height: 500px;
   }
   .landing-main .landing-box .box-content {
     display: grid;
@@ -230,6 +226,7 @@ body {
     height: 33vh;
     right: 0;
     top: 33vh;
+    transition: 0.2s;
   }
   .landing-main .mobile-navigator .mobile-navigator-button-hide {
     display: flex;

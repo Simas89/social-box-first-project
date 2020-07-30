@@ -60,4 +60,4 @@ app.use("/upload", uploadRoute);
 
 // Run server
 const PORT = process.env.PORT || 2000;
-app.listen(2000, "0.0.0.0", () => console.log(`---PORT: ${PORT}---`));
+app.listen(2000, () => console.log(`---PORT: ${PORT}---`));

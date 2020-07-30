@@ -2,23 +2,30 @@ const { buildSchema } = require("graphql");
 
 const schema = buildSchema(`
 	type Query{
-    messageToMe(guest: String, email: String, msg: String): String
-    User(name: String): UserData
-    Test: String
+    UserTest(name: String): String
     addPost(token : String, textContent: String): String
+    getPosts(TYPE: String, postID: String) : [POST]
 
   }
   type POST{
-    token: String
-  }
-
-  type UserData{
     _id: String
     userName: String
-		credits: Int
-		verified: Boolean
+    textContent: String 
+    likes: Int
+    timestamp: String
+    imgsmall: IMG
+    
+	 
+
   }
+  type IMG{
+    contentType: String
+    data: String
+  }
+
 
   `);
 
 module.exports = schema;
+
+// timestamp: { type: Date, default: Date.now },

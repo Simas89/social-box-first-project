@@ -30,7 +30,7 @@ const LandingMain = () => {
 	const [scrollStage, setScrollStage] = React.useState(1);
 	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 	const [page, setPage] = React.useState(0);
-	document.querySelector("body").style.overflow = "hidden";
+	// document.querySelector("body").style.overflow = "hidden";
 
 	// EVENT LISTENERS AND THEIR FUNCTIONS
 	const scrollEvent = () => {
@@ -94,43 +94,6 @@ const LandingMain = () => {
 								Ut vitae tristique lorem. Vestibulum sagittis lectus in massa
 								ullamcorper lacinia. Aliquam vel erat sagittis, maximus felis
 								sed, consequat turpis. Duis vitae rhoncus est, at iaculis velit.
-								Donec nunc lacus, vehicula et tincidunt ut, vehicula id ante.
-								Donec ultrices sit amet urna in viverra. Nullam tortor ante,
-								ornare vel lacus vitae, finibus suscipit odio. Nunc bibendum
-								pulvinar magna pellentesque pretium. Ut pellentesque ac leo
-								vitae placerat. Nam a urna ipsum. Lorem ipsum dolor sit amet,
-								consectetur adipiscing elit. Mauris blandit odio non sem
-								imperdiet mattis. Donec mollis pharetra mi vestibulum commodo.
-								Nulla congue sapien quis magna auctor molestie. Nulla bibendum
-								molestie magna ut sagittis. Nulla nec vehicula mi. Vivamus
-								faucibus nulla malesuada diam aliquet, finibus dapibus mauris
-								facilisis. Sed commodo risus ut magna pretium, at facilisis orci
-								posuere. Mauris facilisis justo in mi gravida dignissim.
-								Vestibulum feugiat vehicula lectus non cursus. Etiam a nisi sed
-								ante porttitor dictum et nec arcu. Phasellus rhoncus dolor
-								rutrum, gravida velit ut, faucibus ex. Sed turpis risus, iaculis
-								ut eros eu, tempus congue risus. Vestibulum convallis maximus
-								risus, ac mollis dolor tincidunt et. Aliquam interdum mauris
-								sapien, sit amet aliquet risus aliquet sit amet. Morbi ut
-								egestas nisi, vel finibus lacus. In venenatis sem eleifend nisi
-								rutrum suscipit. Praesent viverra venenatis erat, eu ornare
-								tellus convallis quis. Fusce nec porta nisl. Donec auctor ut
-								odio eget pulvinar. Vestibulum ante ipsum primis in faucibus
-								orci luctus et ultrices posuere cubilia curae; Morbi eget ante
-								lorem. Aliquam placerat, tellus sed rhoncus convallis, est quam
-								molestie lorem, a egestas lorem ante in est. Aliquam erat
-								volutpat. Curabitur quis pulvinar leo. Quisque cursus sit amet
-								nulla et cursus. Praesent cursus mollis vestibulum. Nunc at
-								libero sed enim convallis maximus. Lorem ipsum dolor sit amet,
-								consectetur adipiscing elit. Vestibulum sit amet nibh semper,
-								ultrices sapien ut, pulvinar massa. Aenean a egestas leo, quis
-								egestas neque. Curabitur pharetra sed diam in lacinia. Orci
-								varius natoque penatibus et magnis dis parturient montes,
-								nascetur ridiculus mus. Quisque nunc lectus, tristique sit amet
-								rutrum eget, sodales ut justo. Sed ullamcorper et mauris ut
-								dapibus. Nulla vehicula nunc ac urna mollis placerat. Donec
-								condimentum nunc urna, id aliquam dolor dapibus luctus. Donec
-								felis sem, molestie eget venenatis at, imperdiet vitae sem.
 								Proin malesuada consequat condimentum.
 							</p>
 						</PerfectScrollbar>

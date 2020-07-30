@@ -1,14 +1,16 @@
 $colorPrimary: white;
 $colorTone: rgb(115, 172, 98);
 
-$bgImage: url("../../../img/bg8.png");
+$height: 100vh;
+
+$bgImage: url("../../../img/bg7.jpg");
 @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
 	box-sizing: border-box;
 }
 body {
-	overflow: hidden;
+	// overflow: hidden;
 }
 .parallax {
 	display: none;
@@ -191,31 +193,38 @@ body {
 }
 @media (max-width: 768px) {
 	.parallax {
+		top: -300px;
 		position: absolute;
 		display: block;
-		height: 180vh;
+		height: 2300px;
 		width: calc(100vw);
-		z-index: -1;
+		z-index: 0;
 
 		background-image: $bgImage;
 		background-size: cover;
 		background-position: center;
+
+		will-change: transform;
+		transition: 0.2s;
 	}
 	.landing-main {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr 1fr 1fr;
-		height: 300vh;
+		height: 2300px;
+		// height: 2000px;
 		background-image: none;
+		// background-image: $bgImage;
 
 		.landing-box {
-			height: 85vh;
-			min-height: 320px;
-			margin-top: auto;
-			margin-bottom: auto;
+			height: 500px;
+			// min-height: 320px;
+			// margin-top: auto;
+			// height: 100vh;
+			// margin-bottom: auto;
 
 			// background-color: lightgray;
-			// border: 1px solid orange;
+			// border: 3px solid white;
 			.box-content {
 				display: grid;
 				.form-navigaror {
@@ -246,6 +255,7 @@ body {
 			height: 33vh;
 			right: 0;
 			top: 33vh;
+			transition: 0.2s;
 			// border: 1px solid white;
 			.mobile-navigator-button-hide {
 				display: flex;

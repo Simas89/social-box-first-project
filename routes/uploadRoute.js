@@ -1,6 +1,8 @@
 const express = require("express");
 const fileUpload = require("express-fileupload");
 const UserModel = require("../schemas/userSchema");
+const profileImgSmall = require("../schemas/profileImgSmall");
+
 const sharp = require("sharp");
 
 const router = express.Router();
@@ -40,6 +42,14 @@ router.post("/", fileUpload(), async (req, res) => {
 		// console.log(buffer);
 		///// SAVING TO DB
 		if (buffer) {
+			profileImgSmall
+				.findByIdAndUpdate(result.imgsmall._id.toString())
+				.then((img) => {
+					console.log(img);
+					img.data = bufferMini;
+					img.contentType = req.files.myFile.mimetype;
+					img.save();
+				});
 			// console.log(buffer);
 			result.img.data = buffer;
 			result.img.contentType = req.files.myFile.mimetype;

@@ -1,59 +1,62 @@
 const UserModel = require("../schemas/userSchema");
+const Post = require("../schemas/post");
 const mailer = require("../functions/mailer");
 
+const jwt = require("jsonwebtoken");
+const config = require("config");
+const cryptSecret = config.get("cryptSecret");
+
 const rootValue = {
-	addPost: (args) => {
-		console.log(args);
-		return "Yes";
+	getPosts: async (args) => {
+		// console.log(args);
+		let post = { imgsmall: {} };
+		if (args.TYPE === "SINGLE") {
+			await Post.findById(args.postID, (err, res) => {
+				console.log(res);
+				post._id = res._id;
+				post.userName = res.userName;
+				post.textContent = res.textContent;
+				post.likes = res.likes;
+				post.timestamp = res.timestamp;
+				post.imgsmall.contentType = res.imgsmall.contentType;
+				post.imgsmall.data = res.imgsmall.data.toString("base64");
+			}).populate("imgsmall");
+
+			// console.log(post);
+			return [post];
+		}
 	},
 
-	messageToMe: async (args) => {
-		console.log(args);
-		let mailSent = "";
-
-		const myFirstPromise = new Promise((resolve, reject) => {
-			mailer(
-				"simasdevelopment@gmail.com",
-				"Message from a visitor",
-				JSON.stringify(args),
-				(callback) => {
-					if (callback === "OK") {
-						resolve(callback);
-					} else {
-						reject(callback);
-					}
-				}
-			);
+	// IN USE!
+	addPost: async (args) => {
+		let userResult;
+		const decoded = jwt.verify(args.token, cryptSecret);
+		// console.log(args);
+		// console.log(decoded);
+		await UserModel.findById(decoded.user_id).then((res) => {
+			// console.log(res);
+			userResult = res;
 		});
 
-		await myFirstPromise
-			.then((successMessage) => {
-				console.log("Yay! " + successMessage);
-				mailSent = successMessage;
-			})
-			.catch((failMessage) => {
-				console.log("Fail " + failMessage);
-				mailSent = failMessage;
-			});
+		// console.log(userResult);
 
-		return mailSent;
-	},
-	User: async (args) => {
-		let userObj = { _id: "Hey" };
-
-		await UserModel.findOne({ userName: args.name }).then((result) => {
-			// console.log(result);
-			userObj = {
-				_id: result._id,
-				userName: result.userName,
-				credits: result.credits,
-				verified: result.verified,
-			};
+		const post = new Post({
+			userName: userResult.userName,
+			textContent: args.textContent,
+			imgsmall: userResult.imgsmall,
 		});
-		return userObj;
+		post.save();
+		// console.log(post);
+
+		return "OK";
 	},
-	Test: () => {
-		return "Test text";
+	UserTest: async (args) => {
+		await UserModel.findOne({ userName: args.name }, (err, res) => {
+			res.populate("contacts");
+		});
+		// .populate("imgsmall");
+
+		return "Back from User";
 	},
 };
 

@@ -10,30 +10,57 @@ import graphqlCall from "../../functions/graphqlCall";
 const SocialWindow = () => {
 	const context = React.useContext(myContext);
 	const contextSocial = React.useContext(socialContext);
+	const [posts, setPosts] = React.useState([]);
 
-	const graphqlCallTest = (query) => {
-		graphqlCall(query, (res) => console.log(res));
-	};
-	const query = `
-		Test
-		User(name: "${context.accountState.user}"){
-			_id 
-			userName 
-			credits 
-			verified}
+	// getPostsUser(userName: "${context.accountState.user}")
+	const getPosts = () => {
+		const query = `
+		
+		getPosts(TYPE: "SINGLE", postID: "5f2329bbcea7bc26c4aa9982"){
+			_id
+			userName
+			textContent
+			likes
+			timestamp
+			imgsmall{
+				contentType
+				data
+			}
+			
+			
+		},
+		UserTest(name: "000")
+
 			`;
 
-	// const query = `Test`;
+		graphqlCall(query, (res) => {
+			console.log("Res: ", res);
+			setPosts(res.getPosts);
+		});
+	};
+
+	console.log("State:", posts);
 
 	return (
 		<div className='social-window'>
 			<CreatePostBar />
-			<PostItself />
-			<PostItself />
+			{/* <PostItself /> */}
+
+			{posts &&
+				posts.map((item) => (
+					<PostItself
+						key={item._id}
+						userName={item.userName}
+						textContent={item.textContent}
+						likes={item.likes}
+						timestamp={item.timestamp}
+						imgsmall={item.imgsmall}
+					/>
+				))}
 			<button onClick={() => contextSocial.notPush(context.accountState.user)}>
 				Send me
 			</button>
-			<button onClick={() => graphqlCallTest(query)}>GraphQL</button>
+			<button onClick={() => getPosts()}>Get posts</button>
 		</div>
 	);
 };

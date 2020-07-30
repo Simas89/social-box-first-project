@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt-nodejs");
 const UserModel = require("../schemas/userSchema");
 const ContactsList = require("../schemas/contactsListMODEL");
 const Notifications = require("../schemas/notificationsMODEL");
+const ProfileImgSmall = require("../schemas/profileImgSmall");
 const fs = require("fs");
 const path = require("path");
 
@@ -16,7 +17,7 @@ router.post("/", (req, res) => {
 	} else {
 		UserModel.exists(
 			{ userName_tlc: req.body.userName.toLowerCase() },
-			(error, result) => {
+			async (error, result) => {
 				if (!result) {
 					const defaultImage = fs.readFileSync(
 						path.join(`${__dirname + "/../"}/img/default.png`)
@@ -24,6 +25,10 @@ router.post("/", (req, res) => {
 					const defaultImageMini = fs.readFileSync(
 						path.join(`${__dirname + "/../"}/img/defaultmini.png`)
 					);
+					const newProfileImgSmall = new ProfileImgSmall({
+						data: defaultImageMini,
+						contentType: "image/png",
+					});
 
 					const newContact = new ContactsList({
 						list: [],
@@ -31,8 +36,11 @@ router.post("/", (req, res) => {
 					const newNotifications = new Notifications({
 						list: [],
 					});
-					newContact.save();
-					newNotifications.save();
+
+					await newContact.save();
+					await newNotifications.save();
+					await newProfileImgSmall.save();
+
 					const user = new UserModel({
 						userName: req.body.userName,
 						userName_tlc: req.body.userName.toLowerCase(),
@@ -46,6 +54,7 @@ router.post("/", (req, res) => {
 						notifications: newNotifications,
 						img: { data: defaultImage, contentType: "image/png" },
 						imgMini: { data: defaultImageMini, contentType: "image/png" },
+						imgsmall: newProfileImgSmall,
 					});
 
 					user.save((err) =>
