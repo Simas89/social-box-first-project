@@ -2,6 +2,7 @@ const express = require("express");
 const fileUpload = require("express-fileupload");
 const UserModel = require("../schemas/userSchema");
 const profileImgSmall = require("../schemas/profileImgSmall");
+const profileImgBig = require("../schemas/profileImgBig");
 
 const sharp = require("sharp");
 
@@ -38,33 +39,33 @@ router.post("/", fileUpload(), async (req, res) => {
 		// console.log(error);
 	}
 
-	UserModel.findOne({ userName: req.header("user") }).then((result) => {
+	UserModel.findOne({ userName: req.header("user") }).then(async (result) => {
 		// console.log(buffer);
 		///// SAVING TO DB
 		if (buffer) {
-			profileImgSmall
+			await profileImgSmall
 				.findByIdAndUpdate(result.imgsmall._id.toString())
-				.then((img) => {
-					console.log(img);
-					img.data = bufferMini;
-					img.contentType = req.files.myFile.mimetype;
-					img.save();
+				.then((imgsmall) => {
+					console.log(imgsmall);
+					imgsmall.data = bufferMini;
+					imgsmall.contentType = req.files.myFile.mimetype;
+					imgsmall.save();
 				});
-			// console.log(buffer);
-			result.img.data = buffer;
-			result.img.contentType = req.files.myFile.mimetype;
-			result.imgMini.data = bufferMini;
-			result.imgMini.contentType = req.files.myFile.mimetype;
-			result.save().then(() => {
-				UserModel.findOne({ userName: req.header("user") }).then((rrr) => {
-					res
-						.json({
-							base64: rrr.img.data.toString("base64"),
-							mimetype: rrr.img.contentType,
-						})
-						.status(200);
+
+			await profileImgBig
+				.findByIdAndUpdate(result.imgbig._id.toString())
+				.then((imgbig) => {
+					console.log(imgbig);
+					imgbig.data = buffer;
+					imgbig.contentType = req.files.myFile.mimetype;
+					imgbig.save();
 				});
-			});
+			res
+				.json({
+					base64: buffer.toString("base64"),
+					mimetype: req.files.myFile.mimetype,
+				})
+				.status(200);
 		} else {
 			res.status(400).json({ status: "COULD NOT PROCESS IMAGE" });
 		}

@@ -4,6 +4,7 @@ const UserModel = require("../schemas/userSchema");
 const ContactsList = require("../schemas/contactsListMODEL");
 const Notifications = require("../schemas/notificationsMODEL");
 const ProfileImgSmall = require("../schemas/profileImgSmall");
+const ProfileImgBig = require("../schemas/profileImgBig");
 const fs = require("fs");
 const path = require("path");
 
@@ -30,6 +31,11 @@ router.post("/", (req, res) => {
 						contentType: "image/png",
 					});
 
+					const newProfileImgBig = new ProfileImgBig({
+						data: defaultImage,
+						contentType: "image/png",
+					});
+
 					const newContact = new ContactsList({
 						list: [],
 					});
@@ -40,6 +46,7 @@ router.post("/", (req, res) => {
 					await newContact.save();
 					await newNotifications.save();
 					await newProfileImgSmall.save();
+					await newProfileImgBig.save();
 
 					const user = new UserModel({
 						userName: req.body.userName,
@@ -52,9 +59,8 @@ router.post("/", (req, res) => {
 						items: [],
 						contacts: newContact,
 						notifications: newNotifications,
-						img: { data: defaultImage, contentType: "image/png" },
-						imgMini: { data: defaultImageMini, contentType: "image/png" },
 						imgsmall: newProfileImgSmall,
+						imgbig: newProfileImgBig,
 					});
 
 					user.save((err) =>

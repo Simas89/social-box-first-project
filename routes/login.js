@@ -60,7 +60,7 @@ router.post("/", (req, res) => {
 			res.status(400).json({ status: "DATABASE ERROR", err: error });
 			console.log("Error: " + error);
 		}
-	});
+	}).populate("imgbig");
 });
 
 module.exports = router;

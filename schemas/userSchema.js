@@ -24,8 +24,7 @@ const userSchema = mongoose.Schema({
 		ref: "NotificationsList",
 	},
 	imgsmall: { type: mongoose.Schema.ObjectId, ref: "ProfileImgSmall" },
-	img: { data: Buffer, contentType: String },
-	imgMini: { data: Buffer, contentType: String },
+	imgbig: { type: mongoose.Schema.ObjectId, ref: "ProfileImgBig" },
 });
 
 module.exports = mongoose.model("UserModel", userSchema);

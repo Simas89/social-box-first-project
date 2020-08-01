@@ -7,7 +7,7 @@ const auth = require("../middleware/auth");
 const router = express.Router();
 
 router.post("/push", (req, res) => {
-	console.log(req.body);
+	// console.log(req.body);
 	notificationPUSH(
 		req.body.receiver,
 		"SIMPLE_TEXT",
@@ -21,8 +21,15 @@ router.get("/pull", auth, (req, res) => {
 	UserModel.findOne({ userName: req.header("user") }, async (err, result) => {
 		const page = parseInt(req.header("pagination"));
 		result
-			? await NotificationsList.findById(result.notifications._id).then(
-					(resultat) => {
+			? await NotificationsList.findById(result.notifications._id)
+					.populate({
+						path: "list",
+						populate: {
+							path: "img",
+							model: "ProfileImgSmall",
+						},
+					})
+					.then((resultat) => {
 						// console.log("TEST:", resultat);
 						// Check how many notificatios isSeen in whole list
 						let newNotifications = 0;
@@ -34,11 +41,12 @@ router.get("/pull", auth, (req, res) => {
 						};
 						// CONVERTS IMAGE OF NOTIFICATION OBJECT FROM BIN TO BASE64
 						const converter = (object) => {
+							// console.log(object);
 							const copy = {
 								messageBody: object.messageBody,
 								imgMini: {
-									data: object.imgMini.data.toString("base64"),
-									mimetype: object.imgMini.contentType,
+									data: object.img.data.toString("base64"),
+									mimetype: object.img.contentType,
 								},
 								isSeen: object.isSeen,
 								timestamp: object.timestamp,
@@ -127,8 +135,7 @@ router.get("/pull", auth, (req, res) => {
 								unRead: newNotifications,
 							});
 						}
-					}
-			  )
+					})
 			: res.status(204).json([]);
 	});
 });

@@ -12,7 +12,7 @@ const NotificationsList = new Schema({
 				link: { type: String, default: "" },
 				text1: { type: String, default: "" },
 			},
-			imgMini: { data: Buffer, contentType: String },
+			img: { type: mongoose.Schema.ObjectId, ref: "ProfileImgSmall" },
 		},
 	],
 });

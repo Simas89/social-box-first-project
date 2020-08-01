@@ -1,7 +1,6 @@
 const UserModel = require("../schemas/userSchema");
 const NotificationsList = require("../schemas/notificationsMODEL");
-const fs = require("fs");
-const path = require("path");
+const profileImgSmall = require("../schemas/profileImgSmall");
 
 module.exports = function (receiver, format, link, text1) {
 	UserModel.findOne({ userName_tlc: receiver.toLowerCase() }).then(
@@ -13,16 +12,16 @@ module.exports = function (receiver, format, link, text1) {
 					// ADD NOTIFICATION TO RECEIVERS NOTIFICATIONS LIST
 					NotificationsList.findById(resultat.notifications._id).then(
 						(result) => {
+							// console.log(link);
+
 							result.list.unshift({
 								messageBody: {
 									format: format,
 									link: link.userName,
 									text1: text1,
 								},
-								imgMini: {
-									data: link.imgMini.data,
-									contentType: link.imgMini.contentType,
-								},
+
+								img: link.imgsmall,
 							});
 							result.save();
 						}
@@ -31,25 +30,25 @@ module.exports = function (receiver, format, link, text1) {
 			}
 			if (format === "SIMPLE_TEXT") {
 				// const defaultImage = fs.readFileSync(
-				// 	path.join(`${__dirname + "/../"}/img/notification.png`)
+				// 	path.join(`${__dirname + "/../"}/img/notification.png`)5f251fa75128780514d58a0e
 				// );
 				NotificationsList.findById(resultat.notifications._id).then(
-					(result) => {
-						result.list.unshift({
-							messageBody: {
-								format: format,
-								link: "",
-								text1: text1,
-							},
-							imgMini: {
-								// insert default image here
-								data: fs.readFileSync(
-									path.join(`${__dirname + "/../"}/img/notification.png`)
-								),
-								contentType: "image/png",
-							},
-						});
-						result.save();
+					async (result) => {
+						await profileImgSmall
+							.findOne({ use: "SIMPLE_TEXT" })
+							.then((img) => {
+								// console.log(img);
+
+								result.list.unshift({
+									messageBody: {
+										format: format,
+										link: "",
+										text1: text1,
+									},
+									img: img,
+								});
+								result.save();
+							});
 					}
 				);
 			}

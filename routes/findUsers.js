@@ -23,6 +23,7 @@ router.get("/", auth, (req, res) => {
 						if (error) res.status(500).json({ status: "ERROR FINDING USERS" });
 						const users = result
 							.map((element) => {
+								// console.log(element);
 								// isListed checker
 								let found = false;
 								resultTOP.list.forEach((iii) => {
@@ -35,8 +36,8 @@ router.get("/", auth, (req, res) => {
 									isListed: found,
 									isOnline: calcIsOnline(element.isOnline),
 									imgMini: {
-										data: element.imgMini.data.toString("base64"),
-										contentType: element.imgMini.contentType,
+										data: element.imgsmall.data.toString("base64"),
+										contentType: element.imgsmall.contentType,
 									},
 								};
 							})
@@ -49,7 +50,7 @@ router.get("/", auth, (req, res) => {
 							});
 						res.status(200).json(users);
 					}
-				);
+				).populate("imgsmall");
 			}
 			if (JSON.parse(req.header("myContactsOnly"))) {
 				//////////////////  LOCAL SEARCH
@@ -66,8 +67,10 @@ router.get("/", auth, (req, res) => {
 				let users = [];
 				Promise.all(
 					filtered.map((element) =>
-						UserModel.findOne({ userName_tlc: element.toLowerCase() }).then(
-							(result) => {
+						UserModel.findOne({ userName_tlc: element.toLowerCase() })
+							.populate("imgsmall")
+							.then((result) => {
+								// console.log(result);
 								if (result) {
 									users.push({
 										id: result._id,
@@ -77,8 +80,8 @@ router.get("/", auth, (req, res) => {
 										///// ????????????
 										isOnline: calcIsOnline(result.isOnline),
 										imgMini: {
-											data: result.imgMini.data.toString("base64"),
-											contentType: result.imgMini.contentType,
+											data: result.imgsmall.data.toString("base64"),
+											contentType: result.imgsmall.contentType,
 										},
 									});
 								} else {
@@ -89,8 +92,7 @@ router.get("/", auth, (req, res) => {
 									);
 									resultTOP.save();
 								}
-							}
-						)
+							})
 					)
 				)
 					.then(() => {
