@@ -4,7 +4,8 @@ const schema = buildSchema(`
 	type Query{
     UserTest(name: String): String
     addPost(token : String, textContent: String): String
-    getPosts(TYPE: String, postID: String) : [POST]
+    getPosts(TYPE: String, id: String) : [POST]
+    likePost(userName: String, id: String): String
 
   }
   type POST{
@@ -13,6 +14,7 @@ const schema = buildSchema(`
     textContent: String 
     likes: Int
     timestamp: String
+    likedByMe: Boolean
     imgsmall: IMG
     
 	 

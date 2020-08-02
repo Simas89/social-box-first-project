@@ -12,3 +12,6 @@ export const USER_INPUTS_CLEAR = "USER_INPUTS_CLEAR";
 export const SET_MSG_INPUT = "SET_MSG_INPUT";
 export const TOGGLE_FOCUSED = "TOGGLE_FOCUSED";
 export const CAN_ANIMATE_PSW2 = "CAN_ANIMATE_PSW2";
+
+// POST
+export const SET_POSTS = "SET_POSTS";

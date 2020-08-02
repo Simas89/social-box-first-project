@@ -4,6 +4,7 @@ const UserModel = require("../schemas/userSchema");
 const ContactsList = require("../schemas/contactsListMODEL");
 const Notifications = require("../schemas/notificationsMODEL");
 const ProfileImgSmall = require("../schemas/profileImgSmall");
+const ProfileImgMicro = require("../schemas/profileImgMicro");
 const ProfileImgBig = require("../schemas/profileImgBig");
 const fs = require("fs");
 const path = require("path");
@@ -26,6 +27,15 @@ router.post("/", (req, res) => {
 					const defaultImageMini = fs.readFileSync(
 						path.join(`${__dirname + "/../"}/img/defaultmini.png`)
 					);
+					const defaultImageMicro = fs.readFileSync(
+						path.join(`${__dirname + "/../"}/img/defaultmicro.png`)
+					);
+
+					const newProfileImgMicro = new ProfileImgMicro({
+						data: defaultImageMicro,
+						contentType: "image/png",
+					});
+
 					const newProfileImgSmall = new ProfileImgSmall({
 						data: defaultImageMini,
 						contentType: "image/png",
@@ -45,6 +55,7 @@ router.post("/", (req, res) => {
 
 					await newContact.save();
 					await newNotifications.save();
+					await newProfileImgMicro.save();
 					await newProfileImgSmall.save();
 					await newProfileImgBig.save();
 
@@ -59,6 +70,7 @@ router.post("/", (req, res) => {
 						items: [],
 						contacts: newContact,
 						notifications: newNotifications,
+						imgmicro: newProfileImgMicro,
 						imgsmall: newProfileImgSmall,
 						imgbig: newProfileImgBig,
 					});

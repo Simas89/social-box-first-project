@@ -7,27 +7,6 @@ const config = require("config");
 const cryptSecret = config.get("cryptSecret");
 
 const rootValue = {
-	getPosts: async (args) => {
-		// console.log(args);
-		let post = { imgsmall: {} };
-		if (args.TYPE === "SINGLE") {
-			await Post.findById(args.postID, (err, res) => {
-				console.log(res);
-				post._id = res._id;
-				post.userName = res.userName;
-				post.textContent = res.textContent;
-				post.likes = res.likes;
-				post.timestamp = res.timestamp;
-				post.imgsmall.contentType = res.imgsmall.contentType;
-				post.imgsmall.data = res.imgsmall.data.toString("base64");
-			}).populate("imgsmall");
-
-			// console.log(post);
-			return [post];
-		}
-	},
-
-	// IN USE!
 	addPost: async (args) => {
 		let userResult;
 		const decoded = jwt.verify(args.token, cryptSecret);
@@ -39,24 +18,91 @@ const rootValue = {
 		});
 
 		// console.log(userResult);
-
 		const post = new Post({
 			userName: userResult.userName,
 			textContent: args.textContent,
 			imgsmall: userResult.imgsmall,
 		});
-		post.save();
-		// console.log(post);
-
+		await post.save();
 		return "OK";
 	},
-	UserTest: async (args) => {
-		await UserModel.findOne({ userName: args.name }, (err, res) => {
-			res.populate("contacts");
-		});
-		// .populate("imgsmall");
 
-		return "Back from User";
+	getPosts: async (args) => {
+		console.log(args);
+		let post = [{ imgsmall: {} }];
+		if (args.TYPE === "SINGLE") {
+			await Post.findById(args.id)
+				.populate("imgsmall")
+				.then((res) => {
+					console.log(res);
+					post[0]._id = res._id;
+					post[0].userName = res.userName;
+					post[0].textContent = res.textContent;
+					post[0].likes = res.likes;
+					post[0].timestamp = res.timestamp;
+					post[0].imgsmall.contentType = res.imgsmall.contentType;
+					post[0].imgsmall.data = res.imgsmall.data.toString("base64");
+				});
+
+			// console.log("POST:", post);
+			return post;
+		}
+		if (args.TYPE === "USER") {
+			await Post.find({ userName: args.id })
+				.populate("imgsmall")
+				.then((res) => {
+					// console.log(res);
+
+					post = res.map((postas) => {
+						let likedByMe = false;
+						postas.approves.forEach((i) => {
+							if (i.userName === args.id) likedByMe = true;
+							else likedByMe = false;
+						});
+
+						return {
+							_id: postas._id,
+							userName: postas.userName,
+							textContent: postas.textContent,
+							likes: postas.approves.length,
+							timestamp: postas.timestamp,
+
+							imgsmall: {
+								contentType: postas.imgsmall.contentType,
+								data: postas.imgsmall.data.toString("base64"),
+							},
+
+							likedByMe,
+						};
+					});
+				});
+
+			// console.log("POST:", post);
+			return post;
+		}
+	},
+
+	likePost: async (args) => {
+		console.log(args);
+		let returnAndUpdate = false;
+		await UserModel.findOne({ userName: args.userName }).then(async (user) => {
+			await Post.findById(args.id).then((post) => {
+				if (
+					post.approves.findIndex((iii) => iii.userName === args.userName) ===
+					-1
+				) {
+					post.approves.unshift({
+						userName: args.userName,
+						imgmicro: user.imgmicro,
+					});
+					console.log(post);
+					post.save();
+					returnAndUpdate = post.approves.length;
+				}
+			});
+		});
+
+		return returnAndUpdate;
 	},
 };
 

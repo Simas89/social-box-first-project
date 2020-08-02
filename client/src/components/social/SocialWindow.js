@@ -2,65 +2,63 @@ import React from "react";
 import "./css/SocialWindow.css";
 import socialContext from "../../context/social/socialContext";
 import myContext from "../../context/account/myContext";
+import postContext from "../../context/post/postContext";
 // import Post from "./Post";
-import CreatePostBar from "./CreatePostBar";
-import PostItself from "./PostItself";
+import CreatePostBar from "./post/CreatePostBar";
+import PostItself from "./post/PostItself";
 import graphqlCall from "../../functions/graphqlCall";
 
 const SocialWindow = () => {
 	const context = React.useContext(myContext);
+	const contextPost = React.useContext(postContext);
 	const contextSocial = React.useContext(socialContext);
-	const [posts, setPosts] = React.useState([]);
 
-	// getPostsUser(userName: "${context.accountState.user}")
-	const getPosts = () => {
+	const getPosts = (TYPE, id) => {
 		const query = `
-		
-		getPosts(TYPE: "SINGLE", postID: "5f2329bbcea7bc26c4aa9982"){
+		getPosts(TYPE: "${TYPE}", id: "${id}"){
 			_id
 			userName
 			textContent
 			likes
 			timestamp
+			likedByMe
 			imgsmall{
 				contentType
 				data
 			}
-			
-			
-		},
-		UserTest(name: "000")
-
-			`;
+		}
+	`;
 
 		graphqlCall(query, (res) => {
-			console.log("Res: ", res);
-			setPosts(res.getPosts);
+			contextPost.setPosts(res.getPosts);
 		});
 	};
 
-	console.log("State:", posts);
+	// console.log("State:", posts);
 
 	return (
 		<div className='social-window'>
 			<CreatePostBar />
-			{/* <PostItself /> */}
 
-			{posts &&
-				posts.map((item) => (
+			{contextPost.state.posts &&
+				contextPost.state.posts.map((item) => (
 					<PostItself
 						key={item._id}
+						_id={item._id}
 						userName={item.userName}
 						textContent={item.textContent}
-						likes={item.likes}
 						timestamp={item.timestamp}
 						imgsmall={item.imgsmall}
+						likes={item.likes}
+						likedByMe={item.likedByMe}
 					/>
 				))}
 			<button onClick={() => contextSocial.notPush(context.accountState.user)}>
 				Send me
 			</button>
-			<button onClick={() => getPosts()}>Get posts</button>
+			<button onClick={() => getPosts("USER", context.accountState.user)}>
+				Get posts
+			</button>
 		</div>
 	);
 };

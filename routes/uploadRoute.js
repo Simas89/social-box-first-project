@@ -1,6 +1,7 @@
 const express = require("express");
 const fileUpload = require("express-fileupload");
 const UserModel = require("../schemas/userSchema");
+const profileImgMicro = require("../schemas/profileImgMicro");
 const profileImgSmall = require("../schemas/profileImgSmall");
 const profileImgBig = require("../schemas/profileImgBig");
 
@@ -14,10 +15,11 @@ router.post("/", fileUpload(), async (req, res) => {
 	// CONVERTING IMAGE
 	let buffer = "";
 	let bufferMini = "";
+	let bufferMicro = "";
 	try {
 		await sharp(req.files.myFile.data)
 			.rotate()
-			.resize(200)
+			.resize(400)
 			.toBuffer()
 			.then((data) => {
 				buffer = data;
@@ -29,10 +31,22 @@ router.post("/", fileUpload(), async (req, res) => {
 	try {
 		await sharp(req.files.myFile.data)
 			.rotate()
-			.resize(50)
+			.resize(100)
 			.toBuffer()
 			.then((data) => {
 				bufferMini = data;
+				// console.log(data);
+			});
+	} catch (error) {
+		// console.log(error);
+	}
+	try {
+		await sharp(req.files.myFile.data)
+			.rotate()
+			.resize(40)
+			.toBuffer()
+			.then((data) => {
+				bufferMicro = data;
 				// console.log(data);
 			});
 	} catch (error) {
@@ -43,6 +57,15 @@ router.post("/", fileUpload(), async (req, res) => {
 		// console.log(buffer);
 		///// SAVING TO DB
 		if (buffer) {
+			await profileImgMicro
+				.findByIdAndUpdate(result.imgmicro._id.toString())
+				.then((imgmicro) => {
+					console.log(imgmicro);
+					imgmicro.data = bufferMini;
+					imgmicro.contentType = req.files.myFile.mimetype;
+					imgmicro.save();
+				});
+
 			await profileImgSmall
 				.findByIdAndUpdate(result.imgsmall._id.toString())
 				.then((imgsmall) => {
