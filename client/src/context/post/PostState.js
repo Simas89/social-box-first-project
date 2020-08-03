@@ -2,7 +2,7 @@ import React from "react";
 import postReducer from "./postReducer";
 import postContext from "./postContext";
 
-import { SET_POSTS } from "../types";
+import { SET_POSTS, UPDATE_LIKES } from "../types";
 
 const PostState = (props) => {
 	const initialState = { posts: [] };
@@ -11,10 +11,15 @@ const PostState = (props) => {
 	const setPosts = (payload) => {
 		dispatch({ type: SET_POSTS, payload: payload });
 	};
-	console.log(state);
+
+	const updatePostLikes = (payload) => {
+		dispatch({ type: UPDATE_LIKES, payload: payload });
+	};
+
+	console.log("STATE:", state);
 
 	return (
-		<postContext.Provider value={{ state, setPosts }}>
+		<postContext.Provider value={{ state, setPosts, updatePostLikes }}>
 			{props.children}
 		</postContext.Provider>
 	);

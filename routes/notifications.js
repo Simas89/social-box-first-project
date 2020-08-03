@@ -19,6 +19,7 @@ router.post("/push", (req, res) => {
 
 router.get("/pull", auth, (req, res) => {
 	UserModel.findOne({ userName: req.header("user") }, async (err, result) => {
+		// console.log(result);
 		const page = parseInt(req.header("pagination"));
 		result
 			? await NotificationsList.findById(result.notifications._id)

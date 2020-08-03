@@ -13,24 +13,26 @@ const SocialWindow = () => {
 	const contextPost = React.useContext(postContext);
 	const contextSocial = React.useContext(socialContext);
 
-	const getPosts = (TYPE, id) => {
+	const getPosts = (TYPE, userName, id) => {
 		const query = `
-		getPosts(TYPE: "${TYPE}", id: "${id}"){
+		getPosts(TYPE: "${TYPE}", id: "${id}", , userName: "${userName}"){
 			_id
 			userName
 			textContent
-			likes
 			timestamp
-			likedByMe
 			imgsmall{
 				contentType
 				data
 			}
+			likesPack{
+				likes
+				likedByMe
+			}
 		}
 	`;
-
 		graphqlCall(query, (res) => {
 			contextPost.setPosts(res.getPosts);
+			console.log(res);
 		});
 	};
 
@@ -41,23 +43,32 @@ const SocialWindow = () => {
 			<CreatePostBar />
 
 			{contextPost.state.posts &&
-				contextPost.state.posts.map((item) => (
+				contextPost.state.posts.map((item, index) => (
 					<PostItself
 						key={item._id}
 						_id={item._id}
+						index={index}
 						userName={item.userName}
 						textContent={item.textContent}
 						timestamp={item.timestamp}
 						imgsmall={item.imgsmall}
-						likes={item.likes}
-						likedByMe={item.likedByMe}
 					/>
 				))}
 			<button onClick={() => contextSocial.notPush(context.accountState.user)}>
 				Send me
 			</button>
 			<button onClick={() => getPosts("USER", context.accountState.user)}>
-				Get posts
+				Get user posts
+			</button>
+			<button
+				onClick={() =>
+					getPosts(
+						"SINGLE",
+						context.accountState.user,
+						"5f26a79d0fba4d0148acc9d2"
+					)
+				}>
+				Get single
 			</button>
 		</div>
 	);

@@ -4,7 +4,34 @@ const mailer = require("../functions/mailer");
 
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const post = require("../schemas/post");
 const cryptSecret = config.get("cryptSecret");
+
+const postConverter = (args, res) => {
+	return res.map((postas) => {
+		let likedByMe = false;
+		postas.approves.forEach((i) => {
+			if (i.userName === args.userName) likedByMe = true;
+			else likedByMe = false;
+		});
+
+		return {
+			_id: postas._id,
+			userName: postas.userName,
+			textContent: postas.textContent,
+			timestamp: postas.timestamp,
+
+			imgsmall: {
+				contentType: postas.imgsmall.contentType,
+				data: postas.imgsmall.data.toString("base64"),
+			},
+			likesPack: {
+				likes: postas.approves.length,
+				likedByMe,
+			},
+		};
+	});
+};
 
 const rootValue = {
 	addPost: async (args) => {
@@ -29,80 +56,47 @@ const rootValue = {
 
 	getPosts: async (args) => {
 		console.log(args);
-		let post = [{ imgsmall: {} }];
+		let post = [];
 		if (args.TYPE === "SINGLE") {
-			await Post.findById(args.id)
+			await Post.find({ _id: args.id })
 				.populate("imgsmall")
 				.then((res) => {
-					console.log(res);
-					post[0]._id = res._id;
-					post[0].userName = res.userName;
-					post[0].textContent = res.textContent;
-					post[0].likes = res.likes;
-					post[0].timestamp = res.timestamp;
-					post[0].imgsmall.contentType = res.imgsmall.contentType;
-					post[0].imgsmall.data = res.imgsmall.data.toString("base64");
+					post = postConverter(args, res);
 				});
-
-			// console.log("POST:", post);
 			return post;
 		}
+
 		if (args.TYPE === "USER") {
-			await Post.find({ userName: args.id })
+			await Post.find({ userName: args.userName })
 				.populate("imgsmall")
 				.then((res) => {
-					// console.log(res);
-
-					post = res.map((postas) => {
-						let likedByMe = false;
-						postas.approves.forEach((i) => {
-							if (i.userName === args.id) likedByMe = true;
-							else likedByMe = false;
-						});
-
-						return {
-							_id: postas._id,
-							userName: postas.userName,
-							textContent: postas.textContent,
-							likes: postas.approves.length,
-							timestamp: postas.timestamp,
-
-							imgsmall: {
-								contentType: postas.imgsmall.contentType,
-								data: postas.imgsmall.data.toString("base64"),
-							},
-
-							likedByMe,
-						};
-					});
+					post = postConverter(args, res);
 				});
-
-			// console.log("POST:", post);
 			return post;
 		}
 	},
 
 	likePost: async (args) => {
 		console.log(args);
-		let returnAndUpdate = false;
+		let likes = null;
 		await UserModel.findOne({ userName: args.userName }).then(async (user) => {
 			await Post.findById(args.id).then((post) => {
-				if (
-					post.approves.findIndex((iii) => iii.userName === args.userName) ===
-					-1
-				) {
-					post.approves.unshift({
-						userName: args.userName,
-						imgmicro: user.imgmicro,
-					});
-					console.log(post);
-					post.save();
-					returnAndUpdate = post.approves.length;
-				}
+				// if (
+				// 	post.approves.findIndex((iii) => iii.userName === args.userName) ===
+				// 	-1
+				// ) {
+				post.approves.unshift({
+					userName: args.userName,
+					imgmicro: user.imgmicro,
+				});
+				console.log(post);
+				post.save();
+				// }
+				likes = post.approves.length;
 			});
 		});
 
-		return returnAndUpdate;
+		return { likes, likedByMe: true };
 	},
 };
 

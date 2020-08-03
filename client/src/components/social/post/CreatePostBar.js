@@ -2,13 +2,13 @@ import React from "react";
 import "./css/PostBar.css";
 import { Icon } from "semantic-ui-react";
 import TextareaAutosize from "react-textarea-autosize";
-import myContext from "../../../context/account/myContext";
-import postContext from "../../../context/post/postContext";
+// import myContext from "../../../context/account/myContext";
+// import postContext from "../../../context/post/postContext";
 import graphqlCall from "../../../functions/graphqlCall";
 
 const CreatePostBar = () => {
-	const context = React.useContext(myContext);
-	const contextPost = React.useContext(postContext);
+	// const context = React.useContext(myContext);
+	// const contextPost = React.useContext(postContext);
 	const ref1 = React.useRef();
 	const [drop, setDrop] = React.useState(false);
 	const [isAbsolute, setIsAbsolute] = React.useState("absolute");
