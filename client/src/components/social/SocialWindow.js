@@ -40,6 +40,26 @@ const SocialWindow = () => {
 
 	return (
 		<div className='social-window'>
+			<button onClick={() => contextSocial.notPush(context.accountState.user)}>
+				Notification
+			</button>
+			<button
+				onClick={() =>
+					getPosts(
+						"SINGLE",
+						context.accountState.user,
+						"5f26a79d0fba4d0148acc9d2"
+					)
+				}>
+				Get single
+			</button>
+			<button onClick={() => getPosts("USER", context.accountState.user)}>
+				Get user posts
+			</button>
+			<button onClick={() => getPosts("FEED", context.accountState.user)}>
+				Get full feed
+			</button>
+
 			<CreatePostBar />
 
 			{contextPost.state.posts &&
@@ -54,22 +74,6 @@ const SocialWindow = () => {
 						imgsmall={item.imgsmall}
 					/>
 				))}
-			<button onClick={() => contextSocial.notPush(context.accountState.user)}>
-				Send me
-			</button>
-			<button onClick={() => getPosts("USER", context.accountState.user)}>
-				Get user posts
-			</button>
-			<button
-				onClick={() =>
-					getPosts(
-						"SINGLE",
-						context.accountState.user,
-						"5f26a79d0fba4d0148acc9d2"
-					)
-				}>
-				Get single
-			</button>
 		</div>
 	);
 };

@@ -1,5 +1,5 @@
 .post-body {
-	border: 2px solid blue;
+	border: 1px solid blue;
 	.top-section {
 		display: flex;
 		height: 5rem;
@@ -26,7 +26,7 @@
 		}
 	}
 	.middle-section {
-		height: 5rem;
+		// height: 5rem;
 		border: 1px solid green;
 	}
 	.bottom-section {

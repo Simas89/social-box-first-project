@@ -27,7 +27,7 @@ router.get("/", auth, (req, res) => {
 								// isListed checker
 								let found = false;
 								resultTOP.list.forEach((iii) => {
-									if (iii.userName === element.userName_tlc) found = true;
+									if (iii.userName === element.userName) found = true;
 								}); //
 								return {
 									id: element._id,
@@ -42,7 +42,7 @@ router.get("/", auth, (req, res) => {
 								};
 							})
 							.sort((a, b) => {
-								if (a.userName.toLowerCase() > b.userName.toLowerCase()) {
+								if (a.userName > b.userName) {
 									return 1;
 								} else {
 									return -1;
@@ -56,11 +56,7 @@ router.get("/", auth, (req, res) => {
 				//////////////////  LOCAL SEARCH
 				const filtered = [];
 				resultTOP.list.forEach((element) => {
-					if (
-						element.userName
-							.toLowerCase()
-							.includes(req.header("searchValue").toLocaleLowerCase())
-					)
+					if (element.userName.includes(req.header("searchValue")))
 						filtered.push(element.userName);
 				});
 
@@ -123,8 +119,7 @@ router.get("/addremove", auth, (req, res) => {
 					///////////////////// ADDING NEW CONTACT
 					let found = false;
 					data.list.forEach((element) => {
-						element.userName.toLowerCase() ===
-							req.header("userName").toLowerCase() && (found = true);
+						element.userName === req.header("userName") && (found = true);
 					});
 					if (!found) {
 						///////////////////  NOTIFICATION PUSH
@@ -135,7 +130,7 @@ router.get("/addremove", auth, (req, res) => {
 							`has added you to contacts`
 						);
 						data.list.push({
-							userName: req.header("userName").toLowerCase(),
+							userName: req.header("userName"),
 						}),
 							await data
 								.save()
@@ -145,7 +140,7 @@ router.get("/addremove", auth, (req, res) => {
 					///////////// REMOVING A CONTACT
 					data.list.splice(
 						data.list.findIndex(
-							(iii) => iii.userName === req.header("userName").toLowerCase()
+							(iii) => iii.userName === req.header("userName")
 						),
 						1
 					);

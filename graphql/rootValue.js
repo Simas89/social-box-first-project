@@ -11,8 +11,8 @@ const postConverter = (args, res) => {
 	return res.map((postas) => {
 		let likedByMe = false;
 		postas.approves.forEach((i) => {
-			if (i.userName === args.userName) likedByMe = true;
-			else likedByMe = false;
+			if (args.userName === i.userName) likedByMe = true;
+			// console.log(args.userName, i.userName);
 		});
 
 		return {
@@ -57,6 +57,7 @@ const rootValue = {
 	getPosts: async (args) => {
 		console.log(args);
 		let post = [];
+		let testPost = [];
 		if (args.TYPE === "SINGLE") {
 			await Post.find({ _id: args.id })
 				.populate("imgsmall")
@@ -72,6 +73,44 @@ const rootValue = {
 				.then((res) => {
 					post = postConverter(args, res);
 				});
+			return post;
+		}
+
+		if (args.TYPE === "FEED") {
+			let testPost = [];
+
+			async function f() {
+				let promise = new Promise((resolve, reject) => {
+					UserModel.findOne({ userName: args.userName }, async (err, user) => {
+						await Promise.all(
+							user.contacts.list.map(async (element) => {
+								// console.log(element);
+								await Post.find({ userName: element.userName })
+									.populate("imgsmall")
+									.then((res) => {
+										console.log(res.length);
+										testPost = postConverter(args, res);
+										post = post.concat(testPost);
+									});
+							})
+						).then(() => resolve());
+					}).populate("contacts");
+				});
+
+				await promise; // wait until the promise resolves (*)
+			}
+			await f();
+
+			// await Post.find({ userName: args.userName })
+			// 	.populate("imgsmall")
+			// 	.then((res) => {
+			// 		const post0 = postConverter(args, res);
+			// 		post = post.concat(post0);
+			// 	});
+			// console.log("POST:", post);
+			// console.log(val);
+			// console.log(testArr);
+			// console.log("RETURN");
 			return post;
 		}
 	},

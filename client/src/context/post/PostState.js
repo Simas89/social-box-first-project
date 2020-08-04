@@ -16,7 +16,7 @@ const PostState = (props) => {
 		dispatch({ type: UPDATE_LIKES, payload: payload });
 	};
 
-	console.log("STATE:", state);
+	// console.log("STATE:", state);
 
 	return (
 		<postContext.Provider value={{ state, setPosts, updatePostLikes }}>
