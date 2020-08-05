@@ -13,9 +13,9 @@ const SocialWindow = () => {
 	const contextPost = React.useContext(postContext);
 	const contextSocial = React.useContext(socialContext);
 
-	const getPosts = (TYPE, userName, id) => {
+	const getPosts = (TYPE, clientUserName, target) => {
 		const query = `
-		getPosts(TYPE: "${TYPE}", id: "${id}", , userName: "${userName}"){
+		getPosts(TYPE: "${TYPE}",  clientUserName: "${clientUserName}", target: "${target}"){
 			_id
 			userName
 			textContent
@@ -27,7 +27,12 @@ const SocialWindow = () => {
 			likesPack{
 				likes
 				likedByMe
+				approves{
+					userName
+					imgmicro
+				}
 			}
+			
 		}
 	`;
 		graphqlCall(query, (res) => {
@@ -37,6 +42,7 @@ const SocialWindow = () => {
 	};
 
 	// console.log("State:", posts);
+	console.log(context);
 
 	return (
 		<div className='social-window'>
@@ -48,12 +54,13 @@ const SocialWindow = () => {
 					getPosts(
 						"SINGLE",
 						context.accountState.user,
-						"5f26a79d0fba4d0148acc9d2"
+						"5f2afbb3e879750cf4dc312a"
 					)
 				}>
 				Get single
 			</button>
-			<button onClick={() => getPosts("USER", context.accountState.user)}>
+			<button
+				onClick={() => getPosts("USER", context.accountState.user, "000")}>
 				Get user posts
 			</button>
 			<button onClick={() => getPosts("FEED", context.accountState.user)}>

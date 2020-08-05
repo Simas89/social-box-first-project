@@ -11,9 +11,19 @@ const postConverter = (args, res) => {
 	return res.map((postas) => {
 		let likedByMe = false;
 		postas.approves.forEach((i) => {
-			if (args.userName === i.userName) likedByMe = true;
-			// console.log(args.userName, i.userName);
+			if (args.clientUserName === i.userName) likedByMe = true;
 		});
+
+		// console.log(postas.approves);
+
+		const approves = postas.approves.map((element) => {
+			// console.log(element.imgmicro.data.toString("base64"));
+			return {
+				userName: element.userName,
+				imgmicro: element.imgmicro.data.toString("base64"),
+			};
+		});
+		// console.log(approves);
 
 		return {
 			_id: postas._id,
@@ -28,6 +38,7 @@ const postConverter = (args, res) => {
 			likesPack: {
 				likes: postas.approves.length,
 				likedByMe,
+				approves: approves,
 			},
 		};
 	});
@@ -55,11 +66,11 @@ const rootValue = {
 	},
 
 	getPosts: async (args) => {
-		console.log(args);
+		// console.log(args);
 		let post = [];
 		let testPost = [];
 		if (args.TYPE === "SINGLE") {
-			await Post.find({ _id: args.id })
+			await Post.find({ _id: args.target })
 				.populate("imgsmall")
 				.then((res) => {
 					post = postConverter(args, res);
@@ -68,74 +79,86 @@ const rootValue = {
 		}
 
 		if (args.TYPE === "USER") {
-			await Post.find({ userName: args.userName })
+			console.log(args);
+			await Post.find({ userName: args.target })
 				.populate("imgsmall")
+				.populate({
+					path: "approves",
+					populate: { path: "imgmicro", model: "ProfileImgMicro" },
+				})
 				.then((res) => {
+					// console.log(res);
 					post = postConverter(args, res);
 				});
+			// console.log(post);
 			return post;
 		}
 
 		if (args.TYPE === "FEED") {
 			let testPost = [];
-
-			async function f() {
-				let promise = new Promise((resolve, reject) => {
-					UserModel.findOne({ userName: args.userName }, async (err, user) => {
-						await Promise.all(
-							user.contacts.list.map(async (element) => {
-								// console.log(element);
-								await Post.find({ userName: element.userName })
-									.populate("imgsmall")
-									.then((res) => {
-										console.log(res.length);
-										testPost = postConverter(args, res);
-										post = post.concat(testPost);
-									});
-							})
-						).then(() => resolve());
-					}).populate("contacts");
+			feedPopulate = async () => {
+				const promise = new Promise((resolve) => {
+					UserModel.findOne(
+						{ userName: args.clientUserName },
+						async (err, user) => {
+							await Promise.all(
+								user.contacts.list.map(async (element) => {
+									// console.log(element);
+									await Post.find({ userName: element.userName })
+										.populate("imgsmall")
+										.populate({
+											path: "approves",
+											populate: { path: "imgmicro", model: "ProfileImgMicro" },
+										})
+										.then((res) => {
+											testPost = postConverter(args, res);
+											post = post.concat(testPost);
+										});
+								})
+							).then(() => resolve());
+						}
+					).populate("contacts");
 				});
-
 				await promise; // wait until the promise resolves (*)
-			}
-			await f();
-
-			// await Post.find({ userName: args.userName })
-			// 	.populate("imgsmall")
-			// 	.then((res) => {
-			// 		const post0 = postConverter(args, res);
-			// 		post = post.concat(post0);
-			// 	});
-			// console.log("POST:", post);
-			// console.log(val);
-			// console.log(testArr);
-			// console.log("RETURN");
+			};
+			await feedPopulate();
 			return post;
 		}
 	},
 
 	likePost: async (args) => {
 		console.log(args);
-		let likes = null;
+		let likesPack = {};
 		await UserModel.findOne({ userName: args.userName }).then(async (user) => {
-			await Post.findById(args.id).then((post) => {
-				// if (
-				// 	post.approves.findIndex((iii) => iii.userName === args.userName) ===
-				// 	-1
-				// ) {
+			await Post.findOne({ _id: args.id }).then(async (post) => {
 				post.approves.unshift({
 					userName: args.userName,
 					imgmicro: user.imgmicro,
 				});
-				console.log(post);
-				post.save();
-				// }
-				likes = post.approves.length;
+				// console.log(post);
+				await post.save();
+
+				await Post.findOne({ _id: args.id })
+					.populate({
+						path: "approves",
+						populate: { path: "imgmicro", model: "ProfileImgMicro" },
+					})
+					.then(async (post) => {
+						const approves = post.approves.map(async (element) => {
+							// console.log(element.imgmicro.data.toString("base64"));
+							return {
+								userName: element.userName,
+								imgmicro: element.imgmicro.data.toString("base64"),
+							};
+						});
+						likesPack.likes = post.approves.length;
+						likesPack.likedByMe = true;
+						likesPack.approves = approves;
+					});
 			});
 		});
 
-		return { likes, likedByMe: true };
+		return likesPack;
 	},
 };
 

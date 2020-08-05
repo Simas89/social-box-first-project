@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 		.populate("contacts")
 		.populate("imgbig")
 		.then((result) => {
-			console.log(result);
+			// console.log(result);
 			res.status(200).json({
 				dateJoined: result.dateJoined.toDateString(),
 				verified: result.verified,

@@ -2,8 +2,12 @@ import React from "react";
 import myContext from "../../context/account/myContext";
 import styled from "styled-components";
 import { Dropdown, Input, Button, Icon } from "semantic-ui-react";
+import graphqlCall from "../../functions/graphqlCall";
+import postContext from "../../context/post/postContext";
+import PostItself from "../social/post/PostItself";
 
 const UserProfile = (props) => {
+	const contextPost = React.useContext(postContext);
 	const [profileInfo, setProfileInfo] = React.useState({
 		isValid: true,
 		dateJoined: null,
@@ -16,6 +20,34 @@ const UserProfile = (props) => {
 		itemAmount: 1,
 	});
 	const context = React.useContext(myContext);
+
+	const getPosts = (TYPE, clientUserName, target) => {
+		const query = `
+		getPosts(TYPE: "${TYPE}",  clientUserName: "${clientUserName}", target: "${target}"){
+			_id
+			userName
+			textContent
+			timestamp
+			imgsmall{
+				contentType
+				data
+			}
+			likesPack{
+				likes
+				likedByMe
+				approves{
+					userName
+					imgmicro
+				}
+			}
+			
+		}
+	`;
+		graphqlCall(query, (res) => {
+			contextPost.setPosts(res.getPosts);
+			console.log(res);
+		});
+	};
 
 	React.useEffect(() => {
 		const e = { target: { value: sendItem.itemAmount } }; // FAKE e
@@ -41,6 +73,9 @@ const UserProfile = (props) => {
 			.catch((err) => {
 				console.log(err);
 			});
+
+		contextPost.resetPosts();
+		getPosts("USER", context.accountState.user, props.userName);
 	}, [props.userName]);
 
 	const items = context.accountState.items.map((item) => {
@@ -128,20 +163,25 @@ const UserProfile = (props) => {
 		<React.Fragment>
 			<UserProfileStyle>
 				{profileInfo.isValid ? (
-					<div className='wrapper'>
-						<img
-							alt=''
-							src={`data:${profileInfo.profilePic.mimetype};base64,${profileInfo.profilePic.base64}`}></img>
-						<div>
-							UserProfile: {props.userName} <br></br>
-							{profileInfo.dateJoined} <br></br>
-							{profileInfo.verified ? "Verified" : "Not verified"}
-							{profileInfo.isOnline ? (
-								<Icon name='circle' size='small' color='green' />
-							) : (
-								<Icon name='circle' size='small' color='grey' />
-							)}
+					<div className='profile-card'>
+						<h1>{props.userName}</h1>
+						<div className='main-img'>
+							<img
+								alt=''
+								src={`data:${profileInfo.profilePic.mimetype};base64,${profileInfo.profilePic.base64}`}></img>
+							<div>
+								Member since: {profileInfo.dateJoined} <br></br>
+								Account status:{" "}
+								{profileInfo.verified ? "Verified" : "Not verified"}
+								<br />
+								{profileInfo.isOnline ? (
+									<Icon name='circle' size='small' color='green' />
+								) : (
+									<Icon name='circle' size='small' color='grey' />
+								)}
+							</div>
 						</div>
+
 						<div className='inputs'>
 							<Dropdown
 								onChange={onChangeDropdown}
@@ -156,6 +196,21 @@ const UserProfile = (props) => {
 								Send
 							</Button>
 						</div>
+						<div className='social-window'>
+							{" "}
+							{contextPost.state.posts &&
+								contextPost.state.posts.map((item, index) => (
+									<PostItself
+										key={item._id}
+										_id={item._id}
+										index={index}
+										userName={item.userName}
+										textContent={item.textContent}
+										timestamp={item.timestamp}
+										imgsmall={item.imgsmall}
+									/>
+								))}
+						</div>
 					</div>
 				) : (
 					<h1>404 User not found... ಠ_ಠ</h1>
@@ -165,20 +220,20 @@ const UserProfile = (props) => {
 	);
 };
 const UserProfileStyle = styled.div`
-	.wrapper {
-		border: solid 1px blue;
-
-		.inputs {
-			display: grid;
-			grid-template-columns: 200px 200px 100px;
+	.profile-card {
+		border: 1px solid blue;
+		display: flex;
+		flex-direction: column;
+		h1 {
+			text-align: center;
+		}
+		.main-img {
 			margin: auto;
-			/* border: 1px solid black; */
-
-			.Button {
-				background-color: #007fed;
-				color: white;
-				height: 50px;
-			}
+			border: 1px solid green;
+		}
+		.social-window {
+			position: relative;
+			border: 1px solid red;
 		}
 	}
 `;

@@ -13,10 +13,15 @@ const BoxLike = (props) => {
 			const query = `
 		likePost(userName: "${user}", id: "${id}"){
 			likes
-			likedByMe
+				likedByMe
+				approves{
+					userName
+					imgmicro
+				}
 		}
 			`;
 			graphqlCall(query, (res) => {
+				console.log(res);
 				contextPost.updatePostLikes({
 					likesPack: res.likePost,
 					index: props.index,
@@ -25,11 +30,14 @@ const BoxLike = (props) => {
 		} else {
 		}
 	};
-	console.log(contextPost.state);
-	console.log(contextPost.state.posts[props.index].likesPack);
 
 	return (
 		<div>
+			{contextPost.state.posts[props.index].likesPack.approves.map(
+				(element) => {
+					return element.userName;
+				}
+			)}
 			{contextPost.state.posts[props.index].likesPack.likes}
 			<Icon
 				onClick={() =>

@@ -43,7 +43,7 @@ router.post("/", fileUpload(), async (req, res) => {
 	try {
 		await sharp(req.files.myFile.data)
 			.rotate()
-			.resize(40)
+			.resize(30)
 			.toBuffer()
 			.then((data) => {
 				bufferMicro = data;
@@ -60,8 +60,8 @@ router.post("/", fileUpload(), async (req, res) => {
 			await profileImgMicro
 				.findByIdAndUpdate(result.imgmicro._id.toString())
 				.then((imgmicro) => {
-					console.log(imgmicro);
-					imgmicro.data = bufferMini;
+					// console.log(imgmicro);
+					imgmicro.data = bufferMicro;
 					imgmicro.contentType = req.files.myFile.mimetype;
 					imgmicro.save();
 				});
@@ -69,7 +69,7 @@ router.post("/", fileUpload(), async (req, res) => {
 			await profileImgSmall
 				.findByIdAndUpdate(result.imgsmall._id.toString())
 				.then((imgsmall) => {
-					console.log(imgsmall);
+					// console.log(imgsmall);
 					imgsmall.data = bufferMini;
 					imgsmall.contentType = req.files.myFile.mimetype;
 					imgsmall.save();
@@ -78,7 +78,7 @@ router.post("/", fileUpload(), async (req, res) => {
 			await profileImgBig
 				.findByIdAndUpdate(result.imgbig._id.toString())
 				.then((imgbig) => {
-					console.log(imgbig);
+					// console.log(imgbig);
 					imgbig.data = buffer;
 					imgbig.contentType = req.files.myFile.mimetype;
 					imgbig.save();

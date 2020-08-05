@@ -1,4 +1,4 @@
-import { SET_POSTS, UPDATE_LIKES } from "../types";
+import { SET_POSTS, RESET_POSTS, UPDATE_LIKES } from "../types";
 
 export default (state, action) => {
 	switch (action.type) {
@@ -6,8 +6,13 @@ export default (state, action) => {
 			// console.log("Setting posts");
 			return { ...state, posts: action.payload };
 		}
+
+		case RESET_POSTS: {
+			// console.log("Setting posts");
+			return { posts: [] };
+		}
+
 		case UPDATE_LIKES: {
-			console.log(action.payload.likesPack);
 			return {
 				...state,
 

@@ -18,7 +18,7 @@ const userStateReturn = (result, status, token, rememberMe) => {
 		status: status,
 		token,
 		rememberMe,
-		profilePic: {
+		imgbig: {
 			base64: result.imgbig.data.toString("base64"),
 			mimetype: result.imgbig.contentType,
 		},

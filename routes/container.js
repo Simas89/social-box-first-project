@@ -17,6 +17,7 @@ let saveSTATUS = {
 
 router.post("/", auth, (req, res) => {
 	UserModel.findById(req.decoded, (error, result) => {
+		// console.log(result);
 		const reqParsedItem =
 			itemsSpecs[getItemsDataIndexOfItemName(req.body.itemName)];
 
@@ -84,7 +85,7 @@ router.post("/", auth, (req, res) => {
 		error &&
 			(res.status(400).json({ status: "ERROR OCCURRED", err: error }),
 			console.log(error));
-	});
+	}).populate("imgbig");
 });
 
 module.exports = router;

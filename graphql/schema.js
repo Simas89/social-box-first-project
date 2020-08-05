@@ -4,7 +4,7 @@ const schema = buildSchema(`
 	type Query{
     UserTest(name: String): String
     addPost(token : String, textContent: String): String
-    getPosts(TYPE: String, id: String, userName: String) : [POST]
+    getPosts(TYPE: String, clientUserName: String, target: String ) : [POST]
     likePost(userName: String, id: String): LIKES_PACK
 
   }
@@ -15,8 +15,9 @@ const schema = buildSchema(`
     timestamp: String
     imgsmall: IMG
     likesPack: LIKES_PACK
-    
   }
+ 
+
   type IMG{
     contentType: String
     data: String
@@ -24,6 +25,11 @@ const schema = buildSchema(`
   type LIKES_PACK{
     likes: Int
     likedByMe: Boolean
+    approves: [APPROVES]
+  }
+  type APPROVES{
+    userName: String
+    imgmicro: String
   }
 
 
