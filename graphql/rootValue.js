@@ -1,11 +1,11 @@
 const UserModel = require("../schemas/userSchema");
 const Post = require("../schemas/post");
 const mailer = require("../functions/mailer");
-
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const post = require("../schemas/post");
+
 const cryptSecret = config.get("cryptSecret");
+const notificationPUSH = require("../functions/notificationPUSH");
 
 const postConverter = (args, res) => {
 	return res.map((postas) => {
@@ -13,17 +13,6 @@ const postConverter = (args, res) => {
 		postas.approves.forEach((i) => {
 			if (args.clientUserName === i.userName) likedByMe = true;
 		});
-
-		// console.log(postas.approves);
-
-		const approves = postas.approves.map((element) => {
-			// console.log(element.imgmicro.data.toString("base64"));
-			return {
-				userName: element.userName,
-				imgmicro: element.imgmicro.data.toString("base64"),
-			};
-		});
-		// console.log(approves);
 
 		return {
 			_id: postas._id,
@@ -38,10 +27,23 @@ const postConverter = (args, res) => {
 			likesPack: {
 				likes: postas.approves.length,
 				likedByMe,
-				approves: approves,
+				approves: approvesConverter(postas),
 			},
 		};
 	});
+};
+
+const approvesConverter = (post) => {
+	const limit = 5;
+	const approves = post.approves.map(async (element, i) => {
+		if (i < limit)
+			return {
+				userName: element.userName,
+				imgmicro: element.imgmicro.data.toString("base64"),
+			};
+	});
+
+	return approves;
 };
 
 const rootValue = {
@@ -51,7 +53,6 @@ const rootValue = {
 		// console.log(args);
 		// console.log(decoded);
 		await UserModel.findById(decoded.user_id).then((res) => {
-			// console.log(res);
 			userResult = res;
 		});
 
@@ -131,7 +132,7 @@ const rootValue = {
 		let likesPack = {};
 		await UserModel.findOne({ userName: args.userName }).then(async (user) => {
 			await Post.findOne({ _id: args.id }).then(async (post) => {
-				post.approves.unshift({
+				post.approves.push({
 					userName: args.userName,
 					imgmicro: user.imgmicro,
 				});
@@ -144,17 +145,17 @@ const rootValue = {
 						populate: { path: "imgmicro", model: "ProfileImgMicro" },
 					})
 					.then(async (post) => {
-						const approves = post.approves.map(async (element) => {
-							// console.log(element.imgmicro.data.toString("base64"));
-							return {
-								userName: element.userName,
-								imgmicro: element.imgmicro.data.toString("base64"),
-							};
-						});
 						likesPack.likes = post.approves.length;
-						likesPack.likedByMe = true;
-						likesPack.approves = approves;
+						likesPack.likedByMe = false;
+						likesPack.approves = approvesConverter(post);
 					});
+				notificationPUSH(
+					post.userName,
+					"POST_LIKE",
+					args.userName,
+					"",
+					args.id
+				);
 			});
 		});
 

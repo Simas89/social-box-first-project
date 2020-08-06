@@ -18,13 +18,13 @@ ReactDOM.render(
 		/>
 		<BrowserRouter>
 			<ContextState>
-				<LandingState>
-					<Route exact path='/' component={LandingMain} />
-				</LandingState>
 				<SocialState>
-					<PostState>
-						<Route path='/container' component={App} />
-					</PostState>
+					<LandingState>
+						<PostState>
+							<Route exact path='/' component={LandingMain} />
+							<Route path='/container' component={App} />
+						</PostState>
+					</LandingState>
 				</SocialState>
 			</ContextState>
 		</BrowserRouter>

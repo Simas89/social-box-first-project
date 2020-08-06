@@ -1,8 +1,10 @@
 import React from "react";
+import "./css/BoxLike.css";
 import { Icon } from "semantic-ui-react";
 import myContext from "../../../context/account/myContext";
 import postContext from "../../../context/post/postContext";
 import graphqlCall from "../../../functions/graphqlCall";
+import LikesBuble from "./LikesBuble";
 
 const BoxLike = (props) => {
 	const context = React.useContext(myContext);
@@ -32,13 +34,27 @@ const BoxLike = (props) => {
 	};
 
 	return (
-		<div>
-			{contextPost.state.posts[props.index].likesPack.approves.map(
-				(element) => {
-					return element.userName;
-				}
-			)}
-			{contextPost.state.posts[props.index].likesPack.likes}
+		<div className='box-like'>
+			<div className='people'>
+				{contextPost.state.posts[props.index].likesPack.approves.map(
+					(element, i) => {
+						try {
+							return (
+								<LikesBuble
+									zIndex={5 - i}
+									imgmicro={element.imgmicro}
+									userName={element.userName}
+									key={i}
+								/>
+							);
+						} catch (error) {}
+					}
+				)}
+			</div>
+
+			{contextPost.state.posts[props.index].likesPack.likes - 5 > 0
+				? `+${contextPost.state.posts[props.index].likesPack.likes - 5}`
+				: ""}
 			<Icon
 				onClick={() =>
 					onLikeClick(

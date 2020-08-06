@@ -11,6 +11,7 @@ const NotificationsList = new Schema({
 				format: { type: String, default: "USERLINK_TEXT" },
 				link: { type: String, default: "" },
 				text1: { type: String, default: "" },
+				link2: { type: String, default: "" },
 			},
 			img: { type: mongoose.Schema.ObjectId, ref: "ProfileImgSmall" },
 		},

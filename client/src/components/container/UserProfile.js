@@ -8,6 +8,7 @@ import PostItself from "../social/post/PostItself";
 
 const UserProfile = (props) => {
 	const contextPost = React.useContext(postContext);
+	const context = React.useContext(myContext);
 	const [profileInfo, setProfileInfo] = React.useState({
 		isValid: true,
 		dateJoined: null,
@@ -19,7 +20,6 @@ const UserProfile = (props) => {
 		itemName: null,
 		itemAmount: 1,
 	});
-	const context = React.useContext(myContext);
 
 	const getPosts = (TYPE, clientUserName, target) => {
 		const query = `

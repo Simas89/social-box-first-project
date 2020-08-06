@@ -1,0 +1,15 @@
+.div-style {
+  margin-left: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.8rem;
+  width: 1.8rem;
+  border: 1px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.div-style:hover {
+  cursor: pointer;
+}

@@ -8,6 +8,7 @@ const userStateReturn = (result, status, token, rememberMe) => {
 		});
 		return convertedItem;
 	});
+	// console.log(result.imgbig.data.toString("base64"));
 	return {
 		userName: result.userName,
 		credits: result.credits,

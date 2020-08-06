@@ -3,6 +3,7 @@
 	.top-section {
 		display: flex;
 		height: 5rem;
+		overflow: hidden;
 		.profile-img {
 			// background-color: lightgrey;
 			height: 5rem;
@@ -32,15 +33,5 @@
 	.bottom-section {
 		position: relative;
 		height: 2rem;
-		.box-like {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			position: absolute;
-			border: 1px solid red;
-			right: 0;
-			height: 2rem;
-			// width: 2rem;
-		}
 	}
 }

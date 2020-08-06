@@ -23,6 +23,25 @@ const NotificationListItem = (props) => {
 		if (props.messageBody.format === "SIMPLE_TEXT") {
 			return <React.Fragment>{props.messageBody.text1}</React.Fragment>;
 		}
+		if (props.messageBody.format === "POST_LIKE") {
+			console.log("POST_LIKE");
+
+			return (
+				<React.Fragment>
+					<strong>
+						<Link to={`/container/users/${props.messageBody.link}`}>
+							{props.messageBody.link}
+						</Link>
+					</strong>
+					{" liked your "}
+					<strong>
+						<Link to={`/container/post/${props.messageBody.link2}`}>
+							{"post"}
+						</Link>
+					</strong>
+				</React.Fragment>
+			);
+		}
 	};
 
 	return (

@@ -29,9 +29,7 @@ const PostItself = (props) => {
 			</div>
 			<div className='middle-section'>{props.textContent}</div>
 			<div className='bottom-section'>
-				<div className='box-like'>
-					<BoxLike index={props.index} />
-				</div>
+				<BoxLike index={props.index} />
 			</div>
 		</div>
 	);

@@ -51,6 +51,15 @@ function App(props) {
 									/>
 								</div>
 								<div className='fill-2'>
+									<div onClick={() => history.push("/container/users")}>
+										<Icon
+											className='iconas'
+											onClick={() => history.push("/")}
+											name='users'
+											size='large'
+										/>
+										<p>Users</p>
+									</div>
 									<div onClick={() => history.push("/container/items")}>
 										<Icon
 											className='iconas'
@@ -69,15 +78,7 @@ function App(props) {
 										/>
 										<p>Market</p>
 									</div>
-									<div onClick={() => history.push("/container/users")}>
-										<Icon
-											className='iconas'
-											onClick={() => history.push("/")}
-											name='users'
-											size='large'
-										/>
-										<p>Users</p>
-									</div>
+
 									<div onClick={() => history.push("/container/account")}>
 										<Icon
 											className='iconas'

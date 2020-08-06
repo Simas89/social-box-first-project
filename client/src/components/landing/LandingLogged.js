@@ -1,10 +1,14 @@
 import React from "react";
 import "./css/LandingLogged.css";
 import accountContext from "../../context/account/myContext";
+import postContext from "../../context/post/postContext";
+
 import { useHistory } from "react-router-dom";
 
 const LandingLogged = () => {
 	const contextAccount = React.useContext(accountContext);
+	const contextPost = React.useContext(postContext);
+	console.log(contextPost);
 	const history = useHistory();
 	return (
 		<div className='landing-logged'>
@@ -18,7 +22,10 @@ const LandingLogged = () => {
 					Return
 				</div>
 				<div
-					onClick={contextAccount.accountState.logOff}
+					onClick={() => {
+						contextAccount.accountState.logOff();
+						contextPost.resetPosts();
+					}}
 					className='logged-button-logout'>
 					Log-Out
 				</div>

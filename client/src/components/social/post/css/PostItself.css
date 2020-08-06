@@ -5,6 +5,7 @@
 .post-body .top-section {
   display: flex;
   height: 5rem;
+  overflow: hidden;
 }
 
 .post-body .top-section .profile-img {
@@ -38,15 +39,5 @@
 
 .post-body .bottom-section {
   position: relative;
-  height: 2rem;
-}
-
-.post-body .bottom-section .box-like {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  border: 1px solid red;
-  right: 0;
   height: 2rem;
 }

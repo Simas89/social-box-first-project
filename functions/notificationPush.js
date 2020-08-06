@@ -2,9 +2,37 @@ const UserModel = require("../schemas/userSchema");
 const NotificationsList = require("../schemas/notificationsMODEL");
 const profileImgSmall = require("../schemas/profileImgSmall");
 
-module.exports = function (receiver, format, link, text1) {
+module.exports = function (receiver, format, link, text1, link2) {
 	UserModel.findOne({ userName_tlc: receiver.toLowerCase() }).then(
 		(resultat) => {
+			console.log("receiver:", receiver);
+			console.log("format:", format);
+			console.log("link:", link);
+			console.log("text1:", text1);
+			console.log("link2:", link2);
+
+			if (format === "POST_LIKE") {
+				console.log("POST_LIKE");
+				// GRAB DATA FROM A SENDER
+				UserModel.findOne({ userName: link }).then((link) => {
+					// ADD NOTIFICATION TO RECEIVERS NOTIFICATIONS LIST
+					NotificationsList.findById(resultat.notifications._id).then(
+						(result) => {
+							// console.log(link);
+							result.list.unshift({
+								messageBody: {
+									format: format,
+									link: link.userName,
+									text1: text1,
+									link2: link2,
+								},
+								img: link.imgsmall,
+							});
+							result.save();
+						}
+					);
+				});
+			}
 			// console.log(resultat);
 			if (format === "USERLINK_TEXT") {
 				// GRAB DATA FROM A SENDER

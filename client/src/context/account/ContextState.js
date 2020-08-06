@@ -52,6 +52,7 @@ const ContextState = (props) => {
 		setAccountState(cloneState);
 	};
 	const logIn = (data) => {
+		console.log(data);
 		// console.log(data);
 		data.rememberMe
 			? localStorage.setItem("rememberme", data.token)
@@ -66,7 +67,7 @@ const ContextState = (props) => {
 			data.email,
 			data.verified,
 			data.dateJoined,
-			data.profilePic
+			data.imgbig
 		);
 	};
 	const logOff = () => {

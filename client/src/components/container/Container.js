@@ -171,6 +171,11 @@ function Container(props) {
 				)}
 			/>
 
+			<Route ///////////////// SINGLE POST
+				path='/container/post/:postID'
+				render={(props) => <h1>{props.match.params.postID}</h1>}
+			/>
+
 			<Route ////////////// ACCOUNT
 				path='/container/account'
 				render={() => <Account />}

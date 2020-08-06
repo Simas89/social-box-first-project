@@ -1,0 +1,16 @@
+.box-like {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border: 1px solid red;
+  right: 0;
+  height: 2rem;
+}
+
+.box-like .people {
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
