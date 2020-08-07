@@ -1,4 +1,5 @@
 .post-bar {
+  z-index: 0;
   overflow: hidden;
   position: relative;
   min-height: 25px;
@@ -20,6 +21,7 @@
 }
 
 .post-bar .TextareaAutosize {
+  width: 100% !important;
   margin-top: 5px;
   overflow: hidden;
   display: block;
@@ -32,6 +34,7 @@
 }
 
 .absolute {
+  width: 100%;
   position: absolute;
   transition: 0.2s;
 }

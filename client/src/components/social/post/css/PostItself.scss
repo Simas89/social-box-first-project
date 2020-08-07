@@ -27,8 +27,46 @@
 		}
 	}
 	.middle-section {
+		position: relative;
 		// height: 5rem;
 		border: 1px solid green;
+		padding: 10px 50px 10px 50px;
+		.edit-button {
+			position: absolute;
+			left: 5px;
+			bottom: 5px;
+			color: lightgrey;
+
+			&:hover {
+				color: black;
+				cursor: pointer;
+			}
+		}
+		.cancel-button {
+			position: absolute;
+			left: 25px;
+			bottom: 5px;
+			color: lightgrey;
+
+			&:hover {
+				color: black;
+				cursor: pointer;
+			}
+		}
+		.TextareaAutosize {
+			width: 100%;
+			// position: relative;
+			margin-top: 5px;
+			overflow: hidden;
+			display: block;
+			// width: 100px;
+			resize: none;
+			bottom: 100%;
+		}
+	}
+	.modified {
+		font-size: 0.8rem;
+		margin-left: 5rem;
 	}
 	.bottom-section {
 		position: relative;

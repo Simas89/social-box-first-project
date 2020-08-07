@@ -10,7 +10,7 @@ const CreatePostBar = () => {
 	// const context = React.useContext(myContext);
 	// const contextPost = React.useContext(postContext);
 	const ref1 = React.useRef();
-	const [drop, setDrop] = React.useState(false);
+	const [drop, setDrop] = React.useState(true);
 	const [isAbsolute, setIsAbsolute] = React.useState("absolute");
 	const [dropHeight, setDropHeight] = React.useState(109);
 	// console.log(drop);

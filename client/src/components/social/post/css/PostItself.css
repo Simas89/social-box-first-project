@@ -34,7 +34,47 @@
 }
 
 .post-body .middle-section {
+  position: relative;
   border: 1px solid green;
+  padding: 10px 50px 10px 50px;
+}
+
+.post-body .middle-section .edit-button {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  color: lightgrey;
+}
+
+.post-body .middle-section .edit-button:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.post-body .middle-section .cancel-button {
+  position: absolute;
+  left: 25px;
+  bottom: 5px;
+  color: lightgrey;
+}
+
+.post-body .middle-section .cancel-button:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.post-body .middle-section .TextareaAutosize {
+  width: 100%;
+  margin-top: 5px;
+  overflow: hidden;
+  display: block;
+  resize: none;
+  bottom: 100%;
+}
+
+.post-body .modified {
+  font-size: 0.8rem;
+  margin-left: 5rem;
 }
 
 .post-body .bottom-section {
