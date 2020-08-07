@@ -146,7 +146,7 @@ const rootValue = {
 					})
 					.then(async (post) => {
 						likesPack.likes = post.approves.length;
-						likesPack.likedByMe = false;
+						likesPack.likedByMe = true;
 						likesPack.approves = approvesConverter(post);
 					});
 				notificationPUSH(

@@ -4,7 +4,7 @@ import { Icon } from "semantic-ui-react";
 import TextareaAutosize from "react-textarea-autosize";
 // import myContext from "../../../context/account/myContext";
 // import postContext from "../../../context/post/postContext";
-import graphqlCall from "../../../functions/graphqlCall";
+import graphqlFetch from "../../../functions/graphqlFetch";
 
 const CreatePostBar = () => {
 	// const context = React.useContext(myContext);
@@ -36,7 +36,7 @@ const CreatePostBar = () => {
 		}")
 			`;
 
-		graphqlCall(addPostQuery, (res) => console.log(res));
+		graphqlFetch(addPostQuery, (res) => console.log(res));
 	};
 
 	return (

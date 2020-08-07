@@ -9,6 +9,7 @@ import marketItemsDataFetch from "../../functions/marketItemsDataFetch";
 import findUsersFetch from "../../functions/findUsersFetch";
 import UserProfile from "./UserProfile";
 import SocialWindow from "../social/SocialWindow";
+import SinglePostContainer from "../social/post/SinglePostContainer";
 
 function Container(props) {
 	//CONTAINER
@@ -173,7 +174,9 @@ function Container(props) {
 
 			<Route ///////////////// SINGLE POST
 				path='/container/post/:postID'
-				render={(props) => <h1>{props.match.params.postID}</h1>}
+				render={(props) => (
+					<SinglePostContainer postID={props.match.params.postID} />
+				)}
 			/>
 
 			<Route ////////////// ACCOUNT

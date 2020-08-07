@@ -3,7 +3,7 @@ import "./css/BoxLike.css";
 import { Icon } from "semantic-ui-react";
 import myContext from "../../../context/account/myContext";
 import postContext from "../../../context/post/postContext";
-import graphqlCall from "../../../functions/graphqlCall";
+import graphqlFetch from "../../../functions/graphqlFetch";
 import LikesBuble from "./LikesBuble";
 
 const BoxLike = (props) => {
@@ -22,7 +22,7 @@ const BoxLike = (props) => {
 				}
 		}
 			`;
-			graphqlCall(query, (res) => {
+			graphqlFetch(query, (res) => {
 				console.log(res);
 				contextPost.updatePostLikes({
 					likesPack: res.likePost,

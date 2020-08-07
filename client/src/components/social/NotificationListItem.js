@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { Feed, Image, Icon } from "semantic-ui-react";
 import socialContext from "../../context/social/socialContext";
 import moment from "moment";
+import postContext from "../../context/post/postContext";
 
 const NotificationListItem = (props) => {
 	const contextSocial = React.useContext(socialContext);
+	const contextPost = React.useContext(postContext);
 
 	const ntfContent = () => {
 		if (props.messageBody.format === "USERLINK_TEXT") {
@@ -24,8 +26,6 @@ const NotificationListItem = (props) => {
 			return <React.Fragment>{props.messageBody.text1}</React.Fragment>;
 		}
 		if (props.messageBody.format === "POST_LIKE") {
-			console.log("POST_LIKE");
-
 			return (
 				<React.Fragment>
 					<strong>
@@ -35,7 +35,9 @@ const NotificationListItem = (props) => {
 					</strong>
 					{" liked your "}
 					<strong>
-						<Link to={`/container/post/${props.messageBody.link2}`}>
+						<Link
+							onClick={contextPost.resetPosts}
+							to={`/container/post/${props.messageBody.link2}`}>
 							{"post"}
 						</Link>
 					</strong>

@@ -3,7 +3,7 @@ import "./css/MasterButton.css";
 import landingContext from "../../context/landing/landingContext";
 import { Icon } from "semantic-ui-react";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import graphqlCall from "../../functions/graphqlCall";
+import graphqlFetch from "../../functions/graphqlFetch";
 
 const MasterButtonSend = (props) => {
 	const contextLanding = React.useContext(landingContext);
@@ -33,7 +33,7 @@ const MasterButtonSend = (props) => {
 					setStage(2);
 					setFreeze(true);
 
-					graphqlCall(query, (res) => {
+					graphqlFetch(query, (res) => {
 						// console.log(res);
 						res.messageToMe === "OK" ? setEmailSuccess(1) : setEmailSuccess(0);
 						setStage(3);

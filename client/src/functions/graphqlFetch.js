@@ -1,4 +1,4 @@
-const graphqlCall = (query, callback) => {
+const graphqlFetch = (query, callback) => {
 	fetch("http://localhost:2000/graphql", {
 		method: "POST",
 		headers: {
@@ -19,4 +19,4 @@ const graphqlCall = (query, callback) => {
 		});
 };
 
-export default graphqlCall;
+export default graphqlFetch;

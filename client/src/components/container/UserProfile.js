@@ -2,7 +2,8 @@ import React from "react";
 import myContext from "../../context/account/myContext";
 import styled from "styled-components";
 import { Dropdown, Input, Button, Icon } from "semantic-ui-react";
-import graphqlCall from "../../functions/graphqlCall";
+import graphqlFetch from "../../functions/graphqlFetch";
+import gqlGetPostsQuery from "../../functions/gqlGetPostsQuery";
 import postContext from "../../context/post/postContext";
 import PostItself from "../social/post/PostItself";
 
@@ -21,29 +22,8 @@ const UserProfile = (props) => {
 		itemAmount: 1,
 	});
 
-	const getPosts = (TYPE, clientUserName, target) => {
-		const query = `
-		getPosts(TYPE: "${TYPE}",  clientUserName: "${clientUserName}", target: "${target}"){
-			_id
-			userName
-			textContent
-			timestamp
-			imgsmall{
-				contentType
-				data
-			}
-			likesPack{
-				likes
-				likedByMe
-				approves{
-					userName
-					imgmicro
-				}
-			}
-			
-		}
-	`;
-		graphqlCall(query, (res) => {
+	const getPosts = (query) => {
+		graphqlFetch(query, (res) => {
 			contextPost.setPosts(res.getPosts);
 			console.log(res);
 		});
@@ -75,7 +55,9 @@ const UserProfile = (props) => {
 			});
 
 		contextPost.resetPosts();
-		getPosts("USER", context.accountState.user, props.userName);
+		getPosts(
+			gqlGetPostsQuery("USER", context.accountState.user, props.userName)
+		);
 	}, [props.userName]);
 
 	const items = context.accountState.items.map((item) => {

@@ -6,36 +6,16 @@ import postContext from "../../context/post/postContext";
 // import Post from "./Post";
 import CreatePostBar from "./post/CreatePostBar";
 import PostItself from "./post/PostItself";
-import graphqlCall from "../../functions/graphqlCall";
+import graphqlFetch from "../../functions/graphqlFetch";
+import gqlGetPostsQuery from "../../functions/gqlGetPostsQuery";
 
 const SocialWindow = () => {
 	const context = React.useContext(myContext);
 	const contextPost = React.useContext(postContext);
 	const contextSocial = React.useContext(socialContext);
 
-	const getPosts = (TYPE, clientUserName, target) => {
-		const query = `
-		getPosts(TYPE: "${TYPE}",  clientUserName: "${clientUserName}", target: "${target}"){
-			_id
-			userName
-			textContent
-			timestamp
-			imgsmall{
-				contentType
-				data
-			}
-			likesPack{
-				likes
-				likedByMe
-				approves{
-					userName
-					imgmicro
-				}
-			}
-			
-		}
-	`;
-		graphqlCall(query, (res) => {
+	const getPosts = (query) => {
+		graphqlFetch(query, (res) => {
 			contextPost.setPosts(res.getPosts);
 			console.log(res);
 		});
@@ -52,18 +32,25 @@ const SocialWindow = () => {
 			<button
 				onClick={() =>
 					getPosts(
-						"SINGLE",
-						context.accountState.user,
-						"5f2afbb3e879750cf4dc312a"
+						gqlGetPostsQuery(
+							"SINGLE",
+							context.accountState.user,
+							"5f2c5502b705140cc0ef3f63"
+						)
 					)
 				}>
 				Get single
 			</button>
 			<button
-				onClick={() => getPosts("USER", context.accountState.user, "000")}>
+				onClick={() =>
+					getPosts(gqlGetPostsQuery("USER", context.accountState.user, "000"))
+				}>
 				Get user posts
 			</button>
-			<button onClick={() => getPosts("FEED", context.accountState.user)}>
+			<button
+				onClick={() =>
+					getPosts(gqlGetPostsQuery("FEED", context.accountState.user))
+				}>
 				Get full feed
 			</button>
 
