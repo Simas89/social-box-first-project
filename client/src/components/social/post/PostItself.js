@@ -8,6 +8,11 @@ import postContext from "../../../context/post/postContext";
 import TextareaAutosize from "react-textarea-autosize";
 import graphqlFetch from "../../../functions/graphqlFetch";
 
+import PerfectScrollbar from "react-perfect-scrollbar";
+import "react-perfect-scrollbar/dist/css/styles.css";
+
+import { Scrollbars } from "react-custom-scrollbars";
+
 const PostItself = (props) => {
 	const context = React.useContext(myContext);
 	const contextPost = React.useContext(postContext);
@@ -16,6 +21,7 @@ const PostItself = (props) => {
 		props.textContent
 	);
 	const [editMode, setEditMode] = React.useState(0);
+	const [commentText, setCommentText] = React.useState("");
 	// console.log("post props:", props);
 
 	const editModeSET = (TYPE) => {
@@ -33,9 +39,18 @@ const PostItself = (props) => {
 		}
 		if (TYPE === "CANCEL") {
 			setEditMode(0);
-			setTextContent(textContentPrev);
+			setTextContent(textContentPrev, { maxHeight: "100px" });
 		}
 	};
+	//
+
+	const myRef = React.useRef();
+
+	React.useEffect(() => myRef.current.scrollToBottom(), []);
+
+	// const container = myRef;
+	// console.log(container);
+	// const ps = new PerfectScrollbar(container);
 
 	return (
 		<div className='post-body'>
@@ -85,6 +100,7 @@ const PostItself = (props) => {
 						textContent
 					)}
 				</div>
+				<BoxLike index={props.index} />
 				{props.edited && (
 					<p className='modified'>
 						Edited{" "}
@@ -96,7 +112,61 @@ const PostItself = (props) => {
 			</div>
 
 			<div className='bottom-section'>
-				<BoxLike index={props.index} />
+				<div className='comments-content'>
+					<Scrollbars
+						ref={myRef}
+						onClick={() => console.log(myRef)}
+						autoHeight
+						autoHeightMin={0}
+						autoHeightMax={100}
+						autoHide
+						autoHideTimeout={2000}
+						autoHideDuration={200}
+						thumbMinSize={30}
+						universal={true}>
+						{""}Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+						luctus nulla non lorem feugiat dignissim. Nam vitae fringilla lorem.
+						Mauris odio tortor, blandit sit amet mi nec, interdum consectetur
+						magna. Quisque non sapien quis est bibendum hendrerit quis at
+						libero. Suspendisse lacinia congue tellus ac volutpat. Curabitur
+						imperdiet purus sed ante elementum porttitor. Nam sed vehicula
+						libero. Vivamus id augue nec velit luctus auctor sit amet ac nisi.
+						Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+						per inceptos himenaeos. Nullam mi sem, luctus sed magna eu, placerat
+						efficitur dolor. Proin magna nisi, dapibus sed lorem eu, pretium
+						iaculis massa. Ut vitae tristique lorem. Vestibulum sagittis lectus
+						in massa ullamcorper lacinia. Aliquam vel erat sagittis, maximus
+						felis sed, consequat turpis. Duis vitae rhoncus est, at iaculis
+						velit. Proin malesuada consequat condimentum. Lorem ipsum dolor sit
+						amet, consectetur adipiscing elit. In luctus nulla non lorem feugiat
+						dignissim. Nam vitae fringilla lorem. Mauris odio tortor, blandit
+						sit amet mi nec, interdum consectetur magna. Quisque non sapien quis
+						est bibendum hendrerit quis at libero. Suspendisse lacinia congue
+						tellus ac volutpat. Curabitur imperdiet purus sed ante elementum
+						porttitor. Nam sed vehicula libero. Vivamus id augue nec velit
+						luctus auctor sit amet ac nisi. Class aptent taciti sociosqu ad
+						litora torquent per conubia nostra, per inceptos himenaeos. Nullam
+						mi sem, luctus sed magna eu, placerat efficitur dolor. Proin magna
+						nisi, dapibus sed lorem eu, pretium iaculis massa. Ut vitae
+						tristique lorem. Vestibulum sagittis lectus in massa ullamcorper
+						lacinia. Aliquam vel erat sagittis, maximus felis sed, consequat
+						turpis. Duis vitae rhoncus est, at iaculis velit. Proin malesuada
+						consequat condimentum.........
+					</Scrollbars>
+				</div>
+				<div className='comments-add'>
+					<TextareaAutosize
+						value={commentText}
+						onChange={(e) => setCommentText(e.target.value)}
+						placeholder={"Write a comment.."}
+						className='TextareaAutosize-comment'
+					/>
+					<Icon
+						className={`comment-send ${commentText && "comment-send-ready"}`}
+						name='comment'
+						size='large'
+					/>
+				</div>
 			</div>
 		</div>
 	);
