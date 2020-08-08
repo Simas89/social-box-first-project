@@ -1,5 +1,5 @@
 .post-body {
-  border: 1px solid blue;
+  border: 2px solid black;
 }
 
 .post-body .top-section {
@@ -23,6 +23,7 @@
 .post-body .top-section .post-info-top {
   height: 5rem;
   border: 1px solid black;
+  padding-left: 10px;
 }
 
 .post-body .top-section .post-info-top .user-name {
@@ -36,13 +37,13 @@
 .post-body .middle-section {
   position: relative;
   border: 1px solid green;
-  padding: 10px 50px 10px 50px;
+  padding: 20px 50px 40px 50px;
 }
 
 .post-body .middle-section .edit-button {
   position: absolute;
-  left: 5px;
-  bottom: 5px;
+  right: 5px;
+  top: 5px;
   color: lightgrey;
 }
 
@@ -53,8 +54,8 @@
 
 .post-body .middle-section .cancel-button {
   position: absolute;
-  left: 25px;
-  bottom: 5px;
+  right: 35px;
+  top: 5px;
   color: lightgrey;
 }
 
@@ -63,7 +64,7 @@
   cursor: pointer;
 }
 
-.post-body .middle-section .TextareaAutosize {
+.post-body .middle-section .text-box .TextareaAutosize {
   width: 100%;
   margin-top: 5px;
   overflow: hidden;
@@ -72,9 +73,11 @@
   bottom: 100%;
 }
 
-.post-body .modified {
+.post-body .middle-section .modified {
+  color: grey;
+  position: absolute;
   font-size: 0.8rem;
-  margin-left: 5rem;
+  margin-top: 20px;
 }
 
 .post-body .bottom-section {

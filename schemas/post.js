@@ -9,6 +9,7 @@ const Post = new Schema({
 	// likes: { type: Number, default: 0 },
 	imgsmall: { type: mongoose.Schema.ObjectId, ref: "ProfileImgSmall" },
 	timestamp: { type: Date, default: Date.now },
+	edited: Date,
 	approves: [
 		{
 			userName: { type: String, default: "userName" },

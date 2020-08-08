@@ -1,5 +1,3 @@
-import React from "react";
-
 const gqlGetPostsQuery = (TYPE, clientUserName, target) => {
 	const query = `
   getPosts(TYPE: "${TYPE}",  clientUserName: "${clientUserName}", target: "${target}"){
@@ -7,6 +5,7 @@ const gqlGetPostsQuery = (TYPE, clientUserName, target) => {
     userName
     textContent
     timestamp
+    edited
     imgsmall{
       contentType
       data

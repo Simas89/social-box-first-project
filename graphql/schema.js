@@ -5,6 +5,7 @@ const schema = buildSchema(`
     UserTest(name: String): String
     addPost(token : String, textContent: String): String
     getPosts(TYPE: String, clientUserName: String, target: String ) : [POST]
+    editPost(_id: String, textContent: String) : String
     likePost(userName: String, id: String): LIKES_PACK
 
   }
@@ -13,6 +14,7 @@ const schema = buildSchema(`
     userName: String
     textContent: String 
     timestamp: String
+    edited: String
     imgsmall: IMG
     likesPack: LIKES_PACK
   }

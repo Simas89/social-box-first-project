@@ -4,28 +4,31 @@ import moment from "moment";
 import BoxLike from "./BoxLike";
 import { Icon } from "semantic-ui-react";
 import myContext from "../../../context/account/myContext";
+import postContext from "../../../context/post/postContext";
 import TextareaAutosize from "react-textarea-autosize";
-// import postContext from "../../../context/post/postContext";
-// import graphqlCall from "../../../functions/graphqlCall";
+import graphqlFetch from "../../../functions/graphqlFetch";
 
 const PostItself = (props) => {
 	const context = React.useContext(myContext);
+	const contextPost = React.useContext(postContext);
 	const [textContent, setTextContent] = React.useState(props.textContent);
 	const [textContentPrev, setTextContentPrev] = React.useState(
 		props.textContent
 	);
 	const [editMode, setEditMode] = React.useState(0);
-	// const contextPost = React.useContext(postContext);
-	// console.log("props: ", props);
-	console.log(textContent);
+	// console.log("post props:", props);
 
 	const editModeSET = (TYPE) => {
-		console.log(TYPE);
 		if (TYPE === "START") {
 			setEditMode(1);
 			setTextContentPrev(textContent);
 		}
 		if (TYPE === "CONFIRM") {
+			const query = `editPost(_id: "${props._id}", textContent: "${textContent}")`;
+			graphqlFetch(query, (res) => {
+				// console.log(res);
+				contextPost.editPost({ time: res.editPost, index: props.index });
+			});
 			setEditMode(0);
 		}
 		if (TYPE === "CANCEL") {
@@ -59,29 +62,39 @@ const PostItself = (props) => {
 							}
 							className='edit-button'
 							name={editMode ? "check" : "edit"}
-							size='small'
+							size='large'
 						/>
 						{editMode ? (
 							<Icon
 								onClick={() => editModeSET("CANCEL")}
 								className='cancel-button'
 								name='delete'
-								size='small'
+								size='large'
 							/>
 						) : null}
 					</React.Fragment>
 				)}
-				{editMode ? (
-					<TextareaAutosize
-						onChange={(e) => setTextContent(e.target.value)}
-						value={textContent}
-						className='TextareaAutosize'
-					/>
-				) : (
-					textContent
+				<div className='text-box'>
+					{editMode ? (
+						<TextareaAutosize
+							onChange={(e) => setTextContent(e.target.value)}
+							value={textContent}
+							className='TextareaAutosize'
+						/>
+					) : (
+						textContent
+					)}
+				</div>
+				{props.edited && (
+					<p className='modified'>
+						Edited{" "}
+						{moment(
+							parseInt(contextPost.state.posts[props.index].edited)
+						).fromNow()}
+					</p>
 				)}
 			</div>
-			<p className='modified'>Edited at:</p>
+
 			<div className='bottom-section'>
 				<BoxLike index={props.index} />
 			</div>

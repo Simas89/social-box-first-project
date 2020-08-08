@@ -8,12 +8,14 @@ import gqlGetPostsQuery from "../../../functions/gqlGetPostsQuery";
 const SinglePostContainer = (props) => {
 	const contextPost = React.useContext(postContext);
 	const context = React.useContext(myContext);
+	//eslint-disable-next-line
 	React.useEffect(() => contextPost.resetPosts(), []);
 	React.useEffect(() => {
 		getPosts(
 			gqlGetPostsQuery("SINGLE", context.accountState.user, props.postID)
 		);
 		console.log(props);
+		//eslint-disable-next-line
 	}, [props.postID]);
 
 	const getPosts = (query) => {
@@ -34,6 +36,7 @@ const SinglePostContainer = (props) => {
 						userName={item.userName}
 						textContent={item.textContent}
 						timestamp={item.timestamp}
+						edited={item.edited}
 						imgsmall={item.imgsmall}
 					/>
 				))}

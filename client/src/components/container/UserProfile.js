@@ -58,6 +58,7 @@ const UserProfile = (props) => {
 		getPosts(
 			gqlGetPostsQuery("USER", context.accountState.user, props.userName)
 		);
+		//eslint-disable-next-line
 	}, [props.userName]);
 
 	const items = context.accountState.items.map((item) => {
@@ -189,6 +190,7 @@ const UserProfile = (props) => {
 										userName={item.userName}
 										textContent={item.textContent}
 										timestamp={item.timestamp}
+										edited={item.edited}
 										imgsmall={item.imgsmall}
 									/>
 								))}

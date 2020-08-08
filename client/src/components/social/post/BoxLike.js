@@ -9,18 +9,23 @@ import LikesBuble from "./LikesBuble";
 const BoxLike = (props) => {
 	const context = React.useContext(myContext);
 	const contextPost = React.useContext(postContext);
+	const [isPending, setIsPending] = React.useState(false);
 
 	const onLikeClick = (user, id) => {
-		if (!contextPost.state.posts[props.index].likesPack.likedByMe) {
+		setIsPending(true);
+		if (
+			!contextPost.state.posts[props.index].likesPack.likedByMe &&
+			!isPending
+		) {
 			const query = `
-		likePost(userName: "${user}", id: "${id}"){
-			likes
-				likedByMe
-				approves{
-					userName
-					imgmicro
+				likePost(userName: "${user}", id: "${id}"){
+					likes
+						likedByMe
+						approves{
+							userName
+							imgmicro
+						}
 				}
-		}
 			`;
 			graphqlFetch(query, (res) => {
 				console.log(res);
@@ -37,6 +42,7 @@ const BoxLike = (props) => {
 		<div className='box-like'>
 			<div className='people'>
 				{contextPost.state.posts[props.index].likesPack.approves.map(
+					//eslint-disable-next-line
 					(element, i) => {
 						try {
 							return (

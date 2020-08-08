@@ -19,6 +19,7 @@ const postConverter = (args, res) => {
 			userName: postas.userName,
 			textContent: postas.textContent,
 			timestamp: postas.timestamp,
+			edited: postas.edited,
 
 			imgsmall: {
 				contentType: postas.imgsmall.contentType,
@@ -160,6 +161,19 @@ const rootValue = {
 		});
 
 		return likesPack;
+	},
+
+	editPost: async (args) => {
+		let editTime;
+		await Post.findByIdAndUpdate(
+			args._id,
+			{ textContent: args.textContent, edited: Date.now() },
+			{ new: true }
+		).then((res) => {
+			editTime = res.edited;
+		});
+
+		return editTime;
 	},
 };
 

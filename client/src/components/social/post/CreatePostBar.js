@@ -2,13 +2,14 @@ import React from "react";
 import "./css/PostBar.css";
 import { Icon } from "semantic-ui-react";
 import TextareaAutosize from "react-textarea-autosize";
-// import myContext from "../../../context/account/myContext";
-// import postContext from "../../../context/post/postContext";
+import myContext from "../../../context/account/myContext";
+import postContext from "../../../context/post/postContext";
 import graphqlFetch from "../../../functions/graphqlFetch";
+import gqlGetPostsQuery from "../../../functions/gqlGetPostsQuery";
 
 const CreatePostBar = () => {
-	// const context = React.useContext(myContext);
-	// const contextPost = React.useContext(postContext);
+	const context = React.useContext(myContext);
+	const contextPost = React.useContext(postContext);
 	const ref1 = React.useRef();
 	const [drop, setDrop] = React.useState(true);
 	const [isAbsolute, setIsAbsolute] = React.useState("absolute");
@@ -36,7 +37,14 @@ const CreatePostBar = () => {
 		}")
 			`;
 
-		graphqlFetch(addPostQuery, (res) => console.log(res));
+		graphqlFetch(addPostQuery, () => {
+			graphqlFetch(
+				gqlGetPostsQuery("FEED", context.accountState.user),
+				(res) => {
+					contextPost.setPosts(res.getPosts);
+				}
+			);
+		});
 	};
 
 	return (

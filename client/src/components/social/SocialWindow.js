@@ -14,15 +14,21 @@ const SocialWindow = () => {
 	const contextPost = React.useContext(postContext);
 	const contextSocial = React.useContext(socialContext);
 
+	React.useEffect(
+		() => getPosts(gqlGetPostsQuery("FEED", context.accountState.user)),
+		//eslint-disable-next-line
+		[]
+	);
+
 	const getPosts = (query) => {
 		graphqlFetch(query, (res) => {
 			contextPost.setPosts(res.getPosts);
-			console.log(res);
+			// console.log(res);
 		});
 	};
 
 	// console.log("State:", posts);
-	console.log(context);
+	// console.log(context);
 
 	return (
 		<div className='social-window'>
@@ -65,6 +71,7 @@ const SocialWindow = () => {
 						userName={item.userName}
 						textContent={item.textContent}
 						timestamp={item.timestamp}
+						edited={item.edited}
 						imgsmall={item.imgsmall}
 					/>
 				))}
