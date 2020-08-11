@@ -1,8 +1,15 @@
 import React from "react";
 import postReducer from "./postReducer";
 import postContext from "./postContext";
+import graphqlFetch from "../../functions/graphqlFetch";
 
-import { SET_POSTS, RESET_POSTS, EDIT_POST, UPDATE_LIKES } from "../types";
+import {
+	SET_POSTS,
+	RESET_POSTS,
+	EDIT_POST,
+	UPDATE_LIKES,
+	SEND_COMMENT,
+} from "../types";
 
 const PostState = (props) => {
 	const initialState = { posts: [] };
@@ -23,13 +30,45 @@ const PostState = (props) => {
 	const updatePostLikes = (payload) => {
 		dispatch({ type: UPDATE_LIKES, payload: payload });
 	};
-	console.log(state);
+
+	const sendComment = (data) => {
+		// console.log(data);
+		const query = `sendComment(userName: "${data.user}",
+															comment: "${data.comment}",
+															postID: "${data.post._id}"){
+			_id
+			userName
+			imgsmall{
+				contentType
+				data
+			}
+			textContent
+		
+		}`;
+
+		graphqlFetch(query, (res) => {
+			// console.log(res);
+			dispatch({
+				type: SEND_COMMENT,
+				payload: res.sendComment,
+				index: data.post.index,
+			});
+		});
+	};
+	// console.log(state);
 
 	// console.log("STATE:", state.posts);
 
 	return (
 		<postContext.Provider
-			value={{ state, setPosts, resetPosts, updatePostLikes, editPost }}>
+			value={{
+				state,
+				setPosts,
+				resetPosts,
+				updatePostLikes,
+				editPost,
+				sendComment,
+			}}>
 			{props.children}
 		</postContext.Provider>
 	);

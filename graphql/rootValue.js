@@ -1,5 +1,6 @@
 const UserModel = require("../schemas/userSchema");
 const Post = require("../schemas/post");
+const Comment = require("../schemas/comment");
 const mailer = require("../functions/mailer");
 const jwt = require("jsonwebtoken");
 const config = require("config");
@@ -8,6 +9,8 @@ const cryptSecret = config.get("cryptSecret");
 const notificationPUSH = require("../functions/notificationPUSH");
 
 const postConverter = (args, res) => {
+	// console.log(args);
+	// console.log(res);
 	return res.map((postas) => {
 		let likedByMe = false;
 		postas.approves.forEach((i) => {
@@ -20,6 +23,7 @@ const postConverter = (args, res) => {
 			textContent: postas.textContent,
 			timestamp: postas.timestamp,
 			edited: postas.edited,
+			comments: [],
 
 			imgsmall: {
 				contentType: postas.imgsmall.contentType,
@@ -68,12 +72,16 @@ const rootValue = {
 	},
 
 	getPosts: async (args) => {
-		// console.log(args);
+		console.log(args);
 		let post = [];
 		let testPost = [];
 		if (args.TYPE === "SINGLE") {
 			await Post.find({ _id: args.target })
 				.populate("imgsmall")
+				.populate({
+					path: "approves",
+					populate: { path: "imgmicro", model: "ProfileImgMicro" },
+				})
 				.then((res) => {
 					post = postConverter(args, res);
 				});
@@ -174,6 +182,38 @@ const rootValue = {
 		});
 
 		return editTime;
+	},
+
+	sendComment: async (args) => {
+		// console.log(args);
+		let comment = {};
+		let conv = {};
+		await UserModel.findOne({ userName: args.userName })
+			.populate("imgsmall")
+			.then(async (user) => {
+				// console.log(user);
+				comment = new Comment({
+					postID: args.postID,
+					userName: args.userName,
+					imgsmall: user.imgsmall._id,
+					textContent: args.comment,
+				});
+
+				// await comment.save();
+
+				conv = {
+					_id: comment._id,
+					userName: comment.userName,
+					imgsmall: {
+						contentType: user.imgsmall.contentType,
+						data: user.imgsmall.data.toString("base64"),
+					},
+					textContent: comment.textContent,
+				};
+			});
+
+		// console.log(conv);
+		return [conv];
 	},
 };
 

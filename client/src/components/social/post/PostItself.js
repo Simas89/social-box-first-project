@@ -2,14 +2,12 @@ import React from "react";
 import "./css/PostItself.css";
 import moment from "moment";
 import BoxLike from "./BoxLike";
+import Comment from "./Comment";
 import { Icon } from "semantic-ui-react";
 import myContext from "../../../context/account/myContext";
 import postContext from "../../../context/post/postContext";
 import TextareaAutosize from "react-textarea-autosize";
 import graphqlFetch from "../../../functions/graphqlFetch";
-
-import PerfectScrollbar from "react-perfect-scrollbar";
-import "react-perfect-scrollbar/dist/css/styles.css";
 
 import { Scrollbars } from "react-custom-scrollbars";
 
@@ -21,8 +19,10 @@ const PostItself = (props) => {
 		props.textContent
 	);
 	const [editMode, setEditMode] = React.useState(0);
-	const [commentText, setCommentText] = React.useState("");
-	// console.log("post props:", props);
+	const [commentText, setCommentText] = React.useState("i am comment");
+
+	const myRef = React.useRef();
+	React.useEffect(() => myRef.current.scrollToBottom(), []);
 
 	const editModeSET = (TYPE) => {
 		if (TYPE === "START") {
@@ -42,15 +42,13 @@ const PostItself = (props) => {
 			setTextContent(textContentPrev, { maxHeight: "100px" });
 		}
 	};
-	//
 
-	const myRef = React.useRef();
+	// const testRef = (e) => {
+	// 	console.log(myRef.current.viewScrollTop);
+	// };
+	// console.log(props);
 
-	React.useEffect(() => myRef.current.scrollToBottom(), []);
-
-	// const container = myRef;
-	// console.log(container);
-	// const ps = new PerfectScrollbar(container);
+	console.log(contextPost.state.posts[props.index]);
 
 	return (
 		<div className='post-body'>
@@ -118,40 +116,16 @@ const PostItself = (props) => {
 						onClick={() => console.log(myRef)}
 						autoHeight
 						autoHeightMin={0}
-						autoHeightMax={100}
+						autoHeightMax={500}
 						autoHide
 						autoHideTimeout={2000}
 						autoHideDuration={200}
-						thumbMinSize={30}
+						thumbMinSize={3}
 						universal={true}>
-						{""}Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-						luctus nulla non lorem feugiat dignissim. Nam vitae fringilla lorem.
-						Mauris odio tortor, blandit sit amet mi nec, interdum consectetur
-						magna. Quisque non sapien quis est bibendum hendrerit quis at
-						libero. Suspendisse lacinia congue tellus ac volutpat. Curabitur
-						imperdiet purus sed ante elementum porttitor. Nam sed vehicula
-						libero. Vivamus id augue nec velit luctus auctor sit amet ac nisi.
-						Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-						per inceptos himenaeos. Nullam mi sem, luctus sed magna eu, placerat
-						efficitur dolor. Proin magna nisi, dapibus sed lorem eu, pretium
-						iaculis massa. Ut vitae tristique lorem. Vestibulum sagittis lectus
-						in massa ullamcorper lacinia. Aliquam vel erat sagittis, maximus
-						felis sed, consequat turpis. Duis vitae rhoncus est, at iaculis
-						velit. Proin malesuada consequat condimentum. Lorem ipsum dolor sit
-						amet, consectetur adipiscing elit. In luctus nulla non lorem feugiat
-						dignissim. Nam vitae fringilla lorem. Mauris odio tortor, blandit
-						sit amet mi nec, interdum consectetur magna. Quisque non sapien quis
-						est bibendum hendrerit quis at libero. Suspendisse lacinia congue
-						tellus ac volutpat. Curabitur imperdiet purus sed ante elementum
-						porttitor. Nam sed vehicula libero. Vivamus id augue nec velit
-						luctus auctor sit amet ac nisi. Class aptent taciti sociosqu ad
-						litora torquent per conubia nostra, per inceptos himenaeos. Nullam
-						mi sem, luctus sed magna eu, placerat efficitur dolor. Proin magna
-						nisi, dapibus sed lorem eu, pretium iaculis massa. Ut vitae
-						tristique lorem. Vestibulum sagittis lectus in massa ullamcorper
-						lacinia. Aliquam vel erat sagittis, maximus felis sed, consequat
-						turpis. Duis vitae rhoncus est, at iaculis velit. Proin malesuada
-						consequat condimentum.........
+						{contextPost.state.posts &&
+							contextPost.state.posts[props.index].comments.map((comment) => {
+								return <Comment key={comment._id} />;
+							})}
 					</Scrollbars>
 				</div>
 				<div className='comments-add'>
@@ -162,6 +136,13 @@ const PostItself = (props) => {
 						className='TextareaAutosize-comment'
 					/>
 					<Icon
+						onClick={() =>
+							contextPost.sendComment({
+								post: { _id: props._id, index: props.index },
+								user: context.accountState.user,
+								comment: commentText,
+							})
+						}
 						className={`comment-send ${commentText && "comment-send-ready"}`}
 						name='comment'
 						size='large'

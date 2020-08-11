@@ -2,12 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Feed, Image, Icon } from "semantic-ui-react";
 import socialContext from "../../context/social/socialContext";
-import moment from "moment";
 import postContext from "../../context/post/postContext";
+import myContext from "../../context/account/myContext";
+
+import moment from "moment";
+
+import graphqlFetch from "../../functions/graphqlFetch";
+import gqlGetPostsQuery from "../../functions/gqlGetPostsQuery";
 
 const NotificationListItem = (props) => {
 	const contextSocial = React.useContext(socialContext);
 	const contextPost = React.useContext(postContext);
+	const context = React.useContext(myContext);
 
 	const ntfContent = () => {
 		if (props.messageBody.format === "USERLINK_TEXT") {
@@ -33,8 +39,17 @@ const NotificationListItem = (props) => {
 							{props.messageBody.link}
 						</Link>
 					</strong>
-					{" liked your "}
-					<strong>
+					{" likes your "}
+					<strong
+						onClick={() => {
+							getPosts(
+								gqlGetPostsQuery(
+									"SINGLE",
+									context.accountState.user,
+									props.messageBody.link2
+								)
+							);
+						}}>
 						<Link
 							onClick={contextPost.resetPosts}
 							to={`/container/post/${props.messageBody.link2}`}>
@@ -44,6 +59,13 @@ const NotificationListItem = (props) => {
 				</React.Fragment>
 			);
 		}
+	};
+
+	const getPosts = (query) => {
+		graphqlFetch(query, (res) => {
+			contextPost.setPosts(res.getPosts);
+			// console.log(res);
+		});
 	};
 
 	return (

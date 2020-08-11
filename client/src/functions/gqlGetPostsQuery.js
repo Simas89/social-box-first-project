@@ -6,6 +6,17 @@ const gqlGetPostsQuery = (TYPE, clientUserName, target) => {
     textContent
     timestamp
     edited
+    comments{
+      _id
+      userName
+      imgsmall{
+        contentType
+        data
+      }
+      textContent
+    }
+
+
     imgsmall{
       contentType
       data
@@ -18,6 +29,7 @@ const gqlGetPostsQuery = (TYPE, clientUserName, target) => {
         imgmicro
       }
     }
+    
     
   }
 `;

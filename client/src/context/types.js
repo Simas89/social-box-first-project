@@ -18,3 +18,4 @@ export const SET_POSTS = "SET_POSTS";
 export const EDIT_POST = "EDIT_POST";
 export const RESET_POSTS = "RESET_POSTS";
 export const UPDATE_LIKES = "UPDATE_LIKES";
+export const SEND_COMMENT = "SEND_COMMENT";

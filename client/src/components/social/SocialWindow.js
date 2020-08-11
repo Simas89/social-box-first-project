@@ -41,7 +41,7 @@ const SocialWindow = () => {
 						gqlGetPostsQuery(
 							"SINGLE",
 							context.accountState.user,
-							"5f2c5502b705140cc0ef3f63"
+							"5f2ee77131eacd1b902ca50f"
 						)
 					)
 				}>

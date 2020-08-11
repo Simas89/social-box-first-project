@@ -1,0 +1,19 @@
+.comment-body {
+	height: 80px;
+	border: 1px solid black;
+	.comment-top {
+		border: 1px solid green;
+		height: 50px;
+		display: flex;
+		align-items: center;
+		.info {
+			margin-left: 20px;
+		}
+		.profile-img {
+			border: 2px solid green;
+			height: 40px;
+			width: 40px;
+			border-radius: 50%;
+		}
+	}
+}
