@@ -23,46 +23,36 @@
 
 .post-body .top-section .post-info-top {
   height: 5rem;
-  border: 1px solid black;
   padding-left: 10px;
 }
 
 .post-body .top-section .post-info-top .user-name {
+  margin-top: 5px;
   font-weight: bold;
+  font-size: 1.3rem;
 }
 
 .post-body .top-section .post-info-top .date-posted {
   font-size: 0.8rem;
 }
 
+.post-body .top-section .menu {
+  color: lightgrey;
+  position: absolute;
+  right: 0;
+  transition: color 0.2s;
+}
+
+.post-body .top-section .menu:hover {
+  color: grey;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
 .post-body .middle-section {
   position: relative;
   border: 1px solid green;
   padding: 20px 50px 40px 50px;
-}
-
-.post-body .middle-section .edit-button {
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  color: lightgrey;
-}
-
-.post-body .middle-section .edit-button:hover {
-  color: black;
-  cursor: pointer;
-}
-
-.post-body .middle-section .cancel-button {
-  position: absolute;
-  right: 35px;
-  top: 5px;
-  color: lightgrey;
-}
-
-.post-body .middle-section .cancel-button:hover {
-  color: black;
-  cursor: pointer;
 }
 
 .post-body .middle-section .text-box .TextareaAutosize {

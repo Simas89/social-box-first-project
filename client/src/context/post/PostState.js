@@ -43,6 +43,8 @@ const PostState = (props) => {
 				data
 			}
 			textContent
+			timestamp
+			edited
 		
 		}`;
 
@@ -57,7 +59,7 @@ const PostState = (props) => {
 	};
 	// console.log(state);
 
-	// console.log("STATE:", state.posts);
+	console.log("PostState:", state.posts);
 
 	return (
 		<postContext.Provider

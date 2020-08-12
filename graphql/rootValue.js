@@ -8,14 +8,40 @@ const config = require("config");
 const cryptSecret = config.get("cryptSecret");
 const notificationPUSH = require("../functions/notificationPUSH");
 
+const commentConverter = (comments) => {
+	return comments.map((comment) => {
+		return {
+			_id: comment._id,
+			userName: comment.userName,
+			imgsmall: {
+				contentType: comment.imgsmall.contentType,
+				data: comment.imgsmall.data.toString("base64"),
+			},
+			textContent: comment.textContent,
+			timestamp: comment.timestamp,
+			edited: comment.edited,
+		};
+	});
+};
+
 const postConverter = (args, res) => {
 	// console.log(args);
 	// console.log(res);
-	return res.map((postas) => {
+	return res.map(async (postas) => {
 		let likedByMe = false;
 		postas.approves.forEach((i) => {
 			if (args.clientUserName === i.userName) likedByMe = true;
 		});
+
+		let comments = [];
+		await Comment.find({ postID: postas._id })
+			.populate("imgsmall")
+			.then((comment) => {
+				// console.log(comment);
+				comments = commentConverter(comment);
+				// console.log(comments[1]);
+			});
+		// console.log("NEXT");
 
 		return {
 			_id: postas._id,
@@ -23,7 +49,7 @@ const postConverter = (args, res) => {
 			textContent: postas.textContent,
 			timestamp: postas.timestamp,
 			edited: postas.edited,
-			comments: [],
+			comments,
 
 			imgsmall: {
 				contentType: postas.imgsmall.contentType,
@@ -72,7 +98,7 @@ const rootValue = {
 	},
 
 	getPosts: async (args) => {
-		console.log(args);
+		// console.log(args);
 		let post = [];
 		let testPost = [];
 		if (args.TYPE === "SINGLE") {
@@ -199,7 +225,9 @@ const rootValue = {
 					textContent: args.comment,
 				});
 
-				// await comment.save();
+				// console.log(comment);
+
+				comment.save();
 
 				conv = {
 					_id: comment._id,
@@ -209,6 +237,8 @@ const rootValue = {
 						data: user.imgsmall.data.toString("base64"),
 					},
 					textContent: comment.textContent,
+					timestamp: comment.timestamp,
+					edited: comment.edited,
 				};
 			});
 

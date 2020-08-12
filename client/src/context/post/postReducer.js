@@ -39,9 +39,6 @@ export default (state, action) => {
 		}
 
 		case SEND_COMMENT: {
-			// console.log(action.payload);
-			// console.log(state.posts[action.index]);
-
 			return {
 				...state,
 				posts: state.posts.map((post, i) =>

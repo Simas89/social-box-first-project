@@ -48,7 +48,7 @@ const PostItself = (props) => {
 	// };
 	// console.log(props);
 
-	console.log(contextPost.state.posts[props.index]);
+	// console.log(contextPost.state.posts[props.index]);
 
 	return (
 		<div className='post-body'>
@@ -65,28 +65,31 @@ const PostItself = (props) => {
 						{moment(parseInt(props.timestamp)).fromNow()}
 					</div>
 				</div>
-			</div>
-			<div className='middle-section'>
 				{props.userName === context.accountState.user && (
-					<React.Fragment>
-						<Icon
-							onClick={() =>
-								editMode ? editModeSET("CONFIRM") : editModeSET("START")
-							}
-							className='edit-button'
-							name={editMode ? "check" : "edit"}
-							size='large'
-						/>
-						{editMode ? (
+					<div className='menu'>
+						<p>•••</p>
+						<React.Fragment>
 							<Icon
-								onClick={() => editModeSET("CANCEL")}
-								className='cancel-button'
-								name='delete'
+								onClick={() =>
+									editMode ? editModeSET("CONFIRM") : editModeSET("START")
+								}
+								className='edit-button'
+								name={editMode ? "check" : "edit"}
 								size='large'
 							/>
-						) : null}
-					</React.Fragment>
+							{editMode ? (
+								<Icon
+									onClick={() => editModeSET("CANCEL")}
+									className='cancel-button'
+									name='delete'
+									size='large'
+								/>
+							) : null}
+						</React.Fragment>
+					</div>
 				)}
+			</div>
+			<div className='middle-section'>
 				<div className='text-box'>
 					{editMode ? (
 						<TextareaAutosize
@@ -113,19 +116,33 @@ const PostItself = (props) => {
 				<div className='comments-content'>
 					<Scrollbars
 						ref={myRef}
-						onClick={() => console.log(myRef)}
+						// onClick={() => console.log(myRef)}
 						autoHeight
 						autoHeightMin={0}
-						autoHeightMax={500}
+						autoHeightMax={250}
 						autoHide
 						autoHideTimeout={2000}
 						autoHideDuration={200}
 						thumbMinSize={3}
 						universal={true}>
 						{contextPost.state.posts &&
-							contextPost.state.posts[props.index].comments.map((comment) => {
-								return <Comment key={comment._id} />;
-							})}
+							contextPost.state.posts[props.index].comments.map(
+								(comment, i) => {
+									return (
+										<Comment
+											key={comment._id}
+											_id={comment._id}
+											index={i}
+											postIndex={props.index}
+											userName={comment.userName}
+											textContent={comment.textContent}
+											timestamp={comment.timestamp}
+											edited={comment.edited}
+											imgsmall={comment.imgsmall}
+										/>
+									);
+								}
+							)}
 					</Scrollbars>
 				</div>
 				<div className='comments-add'>
@@ -136,13 +153,14 @@ const PostItself = (props) => {
 						className='TextareaAutosize-comment'
 					/>
 					<Icon
-						onClick={() =>
+						onClick={() => {
 							contextPost.sendComment({
 								post: { _id: props._id, index: props.index },
 								user: context.accountState.user,
 								comment: commentText,
-							})
-						}
+							});
+							setCommentText("");
+						}}
 						className={`comment-send ${commentText && "comment-send-ready"}`}
 						name='comment'
 						size='large'

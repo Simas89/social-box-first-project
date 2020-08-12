@@ -22,6 +22,7 @@ const SocialWindow = () => {
 
 	const getPosts = (query) => {
 		graphqlFetch(query, (res) => {
+			console.log(res);
 			contextPost.setPosts(res.getPosts);
 			// console.log(res);
 		});
@@ -41,7 +42,7 @@ const SocialWindow = () => {
 						gqlGetPostsQuery(
 							"SINGLE",
 							context.accountState.user,
-							"5f2ee77131eacd1b902ca50f"
+							"5f32e52bcf43334fb443a0c7"
 						)
 					)
 				}>
@@ -61,7 +62,6 @@ const SocialWindow = () => {
 			</button>
 
 			<CreatePostBar />
-
 			{contextPost.state.posts &&
 				contextPost.state.posts.map((item, index) => (
 					<PostItself

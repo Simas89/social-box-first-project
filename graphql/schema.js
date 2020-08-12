@@ -26,6 +26,8 @@ const schema = buildSchema(`
     userName: String
     imgsmall: IMG
     textContent: String
+    timestamp: String
+    edited: String
 
   }
  

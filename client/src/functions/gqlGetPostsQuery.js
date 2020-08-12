@@ -6,21 +6,23 @@ const gqlGetPostsQuery = (TYPE, clientUserName, target) => {
     textContent
     timestamp
     edited
-    comments{
-      _id
-      userName
-      imgsmall{
-        contentType
-        data
-      }
-      textContent
-    }
-
-
     imgsmall{
       contentType
       data
     }
+
+    comments{
+      _id
+			userName
+			imgsmall{
+				contentType
+				data
+			}
+			textContent
+			timestamp
+			edited
+    }
+    
     likesPack{
       likes
       likedByMe

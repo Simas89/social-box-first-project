@@ -1,10 +1,9 @@
 .comment-body {
   height: 80px;
-  border: 1px solid black;
 }
 
 .comment-body .comment-top {
-  border: 1px solid green;
+  position: relative;
   height: 50px;
   display: flex;
   align-items: center;
@@ -15,8 +14,30 @@
 }
 
 .comment-body .comment-top .profile-img {
-  border: 2px solid green;
+  margin-left: 5px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 3px 2px grey;
   height: 40px;
   width: 40px;
   border-radius: 50%;
+}
+
+.comment-body .comment-top .profile-img img {
+  width: 130%;
+}
+
+.comment-body .comment-top .menu {
+  color: lightgrey;
+  position: absolute;
+  right: 0;
+  transition: color 0.2s;
+}
+
+.comment-body .comment-top .menu:hover {
+  color: grey;
+  cursor: pointer;
+  transition: color 0.2s;
 }

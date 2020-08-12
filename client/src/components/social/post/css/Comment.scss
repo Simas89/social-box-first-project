@@ -1,8 +1,9 @@
 .comment-body {
 	height: 80px;
-	border: 1px solid black;
+	// border: 1px solid black;
 	.comment-top {
-		border: 1px solid green;
+		position: relative;
+		// border: 1px solid green;
 		height: 50px;
 		display: flex;
 		align-items: center;
@@ -10,10 +11,31 @@
 			margin-left: 20px;
 		}
 		.profile-img {
-			border: 2px solid green;
+			margin-left: 5px;
+			overflow: hidden;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			img {
+				width: 130%;
+				// border: 1px solid black;
+			}
+			// border: 1px solid grey;
+			box-shadow: 0 0 3px 2px grey;
 			height: 40px;
 			width: 40px;
 			border-radius: 50%;
+		}
+		.menu {
+			color: lightgrey;
+			position: absolute;
+			right: 0;
+			transition: color 0.2s;
+			&:hover {
+				color: grey;
+				cursor: pointer;
+				transition: color 0.2s;
+			}
 		}
 	}
 }
