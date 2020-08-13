@@ -7,8 +7,10 @@ import {
 	SET_POSTS,
 	RESET_POSTS,
 	EDIT_POST,
+	DELETE_POST,
 	UPDATE_LIKES,
 	SEND_COMMENT,
+	DELETE_COMMENT,
 } from "../types";
 
 const PostState = (props) => {
@@ -27,6 +29,11 @@ const PostState = (props) => {
 		dispatch({ type: EDIT_POST, payload: payload });
 	};
 
+	const delPost = (data) => {
+		dispatch({ type: DELETE_POST, payload: data.index });
+		graphqlFetch(`delPost(_id: "${data._id}")`, (res) => {});
+	};
+
 	const updatePostLikes = (payload) => {
 		dispatch({ type: UPDATE_LIKES, payload: payload });
 	};
@@ -34,7 +41,7 @@ const PostState = (props) => {
 	const sendComment = (data) => {
 		// console.log(data);
 		const query = `sendComment(userName: "${data.user}",
-															comment: "${data.comment}",
+															comment: "${data.comment.trim()}",
 															postID: "${data.post._id}"){
 			_id
 			userName
@@ -49,7 +56,6 @@ const PostState = (props) => {
 		}`;
 
 		graphqlFetch(query, (res) => {
-			// console.log(res);
 			dispatch({
 				type: SEND_COMMENT,
 				payload: res.sendComment,
@@ -57,9 +63,16 @@ const PostState = (props) => {
 			});
 		});
 	};
+
+	const delComment = (data) => {
+		// console.log(data);
+		// console.log("Target:", state.posts[data.postIndex].comments[data.index]);
+		dispatch({ type: DELETE_COMMENT, payload: data });
+		graphqlFetch(`delComment(_id: "${data._id}")`, (res) => {});
+	};
 	// console.log(state);
 
-	console.log("PostState:", state.posts);
+	// console.log("PostState:", state.posts);
 
 	return (
 		<postContext.Provider
@@ -69,7 +82,9 @@ const PostState = (props) => {
 				resetPosts,
 				updatePostLikes,
 				editPost,
+				delPost,
 				sendComment,
+				delComment,
 			}}>
 			{props.children}
 		</postContext.Provider>

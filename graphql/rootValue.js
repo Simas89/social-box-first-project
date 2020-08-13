@@ -210,8 +210,14 @@ const rootValue = {
 		return editTime;
 	},
 
+	delPost: async (args) => {
+		console.log("del post trig:", args);
+		Post.findByIdAndDelete(args._id).then((res) => {});
+		Comment.deleteMany({ postID: args._id }).then((res) => {});
+	},
+
 	sendComment: async (args) => {
-		// console.log(args);
+		console.log(args);
 		let comment = {};
 		let conv = {};
 		await UserModel.findOne({ userName: args.userName })
@@ -244,6 +250,10 @@ const rootValue = {
 
 		// console.log(conv);
 		return [conv];
+	},
+
+	delComment: async (args) => {
+		Comment.findByIdAndDelete(args._id).then((res) => {});
 	},
 };
 

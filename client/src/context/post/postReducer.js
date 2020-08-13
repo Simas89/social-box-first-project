@@ -2,8 +2,10 @@ import {
 	SET_POSTS,
 	RESET_POSTS,
 	EDIT_POST,
+	DELETE_POST,
 	UPDATE_LIKES,
 	SEND_COMMENT,
+	DELETE_COMMENT,
 } from "../types";
 
 export default (state, action) => {
@@ -24,6 +26,15 @@ export default (state, action) => {
 						? { ...post, edited: action.payload.time }
 						: post
 				),
+			};
+		}
+
+		case DELETE_POST: {
+			let arr = state.posts;
+			arr.splice(action.payload, 1);
+			return {
+				...state,
+				posts: arr,
 			};
 		}
 
@@ -49,6 +60,15 @@ export default (state, action) => {
 						  }
 						: post
 				),
+			};
+		}
+
+		case DELETE_COMMENT: {
+			let arr = state.posts;
+			arr[action.payload.postIndex].comments.splice(action.payload.index, 1);
+			return {
+				...state,
+				posts: arr,
 			};
 		}
 

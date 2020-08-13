@@ -1,40 +1,8 @@
-.post-bar {
-  z-index: 0;
-  overflow: hidden;
-  position: relative;
-  min-height: 25px;
-  border: 1px solid black;
-  transition: 0.2s all;
-}
-
-.post-bar .puiblish-some-shit {
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.post-bar .drop-icon {
-  cursor: pointer;
-}
-
-.post-bar .TextareaAutosize {
+.TextareaAutosize {
   width: 100% !important;
   margin-top: 5px;
   overflow: hidden;
   display: block;
   resize: none;
   bottom: 100%;
-}
-
-.drop {
-  transition: 0.2s;
-}
-
-.absolute {
-  width: 100%;
-  position: absolute;
-  transition: 0.2s;
 }

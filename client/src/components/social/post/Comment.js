@@ -1,15 +1,23 @@
 import React from "react";
 import "./css/Comment.css";
 import PopUpMenu from "./PopUpMenu";
-
 import moment from "moment";
 import myContext from "../../../context/account/myContext";
+import postContext from "../../../context/post/postContext";
 
 const Comment = (props) => {
 	const context = React.useContext(myContext);
+	const contextPost = React.useContext(postContext);
+	// console.log(props);
+
 	const trigDel = () => {
-		console.log("trigDel");
+		contextPost.delComment({
+			_id: props._id,
+			index: props.index,
+			postIndex: props.postIndex,
+		});
 	};
+
 	const trigEdit = () => {
 		console.log("trigEdit");
 	};

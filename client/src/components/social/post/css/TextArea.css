@@ -1,0 +1,19 @@
+.TextArea {
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  margin-top: 5px;
+  overflow: hidden;
+  display: block;
+  resize: none;
+  bottom: 100%;
+}
+
+.TextArea:active {
+  border: none;
+}
+
+.TextArea:focused {
+  border: none;
+}

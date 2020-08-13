@@ -7,7 +7,9 @@ const schema = buildSchema(`
     getPosts(TYPE: String, clientUserName: String, target: String ) : [POST]
     editPost(_id: String, textContent: String) : String
     likePost(userName: String, id: String): LIKES_PACK
+    delPost(_id: String) : String
     sendComment(userName: String, comment: String, postID: String) : [COMMENT]
+    delComment(_id: String) : String
 
   }
   type POST{

@@ -20,14 +20,16 @@ const PostItself = (props) => {
 		props.textContent
 	);
 	const [editMode, setEditMode] = React.useState(0);
-	const [commentText, setCommentText] = React.useState("i am comment");
+	const [commentText, setCommentText] = React.useState("");
+	// console.log(commentText);
 
 	const myRef = React.useRef();
 	React.useEffect(() => myRef.current.scrollToBottom(), []);
 
 	const trigDel = () => {
-		console.log("trigDel");
+		contextPost.delPost({ index: props.index, _id: props._id });
 	};
+
 	const trigEdit = () => {
 		setEditMode(1);
 		setTextContentPrev(textContent);
@@ -135,7 +137,9 @@ const PostItself = (props) => {
 				<div className='comments-add'>
 					<TextareaAutosize
 						value={commentText}
-						onChange={(e) => setCommentText(e.target.value)}
+						onChange={(e) => {
+							setCommentText(e.target.value);
+						}}
 						placeholder={"Write a comment.."}
 						className='TextareaAutosize-comment'
 					/>

@@ -16,6 +16,8 @@ export const CAN_ANIMATE_PSW2 = "CAN_ANIMATE_PSW2";
 // POST
 export const SET_POSTS = "SET_POSTS";
 export const EDIT_POST = "EDIT_POST";
+export const DELETE_POST = "DELETE_POST";
 export const RESET_POSTS = "RESET_POSTS";
 export const UPDATE_LIKES = "UPDATE_LIKES";
 export const SEND_COMMENT = "SEND_COMMENT";
+export const DELETE_COMMENT = "DELETE_COMMENT";
