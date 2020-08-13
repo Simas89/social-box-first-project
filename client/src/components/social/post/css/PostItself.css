@@ -4,7 +4,9 @@
 }
 
 .post-body .top-section {
+  position: relative;
   display: flex;
+  align-items: center;
   height: 5rem;
   overflow: hidden;
 }
@@ -34,19 +36,6 @@
 
 .post-body .top-section .post-info-top .date-posted {
   font-size: 0.8rem;
-}
-
-.post-body .top-section .menu {
-  color: lightgrey;
-  position: absolute;
-  right: 0;
-  transition: color 0.2s;
-}
-
-.post-body .top-section .menu:hover {
-  color: grey;
-  cursor: pointer;
-  transition: color 0.2s;
 }
 
 .post-body .middle-section {

@@ -3,7 +3,7 @@
 	// border: 1px solid black;
 	.comment-top {
 		position: relative;
-		// border: 1px solid green;
+		border: 1px solid green;
 		height: 50px;
 		display: flex;
 		align-items: center;
@@ -27,6 +27,8 @@
 			border-radius: 50%;
 		}
 		.menu {
+			// position: relative;
+			border: 1px solid red;
 			color: lightgrey;
 			position: absolute;
 			right: 0;
@@ -36,6 +38,15 @@
 				cursor: pointer;
 				transition: color 0.2s;
 			}
+		}
+		.popup {
+			display: grid;
+			grid-template-rows: 1fr 1fr;
+			position: absolute;
+			right: 0;
+			height: 100%;
+			width: 80px;
+			border: 1px solid blue;
 		}
 	}
 }

@@ -4,6 +4,7 @@
 
 .comment-body .comment-top {
   position: relative;
+  border: 1px solid green;
   height: 50px;
   display: flex;
   align-items: center;
@@ -30,6 +31,7 @@
 }
 
 .comment-body .comment-top .menu {
+  border: 1px solid red;
   color: lightgrey;
   position: absolute;
   right: 0;
@@ -40,4 +42,14 @@
   color: grey;
   cursor: pointer;
   transition: color 0.2s;
+}
+
+.comment-body .comment-top .popup {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 80px;
+  border: 1px solid blue;
 }

@@ -1,14 +1,23 @@
 import React from "react";
 import "./css/Comment.css";
+import PopUpMenu from "./PopUpMenu";
 
 import moment from "moment";
 import myContext from "../../../context/account/myContext";
 
 const Comment = (props) => {
 	const context = React.useContext(myContext);
-	// console.log(props);
-	const openMenu = () => {
-		console.log("openMenu");
+	const trigDel = () => {
+		console.log("trigDel");
+	};
+	const trigEdit = () => {
+		console.log("trigEdit");
+	};
+	const trigEditSave = () => {
+		console.log("trigEditSave");
+	};
+	const trigEditDiscard = () => {
+		console.log("trigEditDiscard");
 	};
 
 	return (
@@ -42,9 +51,12 @@ const Comment = (props) => {
 				)}
 
 				{props.userName === context.accountState.user && (
-					<div onClick={openMenu} className='menu'>
-						<p>•••</p>
-					</div>
+					<PopUpMenu
+						trigDel={trigDel}
+						trigEdit={trigEdit}
+						trigEditSave={trigEditSave}
+						trigEditDiscard={trigEditDiscard}
+					/>
 				)}
 			</div>
 			<div className='comment-middle'>{props.textContent}</div>

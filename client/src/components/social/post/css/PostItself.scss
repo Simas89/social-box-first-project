@@ -2,7 +2,9 @@
 	border: 2px solid black;
 	position: relative;
 	.top-section {
+		position: relative;
 		display: flex;
+		align-items: center;
 		height: 5rem;
 		overflow: hidden;
 		.profile-img {
@@ -27,17 +29,6 @@
 			}
 			.date-posted {
 				font-size: 0.8rem;
-			}
-		}
-		.menu {
-			color: lightgrey;
-			position: absolute;
-			right: 0;
-			transition: color 0.2s;
-			&:hover {
-				color: grey;
-				cursor: pointer;
-				transition: color 0.2s;
 			}
 		}
 	}

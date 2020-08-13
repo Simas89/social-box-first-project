@@ -3,6 +3,7 @@ import "./css/PostItself.css";
 import moment from "moment";
 import BoxLike from "./BoxLike";
 import Comment from "./Comment";
+import PopUpMenu from "./PopUpMenu";
 import { Icon } from "semantic-ui-react";
 import myContext from "../../../context/account/myContext";
 import postContext from "../../../context/post/postContext";
@@ -24,23 +25,24 @@ const PostItself = (props) => {
 	const myRef = React.useRef();
 	React.useEffect(() => myRef.current.scrollToBottom(), []);
 
-	const editModeSET = (TYPE) => {
-		if (TYPE === "START") {
-			setEditMode(1);
-			setTextContentPrev(textContent);
-		}
-		if (TYPE === "CONFIRM") {
-			const query = `editPost(_id: "${props._id}", textContent: "${textContent}")`;
-			graphqlFetch(query, (res) => {
-				// console.log(res);
-				contextPost.editPost({ time: res.editPost, index: props.index });
-			});
-			setEditMode(0);
-		}
-		if (TYPE === "CANCEL") {
-			setEditMode(0);
-			setTextContent(textContentPrev, { maxHeight: "100px" });
-		}
+	const trigDel = () => {
+		console.log("trigDel");
+	};
+	const trigEdit = () => {
+		setEditMode(1);
+		setTextContentPrev(textContent);
+	};
+	const trigEditSave = () => {
+		const query = `editPost(_id: "${props._id}", textContent: "${textContent}")`;
+		graphqlFetch(query, (res) => {
+			// console.log(res);
+			contextPost.editPost({ time: res.editPost, index: props.index });
+		});
+		setEditMode(0);
+	};
+	const trigEditDiscard = () => {
+		setEditMode(0);
+		setTextContent(textContentPrev, { maxHeight: "100px" });
 	};
 
 	// const testRef = (e) => {
@@ -66,27 +68,12 @@ const PostItself = (props) => {
 					</div>
 				</div>
 				{props.userName === context.accountState.user && (
-					<div className='menu'>
-						<p>•••</p>
-						<React.Fragment>
-							<Icon
-								onClick={() =>
-									editMode ? editModeSET("CONFIRM") : editModeSET("START")
-								}
-								className='edit-button'
-								name={editMode ? "check" : "edit"}
-								size='large'
-							/>
-							{editMode ? (
-								<Icon
-									onClick={() => editModeSET("CANCEL")}
-									className='cancel-button'
-									name='delete'
-									size='large'
-								/>
-							) : null}
-						</React.Fragment>
-					</div>
+					<PopUpMenu
+						trigDel={trigDel}
+						trigEdit={trigEdit}
+						trigEditSave={trigEditSave}
+						trigEditDiscard={trigEditDiscard}
+					/>
 				)}
 			</div>
 			<div className='middle-section'>

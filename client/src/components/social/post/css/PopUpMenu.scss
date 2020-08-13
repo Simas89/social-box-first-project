@@ -1,0 +1,27 @@
+.menu {
+	// position: relative;
+	border: 1px solid red;
+	color: lightgrey;
+	position: absolute;
+	right: 0;
+	transition: color 0.2s;
+	&:hover {
+		color: grey;
+		cursor: pointer;
+		transition: color 0.2s;
+	}
+}
+.popup {
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	position: absolute;
+	right: 0;
+	height: 100%;
+	width: 80px;
+	border: 1px solid blue;
+	.btn {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}
