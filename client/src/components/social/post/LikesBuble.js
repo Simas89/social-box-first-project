@@ -1,14 +1,10 @@
 import React from "react";
 import "./css/LikesBubble.css";
 import { useHistory } from "react-router-dom";
-import postContext from "../../../context/post/postContext";
 
 const LikesBuble = (props) => {
-	const contextPost = React.useContext(postContext);
 	const history = useHistory();
 	const handleClick = () => {
-		console.log(props.userName);
-		contextPost.resetPosts();
 		history.push(`/container/users/${props.userName}`);
 	};
 	return (

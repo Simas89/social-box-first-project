@@ -7,14 +7,10 @@ import { Picker } from "emoji-mart";
 
 const TextArea = (props) => {
 	const [isEmojiOn, setIsEmojiOn] = React.useState(false);
-	const [focus, setFocus] = React.useState(false);
 	const onEmojiChoose = (emoji) => {
 		console.log(emoji);
 		props.setText(props.value + emoji.native);
 	};
-
-	console.log("focus", focus);
-	console.log("isEmojiOn", isEmojiOn);
 
 	return (
 		<React.Fragment>
@@ -26,8 +22,6 @@ const TextArea = (props) => {
 					value={props.value}
 					minRows={props.minRows}
 					onChange={(e) => props.setText(e.target.value)}
-					onFocus={() => setFocus(true)}
-					onBlur={() => setFocus(false)}
 				/>
 				{props.emojiDisplay && (
 					<i
@@ -56,7 +50,7 @@ const TextArea = (props) => {
 						emojiSize={20}
 						set='twitter'
 						// native={true}
-						style={{ position: "absolute", top: "0", right: "0", zIndex: 1 }}
+						style={{ position: "absolute", top: "0", right: "0", zIndex: 6 }}
 						onSelect={onEmojiChoose}
 						showPreview={false}
 					/>

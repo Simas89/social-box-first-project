@@ -69,6 +69,7 @@ const PostItself = (props) => {
 					<div className='date-posted'>
 						{moment(parseInt(props.timestamp)).fromNow()}
 					</div>
+					{props.isOnline}
 				</div>
 				{props.userName === context.accountState.user && (
 					<PopUpMenu

@@ -59,6 +59,37 @@ const NotificationListItem = (props) => {
 				</React.Fragment>
 			);
 		}
+		if (props.messageBody.format === "POST_COMMENT") {
+			return (
+				<React.Fragment>
+					<strong>
+						<Link to={`/container/users/${props.messageBody.link}`}>
+							{props.messageBody.link}
+						</Link>
+					</strong>
+					{" commented on your "}
+					<strong
+						onClick={() => {
+							getPosts(
+								gqlGetPostsQuery(
+									"SINGLE",
+									context.accountState.user,
+									props.messageBody.link2
+								)
+							);
+						}}>
+						<Link
+							onClick={() => {
+								contextPost.resetPosts();
+								contextSocial.notificationBarOff();
+							}}
+							to={`/container/post/${props.messageBody.link2}`}>
+							{"post"}
+						</Link>
+					</strong>
+				</React.Fragment>
+			);
+		}
 	};
 
 	const getPosts = (query) => {

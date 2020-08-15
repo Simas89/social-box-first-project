@@ -18,6 +18,7 @@ const schema = buildSchema(`
     userName: String
     textContent: String 
     timestamp: String
+    isOnline: String
     edited: String
     imgsmall: IMG
     likesPack: LIKES_PACK

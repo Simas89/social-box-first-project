@@ -37,17 +37,24 @@ const postConverter = (args, res) => {
 		await Comment.find({ postID: postas._id })
 			.populate("imgsmall")
 			.then((comment) => {
-				// console.log(comment);
 				comments = commentConverter(comment);
-				// console.log(comments[1]);
 			});
-		// console.log("NEXT");
+
+		let isOnline;
+		await UserModel.findOne({ userName: postas.userName })
+			.lean()
+			.select("isOnline")
+			.then((res) => {
+				isOnline = res.isOnline;
+			});
+		console.log(isOnline);
 
 		return {
 			_id: postas._id,
 			userName: postas.userName,
 			textContent: postas.textContent,
 			timestamp: postas.timestamp,
+			isOnline: isOnline,
 			edited: postas.edited,
 			comments,
 
@@ -198,6 +205,7 @@ const rootValue = {
 	},
 
 	editPost: async (args) => {
+		console.log(args);
 		let editTime;
 		await Post.findByIdAndUpdate(
 			args._id,
@@ -246,6 +254,16 @@ const rootValue = {
 					timestamp: comment.timestamp,
 					edited: comment.edited,
 				};
+				// receiver, format, link, text1, link2
+				await Post.findById(args.postID).then((res) => {
+					notificationPUSH(
+						res.userName,
+						"POST_COMMENT",
+						args.userName,
+						"",
+						args.postID
+					);
+				});
 			});
 
 		// console.log(conv);

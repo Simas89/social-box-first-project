@@ -5,6 +5,7 @@ const gqlGetPostsQuery = (TYPE, clientUserName, target) => {
     userName
     textContent
     timestamp
+    isOnline
     edited
     imgsmall{
       contentType
