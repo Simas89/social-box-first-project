@@ -53,6 +53,15 @@
   bottom: 100%;
 }
 
+.post-body .middle-section .text-box .textas {
+  white-space: pre-line;
+}
+
+.post-body .middle-section .text-box p {
+  font-size: 1.2rem;
+  white-space: pre-line;
+}
+
 .post-body .middle-section .modified {
   color: grey;
   position: absolute;

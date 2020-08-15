@@ -5,6 +5,7 @@ import {
 	DELETE_POST,
 	UPDATE_LIKES,
 	SEND_COMMENT,
+	EDIT_COMMENT,
 	DELETE_COMMENT,
 } from "../types";
 
@@ -60,6 +61,19 @@ export default (state, action) => {
 						  }
 						: post
 				),
+			};
+		}
+
+		case EDIT_COMMENT: {
+			let arr = state.posts;
+			arr[action.payload.postIndex].comments[action.payload.index].textContent =
+				action.payload.textContent;
+			arr[action.payload.postIndex].comments[
+				action.payload.index
+			].edited = Date.now();
+			return {
+				...state,
+				posts: arr,
 			};
 		}
 

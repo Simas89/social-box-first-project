@@ -15,7 +15,7 @@ const CreatePostBar = () => {
 		graphqlFetch(
 			`addPost(token: "${sessionStorage.getItem(
 				"token"
-			)}", textContent: "${text}")`,
+			)}", textContent: """${text}""")`,
 			() => {
 				graphqlFetch(
 					gqlGetPostsQuery("FEED", context.accountState.user),
@@ -25,22 +25,20 @@ const CreatePostBar = () => {
 				);
 			}
 		);
+		setText("");
 	};
 
-	console.log(text);
-
 	return (
-		<div>
-			<div>
-				<TextArea
-					placeholder='Write a post..'
-					value={text}
-					minRows={1}
-					setText={(txt) => setText(txt)}
-				/>
-				<button onClick={() => postPost()}>POST</button>
-			</div>
-		</div>
+		<TextArea
+			placeholder='Write a post..'
+			value={text}
+			minRows={2}
+			setText={(txt) => setText(txt)}
+			iconDisplay={true}
+			emojiDisplay={true}
+			iconName='send'
+			iconClick={() => postPost()}
+		/>
 	);
 };
 

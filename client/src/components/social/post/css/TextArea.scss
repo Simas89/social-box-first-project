@@ -1,19 +1,58 @@
-.TextArea {
-	outline: none;
-	border: none;
-	width: 100%;
-	height: 100%;
-	// position: relative;
-	margin-top: 5px;
-	overflow: hidden;
-	display: block;
-	// width: 100px;
-	resize: none;
-	bottom: 100%;
-	&:active {
-		border: none;
+.txt-block {
+	// border: 1px solid blue;
+	position: relative;
+	// overflow: hidden;
+	min-height: 30px;
+
+	.TextArea {
+		padding: 15px;
+		border: 1px solid blue;
+		outline: none;
+		// border: none;
+		width: 100%;
+		height: 100%;
+		// position: relative;
+		// margin-top: 5px;
+		overflow: hidden;
+		display: block;
+		// width: 100px;
+		resize: none;
+		bottom: 100%;
+		&:active {
+			// border: none;
+		}
+		&:focused {
+			// border: none;
+		}
 	}
-	&:focused {
-		border: none;
+	.icon-emoji {
+		color: grey;
+		position: absolute;
+		right: 5px;
+		bottom: 5px;
+		&:hover {
+			cursor: pointer;
+		}
 	}
+
+	.icon-send {
+		position: absolute;
+		right: 45px;
+		bottom: 5px;
+		color: lightgrey;
+		display: none;
+	}
+	.icon-send-ready {
+		display: block;
+		color: grey;
+		transition: color 0.2s;
+		&:hover {
+			color: black;
+			cursor: pointer;
+			transition: color 0.2s;
+		}
+	}
+}
+.emoji-mart-preview {
+	display: none;
 }

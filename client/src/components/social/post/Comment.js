@@ -2,12 +2,19 @@ import React from "react";
 import "./css/Comment.css";
 import PopUpMenu from "./PopUpMenu";
 import moment from "moment";
+import TextArea from "./TextArea";
 import myContext from "../../../context/account/myContext";
 import postContext from "../../../context/post/postContext";
+import { Twemoji } from "react-emoji-render";
 
 const Comment = (props) => {
 	const context = React.useContext(myContext);
 	const contextPost = React.useContext(postContext);
+	const [textContent, setTextContent] = React.useState(props.textContent);
+	const [textContentPrev, setTextContentPrev] = React.useState(
+		props.textContent
+	);
+	const [editMode, setEditMode] = React.useState(false);
 	// console.log(props);
 
 	const trigDel = () => {
@@ -19,13 +26,21 @@ const Comment = (props) => {
 	};
 
 	const trigEdit = () => {
-		console.log("trigEdit");
+		setEditMode(true);
+		setTextContentPrev(textContent);
 	};
 	const trigEditSave = () => {
-		console.log("trigEditSave");
+		contextPost.editComment({
+			_id: props._id,
+			index: props.index,
+			postIndex: props.postIndex,
+			textContent: textContent,
+		});
+		setEditMode(false);
 	};
 	const trigEditDiscard = () => {
-		console.log("trigEditDiscard");
+		setEditMode(false);
+		setTextContent(textContentPrev);
 	};
 
 	return (
@@ -67,7 +82,22 @@ const Comment = (props) => {
 					/>
 				)}
 			</div>
-			<div className='comment-middle'>{props.textContent}</div>
+			<div className='comment-middle'>
+				{editMode ? (
+					<TextArea
+						style={{ padding: "5px" }}
+						value={textContent}
+						minRows={1}
+						setText={(txt) => setTextContent(txt)}
+						iconDisplay={false}
+						emojiDisplay={true}
+					/>
+				) : (
+					<p>
+						<Twemoji text={props.textContent} />
+					</p>
+				)}
+			</div>
 		</div>
 	);
 };

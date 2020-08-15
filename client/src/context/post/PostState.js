@@ -10,6 +10,7 @@ import {
 	DELETE_POST,
 	UPDATE_LIKES,
 	SEND_COMMENT,
+	EDIT_COMMENT,
 	DELETE_COMMENT,
 } from "../types";
 
@@ -41,7 +42,7 @@ const PostState = (props) => {
 	const sendComment = (data) => {
 		// console.log(data);
 		const query = `sendComment(userName: "${data.user}",
-															comment: "${data.comment.trim()}",
+															comment: """${data.comment.trim()}""",
 															postID: "${data.post._id}"){
 			_id
 			userName
@@ -64,6 +65,16 @@ const PostState = (props) => {
 		});
 	};
 
+	const editComment = (data) => {
+		dispatch({ type: EDIT_COMMENT, payload: data });
+		graphqlFetch(
+			`editComment(_id: "${data._id}", textContent: """${data.textContent}""")`,
+			(res) => {
+				console.log(res);
+			}
+		);
+	};
+
 	const delComment = (data) => {
 		// console.log(data);
 		// console.log("Target:", state.posts[data.postIndex].comments[data.index]);
@@ -84,6 +95,7 @@ const PostState = (props) => {
 				editPost,
 				delPost,
 				sendComment,
+				editComment,
 				delComment,
 			}}>
 			{props.children}

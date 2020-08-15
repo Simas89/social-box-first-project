@@ -217,7 +217,7 @@ const rootValue = {
 	},
 
 	sendComment: async (args) => {
-		console.log(args);
+		// console.log(args);
 		let comment = {};
 		let conv = {};
 		await UserModel.findOne({ userName: args.userName })
@@ -250,6 +250,19 @@ const rootValue = {
 
 		// console.log(conv);
 		return [conv];
+	},
+
+	editComment: async (args) => {
+		let editTime;
+		await Comment.findByIdAndUpdate(
+			args._id,
+			{ textContent: args.textContent, edited: Date.now() },
+			{ new: true }
+		).then((res) => {
+			editTime = res.edited;
+		});
+
+		return editTime;
 	},
 
 	delComment: async (args) => {

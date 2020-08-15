@@ -10,6 +10,7 @@ const schema = buildSchema(`
     delPost(_id: String) : String
     sendComment(userName: String, comment: String, postID: String) : [COMMENT]
     delComment(_id: String) : String
+    editComment(_id: String, textContent: String) : String
 
   }
   type POST{

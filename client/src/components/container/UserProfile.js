@@ -197,7 +197,7 @@ const UserProfile = (props) => {
 						</div>
 					</div>
 				) : (
-					<h1>404 User not found... ಠ_ಠ</h1>
+					<h1>404 Couldn't find this user (╯°□°）╯︵ ┻━┻</h1>
 				)}
 			</UserProfileStyle>
 		</React.Fragment>

@@ -1,19 +1,51 @@
-.TextArea {
+.txt-block {
+  position: relative;
+  min-height: 30px;
+}
+
+.txt-block .TextArea {
+  padding: 15px;
+  border: 1px solid blue;
   outline: none;
-  border: none;
   width: 100%;
   height: 100%;
-  margin-top: 5px;
   overflow: hidden;
   display: block;
   resize: none;
   bottom: 100%;
 }
 
-.TextArea:active {
-  border: none;
+.txt-block .icon-emoji {
+  color: grey;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
 }
 
-.TextArea:focused {
-  border: none;
+.txt-block .icon-emoji:hover {
+  cursor: pointer;
+}
+
+.txt-block .icon-send {
+  position: absolute;
+  right: 45px;
+  bottom: 5px;
+  color: lightgrey;
+  display: none;
+}
+
+.txt-block .icon-send-ready {
+  display: block;
+  color: grey;
+  transition: color 0.2s;
+}
+
+.txt-block .icon-send-ready:hover {
+  color: black;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.emoji-mart-preview {
+  display: none;
 }

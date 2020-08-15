@@ -1,5 +1,5 @@
 .comment-body {
-  height: 80px;
+  margin-bottom: 20px;
 }
 
 .comment-body .comment-top {
@@ -52,4 +52,8 @@
   height: 100%;
   width: 80px;
   border: 1px solid blue;
+}
+
+.comment-body .comment-middle p {
+  white-space: pre-line;
 }

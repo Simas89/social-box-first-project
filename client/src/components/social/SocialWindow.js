@@ -22,9 +22,8 @@ const SocialWindow = () => {
 
 	const getPosts = (query) => {
 		graphqlFetch(query, (res) => {
-			console.log(res);
-			contextPost.setPosts(res.getPosts);
 			// console.log(res);
+			contextPost.setPosts(res.getPosts);
 		});
 	};
 

@@ -4,15 +4,16 @@ import moment from "moment";
 import BoxLike from "./BoxLike";
 import Comment from "./Comment";
 import PopUpMenu from "./PopUpMenu";
-import { Icon } from "semantic-ui-react";
 import myContext from "../../../context/account/myContext";
 import postContext from "../../../context/post/postContext";
-import TextareaAutosize from "react-textarea-autosize";
+import TextArea from "./TextArea";
 import graphqlFetch from "../../../functions/graphqlFetch";
 
 import { Scrollbars } from "react-custom-scrollbars";
+import { Twemoji } from "react-emoji-render";
 
 const PostItself = (props) => {
+	// 💩
 	const context = React.useContext(myContext);
 	const contextPost = React.useContext(postContext);
 	const [textContent, setTextContent] = React.useState(props.textContent);
@@ -35,7 +36,7 @@ const PostItself = (props) => {
 		setTextContentPrev(textContent);
 	};
 	const trigEditSave = () => {
-		const query = `editPost(_id: "${props._id}", textContent: "${textContent}")`;
+		const query = `editPost(_id: "${props._id}", textContent: """${textContent}""")`;
 		graphqlFetch(query, (res) => {
 			// console.log(res);
 			contextPost.editPost({ time: res.editPost, index: props.index });
@@ -44,7 +45,7 @@ const PostItself = (props) => {
 	};
 	const trigEditDiscard = () => {
 		setEditMode(0);
-		setTextContent(textContentPrev, { maxHeight: "100px" });
+		setTextContent(textContentPrev);
 	};
 
 	// const testRef = (e) => {
@@ -81,13 +82,17 @@ const PostItself = (props) => {
 			<div className='middle-section'>
 				<div className='text-box'>
 					{editMode ? (
-						<TextareaAutosize
-							onChange={(e) => setTextContent(e.target.value)}
+						<TextArea
 							value={textContent}
-							className='TextareaAutosize'
+							minRows={1}
+							setText={(txt) => setTextContent(txt)}
+							iconDisplay={false}
+							emojiDisplay={true}
 						/>
 					) : (
-						textContent
+						<p>
+							<Twemoji text={textContent} />
+						</p>
 					)}
 				</div>
 				<BoxLike index={props.index} />
@@ -108,7 +113,7 @@ const PostItself = (props) => {
 						// onClick={() => console.log(myRef)}
 						autoHeight
 						autoHeightMin={0}
-						autoHeightMax={250}
+						autoHeightMax={350}
 						autoHide
 						autoHideTimeout={2000}
 						autoHideDuration={200}
@@ -134,29 +139,25 @@ const PostItself = (props) => {
 							)}
 					</Scrollbars>
 				</div>
-				<div className='comments-add'>
-					<TextareaAutosize
-						value={commentText}
-						onChange={(e) => {
-							setCommentText(e.target.value);
-						}}
-						placeholder={"Write a comment.."}
-						className='TextareaAutosize-comment'
-					/>
-					<Icon
-						onClick={() => {
-							contextPost.sendComment({
-								post: { _id: props._id, index: props.index },
-								user: context.accountState.user,
-								comment: commentText,
-							});
-							setCommentText("");
-						}}
-						className={`comment-send ${commentText && "comment-send-ready"}`}
-						name='comment'
-						size='large'
-					/>
-				</div>
+
+				<TextArea
+					style={{ padding: "5px" }}
+					placeholder='Write a comment.. testing'
+					value={commentText}
+					minRows={1}
+					setText={(txt) => setCommentText(txt)}
+					iconDisplay={true}
+					emojiDisplay={true}
+					iconName='comment'
+					iconClick={() => {
+						contextPost.sendComment({
+							post: { _id: props._id, index: props.index },
+							user: context.accountState.user,
+							comment: commentText,
+						});
+						setCommentText("");
+					}}
+				/>
 			</div>
 		</div>
 	);

@@ -1,5 +1,6 @@
 .comment-body {
-	height: 80px;
+	margin-bottom: 20px;
+	// height: 80px;
 	// border: 1px solid black;
 	.comment-top {
 		position: relative;
@@ -48,5 +49,12 @@
 			width: 80px;
 			border: 1px solid blue;
 		}
+	}
+	.comment-middle {
+		p {
+			white-space: pre-line;
+		}
+		// border: 2px solid black;
+		// height: 100px;
 	}
 }

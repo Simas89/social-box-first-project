@@ -31,7 +31,7 @@ router.post("/", fileUpload(), async (req, res) => {
 	try {
 		await sharp(req.files.myFile.data)
 			.rotate()
-			.resize(100)
+			.resize(150)
 			.toBuffer()
 			.then((data) => {
 				bufferMini = data;

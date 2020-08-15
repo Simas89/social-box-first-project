@@ -20,4 +20,5 @@ export const DELETE_POST = "DELETE_POST";
 export const RESET_POSTS = "RESET_POSTS";
 export const UPDATE_LIKES = "UPDATE_LIKES";
 export const SEND_COMMENT = "SEND_COMMENT";
+export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
