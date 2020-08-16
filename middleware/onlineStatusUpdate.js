@@ -2,7 +2,6 @@ const config = require("config");
 const cryptSecret = config.get("cryptSecret");
 const jwt = require("jsonwebtoken");
 const UserModel = require("../schemas/userSchema");
-const calcIsOnline = require("./calcIsOnline");
 
 module.exports = (header) => {
 	if (header)

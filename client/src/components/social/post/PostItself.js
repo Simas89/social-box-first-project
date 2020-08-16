@@ -9,6 +9,8 @@ import postContext from "../../../context/post/postContext";
 import TextArea from "./TextArea";
 import graphqlFetch from "../../../functions/graphqlFetch";
 
+import PulsatingCircle from "../PulsatingCircle";
+
 import { Scrollbars } from "react-custom-scrollbars";
 import { Twemoji } from "react-emoji-render";
 
@@ -65,7 +67,10 @@ const PostItself = (props) => {
 					/>
 				</div>
 				<div className='post-info-top'>
-					<div className='user-name'>{props.userName}</div>
+					<div className='user-titles'>
+						<span className='name'>{props.userName}</span>
+						<PulsatingCircle isOnline={props.isOnline} />
+					</div>
 					<div className='date-posted'>
 						{moment(parseInt(props.timestamp)).fromNow()}
 					</div>

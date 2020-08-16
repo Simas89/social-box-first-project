@@ -1,0 +1,16 @@
+.cropper-body {
+  position: relative;
+}
+
+.cropper-body .raw {
+  position: relative;
+  width: 100%;
+  height: 530px;
+  background: white;
+}
+
+.cropper-body .prev {
+  position: relative;
+  width: 50%;
+  background: white;
+}

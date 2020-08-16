@@ -1,0 +1,17 @@
+.cropper-body {
+	position: relative;
+	.raw {
+		// border: 2px solid blue;
+		position: relative;
+		width: 100%;
+		height: 530px;
+		background: white;
+	}
+	.prev {
+		// border: 2px solid red;
+		position: relative;
+		width: 50%;
+		// height: 200px;
+		background: white;
+	}
+}

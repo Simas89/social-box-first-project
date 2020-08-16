@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Icon } from "semantic-ui-react";
 import addRemoveUser from "../../functions/addRemoveUser";
+import PulsatingCircle from "../social/PulsatingCircle";
 
 function UserListItem(props) {
 	const handleClick = () => {
@@ -21,11 +21,7 @@ function UserListItem(props) {
 						alt=''
 						src={`data:${props.imgMini.contentType};base64,${props.imgMini.data}`}></img>
 					{props.userName}
-					{props.isOnline ? (
-						<Icon name='circle' size='small' color='green' />
-					) : (
-						<Icon name='circle' size='small' color='grey' />
-					)}
+					<PulsatingCircle isOnline={props.isOnline} />
 				</p>
 				<button onClick={handleClick}>{props.isListed ? "-" : "+"}</button>
 				<button onClick={showUser}>info</button>

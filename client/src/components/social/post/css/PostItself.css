@@ -24,14 +24,20 @@
 }
 
 .post-body .top-section .post-info-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   height: 5rem;
-  padding-left: 10px;
+  margin-left: 15px;
 }
 
-.post-body .top-section .post-info-top .user-name {
+.post-body .top-section .post-info-top .user-titles {
   margin-top: 5px;
+}
+
+.post-body .top-section .post-info-top .user-titles .name {
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 .post-body .top-section .post-info-top .date-posted {
@@ -124,4 +130,63 @@
 
 .TextareaAutosize-comment:focused {
   border: none;
+}
+
+.pulsating-circle {
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-50%);
+  transform: scale(2);
+}
+
+.pulsating-circle:before {
+  content: "";
+  display: block;
+  position: relative;
+  width: 300%;
+  height: 300%;
+  margin-left: -100%;
+  margin-top: -100%;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background-color: #73ac62;
+  animation: pulse-ring 50 cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+.pulsating-circle:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 105%;
+  height: 105%;
+  border-radius: 50%;
+  background-color: #73ac62;
+  box-shadow: 0 0 3px #73ac62;
+  animation: pulse-dot 50 cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.7s infinite;
+  z-index: 1;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.33);
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1.2);
+  }
 }

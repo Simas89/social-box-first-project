@@ -1,0 +1,18 @@
+.acc-body {
+	position: relative;
+	// border: 1px solid red;
+	display: flex;
+	flex-direction: column;
+
+	.img-div {
+		align-self: center;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.crop {
+		border: 2px solid blue;
+		height: 300px;
+	}
+}

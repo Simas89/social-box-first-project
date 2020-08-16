@@ -1,3 +1,5 @@
+$colorTone: rgb(115, 172, 98);
+
 .post-body {
 	border: 2px solid black;
 	position: relative;
@@ -19,13 +21,18 @@
 			}
 		}
 		.post-info-top {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
 			height: 5rem;
 			// border: 1px solid black;
-			padding-left: 10px;
-			.user-name {
+			margin-left: 15px;
+			.user-titles {
 				margin-top: 5px;
-				font-weight: bold;
-				font-size: 1.3rem;
+				.name {
+					font-weight: bold;
+					font-size: 1.5rem;
+				}
 			}
 			.date-posted {
 				font-size: 0.8rem;
@@ -117,5 +124,66 @@
 	}
 	&:focused {
 		border: none;
+	}
+}
+
+////////////////////////     ----   GLOBAL CLASS   -----
+.pulsating-circle {
+	width: 50px;
+	height: 50px;
+	opacity: 1;
+	transform: translateX(-50%) translateY(-50%);
+	transform: scale(2);
+
+	&:before {
+		content: "";
+		display: block;
+		position: relative;
+
+		width: 300%;
+		height: 300%;
+		margin-left: -100%;
+		margin-top: -100%;
+		box-sizing: border-box;
+
+		border-radius: 50%;
+		background-color: $colorTone;
+		animation: pulse-ring 50 cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+	}
+
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 105%;
+		height: 105%;
+		border-radius: 50%;
+		background-color: $colorTone;
+		box-shadow: 0 0 3px $colorTone;
+		animation: pulse-dot 50 cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.7s infinite;
+		z-index: 1;
+	}
+}
+//////////////// -----    ANIMATIONS   -----
+@keyframes pulse-ring {
+	0% {
+		transform: scale(0.33);
+	}
+	80%,
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes pulse-dot {
+	0% {
+		transform: scale(1.2);
+	}
+	50% {
+		transform: scale(0.9);
+	}
+	100% {
+		transform: scale(1.2);
 	}
 }

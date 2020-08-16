@@ -5,6 +5,8 @@ const mailer = require("../functions/mailer");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 
+const calcIsOnline = require("../middleware/calcIsOnline");
+
 const cryptSecret = config.get("cryptSecret");
 const notificationPUSH = require("../functions/notificationPUSH");
 
@@ -47,14 +49,14 @@ const postConverter = (args, res) => {
 			.then((res) => {
 				isOnline = res.isOnline;
 			});
-		console.log(isOnline);
+		// console.log(calcIsOnline(isOnline));
 
 		return {
 			_id: postas._id,
 			userName: postas.userName,
 			textContent: postas.textContent,
 			timestamp: postas.timestamp,
-			isOnline: isOnline,
+			isOnline: calcIsOnline(isOnline),
 			edited: postas.edited,
 			comments,
 

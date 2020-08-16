@@ -34,6 +34,7 @@ const SinglePostContainer = (props) => {
 						userName={item.userName}
 						textContent={item.textContent}
 						timestamp={item.timestamp}
+						isOnline={item.isOnline}
 						edited={item.edited}
 						imgsmall={item.imgsmall}
 					/>
