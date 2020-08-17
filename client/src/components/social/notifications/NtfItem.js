@@ -1,21 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Feed, Image, Icon } from "semantic-ui-react";
-import socialContext from "../../context/social/socialContext";
-import postContext from "../../context/post/postContext";
-import myContext from "../../context/account/myContext";
-
+import "./css/NtfItem.css";
 import moment from "moment";
+import { Link } from "react-router-dom";
+import socialContext from "../../../context/social/socialContext";
+import postContext from "../../../context/post/postContext";
+import myContext from "../../../context/account/myContext";
 
-import graphqlFetch from "../../functions/graphqlFetch";
-import gqlGetPostsQuery from "../../functions/gqlGetPostsQuery";
+import graphqlFetch from "../../../functions/graphqlFetch";
+import gqlGetPostsQuery from "../../../functions/gqlGetPostsQuery";
 
-const NotificationListItem = (props) => {
+const NtfItem = (props) => {
 	const contextSocial = React.useContext(socialContext);
 	const contextPost = React.useContext(postContext);
 	const context = React.useContext(myContext);
 
 	const ntfContent = () => {
+		if (props.messageBody.format === "SIMPLE_TEXT") {
+			return <React.Fragment>{props.messageBody.text1}</React.Fragment>;
+		}
+
 		if (props.messageBody.format === "USERLINK_TEXT") {
 			return (
 				<React.Fragment>
@@ -28,9 +31,7 @@ const NotificationListItem = (props) => {
 				</React.Fragment>
 			);
 		}
-		if (props.messageBody.format === "SIMPLE_TEXT") {
-			return <React.Fragment>{props.messageBody.text1}</React.Fragment>;
-		}
+
 		if (props.messageBody.format === "POST_LIKE") {
 			return (
 				<React.Fragment>
@@ -59,6 +60,7 @@ const NotificationListItem = (props) => {
 				</React.Fragment>
 			);
 		}
+
 		if (props.messageBody.format === "POST_COMMENT") {
 			return (
 				<React.Fragment>
@@ -95,55 +97,46 @@ const NotificationListItem = (props) => {
 	const getPosts = (query) => {
 		graphqlFetch(query, (res) => {
 			contextPost.setPosts(res.getPosts);
-			// console.log(res);
 		});
 	};
 
-	return (
-		<Feed.Event style={{ height: "50px" }}>
-			{props.messageBody.format === "USERLINK_TEXT" ? (
-				<Link to={`/container/users/${props.messageBody.link}`}></Link>
-			) : (
-				<Image
-					floated='left'
-					size='mini'
-					src={`data:${props.imgMini.mimetype};base64,${props.imgMini.data}`}
-				/>
-			)}
-			<Feed.Content
-				onClick={() =>
-					contextSocial.notificationsPull({ action: "SEEN_ONE" }, props.id)
-				}>
-				<Feed.Date content={moment(props.timestamp).fromNow()} />
-				<p>{ntfContent()}</p>
-			</Feed.Content>
-			{!props.isSeen ? (
-				<Icon
-					onClick={() =>
-						contextSocial.notificationsPull({ action: "SEEN_ONE" }, props.id)
-					}
-					name='check circle outline'
-					size='large'
-					floated='right'
-					color='grey'
-				/>
-			) : (
-				<Icon name='check circle' size='large' floated='right' color='blue' />
-			)}
+	const delRef = React.useRef(null);
 
-			<Icon
-				onClick={() => {
-					contextSocial.notificationsPull({ action: "DELETE_ONE" }, props.id);
-					contextSocial.notifications.length === 1 &&
-						contextSocial.notificationBarOff();
-				}}
-				name='delete'
-				size='large'
-				floated='right'
-				color='grey'
+	const seenOne = (e) => {
+		if (e.target !== delRef.current) {
+			contextSocial.notificationsPull({ action: "SEEN_ONE" }, props.id);
+		}
+	};
+
+	const deleteOne = (e) => {
+		if (e.target === delRef.current) {
+			contextSocial.notificationsPull({ action: "DELETE_ONE" }, props.id);
+			contextSocial.notifications.length === 1 &&
+				contextSocial.notificationBarOff();
+		}
+	};
+
+	return (
+		<div className='ntf-item' onClick={seenOne}>
+			<img
+				alt=''
+				src={`data:${props.imgMini.mimetype};base64,${props.imgMini.data}`}
 			/>
-		</Feed.Event>
+
+			<div className='middle'>
+				<div className='main-text'>{ntfContent()}</div>
+				<div className='under'>
+					<p className='date'>{moment(props.timestamp).fromNow()}</p>
+				</div>
+			</div>
+			<div className='last'>
+				{!props.isSeen ? <i className='fas fa-exclamation'></i> : null}
+				<p ref={delRef} className='delete' onClick={deleteOne}>
+					delete
+				</p>
+			</div>
+		</div>
 	);
 };
 
-export default NotificationListItem;
+export default NtfItem;

@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap");
-$colorPrimary: white;
+$colorPrimary: black;
 $colorTone: rgb(115, 172, 98);
 
 $singleInputWrapper-height-full: calc(47px + 1.5rem);
@@ -65,13 +65,13 @@ $singleInputWrapper-height-600: calc(30px + 1.2rem);
 			overflow: hidden;
 			width: 100%;
 			// border-bottom: 1px solid $colorPrimary;
-			color: white !important;
+			color: $colorPrimary !important;
 			// border: 1px orange solid;
 		}
 		.txt-input input {
 			font-family: "MuseoModerno", cursive;
 			font-size: 1.5rem;
-			color: white !important;
+			color: $colorPrimary !important;
 			padding-left: 20px;
 			margin-right: 40px;
 		}
@@ -121,7 +121,7 @@ $singleInputWrapper-height-600: calc(30px + 1.2rem);
 				width: 8px;
 				z-index: 0;
 				.text-area-resizer-sub {
-					background-color: white;
+					background-color: black;
 				}
 				.sub-1 {
 					grid-column: 3/3;

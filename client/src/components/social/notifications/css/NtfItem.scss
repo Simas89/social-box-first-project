@@ -1,0 +1,68 @@
+.ntf-item {
+	user-select: none;
+	position: relative;
+	display: grid;
+	grid-template-columns: 64px auto 40px;
+	margin: 3px 1px;
+	// border: 1px solid black;
+	height: 50px;
+	background-color: white;
+	transition: background-color 0.2s;
+	img {
+		height: 100%;
+	}
+	.middle {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		.main-text {
+			// margin-top: 3px;
+			margin-left: 10px;
+		}
+		.under {
+			color: grey;
+			font-size: 0.8rem;
+
+			.date {
+				margin-left: 10px;
+				margin-bottom: 3px;
+			}
+		}
+	}
+	.last {
+		// border: 1px solid red;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		i {
+			font-size: 24px;
+			display: block;
+			margin-bottom: 10px;
+		}
+		.delete {
+			position: absolute;
+			bottom: 0;
+			display: block;
+			font-size: 0.8rem;
+			opacity: 0;
+			transition: 0.1s;
+			&:hover {
+				cursor: pointer;
+				text-decoration: underline;
+				// opacity: 1;
+				transition: 0.1s;
+			}
+		}
+		&:hover .delete {
+			opacity: 0.6;
+		}
+	}
+	&:hover {
+		box-shadow: -0 0 1px 1px lightgray;
+		transition: background-color 0.2s;
+	}
+}
+
+.unseen {
+	background-color: rgb(203, 230, 247);
+}

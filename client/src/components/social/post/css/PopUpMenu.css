@@ -23,6 +23,10 @@
   border: 1px solid blue;
 }
 
+.popup .btn {
+  margin: auto;
+}
+
 .popup .btn:hover {
   cursor: pointer;
 }

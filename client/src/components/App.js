@@ -9,7 +9,9 @@ import socialContext from "../context/social/socialContext";
 
 import Container from "./container/Container";
 import NotificationsContentBlock from "./social/NotificationsContentBlock";
-import NotificationTab from "./social/NotificationTab";
+
+import NtfNews from "./social/notifications/NtfNews";
+import NtfPanel from "./social/notifications/NtfPanel";
 
 function App(props) {
 	// override landings page body overflow hidden
@@ -94,15 +96,9 @@ function App(props) {
 						</div>
 					</div>
 					<div className='App'>
-						<NotificationTab />
+						<NtfNews />
+						{contextSocial.isNotificationOpen && <NtfPanel />}
 						{contextSocial.isNotificationOpen && <NotificationsContentBlock />}
-						<div className='message-notification'>
-							<Icon
-								className='message-notification-icon'
-								name='mail'
-								size='large'
-							/>
-						</div>
 
 						<Container {...props} />
 					</div>

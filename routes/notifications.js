@@ -18,6 +18,7 @@ router.post("/push", (req, res) => {
 });
 
 router.get("/pull", auth, (req, res) => {
+	console.log(req.headers);
 	UserModel.findOne({ userName: req.header("user") }, async (err, result) => {
 		// console.log(result);
 		const page = parseInt(req.header("pagination"));
@@ -34,7 +35,7 @@ router.get("/pull", auth, (req, res) => {
 						// console.log("TEST:", resultat);
 						// Check how many notificatios isSeen in whole list
 						let newNotifications = 0;
-						const notfsPerPage = 5;
+						const notfsPerPage = 10;
 						const countIsSeen = () => {
 							resultat.list.forEach((item) => {
 								item.isSeen === false && newNotifications++;

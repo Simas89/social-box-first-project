@@ -8,7 +8,7 @@
 }
 
 .landing-logged .logged-title {
-  color: white;
+  color: black;
   font-size: 1.3rem;
 }
 
@@ -21,13 +21,13 @@
 .landing-logged .logged-button-wrapper .logged-button-return {
   text-align: center;
   padding: 0 1rem 0.2rem 1rem;
-  color: white;
+  color: black;
   cursor: pointer;
 }
 
 .landing-logged .logged-button-wrapper .logged-button-logout {
   text-align: center;
   padding: 0 1rem 0.2rem 1rem;
-  color: white;
+  color: black;
   cursor: pointer;
 }

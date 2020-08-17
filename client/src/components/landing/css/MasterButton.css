@@ -12,7 +12,7 @@
   display: flex;
   display: grid;
   grid-template-columns: 1fr;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid black;
   width: 100%;
 }
 
@@ -30,7 +30,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: white;
+  color: black;
 }
 
 .top-kiautas .master-button-wrapper .contents .stage1-box p {
@@ -63,7 +63,7 @@
   justify-content: center;
   height: 100%;
   width: 30px;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid black;
 }
 
 .top-kiautas .radio .radio-ring {
@@ -73,7 +73,7 @@
   height: 25px;
   width: 25px;
   border-radius: 50%;
-  border: 2px solid white;
+  border: 2px solid black;
   opacity: 0.5;
   transition: 0.1s;
 }
@@ -93,7 +93,7 @@
   width: 11px;
   border-radius: 50%;
   opacity: 0;
-  background-color: white;
+  background-color: black;
   transition: 0.2s;
 }
 

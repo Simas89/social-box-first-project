@@ -12,10 +12,7 @@ const LikesBuble = (props) => {
 			onClick={handleClick}
 			className='div-style'
 			style={{ zIndex: props.zIndex }}>
-			<img
-				className='image'
-				src={`data:"image/jpeg";base64,${props.imgmicro}`}
-				alt={""}></img>
+			<img src={`data:"image/jpeg";base64,${props.imgmicro}`} alt={""}></img>
 		</div>
 	);
 };

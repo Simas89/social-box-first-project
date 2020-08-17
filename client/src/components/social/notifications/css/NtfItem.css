@@ -1,0 +1,74 @@
+.ntf-item {
+  user-select: none;
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px auto 40px;
+  margin: 3px 1px;
+  height: 50px;
+  background-color: white;
+  transition: background-color 0.2s;
+}
+
+.ntf-item img {
+  height: 100%;
+}
+
+.ntf-item .middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.ntf-item .middle .main-text {
+  margin-left: 10px;
+}
+
+.ntf-item .middle .under {
+  color: grey;
+  font-size: 0.8rem;
+}
+
+.ntf-item .middle .under .date {
+  margin-left: 10px;
+  margin-bottom: 3px;
+}
+
+.ntf-item .last {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ntf-item .last i {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.ntf-item .last .delete {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: 0.1s;
+}
+
+.ntf-item .last .delete:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  transition: 0.1s;
+}
+
+.ntf-item .last:hover .delete {
+  opacity: 0.6;
+}
+
+.ntf-item:hover {
+  box-shadow: -0 0 1px 1px lightgray;
+  transition: background-color 0.2s;
+}
+
+.unseen {
+  background-color: #cbe6f7;
+}

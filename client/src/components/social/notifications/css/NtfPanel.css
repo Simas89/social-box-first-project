@@ -1,0 +1,24 @@
+.ntf-panel {
+  overflow: hidden;
+  right: 420px;
+  position: absolute;
+  width: 400px;
+  z-index: 10;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: grey 0 0 4px;
+}
+
+.ntf-panel .top-sec {
+  border-bottom: 1px solid grey;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.ntf-panel .top-sec span {
+  margin-left: 20px;
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+}

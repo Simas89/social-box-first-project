@@ -1,13 +1,18 @@
 .div-style {
-	margin-left: -5px;
+	margin-left: -7px;
+	overflow: hidden;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 1.8rem;
-	width: 1.8rem;
-	border: 1px solid black;
 	border-radius: 50%;
-	overflow: hidden;
+	box-shadow: 0 0 2px 1px grey;
+	height: 35px;
+	width: 35px;
+
+	img {
+		// width: 130%;
+		// border: 1px solid black;
+	}
 
 	&:hover {
 		cursor: pointer;
