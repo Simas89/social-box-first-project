@@ -1,7 +1,3 @@
 .user-list-item {
   display: flex;
 }
-
-.user-list-item img {
-  height: 100px;
-}

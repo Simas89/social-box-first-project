@@ -30,9 +30,15 @@ const SocialWindow = () => {
 	// console.log("State:", posts);
 	// console.log(context);
 
+	let ntfCounter = contextSocial.notifications.length;
+
 	return (
 		<div className='social-window'>
-			<button onClick={() => contextSocial.notPush(context.accountState.user)}>
+			<button
+				onClick={() => {
+					ntfCounter++;
+					contextSocial.notPush(ntfCounter);
+				}}>
 				Notification
 			</button>
 			<button

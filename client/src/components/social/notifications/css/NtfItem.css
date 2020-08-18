@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 64px auto 40px;
   margin: 3px 1px;
+  border: 1px solid black;
   height: 50px;
   background-color: white;
   transition: background-color 0.2s;
@@ -46,6 +47,7 @@
 }
 
 .ntf-item .last .delete {
+  color: darkred;
   position: absolute;
   bottom: 0;
   display: block;
@@ -61,11 +63,11 @@
 }
 
 .ntf-item .last:hover .delete {
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .ntf-item:hover {
-  box-shadow: -0 0 1px 1px lightgray;
+  box-shadow: 0 0 1px 1px lightgray;
   transition: background-color 0.2s;
 }
 

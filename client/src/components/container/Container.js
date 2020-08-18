@@ -10,6 +10,7 @@ import findUsersFetch from "../../functions/findUsersFetch";
 import UserProfile from "./UserProfile";
 import SocialWindow from "../social/SocialWindow";
 import SinglePostContainer from "../social/post/SinglePostContainer";
+import AllUsersPage from "./AllUsersPage";
 
 function Container(props) {
 	//CONTAINER
@@ -138,6 +139,7 @@ function Container(props) {
 				path='/container/users'
 				render={() => (
 					<React.Fragment>
+						<AllUsersPage />
 						<input
 							onChange={handleInputVal}
 							// value={usersState.inputValue}

@@ -35,7 +35,7 @@ router.get("/pull", auth, (req, res) => {
 						// console.log("TEST:", resultat);
 						// Check how many notificatios isSeen in whole list
 						let newNotifications = 0;
-						const notfsPerPage = 10;
+						const notfsPerPage = 50;
 						const countIsSeen = () => {
 							resultat.list.forEach((item) => {
 								item.isSeen === false && newNotifications++;

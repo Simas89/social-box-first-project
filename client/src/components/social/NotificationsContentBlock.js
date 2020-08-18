@@ -12,7 +12,7 @@ const NotificationsContentBlock = () => {
 				<Card
 					style={{
 						position: "absolute",
-						right: "0",
+						right: "450px",
 						zIndex: "10",
 						width: "400px",
 					}}>

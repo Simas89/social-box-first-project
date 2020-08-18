@@ -39,7 +39,7 @@ const SocialState = (props) => {
 			payload: page,
 		});
 
-	const notPush = () => {
+	const notPush = (textContent) => {
 		fetch("http://localhost:2000/notifications/push", {
 			method: "post",
 			headers: {
@@ -47,7 +47,7 @@ const SocialState = (props) => {
 				"x-auth-token": sessionStorage.getItem("token"),
 			},
 			body: JSON.stringify({
-				message: "Hello World!",
+				message: textContent,
 				receiver: context.accountState.user,
 			}),
 		})

@@ -6,7 +6,6 @@ const NtfNews = () => {
 	const contextSocial = React.useContext(socialContext);
 
 	const handleClick = () => {
-		console.log("click");
 		if (contextSocial.isNotificationOpen) {
 			contextSocial.notificationBarOff();
 			contextSocial.notificationsPaginationSet(1);
@@ -15,6 +14,8 @@ const NtfNews = () => {
 			contextSocial.notificationBarOn();
 		}
 	};
+
+	console.log(contextSocial);
 
 	return (
 		<div className='ntf-news' onClick={handleClick}>
