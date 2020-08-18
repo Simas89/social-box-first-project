@@ -1,32 +1,23 @@
 import React from "react";
-import { Route, useLocation, useHistory } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 import myContext from "../../context/account/myContext";
 import socialContext from "../../context/social/socialContext";
 import Item from "./Item";
-import UserListItem from "./UserListItem";
 import Account from "./Account";
 import marketItemsDataFetch from "../../functions/marketItemsDataFetch";
-import findUsersFetch from "../../functions/findUsersFetch";
 import UserProfile from "./UserProfile";
 import SocialWindow from "../social/SocialWindow";
 import SinglePostContainer from "../social/post/SinglePostContainer";
 import AllUsersPage from "./AllUsersPage";
 
-function Container(props) {
+function Container() {
 	//CONTAINER
 	const context = React.useContext(myContext);
 	const contextSocial = React.useContext(socialContext);
 	const location = useLocation();
-	const history = useHistory();
 
 	// MARKET
 	const [marketState, setMarketState] = React.useState([]);
-	// USERS
-	const [usersState, setUsersState] = React.useState({
-		list: [],
-		inputValue: "",
-		contactsOnly: false,
-	});
 
 	const checkAmountInContainer = (element) => {
 		let value = 0;
@@ -42,53 +33,17 @@ function Container(props) {
 		}
 	};
 
-	/////////// USERS
-	const handleInputVal = (e) => {
-		e.persist();
-		findUsersFetch(e.target.value, usersState.contactsOnly, (data) => {
-			setUsersState({
-				list: data,
-				inputValue: e.target.value,
-				contactsOnly: usersState.contactsOnly,
-			});
-		});
-	};
-	const handleSearchMyContactsOnly = () => {
-		findUsersFetch(usersState.inputValue, !usersState.contactsOnly, (data) => {
-			setUsersState({
-				list: data,
-				inputValue: usersState.inputValue,
-				contactsOnly: !usersState.contactsOnly,
-			});
-		});
-	};
-	const passedUpdateToRefreshContacts = React.useCallback(() => {
-		//salmon
-		findUsersFetch(usersState.inputValue, usersState.contactsOnly, (data) => {
-			setUsersState({
-				list: data,
-				inputValue: usersState.inputValue,
-				contactsOnly: usersState.contactsOnly,
-			});
-		});
-	}, [usersState.contactsOnly, usersState.inputValue]);
-
 	React.useEffect(() => {
 		location.pathname === "/container/market" &&
 			marketItemsDataFetch((data) => {
 				setMarketState(data);
 			});
-		location.pathname === "/container/users" && passedUpdateToRefreshContacts();
-	}, [location.pathname, passedUpdateToRefreshContacts]);
+	}, [location.pathname]);
 
 	React.useEffect(
 		() => contextSocial.notificationsPull({ action: "REFRESH" }),
 		[context] // eslint-disable-line react-hooks/exhaustive-deps
 	);
-
-	const showUser = (userName) => {
-		history.push(`/container/users/${userName}`);
-	};
 
 	return (
 		<React.Fragment>
@@ -137,35 +92,7 @@ function Container(props) {
 			<Route ////////////// USERS
 				exact
 				path='/container/users'
-				render={() => (
-					<React.Fragment>
-						<AllUsersPage />
-						<input
-							onChange={handleInputVal}
-							// value={usersState.inputValue}
-							type='text'
-							placeholder='Search Users'></input>
-						<input
-							onChange={handleSearchMyContactsOnly}
-							type='checkbox'
-							checked={usersState.contactsOnly}></input>
-						<label>My contacts only</label>
-						{usersState.list.map((element) => {
-							return (
-								<UserListItem
-									key={element.id}
-									showUser={showUser}
-									userName={element.userName}
-									verified={element.verified}
-									isListed={element.isListed}
-									isOnline={element.isOnline}
-									imgMini={element.imgMini}
-									passedUpdateToRefreshContacts={passedUpdateToRefreshContacts}
-								/>
-							);
-						})}
-					</React.Fragment>
-				)}
+				render={() => <AllUsersPage />}
 			/>
 			<Route ///////////////// PROFILE
 				path='/container/users/:userNameID'

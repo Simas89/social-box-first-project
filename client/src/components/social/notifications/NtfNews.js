@@ -15,7 +15,7 @@ const NtfNews = () => {
 		}
 	};
 
-	console.log(contextSocial);
+	// console.log(contextSocial);
 
 	return (
 		<div className='ntf-news' onClick={handleClick}>

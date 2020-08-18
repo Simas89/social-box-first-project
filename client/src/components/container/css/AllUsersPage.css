@@ -1,3 +1,9 @@
 .users-page {
   border: 1px solid blue;
 }
+
+.users-page .users-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
