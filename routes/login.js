@@ -54,8 +54,8 @@ router.post("/", (req, res) => {
 				result.save();
 
 				// tokens stuff -END-
-			} else res.status(400).json({ status: "WRONG PASSWORD" }); // invalid credentials
-		} else res.status(400).json({ status: "USER COULD NOT BE IDENTIFIED" });
+			} else res.status(400).json({ status: "INVALID CREDENTIALS" }); // invalid credentials
+		} else res.status(400).json({ status: "INVALID CREDENTIALS" });
 		if (error) {
 			res.status(400).json({ status: "DATABASE ERROR", err: error });
 			console.log("Error: " + error);

@@ -42,7 +42,7 @@ const AllUsersPage = () => {
 			});
 		});
 	};
-	const passedUpdateToRefreshContacts = React.useCallback(() => {
+	const findUsersFetchCallback = React.useCallback(() => {
 		//salmon
 		findUsersFetch(usersState.inputValue, usersState.contactsOnly, (data) => {
 			setUsersState({
@@ -81,7 +81,7 @@ const AllUsersPage = () => {
 							isListed={element.isListed}
 							isOnline={element.isOnline}
 							imgMini={element.imgMini}
-							passedUpdateToRefreshContacts={passedUpdateToRefreshContacts}
+							findUsersFetchCallback={findUsersFetchCallback}
 						/>
 					);
 				})}

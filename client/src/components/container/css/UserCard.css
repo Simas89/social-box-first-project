@@ -1,10 +1,16 @@
 .user-card {
-  box-shadow: 0 0 5px 1px gray;
   overflow: hidden;
   border-radius: 15px;
   height: 188px;
   display: grid;
   grid-template-columns: 250px auto;
+  box-shadow: 0 0 2px 1px lightgray;
+  transition: 0.4s;
+}
+
+.user-card:hover {
+  transition: 0.4s;
+  box-shadow: 0 0 5px 1px gray;
 }
 
 .user-card .image-block {
@@ -31,7 +37,7 @@
   font-size: 1.8rem;
 }
 
-.user-card .info-block .user-name:hover {
+.user-card .info-block .user-name p:hover {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -40,6 +46,6 @@
   font-size: 1.6rem;
 }
 
-.user-card .info-block .user-icon .fas:hover {
+.cursor-pointer:hover {
   cursor: pointer;
 }

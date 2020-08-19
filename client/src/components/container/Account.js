@@ -8,7 +8,16 @@ import ImgCropperis from "./ImgCroperis";
 
 const Account = () => {
 	const context = React.useContext(myContext);
+
 	const [file, setFile] = React.useState(null);
+	//settings
+	const [online, setOnline] = React.useState(0);
+	const [delAcc, setDelAcc] = React.useState(0);
+	const [psw, setPsw] = React.useState("");
+	const [dellServerMsg, setDellServerMsg] = React.useState("");
+
+	console.log(psw);
+	console.log(delAcc);
 
 	const history = useHistory();
 
@@ -58,15 +67,114 @@ const Account = () => {
 		inputFileRef.current.click();
 	};
 
+	const submitDelete = () => {
+		if (psw.length < 3) {
+			console.log("less");
+			setDellServerMsg("Please enter your password");
+		} else {
+			fetch("http://localhost:2000/delete", {
+				method: "get",
+				headers: {
+					"Content-Type": "application/json",
+					userName: context.accountState.user,
+					password: psw,
+				},
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					if (data === "Wrong password") {
+						setDellServerMsg("Incorrect password");
+					} else if (data === "OK") {
+						console.log("deleting acc and log out");
+						localStorage.clear();
+						sessionStorage.clear();
+						// context.logOff();
+						history.push("/");
+					} else {
+						console.log(data);
+					}
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
+	};
+
 	return (
 		<div className='acc-body'>
-			{!file && (
-				<div className='img-div' onClick={handleBtnClick}>
-					<img
-						alt=''
-						src={`data:${context.accountState.profilePic.mimetype};base64,${context.accountState.profilePic.base64}`}></img>
+			<div className={`top ${file && "gridtc"}`}>
+				{!file && (
+					<div className='img-div' onClick={handleBtnClick}>
+						<img
+							alt=''
+							src={`data:${context.accountState.profilePic.mimetype};base64,${context.accountState.profilePic.base64}`}></img>
+					</div>
+				)}
+
+				<div className={`info-div ${file && "none"}`}>
+					<div className='main-info'>
+						<p
+							className='userName'
+							onClick={() =>
+								history.push(`/container/users/${context.accountState.user}`)
+							}>
+							{context.accountState.user}
+						</p>
+
+						{context.accountState.verified ? (
+							<React.Fragment>
+								<p>Account is verified</p>
+								<p>Email: {context.accountState.email}</p>
+							</React.Fragment>
+						) : (
+							<React.Fragment>
+								<p>Account is not verified</p>
+
+								<div className='email'>
+									<div className='input'>
+										<input
+											className='emailInput'
+											type='email'
+											placeholder='Please confirm your email'></input>
+										<button onClick={accVerification}>Submit</button>
+									</div>
+									<p className='submitMsg'></p>
+								</div>
+							</React.Fragment>
+						)}
+						<p>Joined: {context.accountState.dateJoined.toString()} </p>
+						<div className='line'></div>
+						<div className='show-online'>
+							<span>Show my online status:</span>
+							<input
+								type='checkbox'
+								checked={online}
+								onChange={() => setOnline(!online)}
+							/>
+						</div>
+						<div className='delete-acc'>
+							{!delAcc ? (
+								<button onClick={() => setDelAcc(1)}>Delete account</button>
+							) : (
+								<div>
+									<p>{dellServerMsg}</p>
+									<input
+										type='password'
+										placeholder='Confirm Password'
+										value={psw}
+										onChange={(e) => setPsw(e.target.value)}></input>
+									<button onClick={submitDelete}>Delete</button>
+								</div>
+							)}
+						</div>
+					</div>
 				</div>
-			)}
+				<ImgCropperis
+					imgurl={url}
+					uploadResult={uploadResult}
+					cancel={() => setFile(null)}
+				/>
+			</div>
 
 			<input
 				ref={inputFileRef}
@@ -74,37 +182,6 @@ const Account = () => {
 				onChange={fileHandler}
 				style={{ display: "none" }}
 			/>
-
-			<ImgCropperis
-				imgurl={url}
-				uploadResult={uploadResult}
-				cancel={() => setFile(null)}
-			/>
-
-			<p
-				onClick={() =>
-					history.push(`/container/users/${context.accountState.user}`)
-				}>
-				User: {context.accountState.user}
-			</p>
-			<p>Joined: {context.accountState.dateJoined.toString()} </p>
-			{!context.accountState.verified ? (
-				<React.Fragment>
-					<p>Account status: Not Verified</p>
-					<input
-						className='emailInput'
-						type='email'
-						placeholder='Please confirm your email'></input>
-					<br></br>
-					<button onClick={accVerification}>Submit</button>
-					<p className='submitMsg'></p>
-				</React.Fragment>
-			) : (
-				<React.Fragment>
-					<p>Account status: Verified</p>
-					<p>Email: {context.accountState.email}</p>
-				</React.Fragment>
-			)}
 		</div>
 	);
 };

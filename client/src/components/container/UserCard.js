@@ -6,11 +6,12 @@ import addRemoveUser from "../../functions/addRemoveUser";
 
 const UserCard = (props) => {
 	const history = useHistory();
+	// console.log(props);
 
 	const handleClick = () => {
-		addRemoveUser(props.userName, props.isListed, (response) => {
+		addRemoveUser(props.userName, false, (response) => {
 			console.log(response);
-			props.passedUpdateToRefreshContacts();
+			props.findUsersFetchCallback();
 		});
 	};
 	return (
@@ -33,7 +34,7 @@ const UserCard = (props) => {
 					<i
 						onClick={handleClick}
 						className={`fas ${
-							props.isListed ? "fa-user-check" : "fa-user-plus"
+							props.isListed ? "fa-user-check" : "fa-user-plus cursor-pointer"
 						}`}></i>
 				</div>
 			</div>

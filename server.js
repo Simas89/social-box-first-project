@@ -14,6 +14,7 @@ const userProfileRoute = require("./routes/userprofile");
 const sendPresentRoute = require("./routes/sendpresent");
 const notificationsRoute = require("./routes/notifications");
 const uploadRoute = require("./routes/uploadRoute");
+const delAccRoute = require("./routes/delete");
 //GraphQL
 const schema = require("./graphql/schema");
 const rootValue = require("./graphql/rootValue");
@@ -56,6 +57,7 @@ app.use("/userprofile", userProfileRoute);
 app.use("/sendpresent", sendPresentRoute);
 app.use("/notifications", notificationsRoute);
 app.use("/upload", uploadRoute);
+app.use("/delete", delAccRoute);
 //
 
 // Run server

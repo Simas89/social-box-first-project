@@ -1,0 +1,62 @@
+.user-profile {
+	overflow: hidden;
+	border-radius: 20px;
+	border: 1px solid black;
+	.profile-card {
+		margin: 10px;
+		// border: 1px solid red;
+		display: grid;
+		grid-template-columns: minmax(100px, 700px) auto;
+
+		.main-img {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			// border: 1px solid red;
+			border-radius: 20px;
+			overflow: hidden;
+			// height: 525px;
+			img {
+				max-width: 150%;
+				max-height: 150%;
+			}
+		}
+		.main-info {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			padding: 0 15px;
+
+			.basic {
+				// border: 1px solid red;
+				.title {
+					// background-color: lightgray;
+					display: flex;
+					align-items: center;
+					height: 50px;
+					.userName {
+						display: block;
+						font-size: 2rem;
+						font-weight: bold;
+						// margin-bottom: 15px;
+						// border: 1px solid red;
+					}
+					.pc {
+						// border: 1px solid red;
+						margin: 0 0 3px 25px;
+					}
+				}
+			}
+			.present {
+				border: 1px solid red;
+				.select {
+					display: flex;
+					input {
+						width: 40px;
+					}
+				}
+			}
+		}
+	}
+}

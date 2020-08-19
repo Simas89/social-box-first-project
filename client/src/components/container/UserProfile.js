@@ -1,11 +1,12 @@
 import React from "react";
+import "./css/UserProfile.css";
 import myContext from "../../context/account/myContext";
-import styled from "styled-components";
-import { Dropdown, Input, Button, Icon } from "semantic-ui-react";
+import { Dropdown, Input, Button } from "semantic-ui-react";
 import graphqlFetch from "../../functions/graphqlFetch";
 import gqlGetPostsQuery from "../../functions/gqlGetPostsQuery";
 import postContext from "../../context/post/postContext";
 import PostItself from "../social/post/PostItself";
+import PulsatingCircle from "../social/PulsatingCircle";
 
 const UserProfile = (props) => {
 	const contextPost = React.useContext(postContext);
@@ -21,13 +22,6 @@ const UserProfile = (props) => {
 		itemName: null,
 		itemAmount: 1,
 	});
-
-	const getPosts = (query) => {
-		graphqlFetch(query, (res) => {
-			contextPost.setPosts(res.getPosts);
-			console.log(res);
-		});
-	};
 
 	React.useEffect(() => {
 		const e = { target: { value: sendItem.itemAmount } }; // FAKE e
@@ -55,10 +49,12 @@ const UserProfile = (props) => {
 			});
 
 		contextPost.resetPosts();
-		getPosts(
-			gqlGetPostsQuery("USER", context.accountState.user, props.userName)
+		graphqlFetch(
+			gqlGetPostsQuery("USER", context.accountState.user, props.userName),
+			(res) => {
+				contextPost.setPosts(res.getPosts);
+			}
 		);
-		//eslint-disable-next-line
 	}, [props.userName]);
 
 	const items = context.accountState.items.map((item) => {
@@ -142,85 +138,75 @@ const UserProfile = (props) => {
 		}
 	};
 
+	console.log(props);
+
 	return (
-		<React.Fragment>
-			<UserProfileStyle>
-				{profileInfo.isValid ? (
+		<div>
+			{profileInfo.isValid ? (
+				<div className='user-profile'>
 					<div className='profile-card'>
-						<h1>{props.userName}</h1>
 						<div className='main-img'>
 							<img
 								alt=''
 								src={`data:${profileInfo.profilePic.mimetype};base64,${profileInfo.profilePic.base64}`}></img>
-							<div>
+						</div>
+						<div className='main-info'>
+							<div className='basic'>
+								<div className='title'>
+									<div className='userName'>{props.userName}</div>
+									<div className='pc'>
+										<PulsatingCircle isOnline={profileInfo.isOnline} />
+									</div>
+								</div>
 								Member since: {profileInfo.dateJoined} <br></br>
 								Account status:{" "}
 								{profileInfo.verified ? "Verified" : "Not verified"}
-								<br />
-								{profileInfo.isOnline ? (
-									<Icon name='circle' size='small' color='green' />
-								) : (
-									<Icon name='circle' size='small' color='grey' />
-								)}
+							</div>
+
+							<div className='present'>
+								<div className='select'>
+									<Dropdown
+										onChange={onChangeDropdown}
+										className='Dropdown'
+										placeholder='Select an item'
+										fluid
+										selection
+										options={items}
+									/>
+									<input
+										onChange={onChangeAmount}
+										value={sendItem.itemAmount}
+									/>
+								</div>
+								<button onClick={handleClick} className='Button'>
+									Send
+								</button>
 							</div>
 						</div>
-
-						<div className='inputs'>
-							<Dropdown
-								onChange={onChangeDropdown}
-								className='Dropdown'
-								placeholder='Select an item'
-								fluid
-								selection
-								options={items}
-							/>
-							<Input onChange={onChangeAmount} value={sendItem.itemAmount} />
-							<Button onClick={handleClick} className='Button'>
-								Send
-							</Button>
-						</div>
-						<div className='social-window'>
-							{" "}
-							{contextPost.state.posts &&
-								contextPost.state.posts.map((item, index) => (
-									<PostItself
-										key={item._id}
-										_id={item._id}
-										index={index}
-										userName={item.userName}
-										textContent={item.textContent}
-										timestamp={item.timestamp}
-										isOnline={item.isOnline}
-										edited={item.edited}
-										imgsmall={item.imgsmall}
-									/>
-								))}
-						</div>
 					</div>
-				) : (
-					<h1>404 Couldn't find this user (╯°□°）╯︵ ┻━┻</h1>
-				)}
-			</UserProfileStyle>
-		</React.Fragment>
+					<div className='social-window'>
+						{" "}
+						{contextPost.state.posts &&
+							contextPost.state.posts.map((item, index) => (
+								<PostItself
+									key={item._id}
+									_id={item._id}
+									index={index}
+									userName={item.userName}
+									textContent={item.textContent}
+									timestamp={item.timestamp}
+									isOnline={item.isOnline}
+									edited={item.edited}
+									imgsmall={item.imgsmall}
+								/>
+							))}
+					</div>
+				</div>
+			) : (
+				<h1>404 Couldn't find this user (╯°□°）╯︵ ┻━┻</h1>
+			)}
+		</div>
 	);
 };
-const UserProfileStyle = styled.div`
-	.profile-card {
-		border: 1px solid blue;
-		display: flex;
-		flex-direction: column;
-		h1 {
-			text-align: center;
-		}
-		.main-img {
-			margin: auto;
-			border: 1px solid green;
-		}
-		.social-window {
-			position: relative;
-			border: 1px solid red;
-		}
-	}
-`;
 
 export default UserProfile;

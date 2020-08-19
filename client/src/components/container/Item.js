@@ -15,8 +15,6 @@ function Item(props) {
 	};
 
 	const trade = (param) => {
-		console.log("trade");
-		//!context.accountState.pending
 		if (true) {
 			if (
 				(param === "BUY" && canBuy === true) ||

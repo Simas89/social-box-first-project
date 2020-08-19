@@ -1,11 +1,17 @@
 .user-card {
-	box-shadow: 0 0 5px 1px gray;
 	overflow: hidden;
 	// border: 1px solid red;
 	border-radius: 15px;
 	height: 188px;
 	display: grid;
 	grid-template-columns: 250px auto;
+	box-shadow: 0 0 2px 1px lightgray;
+	transition: 0.4s;
+
+	&:hover {
+		transition: 0.4s;
+		box-shadow: 0 0 5px 1px gray;
+	}
 
 	.image-block {
 		overflow: hidden;
@@ -29,20 +35,22 @@
 				display: inline-block;
 				font-weight: bold;
 				font-size: 1.8rem;
-			}
-			&:hover {
-				text-decoration: underline;
-				cursor: pointer;
+
+				&:hover {
+					text-decoration: underline;
+					cursor: pointer;
+				}
 			}
 		}
 		.user-icon {
 			// border: 1px solid blue;
 			font-size: 1.6rem;
-			.fas {
-				&:hover {
-					cursor: pointer;
-				}
-			}
 		}
+	}
+}
+//////////////////////     GLOBALs
+.cursor-pointer {
+	&:hover {
+		cursor: pointer;
 	}
 }

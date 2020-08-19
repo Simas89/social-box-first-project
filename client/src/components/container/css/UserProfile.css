@@ -1,0 +1,60 @@
+.user-profile {
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.user-profile .profile-card {
+  margin: 10px;
+  display: grid;
+  grid-template-columns: minmax(100px, 700px) auto;
+}
+
+.user-profile .profile-card .main-img {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.user-profile .profile-card .main-img img {
+  max-width: 150%;
+  max-height: 150%;
+}
+
+.user-profile .profile-card .main-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0 15px;
+}
+
+.user-profile .profile-card .main-info .basic .title {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.user-profile .profile-card .main-info .basic .title .userName {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.user-profile .profile-card .main-info .basic .title .pc {
+  margin: 0 0 3px 25px;
+}
+
+.user-profile .profile-card .main-info .present {
+  border: 1px solid red;
+}
+
+.user-profile .profile-card .main-info .present .select {
+  display: flex;
+}
+
+.user-profile .profile-card .main-info .present .select input {
+  width: 40px;
+}
