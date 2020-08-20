@@ -3,13 +3,15 @@ import "./css/UserCard.css";
 import PulsatingCircle from "../social/PulsatingCircle";
 import { useHistory } from "react-router-dom";
 import addRemoveUser from "../../functions/addRemoveUser";
+import myContext from "../../context/account/myContext";
 
 const UserCard = (props) => {
 	const history = useHistory();
+	const context = React.useContext(myContext);
 	// console.log(props);
 
 	const handleClick = () => {
-		addRemoveUser(props.userName, false, (response) => {
+		addRemoveUser(props.userName, props.isListed, (response) => {
 			console.log(response);
 			props.findUsersFetchCallback();
 		});
@@ -30,13 +32,17 @@ const UserCard = (props) => {
 						<PulsatingCircle isOnline={props.isOnline} />
 					</div>
 				</div>
-				<div className='user-icon'>
-					<i
-						onClick={handleClick}
-						className={`fas ${
-							props.isListed ? "fa-user-check" : "fa-user-plus cursor-pointer"
-						}`}></i>
-				</div>
+				{props.userName !== context.accountState.user && (
+					<div className='user-icon'>
+						<i
+							onClick={handleClick}
+							className={`fas ${
+								props.isListed
+									? "fa-check cursor-pointer"
+									: "fa-user-plus cursor-pointer"
+							}`}></i>
+					</div>
+				)}
 			</div>
 		</div>
 	);

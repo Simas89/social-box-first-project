@@ -1,8 +1,8 @@
 .main .top-bar {
-  height: 7rem;
+  height: 200px;
   display: flex;
   justify-content: center;
-  background-image: url("../../img/bg8.png");
+  background-image: url("../../img/bg.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -11,7 +11,7 @@
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   flex-grow: 1;
   max-width: 1024px;
 }
@@ -58,7 +58,7 @@
 
 .main .top-bar .top-bar-content h1 {
   top: 10px;
-  left: 20px;
+  left: 60px;
   position: absolute;
   font-family: "MuseoModerno", cursive;
   color: white;
@@ -82,6 +82,9 @@
   position: relative;
   max-width: 1024px;
   margin: auto;
+  top: -80px;
+  background-color: white;
+  border-radius: 20px;
 }
 
 .main .App .message-notification {

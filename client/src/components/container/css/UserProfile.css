@@ -58,3 +58,7 @@
 .user-profile .profile-card .main-info .present .select input {
   width: 40px;
 }
+
+.hover-pointer:hover {
+  cursor: pointer;
+}

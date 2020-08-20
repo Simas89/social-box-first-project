@@ -4,7 +4,19 @@ const calcIsOnline = require("../middleware/calcIsOnline");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+	let isFound = false;
+	await UserModel.findOne({ userName: req.header("CurrentUser") })
+		.populate("contacts")
+		.select("contacts")
+		.then((res) => {
+			// console.log(res.contacts.list);
+
+			res.contacts.list.forEach((iii) => {
+				if (iii.userName === req.header("User-Name")) isFound = true;
+			});
+			// console.log(isFound);
+		});
 	UserModel.findOne({ userName: req.header("User-Name") })
 		.populate("contacts")
 		.populate("imgbig")
@@ -14,6 +26,7 @@ router.get("/", (req, res) => {
 				dateJoined: result.dateJoined.toDateString(),
 				verified: result.verified,
 				isOnline: calcIsOnline(result.isOnline),
+				isListed: isFound,
 				profilePic: {
 					base64: result.imgbig.data.toString("base64"),
 					mimetype: result.imgbig.contentType,

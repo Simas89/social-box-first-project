@@ -35,6 +35,7 @@ const SocialWindow = () => {
 	return (
 		<div className='social-window'>
 			<button
+				style={{ marginLeft: "50px" }}
 				onClick={() => {
 					ntfCounter++;
 					contextSocial.notPush(ntfCounter);

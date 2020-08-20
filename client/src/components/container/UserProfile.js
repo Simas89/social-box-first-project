@@ -1,12 +1,20 @@
 import React from "react";
 import "./css/UserProfile.css";
 import myContext from "../../context/account/myContext";
-import { Dropdown, Input, Button } from "semantic-ui-react";
+import { Dropdown } from "semantic-ui-react";
 import graphqlFetch from "../../functions/graphqlFetch";
 import gqlGetPostsQuery from "../../functions/gqlGetPostsQuery";
 import postContext from "../../context/post/postContext";
 import PostItself from "../social/post/PostItself";
 import PulsatingCircle from "../social/PulsatingCircle";
+import addRemoveUser from "../../functions/addRemoveUser";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faUserPlus,
+	faCheck,
+	faRibbon,
+} from "@fortawesome/free-solid-svg-icons";
 
 const UserProfile = (props) => {
 	const contextPost = React.useContext(postContext);
@@ -22,6 +30,7 @@ const UserProfile = (props) => {
 		itemName: null,
 		itemAmount: 1,
 	});
+	console.log(profileInfo);
 
 	React.useEffect(() => {
 		const e = { target: { value: sendItem.itemAmount } }; // FAKE e
@@ -35,6 +44,7 @@ const UserProfile = (props) => {
 				"x-auth-token": sessionStorage.getItem("token"),
 				"Content-Type": "application/json",
 				"User-Name": props.userName,
+				CurrentUser: context.accountState.user,
 			},
 		})
 			.then((res) => res.json())
@@ -138,7 +148,14 @@ const UserProfile = (props) => {
 		}
 	};
 
-	console.log(props);
+	// console.log(props);
+	// const handleClick = () => {
+	// 	addRemoveUser(props.userName, props.isListed, (response) => {
+	// 		console.log(response);
+	// 		// props.findUsersFetchCallback();
+	// 	});
+	// };
+	// const element = <FontAwesomeIcon icon={faCoffee} />;
 
 	return (
 		<div>
@@ -157,31 +174,75 @@ const UserProfile = (props) => {
 									<div className='pc'>
 										<PulsatingCircle isOnline={profileInfo.isOnline} />
 									</div>
+									{props.userName !== context.accountState.user && (
+										<p
+											onClick={() =>
+												addRemoveUser(
+													props.userName,
+													profileInfo.isListed,
+													(response) => {
+														if (response.status === "CONTACT ADDED") {
+															setProfileInfo({
+																...profileInfo,
+																isListed: true,
+															});
+														} else {
+															setProfileInfo({
+																...profileInfo,
+																isListed: false,
+															});
+														}
+													}
+												)
+											}>
+											{profileInfo.isListed ? (
+												<FontAwesomeIcon
+													className='hover-pointer'
+													icon={faCheck}
+													style={{ fontSize: "23px" }}
+												/>
+											) : (
+												<FontAwesomeIcon
+													className='hover-pointer'
+													icon={faUserPlus}
+													style={{ fontSize: "23px" }}
+												/>
+											)}
+										</p>
+									)}
 								</div>
-								Member since: {profileInfo.dateJoined} <br></br>
 								Account status:{" "}
 								{profileInfo.verified ? "Verified" : "Not verified"}
+								<FontAwesomeIcon
+									className='hover-pointer'
+									icon={faRibbon}
+									style={{ fontSize: "35px" }}
+									color='orange'
+								/>
+								<br></br>
+								Member since: {profileInfo.dateJoined}
 							</div>
-
-							<div className='present'>
-								<div className='select'>
-									<Dropdown
-										onChange={onChangeDropdown}
-										className='Dropdown'
-										placeholder='Select an item'
-										fluid
-										selection
-										options={items}
-									/>
-									<input
-										onChange={onChangeAmount}
-										value={sendItem.itemAmount}
-									/>
+							{props.userName !== context.accountState.user && (
+								<div className='present'>
+									<div className='select'>
+										<Dropdown
+											onChange={onChangeDropdown}
+											className='Dropdown'
+											placeholder='Select an item'
+											fluid
+											selection
+											options={items}
+										/>
+										<input
+											onChange={onChangeAmount}
+											value={sendItem.itemAmount}
+										/>
+									</div>
+									<button onClick={handleClick} className='Button'>
+										Send
+									</button>
 								</div>
-								<button onClick={handleClick} className='Button'>
-									Send
-								</button>
-							</div>
+							)}
 						</div>
 					</div>
 					<div className='social-window'>
