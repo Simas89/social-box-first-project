@@ -16,6 +16,13 @@ const UserCard = (props) => {
 			props.findUsersFetchCallback();
 		});
 	};
+
+	// {profileInfo.settings &&
+	// 	profileInfo.settings.showOnline && (
+	// 		<PulsatingCircle isOnline={profileInfo.isOnline} />
+	// 	)}
+	console.log(props);
+
 	return (
 		<div className='user-card'>
 			<div className='image-block'>
@@ -29,7 +36,7 @@ const UserCard = (props) => {
 						{props.userName}
 					</p>
 					<div className='pulse-c'>
-						<PulsatingCircle isOnline={props.isOnline} />
+						{props.showOnline && <PulsatingCircle isOnline={props.isOnline} />}
 					</div>
 				</div>
 				{props.userName !== context.accountState.user && (

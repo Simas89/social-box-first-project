@@ -5,19 +5,18 @@ import myContext from "../../context/account/myContext";
 import axios from "axios";
 import verificationFetch from "../../functions/verificationFetch";
 import ImgCropperis from "./ImgCroperis";
+import graphqlFetch from "../../functions/graphqlFetch";
 
 const Account = () => {
 	const context = React.useContext(myContext);
 
 	const [file, setFile] = React.useState(null);
-	//settings
-	const [online, setOnline] = React.useState(0);
 	const [delAcc, setDelAcc] = React.useState(0);
 	const [psw, setPsw] = React.useState("");
 	const [dellServerMsg, setDellServerMsg] = React.useState("");
 
-	console.log(psw);
-	console.log(delAcc);
+	// console.log(psw);
+	// console.log(delAcc);
 
 	const history = useHistory();
 
@@ -33,8 +32,6 @@ const Account = () => {
 			setFile(e.target.files[0]);
 		}
 	};
-
-	console.log(file);
 
 	let url;
 	if (file) {
@@ -62,7 +59,6 @@ const Account = () => {
 	};
 
 	const inputFileRef = React.useRef(null);
-
 	const handleBtnClick = () => {
 		inputFileRef.current.click();
 	};
@@ -99,6 +95,18 @@ const Account = () => {
 				});
 		}
 	};
+
+	const paramOnline = () => {
+		graphqlFetch(
+			`setOnlineParam( userName: "${
+				context.accountState.user
+			}", param: "${!context.accountState.settings.showOnline}" )`,
+			(res) => {
+				context.accountState.setOnline(res.setOnlineParam);
+			}
+		);
+	};
+	// console.log(context.accountState.settings.showOnline);
 
 	return (
 		<div className='acc-body'>
@@ -148,8 +156,8 @@ const Account = () => {
 							<span>Show my online status:</span>
 							<input
 								type='checkbox'
-								checked={online}
-								onChange={() => setOnline(!online)}
+								checked={context.accountState.settings.showOnline}
+								onChange={paramOnline}
 							/>
 						</div>
 						<div className='delete-acc'>

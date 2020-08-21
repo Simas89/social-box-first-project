@@ -82,6 +82,7 @@ const AllUsersPage = () => {
 							isOnline={element.isOnline}
 							imgMini={element.imgMini}
 							findUsersFetchCallback={findUsersFetchCallback}
+							showOnline={element.settings.showOnline}
 						/>
 					);
 				})}

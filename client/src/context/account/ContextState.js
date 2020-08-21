@@ -15,6 +15,7 @@ const ContextState = (props) => {
 		verified: false,
 		dateJoined: Date,
 		profilePic: { base64: null, mimetype: "" },
+		settings: { showOnline: true },
 	});
 
 	const history = useHistory();
@@ -36,7 +37,8 @@ const ContextState = (props) => {
 		email = accountState.email,
 		verified = accountState.verified,
 		dateJoined = accountState.dateJoined,
-		profilePic = accountState.profilePic
+		profilePic = accountState.profilePic,
+		settings = accountState.settings
 	) => {
 		let cloneState = { ...accountState };
 		cloneState.logged = logged;
@@ -48,6 +50,7 @@ const ContextState = (props) => {
 		cloneState.verified = verified;
 		cloneState.dateJoined = dateJoined;
 		cloneState.profilePic = profilePic;
+		cloneState.settings = settings;
 		sessionStorage.setItem("MY_CONTAINER_STATE", JSON.stringify(cloneState));
 		setAccountState(cloneState);
 	};
@@ -67,7 +70,8 @@ const ContextState = (props) => {
 			data.email,
 			data.verified,
 			data.dateJoined,
-			data.imgbig
+			data.imgbig,
+			data.settings
 		);
 	};
 	const logOff = () => {
@@ -95,6 +99,10 @@ const ContextState = (props) => {
 			}
 		);
 	};
+
+	const setOnline = (param) => {
+		setAccountState({ ...accountState, settings: { showOnline: param } });
+	};
 	return (
 		<myContext.Provider
 			value={{
@@ -108,11 +116,13 @@ const ContextState = (props) => {
 					verified: accountState.verified,
 					dateJoined: accountState.dateJoined,
 					profilePic: accountState.profilePic,
+					settings: accountState.settings,
 					setAccountStateALL,
 					setAccountState,
 					logIn,
 					logOff,
 					trade,
+					setOnline,
 				},
 			}}>
 			{props.children}

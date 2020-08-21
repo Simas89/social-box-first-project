@@ -26,6 +26,9 @@ const userSchema = mongoose.Schema({
 	imgmicro: { type: mongoose.Schema.ObjectId, ref: "ProfileImgMicro" },
 	imgsmall: { type: mongoose.Schema.ObjectId, ref: "ProfileImgSmall" },
 	imgbig: { type: mongoose.Schema.ObjectId, ref: "ProfileImgBig" },
+	settings: {
+		showOnline: { type: Boolean, default: true },
+	},
 });
 
 module.exports = mongoose.model("UserModel", userSchema);

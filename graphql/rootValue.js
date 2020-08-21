@@ -43,20 +43,22 @@ const postConverter = (args, res) => {
 			});
 
 		let isOnline;
+		let canOnline;
 		await UserModel.findOne({ userName: postas.userName })
 			.lean()
 			.select("isOnline")
+			.select("settings")
 			.then((res) => {
 				isOnline = res.isOnline;
+				canOnline = res.settings.showOnline;
 			});
-		// console.log(calcIsOnline(isOnline));
 
 		return {
 			_id: postas._id,
 			userName: postas.userName,
 			textContent: postas.textContent,
 			timestamp: postas.timestamp,
-			isOnline: calcIsOnline(isOnline),
+			isOnline: canOnline ? calcIsOnline(isOnline) : false,
 			edited: postas.edited,
 			comments,
 
@@ -287,6 +289,22 @@ const rootValue = {
 
 	delComment: async (args) => {
 		Comment.findByIdAndDelete(args._id).then((res) => {});
+	},
+
+	setOnlineParam: async (args) => {
+		// console.log(args);
+		const param = args.param === "true" ? true : false;
+		UserModel.findOneAndUpdate(
+			{ userName: args.userName },
+			{ settings: { showOnline: param } },
+			{ new: true }
+		)
+			.select("settings")
+			.then((res) => {
+				// console.log(res);
+				console.log(res);
+			});
+		return param;
 	},
 };
 

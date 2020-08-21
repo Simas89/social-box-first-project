@@ -31,6 +31,7 @@ router.get("/", async (req, res) => {
 					base64: result.imgbig.data.toString("base64"),
 					mimetype: result.imgbig.contentType,
 				},
+				settings: { showOnline: result.settings.showOnline },
 			});
 		})
 		.catch(() => res.status(200).json({ status: "USER NOT FOUND" }));

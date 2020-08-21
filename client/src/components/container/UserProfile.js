@@ -30,7 +30,6 @@ const UserProfile = (props) => {
 		itemName: null,
 		itemAmount: 1,
 	});
-	console.log(profileInfo);
 
 	React.useEffect(() => {
 		const e = { target: { value: sendItem.itemAmount } }; // FAKE e
@@ -157,6 +156,8 @@ const UserProfile = (props) => {
 	// };
 	// const element = <FontAwesomeIcon icon={faCoffee} />;
 
+	console.log(profileInfo.settings);
+
 	return (
 		<div>
 			{profileInfo.isValid ? (
@@ -172,7 +173,10 @@ const UserProfile = (props) => {
 								<div className='title'>
 									<div className='userName'>{props.userName}</div>
 									<div className='pc'>
-										<PulsatingCircle isOnline={profileInfo.isOnline} />
+										{profileInfo.settings &&
+											profileInfo.settings.showOnline && (
+												<PulsatingCircle isOnline={profileInfo.isOnline} />
+											)}
 									</div>
 									{props.userName !== context.accountState.user && (
 										<p

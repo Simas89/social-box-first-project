@@ -2,7 +2,6 @@ const { buildSchema } = require("graphql");
 
 const schema = buildSchema(`
 	type Query{
-    UserTest(name: String): String
     addPost(token : String, textContent: String): String
     getPosts(TYPE: String, clientUserName: String, target: String ) : [POST]
     editPost(_id: String, textContent: String) : String
@@ -11,6 +10,8 @@ const schema = buildSchema(`
     sendComment(userName: String, comment: String, postID: String) : [COMMENT]
     delComment(_id: String) : String
     editComment(_id: String, textContent: String) : String
+
+    setOnlineParam(userName: String, param: String) : Boolean
 
   }
   type POST{

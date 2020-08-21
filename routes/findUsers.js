@@ -39,6 +39,9 @@ router.get("/", auth, (req, res) => {
 										data: element.imgsmall.data.toString("base64"),
 										contentType: element.imgsmall.contentType,
 									},
+									settings: {
+										showOnline: element.settings.showOnline,
+									},
 								};
 							})
 							.sort((a, b) => {
@@ -66,6 +69,7 @@ router.get("/", auth, (req, res) => {
 						UserModel.findOne({ userName_tlc: element.toLowerCase() })
 							.populate("imgsmall")
 							.then((result) => {
+								// console.log(object)
 								// console.log(result);
 								if (result) {
 									users.push({
@@ -78,6 +82,9 @@ router.get("/", auth, (req, res) => {
 										imgMini: {
 											data: result.imgsmall.data.toString("base64"),
 											contentType: result.imgsmall.contentType,
+										},
+										settings: {
+											showOnline: result.settings.showOnline,
 										},
 									});
 								} else {
