@@ -44,18 +44,22 @@ const postConverter = (args, res) => {
 
 		let isOnline;
 		let canOnline;
+		let isVerified;
 		await UserModel.findOne({ userName: postas.userName })
 			.lean()
 			.select("isOnline")
 			.select("settings")
+			.select("verified")
 			.then((res) => {
 				isOnline = res.isOnline;
 				canOnline = res.settings.showOnline;
+				isVerified = res.verified;
 			});
 
 		return {
 			_id: postas._id,
 			userName: postas.userName,
+			isVerified,
 			textContent: postas.textContent,
 			timestamp: postas.timestamp,
 			isOnline: canOnline ? calcIsOnline(isOnline) : false,
@@ -305,6 +309,23 @@ const rootValue = {
 				console.log(res);
 			});
 		return param;
+	},
+
+	emailMe: async (args) => {
+		console.log(args);
+		mailer(
+			"simasdevelopment@gmail.com",
+			"A message from SimasZurauskas.tech",
+			`
+			Person: ${args.guest}.
+			Email: ${args.email}.
+			Message: ${args.msg}`,
+			(callback) => {
+				callback === "OK" && console.log("Oki doki");
+			}
+		);
+
+		return "OK";
 	},
 };
 

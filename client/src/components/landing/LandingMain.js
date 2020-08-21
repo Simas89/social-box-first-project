@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/LandingMain.css";
 import Formike from "./Formike";
-import PerfectScrollbar from "react-perfect-scrollbar";
+import { Scrollbars } from "react-custom-scrollbars";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
 const MovingContainer = (props) => {
@@ -72,7 +72,12 @@ const LandingMain = () => {
 				<div className='landing-box box-1'>
 					<h1 className='simas'>Simas Zurauskas</h1>
 					<div className='box-content'>
-						<PerfectScrollbar>
+						<Scrollbars
+							autoHide
+							autoHideTimeout={2000}
+							autoHideDuration={200}
+							thumbMinSize={3}
+							universal={true}>
 							<div className='informacione'>
 								<div className='mongo'></div>
 								<div className='express'></div>
@@ -94,9 +99,38 @@ const LandingMain = () => {
 								Ut vitae tristique lorem. Vestibulum sagittis lectus in massa
 								ullamcorper lacinia. Aliquam vel erat sagittis, maximus felis
 								sed, consequat turpis. Duis vitae rhoncus est, at iaculis velit.
+								Proin malesuada consequat condimentum.Lorem ipsum dolor sit
+								amet, consectetur adipiscing elit. In luctus nulla non lorem
+								feugiat dignissim. Nam vitae fringilla lorem. Mauris odio
+								tortor, blandit sit amet mi nec, interdum consectetur magna.
+								Quisque non sapien quis est bibendum hendrerit quis at libero.
+								Suspendisse lacinia congue tellus ac volutpat. Curabitur
+								imperdiet purus sed ante elementum porttitor. Nam sed vehicula
+								libero. Vivamus id augue nec velit luctus auctor sit amet ac
+								nisi. Class aptent taciti sociosqu ad litora torquent per
+								conubia nostra, per inceptos himenaeos. Nullam mi sem, luctus
+								sed magna eu, placerat efficitur dolor. Proin magna nisi,
+								dapibus sed lorem eu, pretium iaculis massa. Ut vitae tristique
+								lorem. Vestibulum sagittis lectus in massa ullamcorper lacinia.
+								Aliquam vel erat sagittis, maximus felis sed, consequat turpis.
+								Duis vitae rhoncus est, at iaculis velit. Proin malesuada
+								consequat condimentum.Lorem ipsum dolor sit amet, consectetur
+								adipiscing elit. In luctus nulla non lorem feugiat dignissim.
+								Nam vitae fringilla lorem. Mauris odio tortor, blandit sit amet
+								mi nec, interdum consectetur magna. Quisque non sapien quis est
+								bibendum hendrerit quis at libero. Suspendisse lacinia congue
+								tellus ac volutpat. Curabitur imperdiet purus sed ante elementum
+								porttitor. Nam sed vehicula libero. Vivamus id augue nec velit
+								luctus auctor sit amet ac nisi. Class aptent taciti sociosqu ad
+								litora torquent per conubia nostra, per inceptos himenaeos.
+								Nullam mi sem, luctus sed magna eu, placerat efficitur dolor.
+								Proin magna nisi, dapibus sed lorem eu, pretium iaculis massa.
+								Ut vitae tristique lorem. Vestibulum sagittis lectus in massa
+								ullamcorper lacinia. Aliquam vel erat sagittis, maximus felis
+								sed, consequat turpis. Duis vitae rhoncus est, at iaculis velit.
 								Proin malesuada consequat condimentum.
 							</p>
-						</PerfectScrollbar>
+						</Scrollbars>
 					</div>
 				</div>
 				<div className='landing-box box-2'>

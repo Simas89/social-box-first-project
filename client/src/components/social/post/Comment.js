@@ -1,5 +1,6 @@
 import React from "react";
 import "./css/Comment.css";
+import { useHistory } from "react-router-dom";
 import PopUpMenu from "./PopUpMenu";
 import moment from "moment";
 import TextArea from "./TextArea";
@@ -15,6 +16,7 @@ const Comment = (props) => {
 		props.textContent
 	);
 	const [editMode, setEditMode] = React.useState(false);
+	const history = useHistory();
 	// console.log(props);
 
 	const trigDel = () => {
@@ -52,8 +54,10 @@ const Comment = (props) => {
 						alt={""}
 					/>
 				</div>
-				<div className='info'>
-					<p>{props.userName}</p>
+				<div className='info cursor-pointer'>
+					<p onClick={() => history.push(`/container/users/${props.userName}`)}>
+						{props.userName}
+					</p>
 				</div>
 				<div className='info'>
 					<p>•</p>

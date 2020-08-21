@@ -20,7 +20,7 @@ const AllUsersPage = () => {
 				inputValue: usersState.inputValue,
 				contactsOnly: usersState.contactsOnly,
 			});
-		});
+		}); //eslint-disable-next-line
 	}, []);
 
 	const handleInputVal = (e) => {
@@ -50,8 +50,8 @@ const AllUsersPage = () => {
 				inputValue: usersState.inputValue,
 				contactsOnly: usersState.contactsOnly,
 			});
-		});
-	}, [usersState.contactsOnly, usersState.inputValue]);
+		}); //eslint-disable-next-line
+	}, []);
 
 	const showUser = (userName) => {
 		history.push(`/container/users/${userName}`);

@@ -63,8 +63,8 @@ const UserProfile = (props) => {
 			(res) => {
 				contextPost.setPosts(res.getPosts);
 			}
-		);
-	}, [props.userName]);
+		); //eslint-disable-next-line
+	}, []);
 
 	const items = context.accountState.items.map((item) => {
 		return {
@@ -156,7 +156,7 @@ const UserProfile = (props) => {
 	// };
 	// const element = <FontAwesomeIcon icon={faCoffee} />;
 
-	console.log(profileInfo.settings);
+	// console.log(profileInfo.settings);
 
 	return (
 		<div>
@@ -215,16 +215,16 @@ const UserProfile = (props) => {
 										</p>
 									)}
 								</div>
-								Account status:{" "}
+								{profileInfo.verified && (
+									<FontAwesomeIcon
+										icon={faRibbon}
+										style={{ fontSize: "35px" }}
+										color='orange'
+									/>
+								)}
 								{profileInfo.verified ? "Verified" : "Not verified"}
-								<FontAwesomeIcon
-									className='hover-pointer'
-									icon={faRibbon}
-									style={{ fontSize: "35px" }}
-									color='orange'
-								/>
 								<br></br>
-								Member since: {profileInfo.dateJoined}
+								Member since {profileInfo.dateJoined}
 							</div>
 							{props.userName !== context.accountState.user && (
 								<div className='present'>
@@ -258,6 +258,7 @@ const UserProfile = (props) => {
 									_id={item._id}
 									index={index}
 									userName={item.userName}
+									isVerified={item.isVerified}
 									textContent={item.textContent}
 									timestamp={item.timestamp}
 									isOnline={item.isOnline}

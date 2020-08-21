@@ -53,6 +53,9 @@ $colorTone: rgb(115, 172, 98);
 		.shift-2 {
 			left: -200%;
 			transition: 0.2s;
+			&:hover {
+				cursor: pointer;
+			}
 		}
 		.shift-3 {
 			left: -300%;

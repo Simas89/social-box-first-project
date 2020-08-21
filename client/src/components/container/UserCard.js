@@ -5,6 +5,9 @@ import { useHistory } from "react-router-dom";
 import addRemoveUser from "../../functions/addRemoveUser";
 import myContext from "../../context/account/myContext";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRibbon } from "@fortawesome/free-solid-svg-icons";
+
 const UserCard = (props) => {
 	const history = useHistory();
 	const context = React.useContext(myContext);
@@ -35,6 +38,13 @@ const UserCard = (props) => {
 					<p onClick={() => history.push(`/container/users/${props.userName}`)}>
 						{props.userName}
 					</p>
+					{props.verified && (
+						<FontAwesomeIcon
+							icon={faRibbon}
+							style={{ fontSize: "28px" }}
+							color='orange'
+						/>
+					)}
 					<div className='pulse-c'>
 						{props.showOnline && <PulsatingCircle isOnline={props.isOnline} />}
 					</div>

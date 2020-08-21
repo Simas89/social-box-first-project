@@ -32,6 +32,9 @@ $colorTone: rgb(115, 172, 98);
 				.name {
 					font-weight: bold;
 					font-size: 1.5rem;
+					&:hover {
+						cursor: pointer;
+					}
 				}
 			}
 			.date-posted {

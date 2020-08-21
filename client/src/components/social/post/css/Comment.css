@@ -57,3 +57,7 @@
 .comment-body .comment-middle p {
   white-space: pre-line;
 }
+
+.cursor-pointer:hover {
+  cursor: pointer;
+}

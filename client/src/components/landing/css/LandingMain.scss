@@ -52,7 +52,7 @@ body {
 		margin-bottom: auto;
 		padding: 40px 15px 15px 15px;
 		// background-color: lightgray;
-		// border: 1px solid orange;
+		border: 1px solid orange;
 		&:before {
 			content: "";
 			position: absolute;
@@ -218,15 +218,17 @@ body {
 		// background-image: $bgImage;
 
 		.landing-box {
+			border: 3px solid red;
 			height: 500px;
 			// min-height: 320px;
 			// margin-top: auto;
 			// height: 100vh;
 			// margin-bottom: auto;
 
-			// background-color: lightgray;
+			background-color: lightgray;
 			// border: 3px solid white;
 			.box-content {
+				border: 3px solid red;
 				display: grid;
 				.form-navigaror {
 					display: none;

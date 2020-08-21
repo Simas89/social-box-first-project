@@ -3,6 +3,7 @@ import {
 	TOGGLE_REMEMBER_ME,
 	SET_USER_INPUT,
 	USER_INPUTS_CLEAR,
+	MESSAGE_CLEAR,
 	SET_MSG_INPUT,
 	TOGGLE_FOCUSED,
 	CAN_ANIMATE_PSW2,
@@ -35,6 +36,12 @@ export default (state, action) => {
 					psw1: "",
 					psw2: "",
 				},
+			};
+		}
+		case MESSAGE_CLEAR: {
+			return {
+				...state,
+				msgInputs: { guest: "", email: "", msg: "" },
 			};
 		}
 		case SET_MSG_INPUT: {

@@ -7,6 +7,7 @@ import {
 	TOGGLE_REMEMBER_ME,
 	SET_USER_INPUT,
 	USER_INPUTS_CLEAR,
+	MESSAGE_CLEAR,
 	SET_MSG_INPUT,
 	TOGGLE_FOCUSED,
 	CAN_ANIMATE_PSW2,
@@ -48,6 +49,9 @@ const LandingState = (props) => {
 	const user_inputs_clear = () => {
 		dispatch({ type: USER_INPUTS_CLEAR });
 	};
+	const message_clear = () => {
+		dispatch({ type: MESSAGE_CLEAR });
+	};
 	const set_msg_input = (payload) => {
 		dispatch({
 			type: SET_MSG_INPUT,
@@ -73,6 +77,7 @@ const LandingState = (props) => {
 				toggle_remember_me,
 				set_user_input,
 				user_inputs_clear,
+				message_clear,
 				set_msg_input,
 				toggle_focused,
 				can_animate_psw2,

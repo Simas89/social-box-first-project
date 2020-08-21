@@ -6,6 +6,8 @@ import axios from "axios";
 import verificationFetch from "../../functions/verificationFetch";
 import ImgCropperis from "./ImgCroperis";
 import graphqlFetch from "../../functions/graphqlFetch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRibbon } from "@fortawesome/free-solid-svg-icons";
 
 const Account = () => {
 	const context = React.useContext(myContext);
@@ -131,8 +133,13 @@ const Account = () => {
 
 						{context.accountState.verified ? (
 							<React.Fragment>
-								<p>Account is verified</p>
-								<p>Email: {context.accountState.email}</p>
+								<FontAwesomeIcon
+									icon={faRibbon}
+									style={{ fontSize: "35px" }}
+									color='orange'
+								/>
+								Verified
+								<p>{context.accountState.email}</p>
 							</React.Fragment>
 						) : (
 							<React.Fragment>
@@ -150,7 +157,7 @@ const Account = () => {
 								</div>
 							</React.Fragment>
 						)}
-						<p>Joined: {context.accountState.dateJoined.toString()} </p>
+						<p>Member since {context.accountState.dateJoined.toString()} </p>
 						<div className='line'></div>
 						<div className='show-online'>
 							<span>Show my online status:</span>

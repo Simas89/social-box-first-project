@@ -40,6 +40,10 @@
   font-size: 1.5rem;
 }
 
+.post-body .top-section .post-info-top .user-titles .name:hover {
+  cursor: pointer;
+}
+
 .post-body .top-section .post-info-top .date-posted {
   font-size: 0.8rem;
 }

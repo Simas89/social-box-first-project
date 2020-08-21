@@ -52,6 +52,10 @@
   transition: 0.2s;
 }
 
+.top-kiautas .master-button-wrapper .shift-2:hover {
+  cursor: pointer;
+}
+
 .top-kiautas .master-button-wrapper .shift-3 {
   left: -300%;
   transition: 0.2s;

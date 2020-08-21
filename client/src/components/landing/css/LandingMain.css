@@ -39,6 +39,7 @@
   margin-top: auto;
   margin-bottom: auto;
   padding: 40px 15px 15px 15px;
+  border: 1px solid orange;
 }
 
 .landing-main .landing-box:before {
@@ -193,9 +194,12 @@
     background-image: none;
   }
   .landing-main .landing-box {
+    border: 3px solid red;
     height: 500px;
+    background-color: lightgray;
   }
   .landing-main .landing-box .box-content {
+    border: 3px solid red;
     display: grid;
   }
   .landing-main .landing-box .box-content .form-navigaror {

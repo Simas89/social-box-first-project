@@ -75,6 +75,7 @@ const SocialWindow = () => {
 						_id={item._id}
 						index={index}
 						userName={item.userName}
+						isVerified={item.isVerified}
 						textContent={item.textContent}
 						timestamp={item.timestamp}
 						isOnline={item.isOnline}

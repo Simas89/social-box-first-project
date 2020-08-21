@@ -2,6 +2,8 @@ const { buildSchema } = require("graphql");
 
 const schema = buildSchema(`
 	type Query{
+    emailMe(guest: String, email: String, msg: String) : String
+
     addPost(token : String, textContent: String): String
     getPosts(TYPE: String, clientUserName: String, target: String ) : [POST]
     editPost(_id: String, textContent: String) : String
@@ -17,6 +19,7 @@ const schema = buildSchema(`
   type POST{
     _id: String
     userName: String
+    isVerified: Boolean
     textContent: String 
     timestamp: String
     isOnline: Boolean

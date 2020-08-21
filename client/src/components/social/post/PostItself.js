@@ -1,5 +1,6 @@
 import React from "react";
 import "./css/PostItself.css";
+import { useHistory } from "react-router-dom";
 import moment from "moment";
 import BoxLike from "./BoxLike";
 import Comment from "./Comment";
@@ -8,11 +9,11 @@ import myContext from "../../../context/account/myContext";
 import postContext from "../../../context/post/postContext";
 import TextArea from "./TextArea";
 import graphqlFetch from "../../../functions/graphqlFetch";
-
 import PulsatingCircle from "../PulsatingCircle";
-
 import { Scrollbars } from "react-custom-scrollbars";
 import { Twemoji } from "react-emoji-render";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRibbon } from "@fortawesome/free-solid-svg-icons";
 
 const PostItself = (props) => {
 	// 💩
@@ -24,6 +25,7 @@ const PostItself = (props) => {
 	);
 	const [editMode, setEditMode] = React.useState(0);
 	const [commentText, setCommentText] = React.useState("");
+	const history = useHistory();
 	// console.log(commentText);
 
 	const myRef = React.useRef();
@@ -68,7 +70,18 @@ const PostItself = (props) => {
 				</div>
 				<div className='post-info-top'>
 					<div className='user-titles'>
-						<span className='name'>{props.userName}</span>
+						<span
+							onClick={() => history.push(`/container/users/${props.userName}`)}
+							className='name'>
+							{props.userName}
+						</span>
+						{props.isVerified && (
+							<FontAwesomeIcon
+								icon={faRibbon}
+								style={{ fontSize: "20px" }}
+								color='orange'
+							/>
+						)}
 						<PulsatingCircle isOnline={props.isOnline} />
 					</div>
 					<div className='date-posted'>

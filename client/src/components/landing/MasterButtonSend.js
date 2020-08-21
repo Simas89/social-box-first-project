@@ -34,8 +34,13 @@ const MasterButtonSend = (props) => {
 					setFreeze(true);
 
 					graphqlFetch(query, (res) => {
-						// console.log(res);
-						res.messageToMe === "OK" ? setEmailSuccess(1) : setEmailSuccess(0);
+						console.log(res);
+						if (res.emailMe === "OK") {
+							contextLanding.message_clear();
+							setEmailSuccess(1);
+						} else {
+							setEmailSuccess(0);
+						}
 						setStage(3);
 					});
 				}
@@ -55,7 +60,7 @@ const MasterButtonSend = (props) => {
 	};
 
 	const query = `
-	messageToMe(guest: "${contextLanding.state.msgInputs.guest}" ,
+	emailMe(guest: "${contextLanding.state.msgInputs.guest}" ,
 	email: "${contextLanding.state.msgInputs.email}" ,
 	msg: "${contextLanding.state.msgInputs.msg}"
 	)`;
@@ -65,9 +70,14 @@ const MasterButtonSend = (props) => {
 			<div className={`master-button-wrapper `}>
 				<div
 					className={`contents ${stageClassReturn()}`}
-					onClick={() => buttonManager("exec")}
+					onClick={() =>
+						contextLanding.state.msgInputs.msg && buttonManager("exec")
+					}
 					onMouseEnter={() =>
-						props.msg1 === "OK" && stage !== 3 && buttonManager(2)
+						contextLanding.state.msgInputs.msg &&
+						props.msg1 === "OK" &&
+						stage !== 3 &&
+						buttonManager(2)
 					}
 					onMouseLeave={() =>
 						props.msg1 === "OK" && stage !== 3 && buttonManager(1)
