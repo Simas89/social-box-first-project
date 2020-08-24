@@ -5,12 +5,6 @@ const profileImgSmall = require("../schemas/profileImgSmall");
 module.exports = function (receiver, format, link, text1, link2) {
 	UserModel.findOne({ userName_tlc: receiver.toLowerCase() }).then(
 		(resultat) => {
-			console.log("receiver:", receiver);
-			console.log("format:", format);
-			console.log("link:", link);
-			console.log("text1:", text1);
-			console.log("link2:", link2);
-
 			if (receiver !== link) {
 				if (format === "POST_COMMENT") {
 					console.log("POST_COMMENT");
