@@ -25,10 +25,15 @@
 }
 
 .user-profile .profile-card .main-info {
+  position: relative;
+  margin-bottom: 60px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 0 15px;
+}
+
+.user-profile .profile-card .main-info .basic {
+  margin-left: 10px;
 }
 
 .user-profile .profile-card .main-info .basic .title {
@@ -48,6 +53,7 @@
 }
 
 .user-profile .profile-card .main-info .present {
+  margin-left: 10px;
   border: 1px solid red;
 }
 
@@ -57,6 +63,33 @@
 
 .user-profile .profile-card .main-info .present .select input {
   width: 40px;
+}
+
+.user-profile .profile-card .main-info .stats {
+  bottom: -60px;
+  position: absolute;
+  width: 100%;
+  border: 1px solid green;
+  height: 60px;
+  justify-self: flex-end;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-profile .profile-card .main-info .stats .stats-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  height: 100%;
+  width: 50px;
+}
+
+.user-profile .profile-card .main-info .stats .stats-box span {
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .hover-pointer:hover {

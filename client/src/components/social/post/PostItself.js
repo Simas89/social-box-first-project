@@ -13,7 +13,7 @@ import PulsatingCircle from "../PulsatingCircle";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Twemoji } from "react-emoji-render";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRibbon } from "@fortawesome/free-solid-svg-icons";
+import { faRibbon, faComments } from "@fortawesome/free-solid-svg-icons";
 
 const PostItself = (props) => {
 	// 💩
@@ -27,6 +27,7 @@ const PostItself = (props) => {
 	const [commentText, setCommentText] = React.useState("");
 	const history = useHistory();
 	// console.log(commentText);
+	const [isCommentsBarOpen, setIsCommentsBarOpen] = React.useState(false);
 
 	const myRef = React.useRef();
 	React.useEffect(() => myRef.current.scrollToBottom(), []);
@@ -59,6 +60,10 @@ const PostItself = (props) => {
 
 	// console.log(contextPost.state.posts[props.index]);
 
+	const openComments = () => {
+		setIsCommentsBarOpen(!isCommentsBarOpen);
+	};
+
 	return (
 		<div className='post-body'>
 			<div className='top-section'>
@@ -71,7 +76,7 @@ const PostItself = (props) => {
 				<div className='post-info-top'>
 					<div className='user-titles'>
 						<span
-							onClick={() => history.push(`/container/users/${props.userName}`)}
+							onClick={() => history.push(`/app/users/${props.userName}`)}
 							className='name'>
 							{props.userName}
 						</span>
@@ -114,54 +119,70 @@ const PostItself = (props) => {
 						</p>
 					)}
 				</div>
-				<BoxLike index={props.index} />
-				{props.edited && (
-					<p className='modified'>
-						Edited{" "}
-						{moment(
-							parseInt(contextPost.state.posts[props.index].edited)
-						).fromNow()}
-					</p>
-				)}
+				<div className='comments-and-likes'>
+					{props.edited && (
+						<p className='modified'>
+							Edited{" "}
+							{moment(
+								parseInt(contextPost.state.posts[props.index].edited)
+							).fromNow()}
+						</p>
+					)}
+					{contextPost.state.posts[props.index].comments.length ? (
+						<div onClick={openComments} className='comments-info'>
+							<span>
+								{contextPost.state.posts[props.index].comments.length}
+							</span>
+							<FontAwesomeIcon
+								icon={faComments}
+								style={{ fontSize: "20px" }}
+								color='rgb(114, 170, 98)'
+							/>
+						</div>
+					) : null}
+					<BoxLike index={props.index} />
+				</div>
 			</div>
 
 			<div className='bottom-section'>
 				<div className='comments-content'>
 					<Scrollbars
+						style={{ transition: "0.3s" }}
 						ref={myRef}
 						// onClick={() => console.log(myRef)}
 						autoHeight
 						autoHeightMin={0}
-						autoHeightMax={350}
+						autoHeightMax={isCommentsBarOpen ? 500 : 200}
 						autoHide
 						autoHideTimeout={2000}
 						autoHideDuration={200}
 						thumbMinSize={3}
 						universal={true}>
-						{contextPost.state.posts &&
-							contextPost.state.posts[props.index].comments.map(
-								(comment, i) => {
-									return (
-										<Comment
-											key={comment._id}
-											_id={comment._id}
-											index={i}
-											postIndex={props.index}
-											userName={comment.userName}
-											textContent={comment.textContent}
-											timestamp={comment.timestamp}
-											edited={comment.edited}
-											imgsmall={comment.imgsmall}
-										/>
-									);
-								}
-							)}
+						{contextPost.state.posts
+							? contextPost.state.posts[props.index].comments.map(
+									(comment, i) => {
+										return (
+											<Comment
+												key={comment._id}
+												_id={comment._id}
+												index={i}
+												postIndex={props.index}
+												userName={comment.userName}
+												textContent={comment.textContent}
+												timestamp={comment.timestamp}
+												edited={comment.edited}
+												imgsmall={comment.imgsmall}
+											/>
+										);
+									}
+							  )
+							: null}
 					</Scrollbars>
 				</div>
 
 				<TextArea
 					style={{ padding: "5px" }}
-					placeholder='Write a comment.. testing'
+					placeholder='Comment..'
 					value={commentText}
 					minRows={1}
 					setText={(txt) => setCommentText(txt)}

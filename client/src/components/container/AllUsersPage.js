@@ -54,7 +54,7 @@ const AllUsersPage = () => {
 	}, []);
 
 	const showUser = (userName) => {
-		history.push(`/container/users/${userName}`);
+		history.push(`/app/users/${userName}`);
 	};
 
 	return (

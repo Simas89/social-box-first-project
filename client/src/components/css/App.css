@@ -1,10 +1,13 @@
 .main .top-bar {
-  height: 200px;
+  position: relative;
+  height: 250px;
   display: flex;
   justify-content: center;
   background-image: url("../../img/bg.jpg");
   background-size: cover;
   background-position: center;
+  background: #011627;
+  background: linear-gradient(45deg, #011627 10%, #3e863d 100%);
 }
 
 .main .top-bar .top-bar-content {
@@ -16,47 +19,13 @@
   max-width: 1024px;
 }
 
-.main .top-bar .top-bar-content .nav-links {
-  font-family: "MuseoModerno", cursive;
-  color: white;
-  font-weight: 500;
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 8fr 200px;
-  flex-grow: 1;
-  max-width: 100%;
-  height: 2rem;
-}
-
-.main .top-bar .top-bar-content .nav-links .fill-1 {
-  display: flex;
-  align-items: center;
-}
-
-.main .top-bar .top-bar-content .nav-links .fill-1 .nav-icon {
-  cursor: pointer;
-}
-
-.main .top-bar .top-bar-content .nav-links .fill-2 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.main .top-bar .top-bar-content .nav-links .fill-2 div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin: auto;
-  cursor: pointer;
-}
-
-.main .top-bar .top-bar-content .nav-links .fill-2 div .iconas {
-  display: none;
-}
-
 .main .top-bar .top-bar-content h1 {
+  font-size: 2.2rem;
+  letter-spacing: 0.1rem;
+}
+
+.main .top-bar .top-bar-content .h1-main {
+  z-index: 1;
   top: 10px;
   left: 60px;
   position: absolute;
@@ -64,25 +33,101 @@
   color: white;
 }
 
+.main .top-bar .top-bar-content .h1-second {
+  z-index: 0;
+  top: -12px;
+  left: 63px;
+  position: absolute;
+  font-family: "MuseoModerno", cursive;
+  color: white;
+  mix-blend-mode: soft-light;
+}
+
 .main .top-bar .top-bar-content .exit-icon {
+  z-index: 2;
   user-select: none;
   position: absolute;
-  top: 21px;
+  top: 15px;
   right: 0;
-  color: grey;
-  transition: ease-in-out 0.3s color;
+  color: white;
+  opacity: 0.5;
+  transition: ease-in-out 0.3s opacity;
   cursor: pointer;
 }
 
 .main .top-bar .top-bar-content .exit-icon:hover {
-  color: #c8c8c8;
+  opacity: 1;
+}
+
+.main .top-bar .top-bar-content .nav-links {
+  font-family: "MuseoModerno", cursive;
+  color: white;
+  font-weight: 500;
+  position: relative;
+  width: 100%;
+  height: 80px;
+  height: 50px;
+  display: flex;
+  padding-left: 20px;
+}
+
+.main .top-bar .top-bar-content .nav-links .nav-links-box {
+  width: 70px;
+  z-index: 1;
+  margin: 0 80px 0px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main .top-bar .top-bar-content .nav-links .nav-links-box:hover {
+  cursor: pointer;
+}
+
+.main .top-bar .top-bar-content .nav-links .nav-links-box .nav-links-icon {
+  font-size: 20px;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.main .top-bar .top-bar-content .nav-links .nav-links-box .nav-links-icon-path {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+.main .top-bar .top-bar-content .nav-links .nav-links-box .nav-links-icon-hover:hover {
+  opacity: 0.8;
+  transform: scale(1.2);
+}
+
+.main .top-bar .top-bar-shader {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.main .top-bar .top-bar-shader .box {
+  z-index: 1;
+  opacity: 0.2;
+  transition: 0.7s;
+  min-width: 40px;
+  border-left: 1px solid white;
+  mix-blend-mode: soft-light;
+}
+
+.main .top-bar .top-bar-shader .box:hover {
+  opacity: 0.8;
+  transition: 0.2s;
 }
 
 .main .App {
+  z-index: 2;
   position: relative;
   max-width: 1024px;
   margin: auto;
-  top: -80px;
+  top: -100px;
   background-color: white;
   border-radius: 20px;
 }

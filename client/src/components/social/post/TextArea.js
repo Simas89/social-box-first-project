@@ -8,9 +8,10 @@ import { Picker } from "emoji-mart";
 const TextArea = (props) => {
 	const [isEmojiOn, setIsEmojiOn] = React.useState(false);
 	const onEmojiChoose = (emoji) => {
-		console.log(emoji);
+		// console.log(emoji);
 		props.setText(props.value + emoji.native);
 	};
+	const ref = React.useRef(null);
 
 	return (
 		<React.Fragment>
@@ -45,6 +46,12 @@ const TextArea = (props) => {
 			<div style={{ position: "relative" }}>
 				{isEmojiOn && (
 					<Picker
+						ref={ref}
+						onClick={(e) => {
+							console.log(ref);
+							console.log(e.target);
+						}}
+						color='rgb(62, 134, 61)'
 						title='Pick your emoji…'
 						emoji='point_up'
 						emojiSize={20}

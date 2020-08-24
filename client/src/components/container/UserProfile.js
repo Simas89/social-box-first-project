@@ -8,12 +8,15 @@ import postContext from "../../context/post/postContext";
 import PostItself from "../social/post/PostItself";
 import PulsatingCircle from "../social/PulsatingCircle";
 import addRemoveUser from "../../functions/addRemoveUser";
+import FourOhFour from "./FourOhFour";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faUserPlus,
 	faCheck,
 	faRibbon,
+	faComments,
+	faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 
 const UserProfile = (props) => {
@@ -61,6 +64,13 @@ const UserProfile = (props) => {
 		graphqlFetch(
 			gqlGetPostsQuery("USER", context.accountState.user, props.userName),
 			(res) => {
+				res.getPosts.sort((a, b) => {
+					return a.timestamp < b.timestamp
+						? 1
+						: b.timestamp < a.timestamp
+						? -1
+						: 0;
+				});
 				contextPost.setPosts(res.getPosts);
 			}
 		); //eslint-disable-next-line
@@ -247,6 +257,24 @@ const UserProfile = (props) => {
 									</button>
 								</div>
 							)}
+							<div className='stats'>
+								<div className='stats-box'>
+									<FontAwesomeIcon
+										icon={faEdit}
+										style={{ fontSize: "24px" }}
+										color='black'
+									/>
+									<span>15</span>
+								</div>
+								<div className='stats-box'>
+									<FontAwesomeIcon
+										icon={faComments}
+										style={{ fontSize: "24px" }}
+										color='black'
+									/>
+									<span>5</span>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div className='social-window'>
@@ -269,7 +297,7 @@ const UserProfile = (props) => {
 					</div>
 				</div>
 			) : (
-				<h1>404 Couldn't find this user (╯°□°）╯︵ ┻━┻</h1>
+				<FourOhFour type='user' />
 			)}
 		</div>
 	);

@@ -1,16 +1,21 @@
 // @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap");
+// Utilities
+@import "./utilities/_variables";
+
 .main {
 	// max-width: 100vw;
 	// border: 1px solid blue;
 	.top-bar {
-		height: 200px;
+		position: relative;
+		height: 250px;
 		// border: 2px green solid;
 		display: flex;
 		justify-content: center;
 		background-image: url("../../img/bg.jpg");
 		background-size: cover;
 		background-position: center;
-
+		background: #011627;
+		background: linear-gradient(45deg, #011627 10%, $nodeDark 100%);
 		.top-bar-content {
 			position: relative;
 			display: flex;
@@ -20,76 +25,129 @@
 			flex-grow: 1;
 			// border: 2px solid black;
 			max-width: 1024px;
-
-			.nav-links {
-				font-family: "MuseoModerno", cursive;
-				color: white;
-				font-weight: 500;
-				position: relative;
-				display: grid;
-				grid-template-columns: 1fr 8fr 200px;
-
-				flex-grow: 1;
-				max-width: 100%;
-				height: 2rem;
-				// border: 1px solid blue;
-
-				.fill-1 {
-					display: flex;
-					align-items: center;
-					// background-color: red;
-
-					.nav-icon {
-						cursor: pointer;
-					}
-				}
-				.fill-2 {
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-					div {
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						// border: 1px solid white;
-						width: 100%;
-						// height: 100%;
-						margin: auto;
-						cursor: pointer;
-						.iconas {
-							display: none;
-						}
-					}
-				}
+			h1 {
+				font-size: 2.2rem;
+				letter-spacing: 0.1rem;
 			}
 
-			h1 {
+			.h1-main {
+				z-index: 1;
 				top: 10px;
 				left: 60px;
 				position: absolute;
 				font-family: "MuseoModerno", cursive;
 				color: white;
 			}
+			.h1-second {
+				z-index: 0;
+				top: -12px;
+				left: 63px;
+				position: absolute;
+				font-family: "MuseoModerno", cursive;
+				color: white;
+				// mix-blend-mode: overlay;
+				mix-blend-mode: soft-light;
+			}
 			.exit-icon {
+				z-index: 2;
 				user-select: none;
 				position: absolute;
-				top: 21px;
+				top: 15px;
 				right: 0;
-				color: grey;
-				transition: ease-in-out 0.3s color;
+				color: white;
+				opacity: 0.5;
+				transition: ease-in-out 0.3s opacity;
 				cursor: pointer;
 
 				&:hover {
-					color: rgb(200, 200, 200);
+					opacity: 1;
+				}
+			}
+
+			.nav-links {
+				font-family: "MuseoModerno", cursive;
+				color: white;
+				font-weight: 500;
+				position: relative;
+
+				width: 100%;
+				height: 80px;
+				// border: 1px solid blue;
+				height: 50px;
+				display: flex;
+
+				padding-left: 20px;
+				.nav-links-box {
+					width: 70px;
+					z-index: 1;
+					// border: 1px solid black;
+					margin: 0 80px 0px 0;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					&:hover {
+						cursor: pointer;
+					}
+					.nav-links-icon {
+						font-size: 20px;
+						opacity: 0.7;
+						transition: 0.3s;
+						// &:hover {
+						// 	opacity: 0.8;
+						// 	transform: scale(1.2);
+						// }
+					}
+					.nav-links-icon-path {
+						opacity: 1;
+						transform: scale(1.5);
+					}
+					.nav-links-icon-hover {
+						&:hover {
+							opacity: 0.8;
+							transform: scale(1.2);
+						}
+					}
 				}
 			}
 		}
+		.top-bar-shader {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			// border: 5px solid black;
+			display: flex;
+			.box {
+				z-index: 1;
+				opacity: 0.2;
+				transition: 0.7s;
+				min-width: 40px;
+				border-left: 1px solid white;
+				// mix-blend-mode: overlay;
+				mix-blend-mode: soft-light;
+				&:hover {
+					opacity: 0.8;
+					transition: 0.2s;
+				}
+			}
+		}
+		// .mask {
+		// 	position: absolute;
+		// 	height: 100%;
+		// 	width: 200px;
+		// 	border-radius: 30px;
+		// 	border: 2px solid grey;
+		// 	background-color: indigo;
+		// 	left: 50px;
+		// 	top: 100px;
+		// }
 	}
 	.App {
+		z-index: 2;
 		position: relative;
 		max-width: 1024px;
 		margin: auto;
-		top: -80px;
+		top: -100px;
 		background-color: white;
 		border-radius: 20px;
 		// overflow: hidden;

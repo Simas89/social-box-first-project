@@ -3,11 +3,9 @@ const Post = require("../schemas/post");
 const Comment = require("../schemas/comment");
 const mailer = require("../functions/mailer");
 const jwt = require("jsonwebtoken");
-const config = require("config");
 
 const calcIsOnline = require("../middleware/calcIsOnline");
 
-const cryptSecret = config.get("cryptSecret");
 const notificationPUSH = require("../functions/notificationPUSH");
 
 const commentConverter = (comments) => {
@@ -95,7 +93,7 @@ const approvesConverter = (post) => {
 const rootValue = {
 	addPost: async (args) => {
 		let userResult;
-		const decoded = jwt.verify(args.token, cryptSecret);
+		const decoded = jwt.verify(args.token, "UltraSecret");
 		// console.log(args);
 		// console.log(decoded);
 		await UserModel.findById(decoded.user_id).then((res) => {
@@ -117,6 +115,7 @@ const rootValue = {
 		let post = [];
 		let testPost = [];
 		if (args.TYPE === "SINGLE") {
+			console.log(args);
 			await Post.find({ _id: args.target })
 				.populate("imgsmall")
 				.populate({
@@ -147,13 +146,20 @@ const rootValue = {
 
 		if (args.TYPE === "FEED") {
 			let testPost = [];
-			feedPopulate = async () => {
+			const feedPopulate = async () => {
 				const promise = new Promise((resolve) => {
 					UserModel.findOne(
 						{ userName: args.clientUserName },
 						async (err, user) => {
+							// console.log(user.contacts.list);
+							//Adding current user to users contact list to get full feed of posts
+							let feedUsersList = [
+								...user.contacts.list,
+								{ userName: args.clientUserName },
+							];
+							//
 							await Promise.all(
-								user.contacts.list.map(async (element) => {
+								feedUsersList.map(async (element) => {
 									// console.log(element);
 									await Post.find({ userName: element.userName })
 										.populate("imgsmall")
@@ -172,7 +178,13 @@ const rootValue = {
 				});
 				await promise; // wait until the promise resolves (*)
 			};
+
 			await feedPopulate();
+			// console.log(posts);
+			// setTimeout(() => {
+			// 	console.log(post);
+			// }, 10);
+
 			return post;
 		}
 	},
@@ -311,6 +323,7 @@ const rootValue = {
 		return param;
 	},
 
+	/////
 	emailMe: async (args) => {
 		console.log(args);
 		mailer(

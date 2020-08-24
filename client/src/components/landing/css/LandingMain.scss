@@ -20,7 +20,7 @@ body {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	height: 100vh;
-	// border: 1px solid red;
+	border: 1px solid red;
 	// background-image: $bgImage;
 	// background-color: black;
 	background-size: cover;
@@ -194,6 +194,7 @@ body {
 }
 @media (max-width: 768px) {
 	.parallax {
+		display: none;
 		top: -300px;
 		position: absolute;
 		display: block;
@@ -206,29 +207,29 @@ body {
 		background-position: center;
 
 		will-change: transform;
-		transition: 0.2s;
+		// transition: 0.2s;
 	}
 	.landing-main {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr 1fr 1fr;
-		height: 2300px;
+		height: 300vh;
 		// height: 2000px;
 		background-image: none;
 		// background-image: $bgImage;
 
 		.landing-box {
-			border: 3px solid red;
-			height: 500px;
+			border: 1px solid red;
+			height: 600px;
 			// min-height: 320px;
 			// margin-top: auto;
 			// height: 100vh;
 			// margin-bottom: auto;
 
-			background-color: lightgray;
+			// background-color: lightgray;
 			// border: 3px solid white;
 			.box-content {
-				border: 3px solid red;
+				// border: 3px solid red;
 				display: grid;
 				.form-navigaror {
 					display: none;

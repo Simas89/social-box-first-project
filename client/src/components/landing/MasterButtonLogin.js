@@ -36,7 +36,7 @@ const MasterButtonLogin = (props) => {
 				if (data.status === "LOGGING IN") {
 					contextLanding.user_inputs_clear();
 					contextAccount.accountState.logIn(data);
-					history.push("/container");
+					history.push("/app");
 				} else {
 					setStage({ stage: 3, msg: data.status });
 					setFreeze(true);

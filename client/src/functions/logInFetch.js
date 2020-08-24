@@ -1,7 +1,10 @@
 const logInFetch = async (logData, callback) => {
 	await fetch("http://localhost:2000/login", {
 		method: "post",
-		headers: { "Content-Type": "application/json" },
+		headers: {
+			"Content-Type": "application/json",
+			"x-auth-token": sessionStorage.getItem("token"),
+		},
 		body: JSON.stringify({
 			aotoLogin: logData.aotoLogin,
 			rememberMe: logData.rememberMe,

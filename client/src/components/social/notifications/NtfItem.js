@@ -23,7 +23,7 @@ const NtfItem = (props) => {
 			return (
 				<React.Fragment>
 					<strong>
-						<Link to={`/container/users/${props.messageBody.link}`}>
+						<Link to={`/app/users/${props.messageBody.link}`}>
 							{props.messageBody.link}
 						</Link>
 					</strong>{" "}
@@ -36,7 +36,7 @@ const NtfItem = (props) => {
 			return (
 				<React.Fragment>
 					<strong>
-						<Link to={`/container/users/${props.messageBody.link}`}>
+						<Link to={`/app/users/${props.messageBody.link}`}>
 							{props.messageBody.link}
 						</Link>
 					</strong>
@@ -53,7 +53,7 @@ const NtfItem = (props) => {
 						}}>
 						<Link
 							onClick={contextPost.resetPosts}
-							to={`/container/post/${props.messageBody.link2}`}>
+							to={`/app/post/${props.messageBody.link2}`}>
 							{"post"}
 						</Link>
 					</strong>
@@ -65,7 +65,7 @@ const NtfItem = (props) => {
 			return (
 				<React.Fragment>
 					<strong>
-						<Link to={`/container/users/${props.messageBody.link}`}>
+						<Link to={`/app/users/${props.messageBody.link}`}>
 							{props.messageBody.link}
 						</Link>
 					</strong>
@@ -85,7 +85,7 @@ const NtfItem = (props) => {
 								contextPost.resetPosts();
 								contextSocial.notificationBarOff();
 							}}
-							to={`/container/post/${props.messageBody.link2}`}>
+							to={`/app/post/${props.messageBody.link2}`}>
 							{"post"}
 						</Link>
 					</strong>

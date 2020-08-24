@@ -22,7 +22,16 @@ const SocialWindow = () => {
 
 	const getPosts = (query) => {
 		graphqlFetch(query, (res) => {
-			// console.log(res);
+			console.log(res);
+
+			res.getPosts.sort((a, b) => {
+				return a.timestamp < b.timestamp
+					? 1
+					: b.timestamp < a.timestamp
+					? -1
+					: 0;
+			});
+
 			contextPost.setPosts(res.getPosts);
 		});
 	};

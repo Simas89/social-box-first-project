@@ -11,6 +11,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100vh;
+  border: 1px solid red;
   background-size: cover;
   background-position: center;
   font-family: "MuseoModerno", cursive;
@@ -175,6 +176,7 @@
 
 @media (max-width: 768px) {
   .parallax {
+    display: none;
     top: -300px;
     position: absolute;
     display: block;
@@ -184,22 +186,19 @@
     background-size: cover;
     background-position: center;
     will-change: transform;
-    transition: 0.2s;
   }
   .landing-main {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    height: 2300px;
+    height: 300vh;
     background-image: none;
   }
   .landing-main .landing-box {
-    border: 3px solid red;
-    height: 500px;
-    background-color: lightgray;
+    border: 1px solid red;
+    height: 600px;
   }
   .landing-main .landing-box .box-content {
-    border: 3px solid red;
     display: grid;
   }
   .landing-main .landing-box .box-content .form-navigaror {

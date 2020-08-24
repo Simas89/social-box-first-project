@@ -17,7 +17,7 @@ const LandingLogged = () => {
 			</div>
 			<div className='logged-button-wrapper'>
 				<div
-					onClick={() => history.push("/container")}
+					onClick={() => history.push("/app")}
 					className='logged-button-return'>
 					Return
 				</div>

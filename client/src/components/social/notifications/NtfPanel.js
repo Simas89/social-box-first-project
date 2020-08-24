@@ -9,6 +9,13 @@ const NtfPanel = () => {
 	const bodyRef = React.useRef(null);
 	const scrollRef = React.useRef(null);
 	const contextSocial = React.useContext(socialContext);
+	const [autoHeightMax, setAutoHeightMax] = React.useState(0);
+
+	const animatingHeightMax = () => {
+		setTimeout(() => setAutoHeightMax(450), 1);
+	};
+
+	React.useEffect(() => animatingHeightMax(), []);
 
 	useOutsideClick(bodyRef, () => {
 		contextSocial.notificationBarOff();
@@ -23,7 +30,10 @@ const NtfPanel = () => {
 	return (
 		<React.Fragment>
 			{contextSocial.notifications.length !== 0 && (
-				<div className='ntf-panel' ref={bodyRef}>
+				<div
+					className='ntf-panel'
+					ref={bodyRef}
+					style={{ maxHeight: autoHeightMax, transition: ".3s ease-in-out" }}>
 					<div className='top-sec'>
 						<span>Recent Activity</span>
 						<div className='actions'>
@@ -46,12 +56,13 @@ const NtfPanel = () => {
 					</div>
 					<div className='middle'>
 						<Scrollbars
+							// style={{ transition: "2.4s" }}
 							ref={scrollRef}
 							onScroll={testRef}
 							// onClick={() => console.log(myRef)}
 							autoHeight
 							autoHeightMin={0}
-							autoHeightMax={450}
+							autoHeightMax={400}
 							autoHide
 							autoHideTimeout={2000}
 							autoHideDuration={200}

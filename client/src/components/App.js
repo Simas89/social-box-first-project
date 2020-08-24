@@ -1,8 +1,6 @@
 import React from "react";
 import "./css/App.css";
-import { useHistory } from "react-router-dom";
-import { Icon } from "semantic-ui-react";
-import MiniConsole from "./other/MiniConsole";
+import { useHistory, useLocation } from "react-router-dom";
 
 import myContext from "../context/account/myContext";
 import socialContext from "../context/social/socialContext";
@@ -13,6 +11,14 @@ import NotificationsContentBlock from "./social/NotificationsContentBlock";
 import NtfNews from "./social/notifications/NtfNews";
 import NtfPanel from "./social/notifications/NtfPanel";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faSignOutAlt,
+	faHome,
+	faUsers,
+	faCog,
+} from "@fortawesome/free-solid-svg-icons";
+
 function App(props) {
 	// override landings page body overflow hidden
 	document.querySelector("body").style.overflow = "auto";
@@ -21,6 +27,7 @@ function App(props) {
 	const contextSocial = React.useContext(socialContext);
 
 	const history = useHistory();
+	let location = useLocation();
 
 	React.useEffect(() => {
 		window.scrollTo(0, 0);
@@ -31,67 +38,116 @@ function App(props) {
 			<React.Fragment>
 				<div className='main'>
 					<div className='top-bar'>
+						<div className='top-bar-shader'>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+							<div className='box'></div>
+						</div>
+
+						<div className='mask'></div>
 						<div className='top-bar-content'>
-							<h1>
-								{" "}
-								{`Welcome back, ${context.accountState.user} `}
-								<MiniConsole />
-							</h1>
-							<Icon
+							<div>
+								<h1 className='h1-main'>
+									{`Welcome back, ${context.accountState.user} `}
+								</h1>
+								<h1 className='h1-second'>
+									{`Welcome back, ${context.accountState.user} `}
+								</h1>
+							</div>
+
+							<FontAwesomeIcon
 								className='exit-icon'
 								onClick={() => history.push("/")}
-								name='sign out'
-								size='large'
+								icon={faSignOutAlt}
+								style={{ fontSize: "24px" }}
 							/>
 							<div className='nav-links'>
-								<div className='fill-1'>
-									<Icon
-										className='nav-icon'
-										onClick={() => history.push("/container")}
-										name='home'
-										size='large'
+								<div
+									className='nav-links-box'
+									onClick={() => history.push("/app")}>
+									<FontAwesomeIcon
+										className={`nav-links-icon ${
+											location.pathname === "/app"
+												? "nav-links-icon-path"
+												: "nav-links-icon-hover"
+										}`}
+										icon={faHome}
 									/>
+									{/* <span>Home</span> */}
 								</div>
-								<div className='fill-2'>
-									<div onClick={() => history.push("/container/users")}>
-										<Icon
-											className='iconas'
-											onClick={() => history.push("/")}
-											name='users'
-											size='large'
-										/>
-										<p>Users</p>
-									</div>
-									<div onClick={() => history.push("/container/items")}>
-										<Icon
-											className='iconas'
-											onClick={() => history.push("/")}
-											name='warehouse'
-											size='large'
-										/>
-										<p>Items</p>
-									</div>
-									<div onClick={() => history.push("/container/market")}>
-										<Icon
-											className='iconas'
-											onClick={() => history.push("/")}
-											name='money'
-											size='large'
-										/>
-										<p>Market</p>
-									</div>
 
-									<div onClick={() => history.push("/container/account")}>
-										<Icon
-											className='iconas'
-											onClick={() => history.push("/")}
-											name='setting'
-											size='large'
-										/>
-										<p>Account</p>
-									</div>
+								<div
+									className='nav-links-box'
+									onClick={() => history.push("/app/users")}>
+									<FontAwesomeIcon
+										className={`nav-links-icon ${
+											location.pathname === "/app/users"
+												? "nav-links-icon-path"
+												: "nav-links-icon-hover"
+										}`}
+										icon={faUsers}
+									/>
+									{/* <span>Users</span> */}
 								</div>
-								<div className='fill-1'></div>
+
+								<div
+									className='nav-links-box'
+									onClick={() => history.push("/app/account")}>
+									<FontAwesomeIcon
+										className={`nav-links-icon ${
+											location.pathname === "/app/account"
+												? "nav-links-icon-path"
+												: "nav-links-icon-hover"
+										}`}
+										icon={faCog}
+									/>
+									{/* <span>Account</span> */}
+								</div>
 							</div>
 						</div>
 					</div>

@@ -3,6 +3,7 @@ const graphqlFetch = (query, callback) => {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
+			"x-auth-token": sessionStorage.getItem("token"),
 			Accept: "application/json",
 		},
 		body: JSON.stringify({

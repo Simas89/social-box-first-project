@@ -3,18 +3,18 @@ const bcrypt = require("bcrypt-nodejs");
 const UserModel = require("../schemas/userSchema");
 const userStateReturn = require("../functions/userStateReturn");
 const jwt = require("jsonwebtoken");
-const config = require("config");
-const cryptSecret = config.get("cryptSecret");
 
 const router = express.Router();
 
 router.post("/", (req, res) => {
 	console.log(req.body);
 	let isRememberMe = false;
-	req.body.rememberMe && (isRememberMe = true);
+	if (req.body.rememberMe) {
+		isRememberMe = true;
+	}
 	const typeOfUserSearch = () => {
 		if (req.body.aotoLogin) {
-			const decoded = jwt.verify(req.body.aotoLogin, cryptSecret);
+			const decoded = jwt.verify(req.body.aotoLogin, "UltraSecret");
 			isRememberMe = true;
 			return { _id: decoded.user_id };
 		} else {
@@ -24,37 +24,45 @@ router.post("/", (req, res) => {
 
 	UserModel.findOne(typeOfUserSearch(), (error, result) => {
 		if (result) {
-			// console.log(result);
-			if (
-				isRememberMe === false
-					? bcrypt.compareSync(req.body.userPsw, result.userPsw)
-					: true
-			) {
+			let PASS = false;
+			if (isRememberMe) {
+				if (req.body.aotoLogin) {
+					// console.log("log in with token");
+					PASS = true;
+				} else {
+					// console.log("no auto token compare passwords");
+					if (bcrypt.compareSync(req.body.userPsw, result.userPsw)) {
+						PASS = true;
+					} else {
+						res.status(400).json({ status: "INVALID CREDENTIALS" });
+					}
+				}
+			} else {
+				// console.log("compare passwords to pass");
+				if (bcrypt.compareSync(req.body.userPsw, result.userPsw)) {
+					PASS = true;
+				} else {
+					res.status(400).json({ status: "INVALID CREDENTIALS" });
+				}
+			}
+
+			if (PASS) {
 				// tokens stuff -START-
 				jwt.sign(
 					{ user_id: result._id },
-					cryptSecret,
+					"UltraSecret",
 					{ expiresIn: isRememberMe ? 100000000 : 360000 },
 					(err, token) => {
 						if (err) {
 							console.log(err);
 							res.status(500).json("ERROR GENERATING TOKEN");
 						}
-						res.status(200).json(
-							userStateReturn(
-								result,
-								"LOGGING IN",
-								token,
-								// set to true if rememberMe: true ot aotoLogin
-								isRememberMe
-							)
-						);
+						res
+							.status(200)
+							.json(userStateReturn(result, "LOGGING IN", token, isRememberMe));
 					}
 				);
-				result.save();
-
-				// tokens stuff -END-
-			} else res.status(400).json({ status: "INVALID CREDENTIALS" }); // invalid credentials
+			}
 		} else res.status(400).json({ status: "INVALID CREDENTIALS" });
 		if (error) {
 			res.status(400).json({ status: "DATABASE ERROR", err: error });

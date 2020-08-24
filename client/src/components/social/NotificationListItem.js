@@ -20,7 +20,7 @@ const NotificationListItem = (props) => {
 			return (
 				<React.Fragment>
 					<strong>
-						<Link to={`/container/users/${props.messageBody.link}`}>
+						<Link to={`/app/users/${props.messageBody.link}`}>
 							{props.messageBody.link}
 						</Link>
 					</strong>{" "}
@@ -35,7 +35,7 @@ const NotificationListItem = (props) => {
 			return (
 				<React.Fragment>
 					<strong>
-						<Link to={`/container/users/${props.messageBody.link}`}>
+						<Link to={`/app/users/${props.messageBody.link}`}>
 							{props.messageBody.link}
 						</Link>
 					</strong>
@@ -52,7 +52,7 @@ const NotificationListItem = (props) => {
 						}}>
 						<Link
 							onClick={contextPost.resetPosts}
-							to={`/container/post/${props.messageBody.link2}`}>
+							to={`/app/post/${props.messageBody.link2}`}>
 							{"post"}
 						</Link>
 					</strong>
@@ -63,7 +63,7 @@ const NotificationListItem = (props) => {
 			return (
 				<React.Fragment>
 					<strong>
-						<Link to={`/container/users/${props.messageBody.link}`}>
+						<Link to={`/app/users/${props.messageBody.link}`}>
 							{props.messageBody.link}
 						</Link>
 					</strong>
@@ -83,7 +83,7 @@ const NotificationListItem = (props) => {
 								contextPost.resetPosts();
 								contextSocial.notificationBarOff();
 							}}
-							to={`/container/post/${props.messageBody.link2}`}>
+							to={`/app/post/${props.messageBody.link2}`}>
 							{"post"}
 						</Link>
 					</strong>
@@ -102,7 +102,7 @@ const NotificationListItem = (props) => {
 	return (
 		<Feed.Event style={{ height: "50px" }}>
 			{props.messageBody.format === "USERLINK_TEXT" ? (
-				<Link to={`/container/users/${props.messageBody.link}`}></Link>
+				<Link to={`/app/users/${props.messageBody.link}`}></Link>
 			) : (
 				<Image
 					floated='left'

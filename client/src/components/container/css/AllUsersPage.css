@@ -1,4 +1,9 @@
+.users-page .users-page-header {
+  margin-left: 100px;
+}
+
 .users-page .users-page-grid {
+  margin: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;

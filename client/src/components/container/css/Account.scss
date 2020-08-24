@@ -5,8 +5,9 @@
 	border: 1px solid black;
 
 	.top {
+		position: relative;
 		margin: 10px;
-		// border: 1px solid red;
+		border: 1px solid red;
 		border-radius: 20px;
 		overflow: hidden;
 		display: grid;
@@ -83,6 +84,17 @@
 			justify-content: center;
 			// width: 100%;
 			// border: 1px solid blue;
+		}
+	}
+	.bottom {
+		position: relative;
+		margin: 10px;
+		.bottom-market {
+			border: 1px solid red;
+			// border-radius: 20px;
+			overflow: hidden;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 	.gridtc {

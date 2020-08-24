@@ -6,7 +6,11 @@ import addRemoveUser from "../../functions/addRemoveUser";
 import myContext from "../../context/account/myContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRibbon } from "@fortawesome/free-solid-svg-icons";
+import {
+	faRibbon,
+	faComments,
+	faEdit,
+} from "@fortawesome/free-solid-svg-icons";
 
 const UserCard = (props) => {
 	const history = useHistory();
@@ -35,7 +39,7 @@ const UserCard = (props) => {
 			</div>
 			<div className='info-block'>
 				<div className='user-name'>
-					<p onClick={() => history.push(`/container/users/${props.userName}`)}>
+					<p onClick={() => history.push(`/app/users/${props.userName}`)}>
 						{props.userName}
 					</p>
 					{props.verified && (
@@ -60,6 +64,24 @@ const UserCard = (props) => {
 							}`}></i>
 					</div>
 				)}
+				<div className='stats'>
+					<div className='stats-box'>
+						<FontAwesomeIcon
+							icon={faEdit}
+							style={{ fontSize: "24px" }}
+							color='black'
+						/>
+						<span>15</span>
+					</div>
+					<div className='stats-box'>
+						<FontAwesomeIcon
+							icon={faComments}
+							style={{ fontSize: "24px" }}
+							color='black'
+						/>
+						<span>5</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

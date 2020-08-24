@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 const LikesBuble = (props) => {
 	const history = useHistory();
 	const handleClick = () => {
-		history.push(`/container/users/${props.userName}`);
+		history.push(`/app/users/${props.userName}`);
 	};
 	return (
 		<div

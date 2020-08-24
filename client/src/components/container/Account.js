@@ -8,6 +8,8 @@ import ImgCropperis from "./ImgCroperis";
 import graphqlFetch from "../../functions/graphqlFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRibbon } from "@fortawesome/free-solid-svg-icons";
+import Item from "./Item";
+import marketItemsDataFetch from "../../functions/marketItemsDataFetch";
 
 const Account = () => {
 	const context = React.useContext(myContext);
@@ -16,6 +18,26 @@ const Account = () => {
 	const [delAcc, setDelAcc] = React.useState(0);
 	const [psw, setPsw] = React.useState("");
 	const [dellServerMsg, setDellServerMsg] = React.useState("");
+
+	const [marketState, setMarketState] = React.useState([]);
+	React.useEffect(() => {
+		marketItemsDataFetch((data) => {
+			setMarketState(data);
+		});
+	}, []);
+	const checkAmountInContainer = (element) => {
+		let value = 0;
+		try {
+			value =
+				context.accountState.items[
+					context.accountState.items.findIndex(
+						(iii) => iii.itemName === element.itemName
+					)
+				].amount;
+		} finally {
+			return value;
+		}
+	};
 
 	// console.log(psw);
 	// console.log(delAcc);
@@ -120,13 +142,12 @@ const Account = () => {
 							src={`data:${context.accountState.profilePic.mimetype};base64,${context.accountState.profilePic.base64}`}></img>
 					</div>
 				)}
-
 				<div className={`info-div ${file && "none"}`}>
 					<div className='main-info'>
 						<p
 							className='userName'
 							onClick={() =>
-								history.push(`/container/users/${context.accountState.user}`)
+								history.push(`/app/users/${context.accountState.user}`)
 							}>
 							{context.accountState.user}
 						</p>
@@ -189,6 +210,22 @@ const Account = () => {
 					uploadResult={uploadResult}
 					cancel={() => setFile(null)}
 				/>
+			</div>
+			<div className='bottom'>
+				ITEMS<p>Cr: {context.accountState.credits}</p>
+				<div className='bottom-market'>
+					{marketState.map((element) => (
+						<Item
+							key={element.id}
+							displayedAt={"MARKET"}
+							pending={context.accountState.pending}
+							credits={context.accountState.credits}
+							itemName={element.itemName}
+							price={element.price}
+							amount={checkAmountInContainer(element)}
+						/>
+					))}
+				</div>
 			</div>
 
 			<input

@@ -20,6 +20,13 @@ const CreatePostBar = () => {
 				graphqlFetch(
 					gqlGetPostsQuery("FEED", context.accountState.user),
 					(res) => {
+						res.getPosts.sort((a, b) => {
+							return a.timestamp < b.timestamp
+								? 1
+								: b.timestamp < a.timestamp
+								? -1
+								: 0;
+						});
 						contextPost.setPosts(res.getPosts);
 					}
 				);

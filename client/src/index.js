@@ -22,7 +22,7 @@ ReactDOM.render(
 					<LandingState>
 						<PostState>
 							<Route exact path='/' component={LandingMain} />
-							<Route path='/container' component={App} />
+							<Route path='/app' component={App} />
 						</PostState>
 					</LandingState>
 				</SocialState>

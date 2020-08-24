@@ -4,6 +4,7 @@ import postContext from "../../../context/post/postContext";
 import PostItself from "../../social/post/PostItself";
 import graphqlFetch from "../../../functions/graphqlFetch";
 import gqlGetPostsQuery from "../../../functions/gqlGetPostsQuery";
+import FourOhFour from "../../container/FourOhFour";
 
 const SinglePostContainer = (props) => {
 	const contextPost = React.useContext(postContext);
@@ -20,12 +21,13 @@ const SinglePostContainer = (props) => {
 	const getPosts = (query) => {
 		graphqlFetch(query, (res) => {
 			contextPost.setPosts(res.getPosts);
+			console.log("res:", res);
 		});
 	};
 
 	return (
 		<React.Fragment>
-			{contextPost.state.posts &&
+			{contextPost.state.posts ? (
 				contextPost.state.posts.map((item, index) => (
 					<PostItself
 						key={item._id}
@@ -39,7 +41,10 @@ const SinglePostContainer = (props) => {
 						edited={item.edited}
 						imgsmall={item.imgsmall}
 					/>
-				))}
+				))
+			) : (
+				<FourOhFour type='post' />
+			)}
 		</React.Fragment>
 	);
 };

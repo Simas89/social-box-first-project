@@ -81,9 +81,9 @@ const PostState = (props) => {
 		dispatch({ type: DELETE_COMMENT, payload: data });
 		graphqlFetch(`delComment(_id: "${data._id}")`, (res) => {});
 	};
-	console.log(state);
+	// console.log(state);
 
-	// console.log("PostState:", state.posts);
+	console.log("PostState:", state.posts);
 
 	return (
 		<postContext.Provider

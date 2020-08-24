@@ -55,7 +55,7 @@ const Comment = (props) => {
 					/>
 				</div>
 				<div className='info cursor-pointer'>
-					<p onClick={() => history.push(`/container/users/${props.userName}`)}>
+					<p onClick={() => history.push(`/app/users/${props.userName}`)}>
 						{props.userName}
 					</p>
 				</div>

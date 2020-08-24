@@ -1,7 +1,7 @@
 .user-card {
   overflow: hidden;
   border-radius: 15px;
-  height: 188px;
+  height: 187px;
   display: grid;
   grid-template-columns: 250px auto;
   box-shadow: 0 0 2px 1px lightgray;
@@ -18,16 +18,18 @@
 }
 
 .user-card .info-block {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-left: 20px;
+  margin-bottom: 60px;
 }
 
 .user-card .info-block .user-name {
   position: relative;
   display: flex;
   align-items: center;
+  margin-left: 25px;
 }
 
 .user-card .info-block .user-name p {
@@ -44,6 +46,34 @@
 
 .user-card .info-block .user-icon {
   font-size: 1.6rem;
+  margin-left: 25px;
+}
+
+.user-card .info-block .stats {
+  bottom: -60px;
+  position: absolute;
+  width: 100%;
+  border: 1px solid green;
+  height: 60px;
+  justify-self: flex-end;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-card .info-block .stats .stats-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  height: 100%;
+  width: 50px;
+}
+
+.user-card .info-block .stats .stats-box span {
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .cursor-pointer:hover {

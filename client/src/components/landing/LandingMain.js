@@ -2,7 +2,6 @@ import React from "react";
 import "./css/LandingMain.css";
 import Formike from "./Formike";
 import { Scrollbars } from "react-custom-scrollbars";
-import "react-perfect-scrollbar/dist/css/styles.css";
 
 const MovingContainer = (props) => {
 	const style = {
@@ -44,7 +43,7 @@ const LandingMain = () => {
 		setWindowWidth(window.innerWidth);
 	};
 	document.addEventListener("resize", resizeEvent);
-	document.addEventListener("scroll", scrollEvent);
+	// document.addEventListener("scroll", scrollEvent);
 
 	React.useEffect(() => {
 		return () => {

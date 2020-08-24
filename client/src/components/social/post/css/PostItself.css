@@ -51,7 +51,12 @@
 .post-body .middle-section {
   position: relative;
   border: 1px solid green;
-  padding: 20px 50px 40px 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-body .middle-section .text-box {
+  margin: 10px 50px 10px 50px;
 }
 
 .post-body .middle-section .text-box .TextareaAutosize {
@@ -72,11 +77,33 @@
   white-space: pre-line;
 }
 
-.post-body .middle-section .modified {
+.post-body .middle-section .comments-and-likes {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  bottom: 0;
+  width: 100%;
+}
+
+.post-body .middle-section .comments-and-likes .comments-info {
+  margin-right: 35px;
+  display: flex;
+}
+
+.post-body .middle-section .comments-and-likes .comments-info:hover {
+  cursor: pointer;
+}
+
+.post-body .middle-section .comments-and-likes .comments-info span {
+  margin-right: 5px;
+}
+
+.post-body .middle-section .comments-and-likes .modified {
+  left: 50px;
+  margin: 0;
   color: grey;
   position: absolute;
   font-size: 0.8rem;
-  margin-top: 20px;
 }
 
 .post-body .bottom-section {
@@ -86,7 +113,6 @@
 
 .post-body .bottom-section .comments-content {
   position: relative;
-  overflow: hidden;
   border: 1px solid red;
   display: grid;
 }

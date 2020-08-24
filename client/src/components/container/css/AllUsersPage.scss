@@ -1,8 +1,10 @@
 .users-page {
 	.users-page-header {
+		margin-left: 100px;
 	}
 	// border: 1px solid blue;
 	.users-page-grid {
+		margin: 10px;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 10px;
