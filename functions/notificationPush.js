@@ -108,4 +108,4 @@ const notificationPUSH = function (receiver, format, link, text1, link2) {
 	);
 };
 
-module.exports = notificationPUSH;
+export default notificationPUSH;
