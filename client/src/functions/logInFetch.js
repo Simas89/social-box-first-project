@@ -1,5 +1,5 @@
 const logInFetch = async (logData, callback) => {
-	await fetch("/login", {
+	await fetch("http://localhost:2000/login", {
 		method: "post",
 		headers: {
 			"Content-Type": "application/json",
