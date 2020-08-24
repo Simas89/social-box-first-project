@@ -1,4 +1,4 @@
-module.exports = async (userName, isListed, callback) => {
+const addRemoveUser = async (userName, isListed, callback) => {
 	await fetch("http://localhost:2000/users/addremove", {
 		method: "get",
 		headers: {
@@ -16,3 +16,4 @@ module.exports = async (userName, isListed, callback) => {
 			console.log(err);
 		});
 };
+export default addRemoveUser;
