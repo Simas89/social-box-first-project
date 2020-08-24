@@ -1,6 +1,6 @@
 const logInFetch = async (logData, callback) => {
-	console.log(process.env.PORT);
-	await fetch("http://localhost:2000/login", {
+	// console.log(process.env.PORT);
+	await fetch("/login", {
 		method: "post",
 		headers: {
 			"Content-Type": "application/json",
