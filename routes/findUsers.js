@@ -2,8 +2,12 @@ const express = require("express");
 const auth = require("../middleware/auth");
 const UserModel = require("../schemas/userSchema");
 const ContactsList = require("../schemas/contactsListMODEL");
-const notificationpush = require("../functions/notificationpush");
+// const notificationpush = require("../functions/notificationpush");
 const calcIsOnline = require("../middleware/calcIsOnline");
+
+const notificationpush = () => {
+	console.log("lol");
+};
 
 const router = express.Router();
 
