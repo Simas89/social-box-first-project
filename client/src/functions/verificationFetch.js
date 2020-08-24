@@ -20,4 +20,4 @@ const verificationFetch = async (callback) => {
 	} else callback({ status: "You have entered an invalid email address" });
 };
 
-module.exports = verificationFetch;
+export default verificationFetch;

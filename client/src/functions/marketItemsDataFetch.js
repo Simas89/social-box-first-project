@@ -19,4 +19,4 @@ const marketItemsDataFetch = async (callback) => {
 		});
 };
 
-module.exports = marketItemsDataFetch;
+export default marketItemsDataFetch;

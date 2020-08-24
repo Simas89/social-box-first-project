@@ -23,4 +23,4 @@ const logInFetch = async (logData, callback) => {
 		.catch((err) => console.log(err));
 };
 
-module.exports = logInFetch;
+export default logInFetch;

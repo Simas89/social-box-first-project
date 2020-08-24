@@ -1,4 +1,4 @@
-const logInFetch = async (userName) => {
+const logOutFetch = async (userName) => {
 	await fetch("http://localhost:2000/logout", {
 		method: "get",
 		headers: { "Content-Type": "application/json", userName },
@@ -11,4 +11,4 @@ const logInFetch = async (userName) => {
 		.catch((err) => console.log(err));
 };
 
-module.exports = logInFetch;
+export default logOutFetch;

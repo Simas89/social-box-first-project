@@ -12,4 +12,4 @@ const registerFetch = (regData, callback) => {
 		.catch((err) => console.log(err));
 };
 
-module.exports = registerFetch;
+export default registerFetch;

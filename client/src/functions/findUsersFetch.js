@@ -1,4 +1,4 @@
-module.exports = async (searchValue, myContactsOnly, callback) => {
+const findUsersFetch = async (searchValue, myContactsOnly, callback) => {
 	await fetch("http://localhost:2000/users", {
 		method: "get",
 		headers: {
@@ -21,3 +21,5 @@ module.exports = async (searchValue, myContactsOnly, callback) => {
 			console.log(err);
 		});
 };
+
+export default findUsersFetch;
