@@ -2,7 +2,10 @@ const express = require("express");
 const UserModel = require("../schemas/userSchema");
 const getConvertedItemsData = require("../functions/getConvertedItemsData");
 const auth = require("../middleware/auth");
-const notificationPUSH = require("../functions/notificationPUSH");
+// const notificationPUSH = require("../functions/notificationPUSH");
+const notificationpush = () => {
+	console.log("lol");
+};
 
 const router = express.Router();
 
@@ -55,7 +58,7 @@ router.post("/", auth, (req, res) => {
 						result.save();
 						receiver.save();
 
-						notificationPUSH(
+						notificationpush(
 							req.body.toUser,
 							"USERLINK_TEXT",
 							req.body.fromUser,

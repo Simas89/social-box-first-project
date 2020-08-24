@@ -1,8 +1,11 @@
 const express = require("express");
 const UserModel = require("../schemas/userSchema");
 const NotificationsList = require("../schemas/notificationsMODEL");
-const notificationpush = require("../functions/notificationpush");
+// const notificationpush = require("../functions/notificationpush");
 const auth = require("../middleware/auth");
+const notificationpush = () => {
+	console.log("lol");
+};
 
 const router = express.Router();
 
