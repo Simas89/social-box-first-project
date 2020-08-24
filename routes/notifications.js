@@ -1,14 +1,14 @@
 const express = require("express");
 const UserModel = require("../schemas/userSchema");
 const NotificationsList = require("../schemas/notificationsMODEL");
-const notificationPUSH = require("../functions/notificationPUSH");
+const notificationpush = require("../functions/notificationpush");
 const auth = require("../middleware/auth");
 
 const router = express.Router();
 
 router.post("/push", (req, res) => {
 	// console.log(req.body);
-	notificationPUSH(
+	notificationpush(
 		req.body.receiver,
 		"SIMPLE_TEXT",
 		undefined,
