@@ -2,7 +2,7 @@ const UserModel = require("../schemas/userSchema");
 const NotificationsList = require("../schemas/notificationsMODEL");
 const profileImgSmall = require("../schemas/profileImgSmall");
 
-const notificationPush = function (receiver, format, link, text1, link2) {
+const notificationPUSH = function (receiver, format, link, text1, link2) {
 	UserModel.findOne({ userName_tlc: receiver.toLowerCase() }).then(
 		(resultat) => {
 			console.log("receiver:", receiver);
@@ -108,4 +108,4 @@ const notificationPush = function (receiver, format, link, text1, link2) {
 	);
 };
 
-module.exports = notificationPush;
+module.exports = notificationPUSH;
