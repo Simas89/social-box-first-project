@@ -31,7 +31,7 @@ const commentConverter = (comments) => {
 };
 
 const postConverter = (args, res) => {
-	ntf();
+	// ntf();
 	// console.log(args);
 	// console.log(res);
 	return res.map(async (postas) => {
