@@ -139,20 +139,20 @@ body {
 			// border: 1px solid red;
 			& > div:nth-child(1) {
 				overflow-y: scroll !important;
-				// overflow-x: hidden !important;
+				overflow-x: hidden !important;
 				// width: 1px;
 			}
 			& > div:nth-child(2) {
 				display: none;
-				// border: 1px solid red;
+				// border: 1px solid red !important;
 			}
 			& > div:nth-child(3) {
 				// display: none;
-				opacity: 0;
+				// opacity: 0 !important;
 
 				// border: 1px solid red;
 				& div {
-					left: 7px;
+					left: 7px !important;
 					color: black;
 					// border: 1px solid red;
 					width: 1px !important;
