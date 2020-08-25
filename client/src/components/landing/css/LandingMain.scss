@@ -24,6 +24,7 @@ body {
 	// overflow: hidden;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto auto 20px;
 	height: 100vh;
 	min-height: 600px;
 	// border: 1px solid red;
@@ -271,7 +272,7 @@ body {
 		height: 100%;
 		min-height: 35px;
 		width: 100%;
-		// border: 1px solid white;
+		border: 1px solid white;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -311,12 +312,12 @@ body {
 
 @media (max-width: 768px) {
 	body {
-		height: 2240px;
+		// height: 2240px;
 	}
 	.landing-main {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: 1fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr 20px;
 		height: 2240px;
 		overflow: hidden;
 		.title {
