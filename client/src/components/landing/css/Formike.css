@@ -182,11 +182,11 @@
 }
 
 .form-wrapper .inputs-wrapper .log-reg-switch {
+  font-size: 1.1rem;
   user-select: none;
   margin-top: 10px;
   margin-left: 20px;
   color: black;
-  opacity: 0.8;
 }
 
 .form-wrapper .inputs-wrapper .log-reg-switch span {

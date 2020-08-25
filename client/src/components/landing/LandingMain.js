@@ -32,13 +32,13 @@ const LandingMain = () => {
 	// document.querySelector("body").style.overflow = "hidden";
 
 	// EVENT LISTENERS AND THEIR FUNCTIONS
-	const scrollEvent = () => {
-		try {
-			let scrollPosition = window.pageYOffset;
-			const parallax = document.querySelector(".parallax");
-			parallax.style.transform = `translateY(${scrollPosition * 0.6}px)`;
-		} catch (err) {}
-	};
+	// const scrollEvent = () => {
+	// 	try {
+	// 		let scrollPosition = window.pageYOffset;
+	// 		const parallax = document.querySelector(".parallax");
+	// 		parallax.style.transform = `translateY(${scrollPosition * 0.6}px)`;
+	// 	} catch (err) {}
+	// };
 	const resizeEvent = () => {
 		setWindowWidth(window.innerWidth);
 	};
@@ -48,22 +48,24 @@ const LandingMain = () => {
 	React.useEffect(() => {
 		return () => {
 			document.removeEventListener("resize", resizeEvent);
-			document.removeEventListener("scroll", scrollEvent);
+			// document.removeEventListener("scroll", scrollEvent);
 		};
 	}, []);
 
 	// Pge scroll stuff
-	React.useEffect(() => {
-		if (scrollStage === 1) window.scrollTo(0, 0);
-		if (scrollStage === 2) window.scrollTo(0, window.innerHeight);
-		if (scrollStage === 3) window.scrollTo(0, window.innerHeight * 2);
-	}, [scrollStage]);
+	// React.useEffect(() => {
+	// 	if (scrollStage === 1) window.scrollTo(0, 0);
+	// 	if (scrollStage === 2) window.scrollTo(0, window.innerHeight);
+	// 	if (scrollStage === 3) window.scrollTo(0, window.innerHeight * 2);
+	// }, [scrollStage]);
 
-	if (scrollStage === 1) window.scrollTo(0, 0);
-	if (scrollStage === 2) window.scrollTo(0, window.innerHeight);
-	if (scrollStage === 3) window.scrollTo(0, window.innerHeight * 2);
+	// if (scrollStage === 1) window.scrollTo(0, 0);
+	// if (scrollStage === 2) window.scrollTo(0, window.innerHeight);
+	// if (scrollStage === 3) window.scrollTo(0, window.innerHeight * 2);
 
 	// UI <
+	React.useEffect(() => {});
+
 	return (
 		<React.Fragment>
 			<div className='parallax'></div>
@@ -133,6 +135,7 @@ const LandingMain = () => {
 					{/* <h1 className='simas'>Simas Zurauskas</h1> */}
 					<div className='box-content'>
 						<Scrollbars
+							className='Scrollbars'
 							autoHide
 							autoHideTimeout={2000}
 							autoHideDuration={200}

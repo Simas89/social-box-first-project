@@ -181,11 +181,12 @@ $singleInputWrapper-height-600: calc(30px + 1.2rem);
 			transition: opacity 0.1s;
 		}
 		.log-reg-switch {
+			font-size: 1.1rem;
 			user-select: none;
 			margin-top: 10px;
 			margin-left: 20px;
 			color: $colorPrimary;
-			opacity: 0.8;
+			// opacity: 0.8;
 			span {
 				font-weight: bold;
 				cursor: pointer;

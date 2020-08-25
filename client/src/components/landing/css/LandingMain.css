@@ -4,7 +4,13 @@
   font-family: "MuseoModerno", cursive;
 }
 
+body {
+  overflow-x: hidden;
+  width: max-width;
+}
+
 .landing-main {
+  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100vh;
@@ -17,6 +23,7 @@
 }
 
 .landing-main .top-bar-shader {
+  overflow: hidden;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -38,6 +45,7 @@
 }
 
 .landing-main .title {
+  text-align: center;
   margin-top: 40px;
   width: 100%;
   display: flex;
@@ -48,16 +56,16 @@
 }
 
 .landing-main .title div {
+  width: 790px;
   margin-top: 30px;
   position: relative;
-  white-space: nowrap;
+  white-space: pre-wrap;
 }
 
 .landing-main .title h1 {
   font-size: 2.8rem;
   margin: 0;
   color: white;
-  display: block;
   font-family: "MuseoModerno", cursive;
 }
 
@@ -81,6 +89,7 @@
 
 .landing-main .landing-box {
   z-index: 2;
+  overflow: hidden;
   box-shadow: 0 0 40px 2px rgba(0, 0, 0, 0.3);
   position: relative;
   display: grid;
@@ -122,10 +131,28 @@
   height: 100%;
 }
 
+.landing-main .box-content .Scrollbars > div:nth-child(1) {
+  overflow-y: scroll !important;
+}
+
+.landing-main .box-content .Scrollbars > div:nth-child(2) {
+  display: none;
+}
+
+.landing-main .box-content .Scrollbars > div:nth-child(3) {
+  opacity: 0;
+}
+
+.landing-main .box-content .Scrollbars > div:nth-child(3) div {
+  left: 7px;
+  color: black;
+  width: 1px !important;
+}
+
 .landing-main .box-content .informacione {
   background-color: white;
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: auto auto auto auto;
   width: 100%;
 }
 
@@ -215,21 +242,22 @@
   display: none;
 }
 
-@media (max-width: 1000px) {
-  .landing-main .simas {
-    font-size: 2.5rem;
-  }
-  .landing-main .landing-box .form-navigaror {
-    margin-left: calc(50% - 60px);
-  }
-}
-
 @media (max-width: 768px) {
   .landing-main {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    height: 2100px;
+    height: 2160px;
+    overflow: hidden;
+  }
+  .landing-main .title div {
+    width: 360px;
+  }
+  .landing-main .title .full-stack {
+    font-size: 2rem;
+  }
+  .landing-main .title .full-stack-second {
+    font-size: 2rem;
   }
   .landing-main .landing-box {
     height: 600px;
@@ -238,6 +266,9 @@
   .landing-main .landing-box .box-content {
     display: grid;
   }
+  .landing-main .landing-box .box-content .informacione {
+    grid-template-columns: 1fr;
+  }
   .landing-main .landing-box .box-content .form-navigaror {
     display: none;
   }
@@ -245,15 +276,19 @@
     margin-top: 300px;
     margin-left: 0;
     margin-right: 0;
+    border-bottom: 1px solid #72aa62;
   }
   .landing-main .box-2 {
     margin-left: 0;
     margin-right: 0;
+    border-bottom: 1px solid #72aa62;
   }
   .landing-main .box-3 {
     display: grid;
     margin-left: 0;
     margin-right: 0;
+    margin-bottom: 60px;
+    border-bottom: 1px solid #72aa62;
   }
 }
 
