@@ -279,6 +279,9 @@ const LandingMain = () => {
 							}></div>
 					</div>
 				</div>
+				<div className='footer'>
+					<p>2020 SimasZurauskas@gmail.com</p>
+				</div>
 			</div>
 		</React.Fragment>
 	);
