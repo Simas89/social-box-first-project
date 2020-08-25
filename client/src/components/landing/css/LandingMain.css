@@ -1,46 +1,94 @@
 @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   box-sizing: border-box;
-}
-
-.parallax {
-  display: none;
+  font-family: "MuseoModerno", cursive;
 }
 
 .landing-main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100vh;
-  border: 1px solid red;
+  background: linear-gradient(45deg, #011627 10%, #3e863d 100%);
   background-size: cover;
   background-position: center;
-  font-family: "MuseoModerno", cursive;
   font-weight: 300;
   letter-spacing: 0.1rem;
   word-spacing: 0.3rem;
 }
 
-.landing-main .simas {
-  font-family: "MuseoModerno", cursive;
-  font-weight: 500;
+.landing-main .top-bar-shader {
   position: absolute;
-  color: black;
-  font-size: 3rem;
-  top: -30px;
-  left: 40px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.landing-main .top-bar-shader .box {
   z-index: 1;
-  user-select: none;
+  opacity: 0.2;
+  transition: 0.7s;
+  min-width: 40px;
+  border-left: 1px solid white;
+  mix-blend-mode: soft-light;
+}
+
+.landing-main .top-bar-shader .box:hover {
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+.landing-main .title {
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.landing-main .title div {
+  margin-top: 30px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.landing-main .title h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  color: white;
+  display: block;
+  font-family: "MuseoModerno", cursive;
+}
+
+.landing-main .title .simas {
+  font-weight: 200;
+  font-size: 1.5rem;
+}
+
+.landing-main .title .full-stack {
+  z-index: 1;
+}
+
+.landing-main .title .full-stack-second {
+  z-index: 0;
+  top: 3px;
+  left: 3px;
+  position: absolute;
+  color: white;
+  mix-blend-mode: soft-light;
 }
 
 .landing-main .landing-box {
+  z-index: 2;
+  box-shadow: 0 0 40px 2px rgba(0, 0, 0, 0.3);
   position: relative;
   display: grid;
-  height: 70vh;
+  height: 65vh;
   min-height: 320px;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin-top: 220px;
   padding: 40px 15px 15px 15px;
-  border: 1px solid orange;
+  background-color: white;
 }
 
 .landing-main .landing-box:before {
@@ -76,11 +124,13 @@
 
 .landing-main .box-content .informacione {
   background-color: white;
-  padding: 20px;
-  margin: 0 5px 0 0;
   display: grid;
-  grid-template-columns: auto auto auto auto;
-  margin-bottom: 50px;
+  grid-template-columns: auto;
+  width: 100%;
+}
+
+.landing-main .box-content .informacione .logo {
+  margin: 0;
 }
 
 .landing-main .box-content .informacione .mongo {
@@ -94,8 +144,8 @@
 
 .landing-main .box-content .informacione .express {
   margin: auto;
-  height: 100px;
-  width: 290px;
+  height: 70px;
+  width: 220px;
   background-image: url("../../../img/express.png");
   background-size: cover;
   background-position: center;
@@ -175,28 +225,15 @@
 }
 
 @media (max-width: 768px) {
-  .parallax {
-    display: none;
-    top: -300px;
-    position: absolute;
-    display: block;
-    height: 2300px;
-    width: calc(100vw);
-    z-index: 0;
-    background-size: cover;
-    background-position: center;
-    will-change: transform;
-  }
   .landing-main {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    height: 300vh;
-    background-image: none;
+    height: 2100px;
   }
   .landing-main .landing-box {
-    border: 1px solid red;
     height: 600px;
+    margin: 0;
   }
   .landing-main .landing-box .box-content {
     display: grid;
@@ -205,6 +242,7 @@
     display: none;
   }
   .landing-main .box-1 {
+    margin-top: 300px;
     margin-left: 0;
     margin-right: 0;
   }
@@ -216,35 +254,6 @@
     display: grid;
     margin-left: 0;
     margin-right: 0;
-  }
-  .landing-main .mobile-navigator {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 25px;
-    height: 33vh;
-    right: 0;
-    top: 33vh;
-    transition: 0.2s;
-  }
-  .landing-main .mobile-navigator .mobile-navigator-button-hide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-  }
-  .landing-main .mobile-navigator .mobile-navigator-button-hide.mobile-navigator-button-hide:hover > .mobile-navigator-button {
-    transform: scale(2);
-    transition: transform 0.2s;
-  }
-  .landing-main .mobile-navigator .mobile-navigator-button-hide .mobile-navigator-button {
-    height: 5px;
-    width: 5px;
-    margin-right: 5px;
-    border-radius: 50%;
-    background-color: black;
-    transition: transform 0.4s;
   }
 }
 
@@ -266,7 +275,7 @@
   margin-top: -100%;
   box-sizing: border-box;
   border-radius: 50%;
-  background-color: #73ac62;
+  background-color: #3e863d;
   animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
 }
 
@@ -279,8 +288,8 @@
   width: 105%;
   height: 105%;
   border-radius: 50%;
-  background-color: #73ac62;
-  box-shadow: 0 0 3px #73ac62;
+  background-color: #3e863d;
+  box-shadow: 0 0 3px #3e863d;
   animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
   z-index: 1;
 }

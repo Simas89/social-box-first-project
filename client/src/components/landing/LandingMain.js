@@ -68,8 +68,69 @@ const LandingMain = () => {
 		<React.Fragment>
 			<div className='parallax'></div>
 			<div className='landing-main'>
+				<div className='top-bar-shader'>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+					<div className='box'></div>
+				</div>
+
+				<div className='title'>
+					<h1 className='simas'>Hello. My name is Simas Zurauskas and </h1>
+					<div>
+						<h1 className='full-stack'>I AM A FULL-STACK WEB DEVELOPER</h1>
+						<h1 className='full-stack-second'>
+							I AM A FULL-STACK WEB DEVELOPER
+						</h1>
+					</div>
+				</div>
+
 				<div className='landing-box box-1'>
-					<h1 className='simas'>Simas Zurauskas</h1>
+					{/* <h1 className='simas'>Simas Zurauskas</h1> */}
 					<div className='box-content'>
 						<Scrollbars
 							autoHide
@@ -78,10 +139,10 @@ const LandingMain = () => {
 							thumbMinSize={3}
 							universal={true}>
 							<div className='informacione'>
-								<div className='mongo'></div>
-								<div className='express'></div>
-								<div className='react'></div>
-								<div className='node'></div>
+								<div className='logo mongo'></div>
+								<div className='logo express'></div>
+								<div className='logo react'></div>
+								<div className='logo node'></div>
 							</div>
 							<p>
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
