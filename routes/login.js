@@ -13,24 +13,29 @@ router.post("/", (req, res) => {
 		isRememberMe = true;
 	}
 	const typeOfUserSearch = () => {
+		console.log(2);
 		if (req.body.aotoLogin) {
+			console.log(2.1);
 			const decoded = jwt.verify(req.body.aotoLogin, "UltraSecret");
+			console.log(2.2);
 			isRememberMe = true;
 			return { _id: decoded.user_id };
 		} else {
+			console.log(2.3);
 			return { userName_tlc: req.body.userName.toLowerCase() };
 		}
 	};
+	console.log(3);
 
 	UserModel.findOne(typeOfUserSearch(), (error, result) => {
 		if (result) {
 			let PASS = false;
 			if (isRememberMe) {
 				if (req.body.aotoLogin) {
-					// console.log("log in with token");
+					console.log("log in with token");
 					PASS = true;
 				} else {
-					// console.log("no auto token compare passwords");
+					console.log("no auto token compare passwords");
 					if (bcrypt.compareSync(req.body.userPsw, result.userPsw)) {
 						PASS = true;
 					} else {
@@ -38,7 +43,7 @@ router.post("/", (req, res) => {
 					}
 				}
 			} else {
-				// console.log("compare passwords to pass");
+				console.log("compare passwords to pass");
 				if (bcrypt.compareSync(req.body.userPsw, result.userPsw)) {
 					PASS = true;
 				} else {
