@@ -146,7 +146,8 @@ body {
   background-color: transparent !important;
 }
 
-.landing-main .box-content .Scrollbars > div:nth-child(3) div {
+.landing-main .box-content .Scrollbars > div:nth-child(3) > div {
+  right: -7px;
   color: black !important;
   opacity: 1 !important;
   width: 1px !important;

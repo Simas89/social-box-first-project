@@ -159,8 +159,9 @@ body {
 				background-color: rgba(0, 0, 0, 0) !important;
 
 				// border: 1px solid red;
-				& div {
+				& > div {
 					// border: 1px solid red;
+					right: -7px;
 					color: black !important;
 					opacity: 1 !important;
 					width: 1px !important;
