@@ -7,10 +7,10 @@ require("dotenv").config();
 
 const calcIsOnline = require("../middleware/calcIsOnline");
 
-// const notificationPUSH = require("../functions/notificationpush");
-const notificationpush = () => {
-	console.log("lol");
-};
+const notificationpush = require("../functions/notificationpush");
+// const notificationpush = () => {
+// 	console.log("lol");
+// };
 
 const commentConverter = (comments) => {
 	return comments.map((comment) => {
@@ -215,7 +215,7 @@ const rootValue = {
 						likesPack.likedByMe = true;
 						likesPack.approves = approvesConverter(post);
 					});
-				notificationPUSH(
+				notificationpush(
 					post.userName,
 					"POST_LIKE",
 					args.userName,
