@@ -13,21 +13,18 @@ router.post("/", (req, res) => {
 		isRememberMe = true;
 	}
 	const typeOfUserSearch = () => {
-		console.log(2);
 		if (req.body.aotoLogin) {
-			console.log(2.1);
 			const decoded = jwt.verify(req.body.aotoLogin, "UltraSecret");
-			console.log(2.2);
+
 			isRememberMe = true;
 			return { _id: decoded.user_id };
 		} else {
-			console.log(2.3);
 			return { userName_tlc: req.body.userName.toLowerCase() };
 		}
 	};
-	console.log(3);
 
 	UserModel.findOne(typeOfUserSearch(), (error, result) => {
+		console.log(" RESULT: ", result);
 		if (result) {
 			let PASS = false;
 			if (isRememberMe) {
