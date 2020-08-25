@@ -7,10 +7,12 @@ require("dotenv").config();
 
 const calcIsOnline = require("../middleware/calcIsOnline");
 
-const notificationpush = require("../functions/notificationpush");
-// const notificationpush = () => {
+// const notificationpush = require("../functions/notificationpush");
+// const ntf = () => {
 // 	console.log("lol");
 // };
+
+const ntf = require("../functions/ntf");
 
 const commentConverter = (comments) => {
 	return comments.map((comment) => {
@@ -29,6 +31,7 @@ const commentConverter = (comments) => {
 };
 
 const postConverter = (args, res) => {
+	ntf();
 	// console.log(args);
 	// console.log(res);
 	return res.map(async (postas) => {
@@ -215,13 +218,7 @@ const rootValue = {
 						likesPack.likedByMe = true;
 						likesPack.approves = approvesConverter(post);
 					});
-				notificationpush(
-					post.userName,
-					"POST_LIKE",
-					args.userName,
-					"",
-					args.id
-				);
+				ntf(post.userName, "POST_LIKE", args.userName, "", args.id);
 			});
 		});
 
@@ -280,13 +277,7 @@ const rootValue = {
 				};
 				// receiver, format, link, text1, link2
 				await Post.findById(args.postID).then((res) => {
-					notificationpush(
-						res.userName,
-						"POST_COMMENT",
-						args.userName,
-						"",
-						args.postID
-					);
+					ntf(res.userName, "POST_COMMENT", args.userName, "", args.postID);
 				});
 			});
 
