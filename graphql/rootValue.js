@@ -3,16 +3,9 @@ const Post = require("../schemas/post");
 const Comment = require("../schemas/comment");
 const mailer = require("../functions/mailer");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
-
 const calcIsOnline = require("../middleware/calcIsOnline");
-
-// const notificationpush = require("../functions/notificationpush");
-// const ntf = () => {
-// 	console.log("lol");
-// };
-
 const ntf = require("../functions/ntf");
+require("dotenv").config();
 
 const commentConverter = (comments) => {
 	return comments.map((comment) => {

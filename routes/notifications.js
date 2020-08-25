@@ -1,9 +1,7 @@
 const express = require("express");
 const UserModel = require("../schemas/userSchema");
 const NotificationsList = require("../schemas/notificationsMODEL");
-// const notificationpush = require("../functions/notificationpush");
 const auth = require("../middleware/auth");
-
 const ntf = require("../functions/ntf");
 
 const router = express.Router();
