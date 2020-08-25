@@ -1,5 +1,5 @@
 const graphqlFetch = (query, callback) => {
-	fetch("http://localhost:2000/graphql", {
+	fetch("/graphql", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

@@ -1,5 +1,5 @@
 const marketItemsDataFetch = async (callback) => {
-	await fetch("http://localhost:2000/market", {
+	await fetch("/market", {
 		method: "get",
 		headers: {
 			"Content-Type": "application/json",

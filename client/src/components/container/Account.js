@@ -68,7 +68,7 @@ const Account = () => {
 		const fd = new FormData();
 		fd.append("myFile", blob);
 
-		const data = await axios.post("http://localhost:2000/upload", fd, {
+		const data = await axios.post("/upload", fd, {
 			headers: {
 				"Content-Type": "multipart/form-data",
 				user: context.accountState.user,
@@ -92,7 +92,7 @@ const Account = () => {
 			console.log("less");
 			setDellServerMsg("Please enter your password");
 		} else {
-			fetch("http://localhost:2000/delete", {
+			fetch("/delete", {
 				method: "get",
 				headers: {
 					"Content-Type": "application/json",

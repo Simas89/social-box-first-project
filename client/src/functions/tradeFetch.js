@@ -1,7 +1,7 @@
 const tradeFetch = (data, user, token, callback) => {
 	Object.assign(data, { user: user });
 	// console.log("tradeFetch >", data);
-	fetch("http://localhost:2000/container", {
+	fetch("/container", {
 		method: "post",
 		headers: { "Content-Type": "application/json", "x-auth-token": token },
 		body: JSON.stringify(data),

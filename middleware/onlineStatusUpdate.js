@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const UserModel = require("../schemas/userSchema");
 
 module.exports = (header) => {
+	console.log("im here");
 	if (header)
 		try {
 			const decoded = jwt.verify(header, "UltraSecret").user_id;

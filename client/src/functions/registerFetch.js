@@ -1,5 +1,5 @@
 const registerFetch = (regData, callback) => {
-	fetch("http://localhost:2000/register", {
+	fetch("/register", {
 		method: "post",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({

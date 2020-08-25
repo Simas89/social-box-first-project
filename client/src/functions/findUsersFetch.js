@@ -1,5 +1,5 @@
 const findUsersFetch = async (searchValue, myContactsOnly, callback) => {
-	await fetch("http://localhost:2000/users", {
+	await fetch("/users", {
 		method: "get",
 		headers: {
 			"Content-Type": "application/json",

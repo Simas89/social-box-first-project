@@ -1,5 +1,5 @@
 const addRemoveUser = async (userName, isListed, callback) => {
-	await fetch("http://localhost:2000/users/addremove", {
+	await fetch("/users/addremove", {
 		method: "get",
 		headers: {
 			"Content-Type": "application/json",

@@ -1,5 +1,5 @@
 const logOutFetch = async (userName) => {
-	await fetch("http://localhost:2000/logout", {
+	await fetch("/logout", {
 		method: "get",
 		headers: { "Content-Type": "application/json", userName },
 	})

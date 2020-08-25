@@ -40,7 +40,7 @@ const UserProfile = (props) => {
 	}, [context]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	React.useEffect(() => {
-		fetch("http://localhost:2000/userprofile", {
+		fetch("/userprofile", {
 			method: "get",
 			headers: {
 				"x-auth-token": sessionStorage.getItem("token"),

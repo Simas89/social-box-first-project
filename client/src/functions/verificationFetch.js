@@ -3,7 +3,7 @@ const verificationFetch = async (callback) => {
 	const email = document.querySelector(".emailInput").value;
 	// eslint-disable-next-line
 	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-		await fetch("http://localhost:2000/verification", {
+		await fetch("/verification", {
 			method: "get",
 			headers: {
 				"Content-Type": "application/json",
