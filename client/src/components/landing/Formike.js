@@ -86,7 +86,7 @@ const Formike = (props) => {
 							onClick={() =>
 								contextLanding.toggle_focused({ type: "userName", value: true })
 							}>
-							{contextLanding.state.LR ? "Create new account" : "Log in"}
+							{contextLanding.state.LR ? `  Create new account` : "Log in"}
 						</h1>
 						<div className='inputs-wrapper'>
 							{/*-------------          USER NAME        ---------------  */}

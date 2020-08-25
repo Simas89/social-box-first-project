@@ -29,8 +29,8 @@ $singleInputWrapper-height-600: calc(30px + 1.2rem);
 	h1 {
 		position: absolute;
 		align-self: flex-start;
-		top: 0;
-		margin-left: 20px;
+		top: 20px;
+		margin-left: 45px;
 		margin-bottom: 50px;
 		font-family: "MuseoModerno", cursive;
 		font-weight: 300;
@@ -43,6 +43,7 @@ $singleInputWrapper-height-600: calc(30px + 1.2rem);
 		position: relative;
 		width: 80%;
 		// border: 1px solid red;
+		// margin: 0 15px;
 		.single-input-wrapper {
 			position: relative;
 			border-bottom: 1px solid $colorPrimary;

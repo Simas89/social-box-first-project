@@ -81,6 +81,7 @@ const ContextState = (props) => {
 		// setAccountStateALL(false, "", 0, [], "", false, "");
 		history.push("/");
 		logout(accountState.user);
+		setAccountState({ ...accountState, logged: false });
 	};
 	const trade = (data) => {
 		setAccountStateALL(undefined, undefined, undefined, undefined, true);

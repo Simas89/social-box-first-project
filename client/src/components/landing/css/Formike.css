@@ -23,8 +23,8 @@
 .form-wrapper h1 {
   position: absolute;
   align-self: flex-start;
-  top: 0;
-  margin-left: 20px;
+  top: 20px;
+  margin-left: 45px;
   margin-bottom: 50px;
   font-family: "MuseoModerno", cursive;
   font-weight: 300;

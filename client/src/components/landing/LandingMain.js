@@ -2,6 +2,7 @@ import React from "react";
 import "./css/LandingMain.css";
 import Formike from "./Formike";
 import { Scrollbars } from "react-custom-scrollbars";
+import accountContext from "../../context/account/myContext";
 
 const MovingContainer = (props) => {
 	const style = {
@@ -25,6 +26,9 @@ const MovingContainer = (props) => {
 // console.log("/////a/aaaazaz/ss/xs//a/x//xxa/x/s////x///x//");
 
 const LandingMain = () => {
+	const contextAccount = React.useContext(accountContext);
+
+	console.log(contextAccount.accountState.logged);
 	// UI >
 	const [scrollStage, setScrollStage] = React.useState(1);
 	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
@@ -140,6 +144,7 @@ const LandingMain = () => {
 							autoHideTimeout={2000}
 							autoHideDuration={200}
 							thumbMinSize={3}
+							// hideTracksWhenNotNeeded
 							universal={true}>
 							<div className='informacione'>
 								<div className='logo mongo'></div>
@@ -196,7 +201,10 @@ const LandingMain = () => {
 						</Scrollbars>
 					</div>
 				</div>
-				<div className='landing-box box-2'>
+				<div
+					className={`landing-box box-2 ${
+						!contextAccount.accountState.logged && "box-padding"
+					}  `}>
 					<div className='box-content'>
 						{windowWidth > 768 ? (
 							<MovingContainer page={page} />
