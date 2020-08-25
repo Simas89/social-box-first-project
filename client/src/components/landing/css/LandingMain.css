@@ -140,6 +140,10 @@ body {
   display: none;
 }
 
+.landing-main .box-content .Scrollbars > div:nth-child(3) {
+  background-color: transparent !important;
+}
+
 .landing-main .box-content .Scrollbars > div:nth-child(3) div {
   left: 7px !important;
   color: black;
