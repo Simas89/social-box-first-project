@@ -7,10 +7,10 @@ require("dotenv").config();
 
 const calcIsOnline = require("../middleware/calcIsOnline");
 
-// const notificationpush = require("../functions/notificationpush");
-const notificationpush = () => {
-	console.log("lol");
-};
+const notificationpush = require("../functions/notificationpush");
+// const notificationpush = () => {
+// 	console.log("lol");
+// };
 
 const commentConverter = (comments) => {
 	return comments.map((comment) => {
