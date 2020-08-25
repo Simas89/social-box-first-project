@@ -40,7 +40,7 @@ const SocialState = (props) => {
 		});
 
 	const notPush = (textContent) => {
-		fetch("http://localhost:2000/notifications/push", {
+		fetch("/notifications/push", {
 			method: "post",
 			headers: {
 				"Content-Type": "application/json",
@@ -63,7 +63,7 @@ const SocialState = (props) => {
 		page = state.notificationPaginationPage,
 		user = context.accountState.user
 	) => {
-		fetch("http://localhost:2000/notifications/pull", {
+		fetch("/notifications/pull", {
 			method: "get",
 			headers: {
 				"Content-Type": "application/json",

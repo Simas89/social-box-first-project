@@ -3,20 +3,14 @@ const UserModel = require("../schemas/userSchema");
 const NotificationsList = require("../schemas/notificationsMODEL");
 // const notificationpush = require("../functions/notificationpush");
 const auth = require("../middleware/auth");
-const notificationpush = () => {
-	console.log("lol");
-};
+
+const ntf = require("../functions/ntf");
 
 const router = express.Router();
 
 router.post("/push", (req, res) => {
 	// console.log(req.body);
-	notificationpush(
-		req.body.receiver,
-		"SIMPLE_TEXT",
-		undefined,
-		`${req.body.message}`
-	);
+	ntf(req.body.receiver, "SIMPLE_TEXT", undefined, `${req.body.message}`);
 	res.status(200).json("200");
 });
 
