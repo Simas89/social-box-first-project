@@ -1,11 +1,11 @@
 const jwt = require("jsonwebtoken");
 const UserModel = require("../schemas/userSchema");
+require("dotenv").config();
 
 module.exports = (header) => {
-	console.log("im here");
 	if (header)
 		try {
-			const decoded = jwt.verify(header, "UltraSecret").user_id;
+			const decoded = jwt.verify(header, process.env.JWT_SECRET).user_id;
 			UserModel.findOneAndUpdate(
 				{ _id: decoded.toString() },
 				{ isOnline: Date.now() }

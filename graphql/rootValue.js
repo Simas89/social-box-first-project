@@ -3,6 +3,7 @@ const Post = require("../schemas/post");
 const Comment = require("../schemas/comment");
 const mailer = require("../functions/mailer");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const calcIsOnline = require("../middleware/calcIsOnline");
 
@@ -96,7 +97,7 @@ const approvesConverter = (post) => {
 const rootValue = {
 	addPost: async (args) => {
 		let userResult;
-		const decoded = jwt.verify(args.token, "UltraSecret");
+		const decoded = jwt.verify(args.token, process.env.JWT_SECRET);
 		// console.log(args);
 		// console.log(decoded);
 		await UserModel.findById(decoded.user_id).then((res) => {

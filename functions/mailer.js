@@ -1,16 +1,17 @@
 var nodemailer = require("nodemailer");
+require("dotenv").config();
 
 module.exports = function (email, subject, text, callback) {
 	var transporter = nodemailer.createTransport({
 		service: "gmail",
 		auth: {
-			user: "simasdevelopment@gmail.com",
-			pass: "bartez89simsdev",
+			user: process.env.EMAIL_USER,
+			pass: process.env.EMAIL_PSW,
 		},
 	});
 
 	var mailOptions = {
-		from: "simasdevelopment@gmail.com",
+		from: process.env.EMAIL_USER,
 		to: email,
 		subject,
 		text,

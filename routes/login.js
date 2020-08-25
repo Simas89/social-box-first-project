@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt-nodejs");
 const UserModel = require("../schemas/userSchema");
 const userStateReturn = require("../functions/userStateReturn");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.post("/", (req, res) => {
 	}
 	const typeOfUserSearch = () => {
 		if (req.body.aotoLogin) {
-			const decoded = jwt.verify(req.body.aotoLogin, "UltraSecret");
+			const decoded = jwt.verify(req.body.aotoLogin, process.env.JWT_SECRET);
 
 			isRememberMe = true;
 			return { _id: decoded.user_id };
@@ -52,7 +53,7 @@ router.post("/", (req, res) => {
 				// tokens stuff -START-
 				jwt.sign(
 					{ user_id: result._id },
-					"UltraSecret",
+					process.env.JWT_SECRET,
 					{ expiresIn: isRememberMe ? 100000000 : 360000 },
 					(err, token) => {
 						if (err) {

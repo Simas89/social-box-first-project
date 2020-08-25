@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const connectDB = () => {
 	mongoose.connect(
-		"mongodb+srv://Simas:bartez89sims@clusterzero-ecbw8.mongodb.net/MyContainerProduction?retryWrites=true&w=majority",
+		`mongodb+srv://${process.env.DB_HOST}:${process.env.DB_PSW}@clusterzero-ecbw8.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`,
 		{
 			useNewUrlParser: true,
 			useUnifiedTopology: true,

@@ -4,7 +4,6 @@ const UserModel = require("../schemas/userSchema");
 const ContactsList = require("../schemas/contactsListMODEL");
 const NotificationsList = require("../schemas/notificationsMODEL");
 const ProfileImgMicro = require("../schemas/profileImgMicro");
-const ProfileImgSmall = require("../schemas/profileImgSmall");
 const ProfileImgBig = require("../schemas/profileImgBig");
 const Comment = require("../schemas/comment");
 const Post = require("../schemas/post");

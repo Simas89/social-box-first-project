@@ -3,13 +3,14 @@ const jwt = require("jsonwebtoken");
 const UserModel = require("../schemas/userSchema");
 const mailer = require("../functions/mailer");
 const auth = require("../middleware/auth");
+require("dotenv").config();
 
 const router = express.Router();
 
 router.get("/", auth, (req, res) => {
 	jwt.sign(
 		{ user_id: req.decoded, email: req.header("email") },
-		"secret",
+		process.env.JWT_SECRET,
 		{ expiresIn: 86400 },
 		(err, token) => {
 			if (err) {
