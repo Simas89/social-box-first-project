@@ -28,7 +28,7 @@ const MovingContainer = (props) => {
 const LandingMain = () => {
 	const contextAccount = React.useContext(accountContext);
 
-	console.log(contextAccount.accountState.logged);
+	// console.log(contextAccount.accountState.logged);
 	// UI >
 	const [scrollStage, setScrollStage] = React.useState(1);
 	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
@@ -144,8 +144,10 @@ const LandingMain = () => {
 							autoHideTimeout={2000}
 							autoHideDuration={200}
 							thumbMinSize={3}
-							// hideTracksWhenNotNeeded
-							universal={true}>
+							universal={true}
+							renderThumbVertical={(props) => (
+								<div className='thumb-vertical' />
+							)}>
 							<div className='informacione'>
 								<div className='logo mongo'></div>
 								<div className='logo express'></div>
@@ -280,7 +282,9 @@ const LandingMain = () => {
 					</div>
 				</div>
 				<div className='footer'>
-					<p>2020 SimasZurauskas@gmail.com</p>
+					<p>
+						<span>2020 </span>SimasZurauskas@gmail.com
+					</p>
 				</div>
 			</div>
 		</React.Fragment>
