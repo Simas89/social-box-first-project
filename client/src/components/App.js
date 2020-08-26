@@ -19,6 +19,8 @@ import {
 	faCog,
 } from "@fortawesome/free-solid-svg-icons";
 
+import useTimer from "../hooks/useTimer";
+
 function App(props) {
 	// override landings page body overflow hidden
 	document.querySelector("body").style.overflow = "auto";
@@ -30,8 +32,11 @@ function App(props) {
 	let location = useLocation();
 
 	React.useEffect(() => {
+		document.title = "Simas Zurauskas | App";
 		window.scrollTo(0, 0);
 	}, []);
+
+	// useTimer(true, 3, (periods) => console.log("callback", periods));
 
 	return (
 		context.accountState.logged && (

@@ -50,6 +50,7 @@ const LandingMain = () => {
 	// document.addEventListener("scroll", scrollEvent);
 
 	React.useEffect(() => {
+		document.title = "Simas Zurauskas | Home";
 		return () => {
 			document.removeEventListener("resize", resizeEvent);
 			// document.removeEventListener("scroll", scrollEvent);

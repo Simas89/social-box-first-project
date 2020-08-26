@@ -1,7 +1,6 @@
 .user-profile {
-  overflow: hidden;
   border-radius: 20px;
-  border: 1px solid black;
+  border: 1px solid transparent;
 }
 
 .user-profile .profile-card {
