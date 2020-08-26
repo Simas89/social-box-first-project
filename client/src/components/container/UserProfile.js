@@ -27,6 +27,8 @@ const UserProfile = (props) => {
 		dateJoined: null,
 		verified: null,
 		isOnline: false,
+		numberOfComments: 0,
+		numberOfPosts: 0,
 		profilePic: { base64: null, mimetype: "" },
 	});
 	const [sendItem, setSendItem] = React.useState({
@@ -264,7 +266,7 @@ const UserProfile = (props) => {
 										style={{ fontSize: "24px" }}
 										color='black'
 									/>
-									<span>15</span>
+									<span>{profileInfo.numberOfPosts}</span>
 								</div>
 								<div className='stats-box'>
 									<FontAwesomeIcon
@@ -272,7 +274,7 @@ const UserProfile = (props) => {
 										style={{ fontSize: "24px" }}
 										color='black'
 									/>
-									<span>5</span>
+									<span>{profileInfo.numberOfComments}</span>
 								</div>
 							</div>
 						</div>

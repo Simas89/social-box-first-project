@@ -81,6 +81,8 @@ const AllUsersPage = () => {
 							isListed={element.isListed}
 							isOnline={element.isOnline}
 							imgMini={element.imgMini}
+							numberOfComments={element.numberOfComments}
+							numberOfPosts={element.numberOfPosts}
 							findUsersFetchCallback={findUsersFetchCallback}
 							showOnline={element.settings.showOnline}
 						/>

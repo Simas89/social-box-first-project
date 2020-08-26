@@ -1,5 +1,7 @@
 const express = require("express");
 const UserModel = require("../schemas/userSchema");
+const Comment = require("../schemas/comment");
+const Post = require("../schemas/post");
 const calcIsOnline = require("../middleware/calcIsOnline");
 
 const router = express.Router();
@@ -20,12 +22,29 @@ router.get("/", async (req, res) => {
 	UserModel.findOne({ userName: req.header("User-Name") })
 		.populate("contacts")
 		.populate("imgbig")
-		.then((result) => {
+		.then(async (result) => {
+			let numberOfComments;
+			await Comment.find({ userName: req.header("User-Name") })
+				.select("userName")
+				.then((res) => {
+					numberOfComments = res.length;
+				});
+			let numberOfPosts;
+
+			await Post.find({ userName: req.header("User-Name") })
+				.select("userName")
+				.then((res) => {
+					numberOfPosts = res.length;
+				});
+
 			// console.log(result);
+
 			res.status(200).json({
 				dateJoined: result.dateJoined.toDateString(),
 				verified: result.verified,
 				isOnline: calcIsOnline(result.isOnline),
+				numberOfComments,
+				numberOfPosts,
 				isListed: isFound,
 				profilePic: {
 					base64: result.imgbig.data.toString("base64"),

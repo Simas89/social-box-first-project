@@ -71,7 +71,7 @@ const UserCard = (props) => {
 							style={{ fontSize: "24px" }}
 							color='black'
 						/>
-						<span>15</span>
+						<span>{props.numberOfPosts}</span>
 					</div>
 					<div className='stats-box'>
 						<FontAwesomeIcon
@@ -79,7 +79,7 @@ const UserCard = (props) => {
 							style={{ fontSize: "24px" }}
 							color='black'
 						/>
-						<span>5</span>
+						<span>{props.numberOfComments}</span>
 					</div>
 				</div>
 			</div>

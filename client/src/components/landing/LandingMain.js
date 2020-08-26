@@ -287,11 +287,11 @@ const LandingMain = () => {
 					</p>
 				</div>
 			</div>
-			<div className='footer2'>
+			{/* <div className='footer2'>
 				<p>
 					<span>2020 </span>SimasZurauskas@gmail.com
 				</p>
-			</div>
+			</div> */}
 		</React.Fragment>
 	);
 };
