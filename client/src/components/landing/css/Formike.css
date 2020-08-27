@@ -242,6 +242,9 @@
 }
 
 @media (max-width: 501px) {
+  .form-wrapper {
+    width: 100%;
+  }
   .form-wrapper .inputs-wrapper {
     width: 100%;
   }

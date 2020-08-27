@@ -7,7 +7,7 @@ $singleInputWrapper-height-800: calc(37px + 1.5rem);
 $singleInputWrapper-height-600: calc(30px + 1.2rem);
 
 .form-wrapper {
-	// border: 1px solid white;
+	// border: 1px solid red;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -250,6 +250,10 @@ $singleInputWrapper-height-600: calc(30px + 1.2rem);
 
 @media (max-width: 501px) {
 	.form-wrapper {
+		// & > div:nth-child(2) {
+		// 	display: none;
+		// }
+		width: 100%;
 		.inputs-wrapper {
 			width: 100%;
 			.single-input-wrapper {

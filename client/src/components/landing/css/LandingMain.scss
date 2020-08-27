@@ -345,6 +345,7 @@ body {
 			height: 80vh;
 			margin: 0;
 			// padding: 40px 15px 15px 15px;
+			// border: 3px solid red;
 
 			.box-content {
 				// border: 3px solid red;
@@ -370,6 +371,15 @@ body {
 			border-bottom: 1px solid $nodeMid;
 			// border: 1px solid red;
 			margin-bottom: 30px;
+			.box-content {
+				.form-wrapper:nth-child(2) {
+					display: none;
+				}
+			}
+
+			& > div:nth-child(3) {
+				display: none;
+			}
 		}
 		.box-3 {
 			display: grid;

@@ -308,6 +308,12 @@ body {
     border-bottom: 1px solid #72aa62;
     margin-bottom: 30px;
   }
+  .landing-main .box-2 .box-content .form-wrapper:nth-child(2) {
+    display: none;
+  }
+  .landing-main .box-2 > div:nth-child(3) {
+    display: none;
+  }
   .landing-main .box-3 {
     display: grid;
     margin-left: 0;

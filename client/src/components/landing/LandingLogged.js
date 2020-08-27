@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 const LandingLogged = () => {
 	const contextAccount = React.useContext(accountContext);
 	const contextPost = React.useContext(postContext);
-	console.log(contextPost);
 	const history = useHistory();
 	return (
 		<div className='landing-logged'>
