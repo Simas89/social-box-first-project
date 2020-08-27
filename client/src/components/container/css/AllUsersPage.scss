@@ -1,6 +1,45 @@
 .users-page {
 	.users-page-header {
-		margin-left: 100px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 80px;
+		.search-bar-wrap {
+			position: relative;
+			width: 100%;
+			// border: 1px solid black;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			.search-bar {
+				padding-left: 10px;
+				position: relative;
+				// border: 1px solid red;
+				width: 50%;
+				input {
+					letter-spacing: 0.06rem;
+					height: 40px;
+					width: 100%;
+					padding-left: 20px;
+					font-size: 1.2rem;
+					border: none;
+					border-bottom: 1px solid rgba(14, 46, 43, 0);
+					transition: 0.1s;
+
+					&:focus {
+						border-bottom: 1px solid rgba(14, 46, 43, 1);
+						transition: 0.2s;
+						outline: none;
+					}
+				}
+			}
+			.checkbox {
+				margin: 0 5px 0 10px;
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
 	}
 	// border: 1px solid blue;
 	.users-page-grid {

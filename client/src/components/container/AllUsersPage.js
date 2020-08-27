@@ -60,15 +60,21 @@ const AllUsersPage = () => {
 	return (
 		<div className='users-page'>
 			<div className='users-page-header'>
-				<input
-					onChange={handleInputVal}
-					type='text'
-					placeholder='Search Users'></input>
-				<input
-					onChange={handleSearchMyContactsOnly}
-					type='checkbox'
-					checked={usersState.contactsOnly}></input>
-				<label>My contacts only</label>
+				<div className='search-bar-wrap'>
+					<div className='search-bar'>
+						<input
+							className='search-input'
+							onChange={handleInputVal}
+							type='text'
+							placeholder='Search Users'></input>
+					</div>
+					<input
+						className='checkbox'
+						onChange={handleSearchMyContactsOnly}
+						type='checkbox'
+						checked={usersState.contactsOnly}></input>
+					<label>My contacts only</label>
+				</div>
 			</div>
 			<div className='users-page-grid'>
 				{usersState.list.map((element) => {

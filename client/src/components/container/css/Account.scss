@@ -69,12 +69,11 @@
 			.show-online {
 				// border: 1px solid red;
 				display: flex;
-			}
-			.delete-acc {
-				position: absolute;
-				bottom: 10px;
-				align-self: flex-end;
-				// border: 1px solid black;
+				.checkbox {
+					&:hover {
+						cursor: pointer;
+					}
+				}
 			}
 		}
 		.email {
@@ -95,6 +94,33 @@
 			overflow: hidden;
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+	.delete-acc {
+		margin: 70px 0 20px 10px;
+		// position: absolute;
+		// bottom: 10px;
+		// align-self: flex-end;
+		// border: 1px solid black;
+		.del-acc-btn {
+			color: white;
+			background-color: rgb(221, 24, 37);
+			padding: 7px 15px;
+			border: 1px solid black;
+			&:hover {
+				cursor: pointer;
+			}
+			&:focus {
+				outline: none;
+				border: 1px solid black;
+			}
+		}
+		input {
+			border: none;
+			height: 30px;
+			&:focus {
+				outline: none;
+			}
 		}
 	}
 	.gridtc {

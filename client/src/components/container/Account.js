@@ -183,25 +183,11 @@ const Account = () => {
 						<div className='show-online'>
 							<span>Show my online status:</span>
 							<input
+								className='checkbox'
 								type='checkbox'
 								checked={context.accountState.settings.showOnline}
 								onChange={paramOnline}
 							/>
-						</div>
-						<div className='delete-acc'>
-							{!delAcc ? (
-								<button onClick={() => setDelAcc(1)}>Delete account</button>
-							) : (
-								<div>
-									<p>{dellServerMsg}</p>
-									<input
-										type='password'
-										placeholder='Confirm Password'
-										value={psw}
-										onChange={(e) => setPsw(e.target.value)}></input>
-									<button onClick={submitDelete}>Delete</button>
-								</div>
-							)}
 						</div>
 					</div>
 				</div>
@@ -226,6 +212,25 @@ const Account = () => {
 						/>
 					))}
 				</div>
+			</div>
+			<div className='delete-acc'>
+				{!delAcc ? (
+					<button className='del-acc-btn' onClick={() => setDelAcc(1)}>
+						Delete account
+					</button>
+				) : (
+					<div>
+						<p>{dellServerMsg}</p>
+						<input
+							type='password'
+							placeholder='Confirm Password'
+							value={psw}
+							onChange={(e) => setPsw(e.target.value)}></input>
+						<button className='del-acc-btn' onClick={submitDelete}>
+							Delete
+						</button>
+					</div>
+				)}
 			</div>
 
 			<input

@@ -1,5 +1,47 @@
 .users-page .users-page-header {
-  margin-left: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+
+.users-page .users-page-header .search-bar-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.users-page .users-page-header .search-bar-wrap .search-bar {
+  padding-left: 10px;
+  position: relative;
+  width: 50%;
+}
+
+.users-page .users-page-header .search-bar-wrap .search-bar input {
+  letter-spacing: 0.06rem;
+  height: 40px;
+  width: 100%;
+  padding-left: 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 1px solid rgba(14, 46, 43, 0);
+  transition: 0.1s;
+}
+
+.users-page .users-page-header .search-bar-wrap .search-bar input:focus {
+  border-bottom: 1px solid #0e2e2b;
+  transition: 0.2s;
+  outline: none;
+}
+
+.users-page .users-page-header .search-bar-wrap .checkbox {
+  margin: 0 5px 0 10px;
+}
+
+.users-page .users-page-header .search-bar-wrap .checkbox:hover {
+  cursor: pointer;
 }
 
 .users-page .users-page-grid {

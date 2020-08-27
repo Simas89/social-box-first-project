@@ -316,7 +316,7 @@ const rootValue = {
 		console.log(args);
 		mailer(
 			"simasdevelopment@gmail.com",
-			"A message from SimasZurauskas.tech",
+			"A message from SimasZurauskas.dev",
 			`
 			Person: ${args.guest}.
 			Email: ${args.email}.

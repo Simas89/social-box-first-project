@@ -75,10 +75,8 @@
   display: flex;
 }
 
-.acc-body .top .info-div .delete-acc {
-  position: absolute;
-  bottom: 10px;
-  align-self: flex-end;
+.acc-body .top .info-div .show-online .checkbox:hover {
+  cursor: pointer;
 }
 
 .acc-body .top .email {
@@ -98,6 +96,35 @@
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+}
+
+.acc-body .delete-acc {
+  margin: 70px 0 20px 10px;
+}
+
+.acc-body .delete-acc .del-acc-btn {
+  color: white;
+  background-color: #dd1825;
+  padding: 7px 15px;
+  border: 1px solid black;
+}
+
+.acc-body .delete-acc .del-acc-btn:hover {
+  cursor: pointer;
+}
+
+.acc-body .delete-acc .del-acc-btn:focus {
+  outline: none;
+  border: 1px solid black;
+}
+
+.acc-body .delete-acc input {
+  border: none;
+  height: 30px;
+}
+
+.acc-body .delete-acc input:focus {
+  outline: none;
 }
 
 .acc-body .gridtc {

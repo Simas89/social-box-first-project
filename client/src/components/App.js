@@ -159,7 +159,7 @@ function App(props) {
 					<div className='App'>
 						<NtfNews />
 						{contextSocial.isNotificationOpen && <NtfPanel />}
-						{contextSocial.isNotificationOpen && <NotificationsContentBlock />}
+						{/* {contextSocial.isNotificationOpen && <NotificationsContentBlock />} */}
 
 						<Container {...props} />
 					</div>

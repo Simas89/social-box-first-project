@@ -8,7 +8,7 @@ require("dotenv").config();
 const router = express.Router();
 
 router.post("/", (req, res) => {
-	console.log(req.body);
+	// console.log(req.body);
 	let isRememberMe = false;
 	if (req.body.rememberMe) {
 		isRememberMe = true;
@@ -25,15 +25,15 @@ router.post("/", (req, res) => {
 	};
 
 	UserModel.findOne(typeOfUserSearch(), (error, result) => {
-		console.log(" RESULT: ", result);
+		// console.log(" RESULT: ", result);
 		if (result) {
 			let PASS = false;
 			if (isRememberMe) {
 				if (req.body.aotoLogin) {
-					console.log("log in with token");
+					// console.log("log in with token");
 					PASS = true;
 				} else {
-					console.log("no auto token compare passwords");
+					// console.log("no auto token compare passwords");
 					if (bcrypt.compareSync(req.body.userPsw, result.userPsw)) {
 						PASS = true;
 					} else {
@@ -41,7 +41,7 @@ router.post("/", (req, res) => {
 					}
 				}
 			} else {
-				console.log("compare passwords to pass");
+				// console.log("compare passwords to pass");
 				if (bcrypt.compareSync(req.body.userPsw, result.userPsw)) {
 					PASS = true;
 				} else {
