@@ -8,6 +8,7 @@ require("dotenv").config();
 const router = express.Router();
 
 router.get("/", auth, (req, res) => {
+	console.log("/");
 	jwt.sign(
 		{ user_id: req.decoded, email: req.header("email") },
 		process.env.JWT_SECRET,
@@ -17,7 +18,6 @@ router.get("/", auth, (req, res) => {
 				console.log(err);
 				res.status(500).json({ status: "ERROR GENERATING TOKEN" });
 			} else {
-				console.log(req.header("email"));
 				mailer(
 					req.header("email"),
 					"My Container account verification",
@@ -34,7 +34,8 @@ router.get("/", auth, (req, res) => {
 });
 
 router.get("/confirm/:id", async (req, res) => {
-	const decoded = jwt.verify(req.params.id, "secret");
+	const decoded = jwt.verify(req.params.id, process.env.JWT_SECRET);
+	console.log("/confirm/:id");
 
 	await UserModel.findById(decoded.user_id, (error, result) => {
 		if (error) {

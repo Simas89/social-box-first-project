@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.post("/", fileUpload(), async (req, res) => {
 	// console.log(req.files.myFile);
-	// console.log("LOL");
+	console.log("LOL");
 	// CONVERTING IMAGE
 	let buffer = "";
 	let bufferMini = "";
