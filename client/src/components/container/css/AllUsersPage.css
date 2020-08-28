@@ -44,6 +44,10 @@
   cursor: pointer;
 }
 
+.users-page .users-page-header .search-bar-wrap label:hover {
+  cursor: pointer;
+}
+
 .users-page .users-page-grid {
   margin: 10px;
   display: grid;

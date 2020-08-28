@@ -39,6 +39,11 @@
 					cursor: pointer;
 				}
 			}
+			label {
+				&:hover {
+					cursor: pointer;
+				}
+			}
 		}
 	}
 	// border: 1px solid blue;

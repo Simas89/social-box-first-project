@@ -1,0 +1,74 @@
+.item-wrap {
+  height: 85px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-wrap .item {
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 1px lightgray;
+  height: 75px;
+  width: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transition: box-shadow 0.3s;
+}
+
+.item-wrap .item .icon-box {
+  display: flex;
+  align-items: center;
+}
+
+.item-wrap .item .icon-box .icon {
+  transition: transform 0.5s;
+}
+
+.item-wrap .item .icon-box .ammount {
+  margin-left: 5px;
+}
+
+.item-wrap .item .description {
+  word-wrap: normal;
+  width: 80px;
+  border: 1px solid orange;
+}
+
+.item-wrap .item .buy {
+  border: 1px solid green;
+  height: 70%;
+}
+
+.item-wrap .item .buy button {
+  width: 75px;
+  height: 100%;
+}
+
+.item-wrap .item .buy button:hover {
+  cursor: pointer;
+}
+
+.item-wrap .item .buy input {
+  width: 30px;
+  height: 100%;
+  text-align: center;
+  border: none;
+  font-size: 1rem;
+}
+
+.item-wrap .item .buy input:focus {
+  outline: none;
+}
+
+.item-wrap .item:hover {
+  box-shadow: 0 0 3px 1px orange;
+  transition: box-shadow 0.5s;
+}
+
+.item-wrap .item:hover .icon {
+  transform: scale(1.2);
+  transition: transform 0.3s;
+}

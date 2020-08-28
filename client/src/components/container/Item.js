@@ -1,6 +1,8 @@
 import React from "react";
-import "../css/Item.css";
+import "./css/Item.css";
 import myContext from "../../context/account/myContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGift } from "@fortawesome/free-solid-svg-icons";
 
 function Item(props) {
 	const [inputState, setInputState] = React.useState(1);
@@ -71,27 +73,56 @@ function Item(props) {
 
 	return (
 		<React.Fragment>
-			<div className='wrapper'>
-				<div>{props.itemName}</div>
-				<div>Cr: {props.price}</div>
-				<div>Stock: {props.amount}</div>
-				{props.displayedAt === "MARKET" && (
-					<React.Fragment>
-						<button style={btnStyle("BUY")} onClick={() => trade("BUY")}>
-							Buy
+			<div className='item-wrap'>
+				<div className='item'>
+					<div className='icon-box'>
+						<FontAwesomeIcon
+							className='icon'
+							icon={faGift}
+							style={{ fontSize: "28px" }}
+							color='orange'
+						/>
+						<div className='ammount'> {props.amount}</div>
+					</div>
+					<div className='description'>
+						<span>this is item description</span>
+					</div>
+					<div className='buy'>
+						<button
+							className='btn'
+							style={btnStyle("BUY")}
+							onClick={() => trade("BUY")}>
+							Cr: {props.price}
 						</button>
 						<input
 							onChange={handleChange}
 							type='text'
 							value={inputState}></input>
-						<button style={btnStyle("SELL")} onClick={() => trade("SELL")}>
-							Sell
-						</button>
-					</React.Fragment>
-				)}
+					</div>
+				</div>
 			</div>
 		</React.Fragment>
 	);
 }
 
 export default Item;
+
+{
+	/* <div>{props.itemName}</div>
+<div>Cr: {props.price}</div>
+<div>Stock: {props.amount}</div>
+{props.displayedAt === "MARKET" && (
+	<React.Fragment>
+		<button style={btnStyle("BUY")} onClick={() => trade("BUY")}>
+			Buy
+		</button>
+		<input
+			onChange={handleChange}
+			type='text'
+			value={inputState}></input>
+		<button style={btnStyle("SELL")} onClick={() => trade("SELL")}>
+			Sell
+		</button>
+	</React.Fragment>
+)} */
+}

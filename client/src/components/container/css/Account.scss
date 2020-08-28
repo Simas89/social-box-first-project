@@ -94,6 +94,7 @@
 			overflow: hidden;
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
+			// grid-gap: 5px;
 		}
 	}
 	.delete-acc {
@@ -113,6 +114,16 @@
 			&:focus {
 				outline: none;
 				border: 1px solid black;
+			}
+		}
+		.del-acc-btn-no {
+			margin-left: 10px;
+			border: none;
+			background-color: rgba(221, 24, 37, 0);
+			color: black;
+			&:hover {
+				text-decoration: underline;
+				cursor: pointer;
 			}
 		}
 		input {

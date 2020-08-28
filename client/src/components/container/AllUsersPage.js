@@ -73,7 +73,7 @@ const AllUsersPage = () => {
 						onChange={handleSearchMyContactsOnly}
 						type='checkbox'
 						checked={usersState.contactsOnly}></input>
-					<label>My contacts only</label>
+					<label onClick={handleSearchMyContactsOnly}>My contacts only</label>
 				</div>
 			</div>
 			<div className='users-page-grid'>

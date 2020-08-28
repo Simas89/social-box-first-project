@@ -118,6 +118,18 @@
   border: 1px solid black;
 }
 
+.acc-body .delete-acc .del-acc-btn-no {
+  margin-left: 10px;
+  border: none;
+  background-color: rgba(221, 24, 37, 0);
+  color: black;
+}
+
+.acc-body .delete-acc .del-acc-btn-no:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .acc-body .delete-acc input {
   border: none;
   height: 30px;

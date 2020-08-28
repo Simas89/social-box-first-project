@@ -119,6 +119,10 @@ const Account = () => {
 				});
 		}
 	};
+	const cancelDelete = () => {
+		setDelAcc(0);
+		setPsw("");
+	};
 
 	const paramOnline = () => {
 		graphqlFetch(
@@ -228,6 +232,9 @@ const Account = () => {
 							onChange={(e) => setPsw(e.target.value)}></input>
 						<button className='del-acc-btn' onClick={submitDelete}>
 							Delete
+						</button>
+						<button className='del-acc-btn-no' onClick={cancelDelete}>
+							Cancel
 						</button>
 					</div>
 				)}

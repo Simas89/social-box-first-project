@@ -1,0 +1,65 @@
+.item-wrap {
+	height: 85px;
+	border: 1px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.item {
+		position: relative;
+		// border: 1px solid blue;
+		border-radius: 5px;
+		box-shadow: 0 0 3px 1px lightgray;
+		height: 75px;
+		width: 92%;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		transition: box-shadow 0.3s;
+
+		.icon-box {
+			display: flex;
+			align-items: center;
+			.icon {
+				transition: transform 0.5s;
+			}
+			.ammount {
+				margin-left: 5px;
+			}
+		}
+		.description {
+			word-wrap: normal;
+			width: 80px;
+			border: 1px solid orange;
+			// height: 100%;
+		}
+		.buy {
+			border: 1px solid green;
+			height: 70%;
+			button {
+				width: 75px;
+				height: 100%;
+				&:hover {
+					cursor: pointer;
+				}
+			}
+			input {
+				width: 30px;
+				height: 100%;
+				text-align: center;
+				border: none;
+				font-size: 1rem;
+				&:focus {
+					outline: none;
+				}
+			}
+		}
+		&:hover {
+			box-shadow: 0 0 3px 1px orange;
+			transition: box-shadow 0.5s;
+		}
+		&:hover .icon {
+			transform: scale(1.2);
+			transition: transform 0.3s;
+		}
+	}
+}
