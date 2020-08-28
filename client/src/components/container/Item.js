@@ -2,7 +2,20 @@ import React from "react";
 import "./css/Item.css";
 import myContext from "../../context/account/myContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGift } from "@fortawesome/free-solid-svg-icons";
+import {
+	faGift,
+	faAppleAlt,
+	faBeer,
+	faBirthdayCake,
+	faJoint,
+	faCheese,
+	faPoo,
+	faCookie,
+	faBacon,
+	faCat,
+	faDog,
+	faHorseHead,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Item(props) {
 	const [inputState, setInputState] = React.useState(1);
@@ -41,34 +54,69 @@ function Item(props) {
 		canSell = false;
 	}
 
-	const handleChange = (e) => {
-		const re = /^[0-9\b]+$/;
-		if (e.target.value === "" || re.test(e.target.value))
-			fixInputState(e.target.value);
+	// const handleChange = (e) => {
+	// 	const re = /^[0-9\b]+$/;
+	// 	if (e.target.value === "" || re.test(e.target.value))
+	// 		fixInputState(e.target.value);
+	// };
+	const selectIcon = () => {
+		switch (props.itemName) {
+			case "Apple":
+				return faAppleAlt;
+			case "Beer":
+				return faBeer;
+			case "Cake":
+				return faBirthdayCake;
+			case "Joint":
+				return faJoint;
+			case "Cheese":
+				return faCheese;
+			case "Poo":
+				return faPoo;
+			case "Cookie":
+				return faCookie;
+			case "Bacon":
+				return faBacon;
+			case "Cat":
+				return faCat;
+			case "Dog":
+				return faDog;
+			case "Horse":
+				return faHorseHead;
+
+			default:
+				return faGift;
+		}
 	};
-	const btnStyle = (param) => {
-		if (param === "BUY")
-			if (canBuy === true)
-				return {
-					color: "white",
-					backgroundColor: "#007fed",
-				};
-			else
-				return {
-					color: "black",
-					backgroundColor: "#E5E5E5",
-				};
-		if (param === "SELL")
-			if (canSell === true)
-				return {
-					color: "white",
-					backgroundColor: "#007fed",
-				};
-			else
-				return {
-					color: "black",
-					backgroundColor: "#E5E5E5",
-				};
+
+	const selectDescription = () => {
+		switch (props.itemName) {
+			case "Apple":
+				return "Fresh pink apple";
+			case "Beer":
+				return "I fucking love beer";
+			case "Cake":
+				return "A massive cake";
+			case "Joint":
+				return "Afhan kush";
+			case "Cheese":
+				return "Oh sheesus";
+			case "Poo":
+				return "...a smiling poop";
+			case "Cookie":
+				return "A cookie you cannot say no to";
+			case "Bacon":
+				return "Smoked back bacon";
+			case "Cat":
+				return "Puffy cat";
+			case "Dog":
+				return "Agile dog with dot on his eye";
+			case "Horse":
+				return "A proper horse";
+
+			default:
+				return "Item";
+		}
 	};
 
 	return (
@@ -78,26 +126,21 @@ function Item(props) {
 					<div className='icon-box'>
 						<FontAwesomeIcon
 							className='icon'
-							icon={faGift}
+							icon={selectIcon()}
 							style={{ fontSize: "28px" }}
-							color='orange'
+							color={`${props.amount ? "orange" : "lightgray"}`}
 						/>
 						<div className='ammount'> {props.amount}</div>
 					</div>
 					<div className='description'>
-						<span>this is item description</span>
+						<span>{selectDescription()}</span>
 					</div>
 					<div className='buy'>
 						<button
-							className='btn'
-							style={btnStyle("BUY")}
+							className={`btn ${canBuy && "can-buy"}`}
 							onClick={() => trade("BUY")}>
-							Cr: {props.price}
+							Cr {props.price}
 						</button>
-						<input
-							onChange={handleChange}
-							type='text'
-							value={inputState}></input>
 					</div>
 				</div>
 			</div>

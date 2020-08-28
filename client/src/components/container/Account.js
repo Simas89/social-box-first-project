@@ -202,7 +202,7 @@ const Account = () => {
 				/>
 			</div>
 			<div className='bottom'>
-				ITEMS<p>Cr: {context.accountState.credits}</p>
+				<p>Cr: {context.accountState.credits}</p>
 				<div className='bottom-market'>
 					{marketState.map((element) => (
 						<Item

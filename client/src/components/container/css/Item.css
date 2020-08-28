@@ -1,15 +1,31 @@
 .item-wrap {
+  position: relative;
   height: 85px;
-  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.item-wrap:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  height: 75px;
+  width: 93%;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 1px gray;
+  transition: 0.5s;
+}
+
+.item-wrap:hover::after {
+  transform: scale(1.02);
+  box-shadow: 0 0 3px 1px orange;
+  transition: 0.5s;
+}
+
 .item-wrap .item {
   position: relative;
   border-radius: 5px;
-  box-shadow: 0 0 3px 1px lightgray;
   height: 75px;
   width: 92%;
   display: flex;
@@ -19,6 +35,8 @@
 }
 
 .item-wrap .item .icon-box {
+  position: absolute;
+  left: 10px;
   display: flex;
   align-items: center;
 }
@@ -28,27 +46,30 @@
 }
 
 .item-wrap .item .icon-box .ammount {
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .item-wrap .item .description {
   word-wrap: normal;
-  width: 80px;
-  border: 1px solid orange;
+  width: 100%;
+  margin-right: 90px;
+  margin-left: 75px;
 }
 
 .item-wrap .item .buy {
-  border: 1px solid green;
-  height: 70%;
+  position: absolute;
+  right: 10px;
+  height: 50%;
 }
 
 .item-wrap .item .buy button {
   width: 75px;
   height: 100%;
+  border: none;
 }
 
-.item-wrap .item .buy button:hover {
-  cursor: pointer;
+.item-wrap .item .buy button:focus {
+  outline: none;
 }
 
 .item-wrap .item .buy input {
@@ -63,12 +84,21 @@
   outline: none;
 }
 
-.item-wrap .item:hover {
-  box-shadow: 0 0 3px 1px orange;
-  transition: box-shadow 0.5s;
-}
-
 .item-wrap .item:hover .icon {
   transform: scale(1.2);
   transition: transform 0.3s;
+}
+
+.can-buy {
+  color: white;
+  background-color: #3c923c;
+}
+
+.can-buy:hover {
+  cursor: pointer;
+}
+
+.can-buy:active {
+  background-color: #3e863d;
+  border: 1px solid black;
 }

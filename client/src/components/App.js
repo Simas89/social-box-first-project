@@ -13,10 +13,10 @@ import NtfPanel from "./social/notifications/NtfPanel";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-	faSignOutAlt,
 	faHome,
 	faUsers,
 	faCog,
+	faRunning,
 } from "@fortawesome/free-solid-svg-icons";
 
 import useTimer from "../hooks/useTimer";
@@ -108,8 +108,8 @@ function App(props) {
 							<FontAwesomeIcon
 								className='exit-icon'
 								onClick={() => history.push("/")}
-								icon={faSignOutAlt}
-								style={{ fontSize: "24px" }}
+								icon={faRunning}
+								style={{ fontSize: "30px" }}
 							/>
 							<div className='nav-links'>
 								<div
