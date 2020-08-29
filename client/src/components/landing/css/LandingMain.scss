@@ -130,6 +130,43 @@ body {
 	.box-2 {
 		margin-left: 1vw;
 		margin-right: 2vw;
+		.lil-mongoose {
+			// z-index: 2;
+			// border: 1px solid red;
+			position: absolute;
+			width: 150px;
+			height: 160px;
+			bottom: -200px;
+			right: 150px;
+			background-image: url("../../../img/lilmongoose.png");
+			background-size: cover;
+			background-position: center;
+			transition: 1s ease-in;
+			&:after {
+				content: "";
+				z-index: 2;
+				position: absolute;
+				width: 150px;
+				height: 160px;
+				// border: 1px solid red;
+			}
+		}
+		.lil-mongoose-rise {
+			// border: 1px solid green;
+			bottom: 0;
+			transition: 1.7s ease-in;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		.lil-mongoose-hide {
+			// border: 1px solid green;
+			bottom: -200px;
+			transition: 0.3s ease-out;
+			&:hover {
+				cursor: pointer;
+			}
+		}
 	}
 	.box-3 {
 		display: none;

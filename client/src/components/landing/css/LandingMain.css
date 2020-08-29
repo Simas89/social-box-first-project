@@ -116,6 +116,44 @@ body {
   margin-right: 2vw;
 }
 
+.landing-main .box-2 .lil-mongoose {
+  position: absolute;
+  width: 150px;
+  height: 160px;
+  bottom: -200px;
+  right: 150px;
+  background-image: url("../../../img/lilmongoose.png");
+  background-size: cover;
+  background-position: center;
+  transition: 1s ease-in;
+}
+
+.landing-main .box-2 .lil-mongoose:after {
+  content: "";
+  z-index: 2;
+  position: absolute;
+  width: 150px;
+  height: 160px;
+}
+
+.landing-main .box-2 .lil-mongoose-rise {
+  bottom: 0;
+  transition: 1.7s ease-in;
+}
+
+.landing-main .box-2 .lil-mongoose-rise:hover {
+  cursor: pointer;
+}
+
+.landing-main .box-2 .lil-mongoose-hide {
+  bottom: -200px;
+  transition: 0.3s ease-out;
+}
+
+.landing-main .box-2 .lil-mongoose-hide:hover {
+  cursor: pointer;
+}
+
 .landing-main .box-3 {
   display: none;
   margin-left: 1vw;

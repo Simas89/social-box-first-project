@@ -71,11 +71,17 @@ const LandingMain = () => {
 		}
 	};
 
-	useTimer(
-		1,
-		1,
-		() => randomNum(5) === 1 && addClassShine(parseInt(windowWidth / 40))
-	);
+	const mongoose = document.querySelector(".lil-mongoose");
+	useTimer(1, 1, (period) => {
+		randomNum(4) === 1 && addClassShine(parseInt(windowWidth / 40));
+		// console.log(period);
+		if (period === 7) mongoose.classList.add("lil-mongoose-rise");
+	});
+
+	const mongooseHide = () => {
+		console.log("hide");
+		mongoose.classList.add("lil-mongoose-hide");
+	};
 
 	return (
 		<React.Fragment>
@@ -116,6 +122,7 @@ const LandingMain = () => {
 					className={`landing-box box-2 ${
 						!contextAccount.accountState.logged && "box-padding"
 					}  `}>
+					<div className={`lil-mongoose`} onMouseOver={mongooseHide}></div>
 					<div className='box-content'>
 						{windowWidth > 768 ? (
 							<MovingContainer page={page} />
