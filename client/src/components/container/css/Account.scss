@@ -46,6 +46,35 @@
 			flex-direction: column;
 			justify-content: space-evenly;
 			padding: 0 15px;
+			.not-verified {
+				// border: 1px solid red;
+				margin-bottom: 10px;
+				p {
+					margin: 0;
+				}
+				input {
+					// letter-spacing: 0.06rem;
+					height: 40px;
+					// width: 100%;
+					padding-left: 10px;
+					// font-size: 1.2rem;
+					border: none;
+					border-bottom: 1px solid rgba(14, 46, 43, 0);
+					transition: 0.1s;
+
+					&:focus {
+						border-bottom: 1px solid rgba(14, 46, 43, 1);
+						transition: 0.2s;
+						outline: none;
+					}
+				}
+				button {
+				}
+				.submitMsg {
+					margin-top: 5px;
+					font-size: 0.9rem;
+				}
+			}
 			.userName {
 				font-size: 2rem;
 				font-weight: bold;
@@ -60,6 +89,7 @@
 				border-bottom: 1px solid black;
 			}
 			.show-online {
+				margin-top: 10px;
 				display: flex;
 				align-items: center;
 				span {
@@ -149,3 +179,9 @@
 }
 
 ////////////// GLOBAL
+.pass {
+	color: rgba(14, 46, 43, 1);
+}
+.fail {
+	color: rgb(221, 24, 37);
+}

@@ -15,9 +15,9 @@ const verificationFetch = async (callback) => {
 			.then((data) => callback(data))
 			.catch((err) => {
 				console.log(err);
-				callback({ status: "Server error" });
+				callback({ status: "Server error", pass: 0 });
 			});
-	} else callback({ status: "You have entered an invalid email address" });
+	} else callback({ status: "Please enter valid email address", pass: 0 });
 };
 
 export default verificationFetch;

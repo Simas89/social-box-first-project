@@ -48,6 +48,33 @@
   padding: 0 15px;
 }
 
+.acc-body .top .info-div .not-verified {
+  margin-bottom: 10px;
+}
+
+.acc-body .top .info-div .not-verified p {
+  margin: 0;
+}
+
+.acc-body .top .info-div .not-verified input {
+  height: 40px;
+  padding-left: 10px;
+  border: none;
+  border-bottom: 1px solid rgba(14, 46, 43, 0);
+  transition: 0.1s;
+}
+
+.acc-body .top .info-div .not-verified input:focus {
+  border-bottom: 1px solid #0e2e2b;
+  transition: 0.2s;
+  outline: none;
+}
+
+.acc-body .top .info-div .not-verified .submitMsg {
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
 .acc-body .top .info-div .userName {
   font-size: 2rem;
   font-weight: bold;
@@ -63,6 +90,7 @@
 }
 
 .acc-body .top .info-div .show-online {
+  margin-top: 10px;
   display: flex;
   align-items: center;
 }
@@ -149,4 +177,12 @@
 .acc-body .crop {
   border: 2px solid blue;
   height: 300px;
+}
+
+.pass {
+  color: #0e2e2b;
+}
+
+.fail {
+  color: #dd1825;
 }

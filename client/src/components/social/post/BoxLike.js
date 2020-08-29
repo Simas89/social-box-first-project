@@ -74,6 +74,7 @@ const BoxLike = (props) => {
 						: "star outline"
 				}
 				size='large'
+				color='orange'
 			/>
 		</div>
 	);

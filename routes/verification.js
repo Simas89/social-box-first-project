@@ -25,7 +25,9 @@ router.get("/", auth, (req, res) => {
 					Please note that link will expire in next 24h`,
 					(callback) => {
 						callback === "OK" &&
-							res.status(200).json({ status: "Activation link has been sent" });
+							res
+								.status(200)
+								.json({ status: "Activation link has been sent", pass: 1 });
 					}
 				);
 			}

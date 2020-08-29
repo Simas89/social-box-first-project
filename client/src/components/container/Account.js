@@ -18,6 +18,7 @@ const Account = () => {
 	const [delAcc, setDelAcc] = React.useState(0);
 	const [psw, setPsw] = React.useState("");
 	const [dellServerMsg, setDellServerMsg] = React.useState("");
+	const [submitMsg, setSubmitMsg] = React.useState({ msg: "", pass: 0 });
 
 	const [marketState, setMarketState] = React.useState([]);
 	React.useEffect(() => {
@@ -45,9 +46,8 @@ const Account = () => {
 	const history = useHistory();
 
 	const accVerification = () => {
-		let submitMsg = document.querySelector(".submitMsg");
 		verificationFetch((msg) => {
-			submitMsg.textContent = msg.status;
+			setSubmitMsg({ msg: msg.status, pass: msg.pass });
 		});
 	};
 
@@ -167,7 +167,7 @@ const Account = () => {
 								<p>{context.accountState.email}</p>
 							</React.Fragment>
 						) : (
-							<React.Fragment>
+							<div className='not-verified'>
 								<p>Account is not verified</p>
 
 								<div className='email'>
@@ -178,9 +178,12 @@ const Account = () => {
 											placeholder='Please confirm your email'></input>
 										<button onClick={accVerification}>Submit</button>
 									</div>
-									<p className='submitMsg'></p>
+									<p
+										className={`submitMsg ${submitMsg.pass ? "pass" : "fail"}`}>
+										{submitMsg.msg}
+									</p>
 								</div>
-							</React.Fragment>
+							</div>
 						)}
 						<p>Member since {context.accountState.dateJoined.toString()} </p>
 						<div className='line'></div>
