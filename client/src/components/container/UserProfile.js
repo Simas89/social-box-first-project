@@ -121,7 +121,7 @@ const UserProfile = (props) => {
 
 	const handleClick = () => {
 		if (sendItem.itemAmount > 0 && sendItem.itemName !== null) {
-			fetch("http://localhost:2000/sendpresent", {
+			fetch("/sendpresent", {
 				method: "post",
 				headers: {
 					"Content-Type": "application/json",

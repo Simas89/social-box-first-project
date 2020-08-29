@@ -85,7 +85,6 @@ const LandingMain = () => {
 
 	return (
 		<React.Fragment>
-			<div className='parallax'></div>
 			<div className='landing-main'>
 				<div className='top-bar-shader'>
 					{parseLines(parseInt(windowWidth / 40))}

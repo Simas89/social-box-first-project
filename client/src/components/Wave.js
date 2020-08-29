@@ -5,7 +5,7 @@ const Wave = () => {
 	return (
 		<React.Fragment>
 			<div className='wave-wrap'>
-				<div class='waves'>
+				<div className='waves'>
 					<svg
 						width='100%'
 						height='500px'
@@ -13,9 +13,9 @@ const Wave = () => {
 						version='1.1'
 						xmlns='http://www.w3.org/2000/svg'>
 						<linearGradient id='grad1' x1='0%' y1='0%' x2='100%' y2='0%'>
-							<stop offset='0%' stop-color='white' />
-							<stop offset='50%' stop-color='white' />
-							<stop offset='100%' stop-color='white' />
+							<stop offset='0%' stopColor='white' />
+							<stop offset='50%' stopColor='white' />
+							<stop offset='100%' stopColor='white' />
 						</linearGradient>
 						<path
 							fill='url(#grad1)'
