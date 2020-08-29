@@ -6,10 +6,11 @@ import myContext from "../context/account/myContext";
 import socialContext from "../context/social/socialContext";
 
 import Container from "./container/Container";
-import NotificationsContentBlock from "./social/NotificationsContentBlock";
+// import NotificationsContentBlock from "./social/NotificationsContentBlock";
 
 import NtfNews from "./social/notifications/NtfNews";
 import NtfPanel from "./social/notifications/NtfPanel";
+import Wave from "./Wave";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,6 +18,7 @@ import {
 	faUsers,
 	faCog,
 	faRunning,
+	faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 import useTimer from "../hooks/useTimer";
@@ -27,14 +29,52 @@ function App(props) {
 
 	const context = React.useContext(myContext);
 	const contextSocial = React.useContext(socialContext);
+	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
 	const history = useHistory();
 	let location = useLocation();
+	const resizeEvent = () => {
+		setWindowWidth(window.innerWidth);
+		console.log("resizeEvent");
+	};
 
 	React.useEffect(() => {
 		document.title = "Simas Zurauskas | App";
-		window.scrollTo(0, 0);
+		// window.scrollTo(0, 0);
+		window.addEventListener("resize", resizeEvent);
+		return () => {
+			window.removeEventListener("resize", resizeEvent);
+		};
 	}, []);
+	const parseLines = (num) => {
+		let arr = [];
+		for (let i = 0; i < num; i++) {
+			arr.push(<div className={`box  col-${i}`} key={i}></div>);
+		}
+		return arr;
+	};
+	const randomNum = (num) => {
+		const rand = Math.floor(Math.random() * (num - 0 + 1)) + 0;
+		return rand;
+	};
+
+	const addClassShine = (num) => {
+		const target = document.querySelector(`.col-${randomNum(num)}`);
+		// target.classList.add("shine");
+		try {
+			target.style.opacity = 0.8;
+			// console.log(target);
+			setTimeout(() => (target.style.opacity = 0.2), randomNum(15) * 1000);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	useTimer(
+		1,
+		1,
+		() => randomNum(5) === 1 && addClassShine(parseInt(windowWidth / 40))
+	);
 
 	// useTimer(true, 3, (periods) => console.log("callback", periods));
 
@@ -44,54 +84,7 @@ function App(props) {
 				<div className='main'>
 					<div className='top-bar'>
 						<div className='top-bar-shader'>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
-							<div className='box'></div>
+							{parseLines(parseInt(windowWidth / 40))}
 						</div>
 
 						<div className='mask'></div>
@@ -104,13 +97,18 @@ function App(props) {
 									{`Welcome back, ${context.accountState.user} `}
 								</h1>
 							</div>
-
-							<FontAwesomeIcon
-								className='exit-icon'
-								onClick={() => history.push("/")}
-								icon={faRunning}
-								style={{ fontSize: "30px" }}
-							/>
+							<div className='exit' onClick={() => history.push("/")}>
+								<FontAwesomeIcon
+									className='exit-icon'
+									icon={faRunning}
+									style={{ fontSize: "30px" }}
+								/>
+								<FontAwesomeIcon
+									className='exit-icon'
+									icon={faArrowRight}
+									style={{ fontSize: "20px" }}
+								/>
+							</div>
 							<div className='nav-links'>
 								<div
 									className='nav-links-box'
@@ -156,6 +154,8 @@ function App(props) {
 							</div>
 						</div>
 					</div>
+					<Wave />
+
 					<div className='App'>
 						<NtfNews />
 						{contextSocial.isNotificationOpen && <NtfPanel />}

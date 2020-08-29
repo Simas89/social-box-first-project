@@ -1,4 +1,6 @@
 .site-presentation {
+	letter-spacing: 0.07rem;
+	margin-right: 10px;
 	.informacione {
 		background-color: white;
 		display: grid;
@@ -87,6 +89,7 @@
 			background-position: center;
 		}
 	}
+
 	.bolder {
 		font-weight: 500;
 	}
@@ -108,15 +111,12 @@
 			font-size: 2rem;
 		}
 	}
-	.line-long {
-		border-bottom: 1px solid rgba(30, 77, 33, 0.3);
-		width: 70%;
-		margin: 50px auto;
-	}
+
 	.the-end {
 		text-align: center;
 		font-size: 1.7rem;
 		opacity: 0.7;
+		// padding: 50px auto;
 	}
 }
 @media (max-width: 1568px) {

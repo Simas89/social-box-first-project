@@ -42,11 +42,6 @@ body {
   mix-blend-mode: soft-light;
 }
 
-.landing-main .top-bar-shader .box:hover {
-  opacity: 0.8;
-  transition: 0.2s;
-}
-
 .landing-main .title {
   text-align: center;
   margin-top: 40px;

@@ -18,7 +18,7 @@ export default (state, action) => {
 			return { ...state, rememberMe: !state.rememberMe };
 		}
 		case SET_USER_INPUT: {
-			if (action.payload.value.length <= 18)
+			if (action.payload.value.length <= 18) {
 				return {
 					...state,
 					userInputs: {
@@ -26,7 +26,7 @@ export default (state, action) => {
 						[action.payload.type]: action.payload.value,
 					},
 				};
-			break;
+			} else return state;
 		}
 		case USER_INPUTS_CLEAR: {
 			return {

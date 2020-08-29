@@ -3,6 +3,12 @@ import { Twemoji } from "react-emoji-render";
 import "./css/SitePresentation.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import {
+	faEnvelope,
+	faPhone,
+	faUser,
+	faKey,
+} from "@fortawesome/free-solid-svg-icons";
 
 const SitePresentation = () => {
 	return (
@@ -36,29 +42,26 @@ const SitePresentation = () => {
 					<li>
 						<span className='bolder'>Upgrade your account.</span> By confirming
 						on activationg link sent to an email using JWT. After that you'll
-						get 'Confirmed account' ribon that others can see
+						get 'Confirmed account' ribon that others can see.
 					</li>
 					<div className='br'></div>
 					<li>
 						<span className='bolder'>Create posts and write comments.</span>{" "}
-						Edit or delete your own. Time of edit will be displayed if edited
+						Edit or delete your own. Time of edit will be displayed if edited.
 					</li>
-					<div className='br'></div>
-					<li>
-						<span className='bolder'>Emoji support.</span>{" "}
-					</li>
+
 					<div className='br'></div>
 					<li>
 						<span className='bolder'>Upload profile picture.</span> Crop it to
 						your liking before upload. Once uploaded it will be converted to
 						three different sizes and used in different areas in application
-						where downloading a large size image is not optimal
+						where downloading a large size image is not optimal.
 					</li>
 					<div className='br'></div>
 					<li>
 						<span className='bolder'>Search other people profiles.</span> See
 						what they are doing, add them to your list and get their posts an
-						your feed
+						your feed.
 					</li>
 					<div className='br'></div>
 					<li>
@@ -71,15 +74,19 @@ const SitePresentation = () => {
 					<div className='br'></div>
 					<li>
 						<span className='bolder'>See who is online.</span> Option can be
-						disabled in your account menu
+						disabled in your account menu.
 					</li>
 					<div className='br'></div>
 					<li>
 						<span className='bolder'>Fictional credits and items.</span> You can
-						spend credits on items which can then be sent to other users
+						spend credits on items which can then be sent to other users.
 					</li>
 					<div className='br'></div>
 
+					<li>
+						<span className='bolder'>Emoji support.</span>{" "}
+					</li>
+					<div className='br'></div>
 					<li>
 						<span className='bolder'>Auto log in feature.</span>
 					</li>
@@ -95,12 +102,14 @@ const SitePresentation = () => {
 					provided with activity taking place already.
 				</p>
 
-				<ul>
+				<ul style={{ listStyleType: "none" }}>
 					<li>
-						user: <span className='user-select'>guest</span>
+						<FontAwesomeIcon icon={faUser} />{" "}
+						<span className='user-select'>guest</span>
 					</li>
 					<li>
-						psw: <span className='user-select'>gg123</span>
+						<FontAwesomeIcon icon={faKey} />{" "}
+						<span className='user-select'>gg123</span>
 					</li>
 				</ul>
 
@@ -120,24 +129,30 @@ const SitePresentation = () => {
 			<div className='source-code'>
 				<span>Source code:</span>
 
-				<a target='_blank' href='https://github.com/Simas89/MERN-social'>
+				<a
+					target='_blank'
+					rel='noopener noreferrer'
+					href='https://github.com/Simas89/MERN-social'>
 					<FontAwesomeIcon className='hover-pointer git' icon={faGithub} />
 				</a>
 			</div>
-			<div className='line-long'></div>
+			<br></br>
+			<p className='the-end'>•••</p>
+			<br></br>
 			<p>
 				I'm currently living in Ipswich UK. I'm up for all types of work, so go
-				ahead and contact me by filling a form or:
+				ahead and contact me.
 			</p>
-			<ul>
+			<ul style={{ listStyleType: "none" }}>
 				<li>
-					Email: <span className='user-select'>simaszurauskas@gmail.com</span>
+					<FontAwesomeIcon icon={faEnvelope} />{" "}
+					<span className='user-select'>simaszurauskas@gmail.com</span>
 				</li>
 				<li>
-					Phone: <span className='user-select'>07428642217</span>
+					<FontAwesomeIcon icon={faPhone} />{" "}
+					<span className='user-select'>07428642217</span>
 				</li>
 			</ul>
-			<p className='the-end'>•••</p>
 			<br></br>
 		</div>
 	);

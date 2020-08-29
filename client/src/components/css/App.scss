@@ -8,7 +8,7 @@
 	.top-bar {
 		overflow: hidden;
 		position: relative;
-		height: 250px;
+		height: 450px;
 		// border: 2px green solid;
 		display: flex;
 		justify-content: center;
@@ -18,9 +18,9 @@
 		background: linear-gradient(45deg, #011627 10%, $nodeDark 100%);
 		.top-bar-content {
 			position: relative;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			// display: flex;
+			// justify-content: center;
+			// align-items: center;
 
 			flex-grow: 1;
 			// border: 2px solid black;
@@ -48,19 +48,32 @@
 				// mix-blend-mode: overlay;
 				mix-blend-mode: soft-light;
 			}
-			.exit-icon {
+			.exit {
+				position: relative;
+				top: 12px;
+				float: right;
 				z-index: 2;
-				user-select: none;
-				position: absolute;
-				top: 15px;
-				right: 15px;
-				color: white;
-				opacity: 0.5;
-				transition: ease-in-out 0.3s opacity;
+				// border: 1px solid red;
+				width: 70px;
+				height: 40px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 				cursor: pointer;
-
-				&:hover {
+				&:hover .exit-icon {
 					opacity: 1;
+				}
+				.exit-icon {
+					z-index: 2;
+					user-select: none;
+					// position: absolute;
+					top: 15px;
+					right: 15px;
+					color: white;
+					opacity: 0.5;
+					transition: ease-in-out 0.3s opacity;
+
+					margin-right: 4px;
 				}
 			}
 
@@ -68,7 +81,8 @@
 				font-family: "MuseoModerno", cursive;
 				color: white;
 				font-weight: 500;
-				position: relative;
+				position: absolute;
+				top: 80px;
 
 				width: 100%;
 				height: 80px;
@@ -90,7 +104,7 @@
 						cursor: pointer;
 					}
 					.nav-links-icon {
-						font-size: 20px;
+						font-size: 22px;
 						opacity: 0.7;
 						transition: 0.3s;
 						// &:hover {
@@ -125,29 +139,25 @@
 				border-left: 1px solid white;
 				// mix-blend-mode: overlay;
 				mix-blend-mode: soft-light;
-				&:hover {
-					opacity: 0.8;
-					transition: 0.2s;
-				}
+				// &:hover {
+				// 	opacity: 0.8;
+				// 	transition: 0.2s;
+				// }
 			}
 		}
-		// .mask {
-		// 	position: absolute;
-		// 	height: 100%;
-		// 	width: 200px;
-		// 	border-radius: 30px;
-		// 	border: 2px solid grey;
-		// 	background-color: indigo;
-		// 	left: 50px;
-		// 	top: 100px;
-		// }
+	}
+	.wave {
+		position: absolute;
+		width: 100%;
+		height: 200px;
+		border: 1px solid red;
 	}
 	.App {
 		z-index: 2;
 		position: relative;
 		max-width: 1024px;
 		margin: auto;
-		top: -100px;
+		top: -310px;
 		background-color: white;
 		border-radius: 20px;
 		// overflow: hidden;

@@ -4,6 +4,7 @@ import Formike from "./Formike";
 import { Scrollbars } from "react-custom-scrollbars";
 import accountContext from "../../context/account/myContext";
 import SitePresentation from "./SitePresentation";
+import useTimer from "../../hooks/useTimer";
 
 const MovingContainer = (props) => {
 	const style = {
@@ -29,102 +30,59 @@ const MovingContainer = (props) => {
 const LandingMain = () => {
 	const contextAccount = React.useContext(accountContext);
 
-	// console.log(contextAccount.accountState.logged);
-	// UI >
 	const [scrollStage, setScrollStage] = React.useState(1);
 	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 	const [page, setPage] = React.useState(0);
-	// document.querySelector("body").style.overflow = "hidden";
 
-	// EVENT LISTENERS AND THEIR FUNCTIONS
-	// const scrollEvent = () => {
-	// 	try {
-	// 		let scrollPosition = window.pageYOffset;
-	// 		const parallax = document.querySelector(".parallax");
-	// 		parallax.style.transform = `translateY(${scrollPosition * 0.6}px)`;
-	// 	} catch (err) {}
-	// };
 	const resizeEvent = () => {
 		setWindowWidth(window.innerWidth);
+		console.log("resizeEvent");
 	};
-	document.addEventListener("resize", resizeEvent);
-	// document.addEventListener("scroll", scrollEvent);
 
 	React.useEffect(() => {
-		document.title = "Simas Zurauskas | Home";
+		window.title = "Simas Zurauskas | Home";
+		window.addEventListener("resize", resizeEvent);
 		return () => {
-			document.removeEventListener("resize", resizeEvent);
-			// document.removeEventListener("scroll", scrollEvent);
+			window.removeEventListener("resize", resizeEvent);
 		};
 	}, []);
 
-	// Pge scroll stuff
-	// React.useEffect(() => {
-	// 	if (scrollStage === 1) window.scrollTo(0, 0);
-	// 	if (scrollStage === 2) window.scrollTo(0, window.innerHeight);
-	// 	if (scrollStage === 3) window.scrollTo(0, window.innerHeight * 2);
-	// }, [scrollStage]);
+	const parseLines = (num) => {
+		let arr = [];
+		for (let i = 0; i < num; i++) {
+			arr.push(<div className={`box  col-${i}`} key={i}></div>);
+		}
+		return arr;
+	};
+	const randomNum = (num) => {
+		const rand = Math.floor(Math.random() * (num - 0 + 1)) + 0;
+		return rand;
+	};
 
-	// if (scrollStage === 1) window.scrollTo(0, 0);
-	// if (scrollStage === 2) window.scrollTo(0, window.innerHeight);
-	// if (scrollStage === 3) window.scrollTo(0, window.innerHeight * 2);
+	const addClassShine = (num) => {
+		const target = document.querySelector(`.col-${randomNum(num)}`);
+		// target.classList.add("shine");
+		try {
+			target.style.opacity = 0.8;
+			// console.log(target);
+			setTimeout(() => (target.style.opacity = 0.2), randomNum(15) * 1000);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
-	// UI <
-	React.useEffect(() => {});
+	useTimer(
+		1,
+		1,
+		() => randomNum(5) === 1 && addClassShine(parseInt(windowWidth / 40))
+	);
 
 	return (
 		<React.Fragment>
 			<div className='parallax'></div>
 			<div className='landing-main'>
 				<div className='top-bar-shader'>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
-					<div className='box'></div>
+					{parseLines(parseInt(windowWidth / 40))}
 				</div>
 
 				<div className='title'>

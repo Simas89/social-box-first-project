@@ -1,3 +1,8 @@
+.site-presentation {
+  letter-spacing: 0.07rem;
+  margin-right: 10px;
+}
+
 .site-presentation .informacione {
   background-color: white;
   display: grid;
@@ -118,12 +123,6 @@
 .site-presentation .source-code .git {
   color: black;
   font-size: 2rem;
-}
-
-.site-presentation .line-long {
-  border-bottom: 1px solid rgba(30, 77, 33, 0.3);
-  width: 70%;
-  margin: 50px auto;
 }
 
 .site-presentation .the-end {
