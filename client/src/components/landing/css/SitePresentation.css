@@ -1,0 +1,148 @@
+.site-presentation .informacione {
+  background-color: white;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  width: 100%;
+}
+
+.site-presentation .informacione .logo {
+  margin: 0;
+}
+
+.site-presentation .informacione .mongo {
+  margin: auto;
+  height: 100px;
+  width: 190px;
+  background-image: url("../../../img/mongo.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.site-presentation .informacione .express {
+  margin: auto;
+  height: 70px;
+  width: 220px;
+  background-image: url("../../../img/express.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.site-presentation .informacione .react {
+  margin: auto;
+  height: 100px;
+  width: 100px;
+  background-image: url("../../../img/react.png");
+  background-size: cover;
+  background-position: center;
+  animation: rotation 12s infinite linear;
+}
+
+.site-presentation .informacione .node {
+  margin: auto;
+  height: 100px;
+  width: 162px;
+  background-image: url("../../../img/node.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.site-presentation .technologies {
+  background-color: white;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  width: 100%;
+}
+
+.site-presentation .technologies .logo {
+  margin: 0;
+}
+
+.site-presentation .technologies .graphql {
+  margin: auto;
+  height: 100px;
+  width: 100px;
+  background-image: url("../../../img/graphql.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.site-presentation .technologies .router {
+  margin: auto;
+  height: 85px;
+  width: 156px;
+  background-image: url("../../../img/router.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.site-presentation .technologies .mongoose {
+  margin: auto;
+  height: 80px;
+  width: 175px;
+  background-image: url("../../../img/mongoose.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.site-presentation .technologies .sass {
+  margin: auto;
+  height: 100px;
+  width: 134px;
+  background-image: url("../../../img/sass.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.site-presentation .bolder {
+  font-weight: 500;
+}
+
+.site-presentation .user-select {
+  user-select: text;
+}
+
+.site-presentation .br {
+  margin: 0.6rem;
+}
+
+.site-presentation .source-code {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+.site-presentation .source-code span {
+  margin-right: 5px;
+}
+
+.site-presentation .source-code .git {
+  color: black;
+  font-size: 2rem;
+}
+
+.site-presentation .line-long {
+  border-bottom: 1px solid rgba(30, 77, 33, 0.3);
+  width: 70%;
+  margin: 50px auto;
+}
+
+.site-presentation .the-end {
+  text-align: center;
+  font-size: 1.7rem;
+  opacity: 0.7;
+}
+
+@media (max-width: 1568px) {
+  .site-presentation .technologies {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-presentation .technologies {
+    grid-template-columns: auto;
+  }
+  .site-presentation .technologies .logo {
+    margin-bottom: 20px;
+  }
+}

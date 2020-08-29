@@ -3,6 +3,7 @@ import "./css/LandingMain.css";
 import Formike from "./Formike";
 import { Scrollbars } from "react-custom-scrollbars";
 import accountContext from "../../context/account/myContext";
+import SitePresentation from "./SitePresentation";
 
 const MovingContainer = (props) => {
 	const style = {
@@ -149,58 +150,7 @@ const LandingMain = () => {
 							renderThumbVertical={(props) => (
 								<div className='thumb-vertical' />
 							)}>
-							<div className='informacione'>
-								<div className='logo mongo'></div>
-								<div className='logo express'></div>
-								<div className='logo react'></div>
-								<div className='logo node'></div>
-							</div>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-								luctus nulla non lorem feugiat dignissim. Nam vitae fringilla
-								lorem. Mauris odio tortor, blandit sit amet mi nec, interdum
-								consectetur magna. Quisque non sapien quis est bibendum
-								hendrerit quis at libero. Suspendisse lacinia congue tellus ac
-								volutpat. Curabitur imperdiet purus sed ante elementum
-								porttitor. Nam sed vehicula libero. Vivamus id augue nec velit
-								luctus auctor sit amet ac nisi. Class aptent taciti sociosqu ad
-								litora torquent per conubia nostra, per inceptos himenaeos.
-								Nullam mi sem, luctus sed magna eu, placerat efficitur dolor.
-								Proin magna nisi, dapibus sed lorem eu, pretium iaculis massa.
-								Ut vitae tristique lorem. Vestibulum sagittis lectus in massa
-								ullamcorper lacinia. Aliquam vel erat sagittis, maximus felis
-								sed, consequat turpis. Duis vitae rhoncus est, at iaculis velit.
-								Proin malesuada consequat condimentum.Lorem ipsum dolor sit
-								amet, consectetur adipiscing elit. In luctus nulla non lorem
-								feugiat dignissim. Nam vitae fringilla lorem. Mauris odio
-								tortor, blandit sit amet mi nec, interdum consectetur magna.
-								Quisque non sapien quis est bibendum hendrerit quis at libero.
-								Suspendisse lacinia congue tellus ac volutpat. Curabitur
-								imperdiet purus sed ante elementum porttitor. Nam sed vehicula
-								libero. Vivamus id augue nec velit luctus auctor sit amet ac
-								nisi. Class aptent taciti sociosqu ad litora torquent per
-								conubia nostra, per inceptos himenaeos. Nullam mi sem, luctus
-								sed magna eu, placerat efficitur dolor. Proin magna nisi,
-								dapibus sed lorem eu, pretium iaculis massa. Ut vitae tristique
-								lorem. Vestibulum sagittis lectus in massa ullamcorper lacinia.
-								Aliquam vel erat sagittis, maximus felis sed, consequat turpis.
-								Duis vitae rhoncus est, at iaculis velit. Proin malesuada
-								consequat condimentum.Lorem ipsum dolor sit amet, consectetur
-								adipiscing elit. In luctus nulla non lorem feugiat dignissim.
-								Nam vitae fringilla lorem. Mauris odio tortor, blandit sit amet
-								mi nec, interdum consectetur magna. Quisque non sapien quis est
-								bibendum hendrerit quis at libero. Suspendisse lacinia congue
-								tellus ac volutpat. Curabitur imperdiet purus sed ante elementum
-								porttitor. Nam sed vehicula libero. Vivamus id augue nec velit
-								luctus auctor sit amet ac nisi. Class aptent taciti sociosqu ad
-								litora torquent per conubia nostra, per inceptos himenaeos.
-								Nullam mi sem, luctus sed magna eu, placerat efficitur dolor.
-								Proin magna nisi, dapibus sed lorem eu, pretium iaculis massa.
-								Ut vitae tristique lorem. Vestibulum sagittis lectus in massa
-								ullamcorper lacinia. Aliquam vel erat sagittis, maximus felis
-								sed, consequat turpis. Duis vitae rhoncus est, at iaculis velit.
-								Proin malesuada consequat condimentum.
-							</p>
+							<SitePresentation />
 						</Scrollbars>
 					</div>
 				</div>

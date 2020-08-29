@@ -8,7 +8,7 @@ import { Picker } from "emoji-mart";
 const TextArea = (props) => {
 	const [isEmojiOn, setIsEmojiOn] = React.useState(false);
 	const onEmojiChoose = (emoji) => {
-		// console.log(emoji);
+		console.log(emoji);
 		props.setText(props.value + emoji.native);
 	};
 	const ref = React.useRef(null);

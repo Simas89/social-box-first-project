@@ -18,47 +18,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function Item(props) {
-	const [inputState, setInputState] = React.useState(1);
 	const context = React.useContext(myContext);
 
-	const fixInputState = (tradeAmountInput) => {
-		let tradeAmount = 1;
-		parseInt(tradeAmountInput)
-			? (tradeAmount = parseInt(tradeAmountInput))
-			: (tradeAmount = 0);
-		setInputState(tradeAmount);
-	};
-
 	const trade = (param) => {
-		if (true) {
-			if (
-				(param === "BUY" && canBuy === true) ||
-				(param === "SELL" && canSell === true)
-			)
-				context.accountState.trade({
-					action: param,
-					changeItemAmount: inputState,
-					itemName: props.itemName,
-				});
-		}
+		context.accountState.trade({
+			action: param,
+			changeItemAmount: 1,
+			itemName: props.itemName,
+		});
 	};
-	// buy sell checks
-	let canSell = false;
-	let canBuy = false;
-	inputState <= props.amount ? (canSell = true) : (canSell = false);
-	props.price * inputState <= props.credits
-		? (canBuy = true)
-		: (canBuy = false);
-	if (!inputState) {
-		canBuy = false;
-		canSell = false;
-	}
 
-	// const handleChange = (e) => {
-	// 	const re = /^[0-9\b]+$/;
-	// 	if (e.target.value === "" || re.test(e.target.value))
-	// 		fixInputState(e.target.value);
-	// };
 	const selectIcon = () => {
 		switch (props.itemName) {
 			case "Apple":
@@ -106,13 +75,13 @@ function Item(props) {
 			case "Cookie":
 				return "A cookie you cannot say no to";
 			case "Bacon":
-				return "Smoked back bacon";
+				return "Smoked back bacon rasher";
 			case "Cat":
 				return "Puffy cat";
 			case "Dog":
 				return "Agile dog with dot on his eye";
 			case "Horse":
-				return "A proper horse";
+				return "A real horse";
 
 			default:
 				return "Item";
@@ -137,8 +106,10 @@ function Item(props) {
 					</div>
 					<div className='buy'>
 						<button
-							className={`btn ${canBuy && "can-buy"}`}
-							onClick={() => trade("BUY")}>
+							className={`btn ${props.price * 1 <= props.credits && "can-buy"}`}
+							onClick={() => {
+								props.price * 1 <= props.credits && trade("BUY");
+							}}>
 							Cr {props.price}
 						</button>
 					</div>
@@ -149,23 +120,3 @@ function Item(props) {
 }
 
 export default Item;
-
-{
-	/* <div>{props.itemName}</div>
-<div>Cr: {props.price}</div>
-<div>Stock: {props.amount}</div>
-{props.displayedAt === "MARKET" && (
-	<React.Fragment>
-		<button style={btnStyle("BUY")} onClick={() => trade("BUY")}>
-			Buy
-		</button>
-		<input
-			onChange={handleChange}
-			type='text'
-			value={inputState}></input>
-		<button style={btnStyle("SELL")} onClick={() => trade("SELL")}>
-			Sell
-		</button>
-	</React.Fragment>
-)} */
-}
