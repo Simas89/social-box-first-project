@@ -5,14 +5,21 @@
 
 .txt-block .TextArea {
   padding: 15px;
-  border: 1px solid blue;
   outline: none;
+  border: none;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   display: block;
   resize: none;
   bottom: 100%;
+}
+
+.txt-block .TextArea:active {
+  outline: none;
+}
+
+.txt-block .TextArea:focused {
+  outline: none;
 }
 
 .txt-block .icon-emoji {

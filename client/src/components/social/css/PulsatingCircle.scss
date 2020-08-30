@@ -2,7 +2,7 @@ $colorTone: rgb(115, 172, 98);
 
 .base {
 	// margin-bottom: 4px;
-	// margin-left: 20px;
+	margin-left: 20px;
 	border-radius: 50%;
 	display: inline-block;
 	height: 8px;
@@ -12,8 +12,8 @@ $colorTone: rgb(115, 172, 98);
 }
 
 .online {
-	width: 5px;
-	height: 5px;
+	width: 3px;
+	height: 3px;
 	opacity: 1;
 	transform: translateX(-50%) translateY(-50%);
 	transform: scale(2);

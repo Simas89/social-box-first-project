@@ -1,8 +1,17 @@
 .TextareaAutosize {
   width: 100% !important;
-  margin-top: 5px;
-  overflow: hidden;
   display: block;
   resize: none;
   bottom: 100%;
+  padding-top: 5px;
+  margin-bottom: 30px;
+  padding-right: 6px;
+}
+
+.TextareaAutosize .line-bottom {
+  width: 80%;
+  margin: auto;
+  height: 1px;
+  background: #00b588;
+  background: linear-gradient(90deg, rgba(0, 181, 136, 0) 0%, #38b557 20%, #38b557 80%, rgba(0, 255, 218, 0) 100%);
 }

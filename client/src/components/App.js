@@ -66,7 +66,7 @@ function App(props) {
 			// console.log(target);
 			setTimeout(() => (target.style.opacity = 0.2), randomNum(15) * 1000);
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 		}
 	};
 

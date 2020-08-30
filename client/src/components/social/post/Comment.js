@@ -54,28 +54,25 @@ const Comment = (props) => {
 						alt={""}
 					/>
 				</div>
-				<div className='info cursor-pointer'>
-					<p onClick={() => history.push(`/app/users/${props.userName}`)}>
-						{props.userName}
-					</p>
-				</div>
-				<div className='info'>
-					<p>•</p>
-				</div>
+				<div className='comment-titles'>
+					<div className='info cursor-pointer name'>
+						<p onClick={() => history.push(`/app/users/${props.userName}`)}>
+							{props.userName}
+						</p>
+					</div>
+					<div className='info'>
+						<p>•</p>
+					</div>
 
-				<div className='info'>
-					<p>{moment(parseInt(props.timestamp)).fromNow()}</p>
-				</div>
-				{props.edited && (
-					<React.Fragment>
-						<div className='info'>
-							<p>•</p>
-						</div>
-						<div className='info'>
+					<div className='info time'>
+						<p>{moment(parseInt(props.timestamp)).fromNow()}</p>
+					</div>
+					{props.edited && (
+						<div className='info edited-comment time'>
 							<p>Edited {moment(parseInt(props.edited)).fromNow()}</p>
 						</div>
-					</React.Fragment>
-				)}
+					)}
+				</div>
 
 				{props.userName === context.accountState.user && (
 					<PopUpMenu

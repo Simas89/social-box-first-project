@@ -3,16 +3,15 @@ import "./css/PopUpMenu.css";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 
 const PopUpMenu = (props) => {
-	const [isMenu, setIsMenu] = React.useState(0);
+	const [isMenu, setIsMenu] = React.useState({ menu: 0, btnHide: 0 });
 	const [confirmationStage, setConfirmationStage] = React.useState(0);
 	const [action, setAction] = React.useState("");
 
 	// console.log(props);
 	let ref = React.useRef();
 	useOutsideClick(ref, () => {
-		if (isMenu && action === "") {
-			console.log("Click Outside");
-			setIsMenu(0);
+		if (isMenu.menu && action === "") {
+			startCloseMenu();
 		}
 	});
 
@@ -27,9 +26,8 @@ const PopUpMenu = (props) => {
 			}
 			if (action === "EDIT") {
 				props.trigEditSave();
-				setConfirmationStage(0);
 				setAction("");
-				setIsMenu(0);
+				startCloseMenu();
 			}
 		}
 	};
@@ -42,19 +40,28 @@ const PopUpMenu = (props) => {
 			if (action === "EDIT") {
 				props.trigEditDiscard();
 			}
-			setConfirmationStage(0);
 			setAction("");
-			setIsMenu(0);
+			startCloseMenu();
 		}
+	};
+
+	const startCloseMenu = () => {
+		setIsMenu({ ...isMenu, btnHide: 1 });
+		setTimeout(() => {
+			setIsMenu({ btnHide: 0, menu: 0 });
+			setConfirmationStage(0);
+		}, 200);
 	};
 
 	return (
 		<React.Fragment>
-			<div onClick={() => setIsMenu(1)} className='menu'>
+			<div
+				onClick={() => setIsMenu({ ...isMenu, menu: 1 })}
+				className={`menu ${isMenu.menu && "hide"} `}>
 				<p>•••</p>
 			</div>
-			{isMenu ? (
-				<div ref={ref} className='popup'>
+			{isMenu.menu ? (
+				<div ref={ref} className={`popup ${isMenu.btnHide && "btn-hide"}`}>
 					<div className='btn' onClick={() => btn1()}>
 						{confirmationStage ? "Confirm" : "Edit"}
 					</div>

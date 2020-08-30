@@ -43,38 +43,39 @@ const SocialWindow = () => {
 
 	return (
 		<div className='social-window'>
-			<button
-				style={{ marginLeft: "50px" }}
-				onClick={() => {
-					ntfCounter++;
-					contextSocial.notPush(ntfCounter);
-				}}>
-				Notification
-			</button>
-			<button
-				onClick={() =>
-					getPosts(
-						gqlGetPostsQuery(
-							"SINGLE",
-							context.accountState.user,
-							"5f32e52bcf43334fb443a0c7"
+			<div className='btns' style={{ position: "fixed", left: 0, zIndex: 5 }}>
+				<button
+					onClick={() => {
+						ntfCounter++;
+						contextSocial.notPush(ntfCounter);
+					}}>
+					Notification
+				</button>
+				<button
+					onClick={() =>
+						getPosts(
+							gqlGetPostsQuery(
+								"SINGLE",
+								context.accountState.user,
+								"5f32e52bcf43334fb443a0c7"
+							)
 						)
-					)
-				}>
-				Get single
-			</button>
-			<button
-				onClick={() =>
-					getPosts(gqlGetPostsQuery("USER", context.accountState.user, "000"))
-				}>
-				Get user posts
-			</button>
-			<button
-				onClick={() =>
-					getPosts(gqlGetPostsQuery("FEED", context.accountState.user))
-				}>
-				Get full feed
-			</button>
+					}>
+					Get single
+				</button>
+				<button
+					onClick={() =>
+						getPosts(gqlGetPostsQuery("USER", context.accountState.user, "000"))
+					}>
+					Get user posts
+				</button>
+				<button
+					onClick={() =>
+						getPosts(gqlGetPostsQuery("FEED", context.accountState.user))
+					}>
+					Get full feed
+				</button>
+			</div>
 
 			<CreatePostBar />
 			{contextPost.state.posts &&

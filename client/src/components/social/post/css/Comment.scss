@@ -4,13 +4,31 @@
 	// border: 1px solid black;
 	.comment-top {
 		position: relative;
-		border: 1px solid green;
+		// border: 1px solid green;
 		height: 60px;
 		display: flex;
 		align-items: center;
-		.info {
-			margin-left: 20px;
+		.comment-titles {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			width: 100%;
+			.info {
+				margin-left: 20px;
+			}
+			.name {
+				font-size: 1.2rem;
+			}
+			.edited-comment {
+				position: absolute;
+				right: 80px;
+			}
+			.time {
+				color: gray;
+				font-size: 0.8rem;
+			}
 		}
+
 		.profile-img {
 			margin-left: 5px;
 			overflow: hidden;
@@ -18,7 +36,7 @@
 			align-items: center;
 			justify-content: center;
 			img {
-				width: 140%;
+				width: 150%;
 				// border: 1px solid black;
 			}
 			// border: 1px solid grey;
@@ -29,7 +47,7 @@
 		}
 		.menu {
 			// position: relative;
-			border: 1px solid red;
+			// border: 1px solid red;
 			color: lightgrey;
 			position: absolute;
 			right: 0;
@@ -47,14 +65,17 @@
 			right: 0;
 			height: 100%;
 			width: 80px;
-			border: 1px solid blue;
+			// border: 1px solid blue;
 		}
 	}
 	.comment-middle {
+		// border: 1px solid black;
+		margin: 0 0 0 25px;
 		p {
 			white-space: pre-line;
+			font-size: 1rem;
 		}
-		// border: 2px solid black;
+
 		// height: 100px;
 	}
 }

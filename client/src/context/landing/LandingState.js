@@ -15,7 +15,7 @@ import {
 
 const LandingState = (props) => {
 	const initialState = {
-		LR: 1,
+		LR: 0,
 		rememberMe: 0,
 
 		userInputs: { userName: "", psw1: "", psw2: "" },
@@ -28,7 +28,7 @@ const LandingState = (props) => {
 			senderMail: false,
 			textArea: false,
 		},
-		canAnimatePsw2: { expand: false, collapse: false, display: true },
+		canAnimatePsw2: { expand: false, collapse: false, display: false },
 	};
 	const [state, dispatch] = React.useReducer(landingReducer, initialState);
 

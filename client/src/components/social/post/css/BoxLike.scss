@@ -3,14 +3,32 @@
 	justify-content: center;
 	align-items: center;
 	// position: absolute;
-	border: 1px solid red;
-	right: 0;
+	// border: 1px solid red;
+	margin-right: 5px;
+	margin-bottom: 5px;
 	height: 3rem;
 	.people {
-		margin-right: 10px;
+		margin-right: 5px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		// flex-direction: row-reverse;
+	}
+	.star-icon {
+		margin-left: 10px;
+		background: linear-gradient(
+			0deg,
+			rgba(255, 157, 9, 1) 0%,
+			rgba(255, 171, 0, 1) 59%,
+			rgba(255, 206, 5, 1) 100%
+		);
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		// display: none;
+	}
+}
+.hoveris {
+	&:hover {
+		cursor: pointer;
 	}
 }

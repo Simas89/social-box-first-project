@@ -28,6 +28,7 @@ const PostItself = (props) => {
 	const history = useHistory();
 	// console.log(commentText);
 	const [isCommentsBarOpen, setIsCommentsBarOpen] = React.useState(false);
+	const [isCommentTextFocus, setIsCommentTextFocus] = React.useState(0);
 
 	const myRef = React.useRef();
 	React.useEffect(() => myRef.current.scrollToBottom(), []);
@@ -83,11 +84,14 @@ const PostItself = (props) => {
 						{props.isVerified && (
 							<FontAwesomeIcon
 								icon={faRibbon}
-								style={{ fontSize: "20px" }}
+								style={{ fontSize: "18px" }}
 								color='orange'
 							/>
 						)}
-						<PulsatingCircle isOnline={props.isOnline} />
+						<PulsatingCircle
+							className='PulsatingCircle'
+							isOnline={props.isOnline}
+						/>
 					</div>
 					<div className='date-posted'>
 						{moment(parseInt(props.timestamp)).fromNow()}
@@ -102,6 +106,7 @@ const PostItself = (props) => {
 						trigEditDiscard={trigEditDiscard}
 					/>
 				)}
+				<div className='bottom-grad'></div>
 			</div>
 			<div className='middle-section'>
 				<div className='text-box'>
@@ -130,14 +135,14 @@ const PostItself = (props) => {
 					)}
 					{contextPost.state.posts[props.index].comments.length ? (
 						<div onClick={openComments} className='comments-info'>
+							<FontAwesomeIcon
+								icon={faComments}
+								style={{ fontSize: "22px" }}
+								color='rgb(114, 170, 98)'
+							/>
 							<span>
 								{contextPost.state.posts[props.index].comments.length}
 							</span>
-							<FontAwesomeIcon
-								icon={faComments}
-								style={{ fontSize: "20px" }}
-								color='rgb(114, 170, 98)'
-							/>
 						</div>
 					) : null}
 					<BoxLike index={props.index} />
@@ -146,13 +151,17 @@ const PostItself = (props) => {
 
 			<div className='bottom-section'>
 				<div className='comments-content'>
+					{contextPost.state.posts[props.index].comments.length !== 0 && (
+						<div className='comments-content-top-grad'></div>
+					)}
 					<Scrollbars
-						style={{ transition: "0.3s" }}
+						className='scroll-bar'
+						// style={{ transition: "0.3s" }}
 						ref={myRef}
 						// onClick={() => console.log(myRef)}
 						autoHeight
 						autoHeightMin={0}
-						autoHeightMax={isCommentsBarOpen ? 500 : 200}
+						autoHeightMax={isCommentsBarOpen ? 700 : 300}
 						autoHide
 						autoHideTimeout={2000}
 						autoHideDuration={200}
@@ -180,24 +189,32 @@ const PostItself = (props) => {
 					</Scrollbars>
 				</div>
 
-				<TextArea
-					style={{ padding: "5px" }}
-					placeholder='Comment..'
-					value={commentText}
-					minRows={1}
-					setText={(txt) => setCommentText(txt)}
-					iconDisplay={true}
-					emojiDisplay={true}
-					iconName='comment'
-					iconClick={() => {
-						contextPost.sendComment({
-							post: { _id: props._id, index: props.index },
-							user: context.accountState.user,
-							comment: commentText,
-						});
-						setCommentText("");
-					}}
-				/>
+				<div
+					className={`add-post-comment ${
+						isCommentTextFocus && "add-post-comment-focus"
+					}`}>
+					<TextArea
+						className='add-post-comment-textarea'
+						iconClick={() => {
+							contextPost.sendComment({
+								post: { _id: props._id, index: props.index },
+								user: context.accountState.user,
+								comment: commentText,
+							});
+							setCommentText("");
+						}}
+						style={{ padding: "5px 10px" }}
+						placeholder='Comment..'
+						value={commentText}
+						minRows={1}
+						setText={(txt) => setCommentText(txt)}
+						iconDisplay={true}
+						emojiDisplay={true}
+						iconName='comment'
+						focus={() => setIsCommentTextFocus(1)}
+						blur={() => setIsCommentTextFocus(0)}
+					/>
+				</div>
 			</div>
 		</div>
 	);

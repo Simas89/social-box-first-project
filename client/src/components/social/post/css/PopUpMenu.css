@@ -1,15 +1,16 @@
 .menu {
-  border: 1px solid red;
+  font-size: 2rem;
+  margin-right: 10px;
   color: lightgrey;
   position: absolute;
   right: 0;
-  transition: color 0.2s;
+  transition: 0.2s;
 }
 
 .menu:hover {
   color: grey;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: 0.2s;
 }
 
 .popup {
@@ -20,13 +21,48 @@
   right: 0;
   height: 100%;
   width: 80px;
-  border: 1px solid blue;
 }
 
 .popup .btn {
+  color: dimgray;
+  font-weight: 400;
   margin: auto;
+  animation: animation-appear;
+  animation-duration: 0.1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
 }
 
 .popup .btn:hover {
   cursor: pointer;
+  text-decoration: underline;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.btn-hide {
+  animation: animation-dissapear;
+  animation-duration: 0.1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes animation-appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes animation-dissapear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

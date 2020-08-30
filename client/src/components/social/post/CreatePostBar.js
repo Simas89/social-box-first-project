@@ -36,16 +36,19 @@ const CreatePostBar = () => {
 	};
 
 	return (
-		<TextArea
-			placeholder='Write a post..'
-			value={text}
-			minRows={2}
-			setText={(txt) => setText(txt)}
-			iconDisplay={true}
-			emojiDisplay={true}
-			iconName='send'
-			iconClick={() => postPost()}
-		/>
+		<div className='TextareaAutosize'>
+			<TextArea
+				placeholder='Write a post..'
+				value={text}
+				minRows={2}
+				setText={(txt) => setText(txt)}
+				iconDisplay={true}
+				emojiDisplay={true}
+				iconName='send'
+				iconClick={() => postPost()}
+			/>
+			<div className='line-bottom'></div>
+		</div>
 	);
 };
 

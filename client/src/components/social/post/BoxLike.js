@@ -38,6 +38,14 @@ const BoxLike = (props) => {
 		}
 	};
 
+	const islikesMaxed = () => {
+		const score =
+			contextPost.state.posts[props.index].likesPack.approves.length < 5
+				? contextPost.state.posts[props.index].likesPack.approves.length * 2
+				: 10;
+		return score;
+	};
+
 	return (
 		<div className='box-like'>
 			<div className='people'>
@@ -61,21 +69,22 @@ const BoxLike = (props) => {
 			{contextPost.state.posts[props.index].likesPack.likes - 5 > 0
 				? `+${contextPost.state.posts[props.index].likesPack.likes - 5}`
 				: ""}
-			<Icon
+
+			<i
+				className={`${
+					contextPost.state.posts[props.index].likesPack.likedByMe
+						? "fa "
+						: "far hoveris"
+				}  fa-star star-icon`}
 				onClick={() =>
 					onLikeClick(
 						context.accountState.user,
 						contextPost.state.posts[props.index]._id
 					)
 				}
-				name={
-					contextPost.state.posts[props.index].likesPack.likedByMe
-						? "star"
-						: "star outline"
-				}
-				size='large'
-				color='orange'
-			/>
+				style={{
+					fontSize: `${islikesMaxed() + 20}px`,
+				}}></i>
 		</div>
 	);
 };

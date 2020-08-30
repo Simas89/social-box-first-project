@@ -17,6 +17,8 @@ const TextArea = (props) => {
 		<React.Fragment>
 			<div className='txt-block'>
 				<TextareaAutosize
+					onFocus={props.focus}
+					onBlur={props.blur}
 					style={props.style}
 					className='TextArea'
 					placeholder={props.placeholder}

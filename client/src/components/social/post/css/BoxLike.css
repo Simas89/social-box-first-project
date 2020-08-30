@@ -2,14 +2,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
-  right: 0;
+  margin-right: 5px;
+  margin-bottom: 5px;
   height: 3rem;
 }
 
 .box-like .people {
-  margin-right: 10px;
+  margin-right: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.box-like .star-icon {
+  margin-left: 10px;
+  background: linear-gradient(0deg, #ff9d09 0%, #ffab00 59%, #ffce05 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hoveris:hover {
+  cursor: pointer;
 }
