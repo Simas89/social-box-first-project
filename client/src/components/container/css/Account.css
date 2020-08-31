@@ -138,6 +138,10 @@
   border: none;
 }
 
+.acc-body .top .email button:hover {
+  cursor: pointer;
+}
+
 .acc-body .bottom {
   position: relative;
   margin: 10px;

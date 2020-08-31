@@ -162,9 +162,12 @@ const Account = () => {
 								<div className='email'>
 									<div className='input'>
 										<input
+											className='emailInput'
 											type='email'
 											placeholder='Please confirm your email'></input>
-										<button onClick={accVerification}>Submit</button>
+										<button className='btn-submit' onClick={accVerification}>
+											Submit
+										</button>
 									</div>
 									<p
 										className={`submitMsg ${submitMsg.pass ? "pass" : "fail"}`}>
