@@ -1,6 +1,7 @@
 import React from "react";
 import "./css/NtfItem.css";
 import moment from "moment";
+import { Twemoji } from "react-emoji-render";
 import { Link } from "react-router-dom";
 import socialContext from "../../../context/social/socialContext";
 import postContext from "../../../context/post/postContext";
@@ -22,12 +23,12 @@ const NtfItem = (props) => {
 		if (props.messageBody.format === "USERLINK_TEXT") {
 			return (
 				<React.Fragment>
-					<strong>
+					<strong onClick={() => contextSocial.notificationBarOff()}>
 						<Link to={`/app/users/${props.messageBody.link}`}>
 							{props.messageBody.link}
 						</Link>
 					</strong>{" "}
-					{props.messageBody.text1}
+					{<Twemoji text={props.messageBody.text1} />}
 				</React.Fragment>
 			);
 		}
@@ -35,7 +36,7 @@ const NtfItem = (props) => {
 		if (props.messageBody.format === "POST_LIKE") {
 			return (
 				<React.Fragment>
-					<strong>
+					<strong onClick={() => contextSocial.notificationBarOff()}>
 						<Link to={`/app/users/${props.messageBody.link}`}>
 							{props.messageBody.link}
 						</Link>
@@ -64,7 +65,7 @@ const NtfItem = (props) => {
 		if (props.messageBody.format === "POST_COMMENT") {
 			return (
 				<React.Fragment>
-					<strong>
+					<strong onClick={() => contextSocial.notificationBarOff()}>
 						<Link to={`/app/users/${props.messageBody.link}`}>
 							{props.messageBody.link}
 						</Link>
@@ -95,8 +96,11 @@ const NtfItem = (props) => {
 	};
 
 	const getPosts = (query) => {
+		contextSocial.notificationBarOff();
+		contextPost.setIsLoading(1);
 		graphqlFetch(query, (res) => {
 			contextPost.setPosts(res.getPosts);
+			contextPost.setIsLoading(0);
 		});
 	};
 
@@ -118,6 +122,9 @@ const NtfItem = (props) => {
 
 	return (
 		<div className='ntf-item' onClick={seenOne}>
+			<div className='ntf-grad'>
+				<div className='ntf-grad-line'></div>
+			</div>
 			<img
 				alt=''
 				src={`data:${props.imgMini.mimetype};base64,${props.imgMini.data}`}

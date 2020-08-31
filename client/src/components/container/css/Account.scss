@@ -1,14 +1,12 @@
 .acc-body {
 	position: relative;
 	overflow: hidden;
-	border-radius: 20px;
-	border: 1px solid black;
 
 	.top {
 		position: relative;
 		margin: 10px;
-		border: 1px solid red;
-		border-radius: 20px;
+		// border: 1px solid red;
+		// border-radius: 20px;
 		overflow: hidden;
 		display: grid;
 		grid-template-columns: minmax(100px, 700px) auto;
@@ -21,7 +19,7 @@
 			align-items: center;
 			justify-content: center;
 			// border: 1px solid white;
-			border-radius: 20px;
+			// border-radius: 20px;
 
 			// height: 525px;
 			img {
@@ -46,12 +44,26 @@
 			flex-direction: column;
 			justify-content: space-evenly;
 			padding: 0 15px;
+			.ribon {
+				opacity: 0.8;
+				top: -20px;
+				right: -200px;
+				z-index: -1;
+				position: absolute;
+				font-size: 40rem;
+				background: linear-gradient(
+					300deg,
+					rgb(255, 120, 9) 0%,
+					rgb(255, 196, 0) 59%,
+					rgb(255, 232, 25) 100%
+				);
+				background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
 			.not-verified {
 				// border: 1px solid red;
 				margin-bottom: 10px;
-				p {
-					margin: 0;
-				}
+
 				input {
 					// letter-spacing: 0.06rem;
 					height: 40px;
@@ -63,7 +75,6 @@
 					transition: 0.1s;
 
 					&:focus {
-						border-bottom: 1px solid rgba(14, 46, 43, 1);
 						transition: 0.2s;
 						outline: none;
 					}
@@ -76,18 +87,24 @@
 				}
 			}
 			.userName {
+				color: rgb(48, 48, 48);
 				font-size: 2rem;
-				font-weight: bold;
-				// margin-bottom: 15px;
-				// border: 1px solid red;
-				&:hover {
-					cursor: pointer;
+				font-weight: 600;
+			}
+			.settings-divider {
+				display: flex;
+				align-items: center;
+				.icon {
+					color: rgba(48, 48, 48, 0.8);
+					margin-right: 5px;
+				}
+				.line {
+					width: 100%;
+					height: 1px;
+					background-color: rgba(48, 48, 48, 0.8);
 				}
 			}
-			.line {
-				width: 100%;
-				border-bottom: 1px solid black;
-			}
+
 			.show-online {
 				margin-top: 10px;
 				display: flex;
@@ -113,6 +130,19 @@
 			justify-content: center;
 			// width: 100%;
 			// border: 1px solid blue;
+			button {
+				height: 30px;
+				width: 80px;
+				// display: none;
+				border: none;
+				outline: none;
+				border-radius: 8px;
+				color: white;
+				background-color: rgb(89, 129, 182);
+				&:active {
+					border: none;
+				}
+			}
 		}
 	}
 	.bottom {

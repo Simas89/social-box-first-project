@@ -8,11 +8,14 @@ import CreatePostBar from "./post/CreatePostBar";
 import PostItself from "./post/PostItself";
 import graphqlFetch from "../../functions/graphqlFetch";
 import gqlGetPostsQuery from "../../functions/gqlGetPostsQuery";
+import { css } from "@emotion/core";
+import { PulseLoader } from "react-spinners";
 
 const SocialWindow = () => {
 	const context = React.useContext(myContext);
 	const contextPost = React.useContext(postContext);
 	const contextSocial = React.useContext(socialContext);
+	const [isLoading, setIsLoading] = React.useState(1);
 
 	React.useEffect(
 		() => getPosts(gqlGetPostsQuery("FEED", context.accountState.user)),
@@ -22,7 +25,7 @@ const SocialWindow = () => {
 
 	const getPosts = (query) => {
 		graphqlFetch(query, (res) => {
-			console.log(res);
+			setIsLoading(0);
 
 			res.getPosts.sort((a, b) => {
 				return a.timestamp < b.timestamp
@@ -40,6 +43,11 @@ const SocialWindow = () => {
 	// console.log(context);
 
 	let ntfCounter = contextSocial.notifications.length;
+
+	const override = css`
+		display: block;
+		margin: 0 auto;
+	`;
 
 	return (
 		<div className='social-window'>
@@ -78,6 +86,16 @@ const SocialWindow = () => {
 			</div>
 
 			<CreatePostBar />
+			{isLoading && !contextPost.state.posts.length ? (
+				<div className='sweet-loading'>
+					<PulseLoader
+						css={override}
+						size={8}
+						margin={5}
+						color={"rgba(40, 94, 53,1)"}
+					/>
+				</div>
+			) : null}
 			{contextPost.state.posts &&
 				contextPost.state.posts.map((item, index) => (
 					<PostItself

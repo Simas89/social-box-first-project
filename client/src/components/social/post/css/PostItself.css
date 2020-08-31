@@ -1,6 +1,6 @@
 .post-body {
   position: relative;
-  margin: 0 10px 30px 10px;
+  margin: 10px 10px 20px 10px;
   padding-bottom: 1px;
   box-shadow: 0 0 5px 2px #b9b9b9;
   transition: box-shadow 0.3s;
@@ -42,6 +42,7 @@
 }
 
 .post-body .top-section .post-info-top .user-titles .name {
+  letter-spacing: 0.03rem;
   font-weight: 400;
   font-size: 1.5rem;
 }
@@ -75,6 +76,7 @@
 
 .post-body .middle-section .text-box {
   margin: 15px 50px 10px 50px;
+  overflow: hidden;
 }
 
 .post-body .middle-section .text-box .TextareaAutosize {
@@ -86,18 +88,46 @@
   bottom: 100%;
 }
 
-.post-body .middle-section .text-box .textas {
-  white-space: pre-line;
+.post-body .middle-section .text-box .post-text {
+  overflow: hidden;
+  max-height: 500px;
 }
 
-.post-body .middle-section .text-box p {
+.post-body .middle-section .text-box .post-text .textas {
+  letter-spacing: 0.03rem;
+  word-spacing: 0.2rem;
+  color: #323232;
+  white-space: pre-line;
+  line-height: 1.7rem;
   font-size: 1.1rem;
   white-space: pre-line;
 }
 
-.post-body .middle-section .text-box span {
+.post-body .middle-section .text-box .post-text .textas span {
   user-select: text !important;
-  line-height: 1.8rem;
+}
+
+.post-body .middle-section .text-box .continue {
+  position: relative;
+  height: 40px;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: white;
+  background: linear-gradient(0deg, white 60%, rgba(255, 255, 255, 0) 100%);
+}
+
+.post-body .middle-section .text-box .continue span {
+  color: gray;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+.post-body .middle-section .text-box .continue span:hover {
+  cursor: pointer;
+  color: #3d3d3d;
+  transition: 0.2s;
 }
 
 .post-body .middle-section .comments-and-likes {
@@ -155,6 +185,8 @@
 }
 
 .post-body .bottom-section .comments-content .comments-content-top-grad {
+  margin-top: 5px;
+  margin-bottom: 12px;
   width: 100%;
   height: 1px;
   background: linear-gradient(90deg, rgba(0, 181, 136, 0) 0%, #38b557 20%, #38b557 80%, rgba(0, 255, 218, 0) 100%);
@@ -186,11 +218,11 @@
 
 .post-body .bottom-section .add-post-comment {
   margin: 10px 0 9px 0;
-  padding-top: 2px;
+  padding: 3px 8px 0px 8px;
   border: 1px solid #ececec;
   border-radius: 20px;
-  overflow: hidden;
   transition: 0.2s;
+  z-index: 5;
 }
 
 .post-body .bottom-section .add-post-comment-focus {

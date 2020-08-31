@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 
 import myContext from "../context/account/myContext";
 import socialContext from "../context/social/socialContext";
+import postContext from "../context/post/postContext";
 
 import Container from "./container/Container";
 // import NotificationsContentBlock from "./social/NotificationsContentBlock";
@@ -29,13 +30,14 @@ function App(props) {
 
 	const context = React.useContext(myContext);
 	const contextSocial = React.useContext(socialContext);
+	const contextPost = React.useContext(postContext);
 	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
 	const history = useHistory();
 	let location = useLocation();
 	const resizeEvent = () => {
 		setWindowWidth(window.innerWidth);
-		console.log("resizeEvent");
+		// console.log("resizeEvent");
 	};
 
 	React.useEffect(() => {
@@ -70,11 +72,12 @@ function App(props) {
 		}
 	};
 
-	useTimer(
-		1,
-		1,
-		() => randomNum(5) === 1 && addClassShine(parseInt(windowWidth / 40))
-	);
+	useTimer(1, 1, (ticks) => {
+		if (ticks === 60) {
+			contextSocial.notificationsPull({ action: "REFRESH" });
+		}
+		randomNum(5) === 1 && addClassShine(parseInt(windowWidth / 40));
+	});
 
 	// useTimer(true, 3, (periods) => console.log("callback", periods));
 
@@ -97,7 +100,11 @@ function App(props) {
 									{`Welcome back, ${context.accountState.user} `}
 								</h1>
 							</div>
-							<div className='exit' onClick={() => history.push("/")}>
+							<div
+								className='exit'
+								onClick={() => {
+									history.push("/");
+								}}>
 								<FontAwesomeIcon
 									className='exit-icon'
 									icon={faRunning}
@@ -112,7 +119,15 @@ function App(props) {
 							<div className='nav-links'>
 								<div
 									className='nav-links-box'
-									onClick={() => history.push("/app")}>
+									onClick={() => {
+										if (
+											location.pathname.includes("app/post/") ||
+											location.pathname.includes("app/users/")
+										) {
+											contextPost.resetPosts();
+										}
+										history.push("/app");
+									}}>
 									<FontAwesomeIcon
 										className={`nav-links-icon ${
 											location.pathname === "/app"

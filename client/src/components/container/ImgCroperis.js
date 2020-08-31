@@ -48,8 +48,10 @@ const ImgCroperis = (props) => {
 							onZoomChange={setZoom}
 						/>
 					</div>
-					<button onClick={showCroppedImage}>Show Result</button>
-					<button onClick={() => props.cancel()}>Cancel</button>
+					<div className='btns'>
+						<button onClick={showCroppedImage}>UPLOAD</button>
+						<button onClick={() => props.cancel()}>Cancel</button>
+					</div>
 				</React.Fragment>
 			)}
 		</div>

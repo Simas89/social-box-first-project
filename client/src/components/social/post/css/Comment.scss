@@ -3,11 +3,13 @@
 	// height: 80px;
 	// border: 1px solid black;
 	.comment-top {
+		overflow: hidden;
 		position: relative;
 		// border: 1px solid green;
 		height: 60px;
 		display: flex;
 		align-items: center;
+		justify-content: flex-start;
 		.comment-titles {
 			display: flex;
 			justify-content: flex-start;
@@ -30,20 +32,17 @@
 		}
 
 		.profile-img {
+			// border: 2px solid red;
 			margin-left: 5px;
 			overflow: hidden;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			img {
-				width: 150%;
-				// border: 1px solid black;
-			}
-			// border: 1px solid grey;
-			box-shadow: 0 0 3px 2px grey;
-			height: 45px;
-			width: 45px;
 			border-radius: 50%;
+
+			img {
+				width: 120px;
+			}
 		}
 		.menu {
 			// position: relative;
@@ -70,10 +69,13 @@
 	}
 	.comment-middle {
 		// border: 1px solid black;
-		margin: 0 0 0 25px;
+		margin: 10px 0 0 25px;
 		p {
 			white-space: pre-line;
 			font-size: 1rem;
+			letter-spacing: 0.03rem;
+			word-spacing: 0.2rem;
+			color: rgb(50, 50, 50);
 		}
 
 		// height: 100px;

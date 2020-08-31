@@ -6,11 +6,7 @@ import addRemoveUser from "../../functions/addRemoveUser";
 import myContext from "../../context/account/myContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faRibbon,
-	faComments,
-	faEdit,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 const UserCard = (props) => {
 	const history = useHistory();
@@ -28,7 +24,7 @@ const UserCard = (props) => {
 	// 	profileInfo.settings.showOnline && (
 	// 		<PulsatingCircle isOnline={profileInfo.isOnline} />
 	// 	)}
-	console.log(props);
+	// console.log(props);
 
 	return (
 		<div className='user-card'>
@@ -39,47 +35,37 @@ const UserCard = (props) => {
 			</div>
 			<div className='info-block'>
 				<div className='user-name'>
+					{props.verified && <i className='fas fa-ribbon ribon'></i>}
 					<p onClick={() => history.push(`/app/users/${props.userName}`)}>
 						{props.userName}
 					</p>
-					{props.verified && (
-						<FontAwesomeIcon
-							icon={faRibbon}
-							style={{ fontSize: "28px" }}
-							color='orange'
-						/>
-					)}
+
 					<div className='pulse-c'>
 						{props.showOnline && <PulsatingCircle isOnline={props.isOnline} />}
 					</div>
 				</div>
 				{props.userName !== context.accountState.user && (
 					<div className='user-icon'>
-						<i
-							onClick={handleClick}
-							className={`fas ${
-								props.isListed
-									? "fa-check cursor-pointer"
-									: "fa-user-plus cursor-pointer"
-							}`}></i>
+						{!props.isListed ? (
+							<FontAwesomeIcon
+								onClick={handleClick}
+								className='cursor-pointer'
+								icon={faUserPlus}
+							/>
+						) : (
+							<span className='user-added'>USER ADDED</span>
+						)}
 					</div>
 				)}
 				<div className='stats'>
+					<div className='top-line-grad'></div>
 					<div className='stats-box'>
-						<FontAwesomeIcon
-							icon={faEdit}
-							style={{ fontSize: "24px" }}
-							color='black'
-						/>
-						<span>{props.numberOfPosts}</span>
+						<span className='top-span'>POSTS</span>
+						<span className='bottom-span'>{props.numberOfPosts}</span>
 					</div>
 					<div className='stats-box'>
-						<FontAwesomeIcon
-							icon={faComments}
-							style={{ fontSize: "24px" }}
-							color='black'
-						/>
-						<span>{props.numberOfComments}</span>
+						<span className='top-span'>COMMENTS</span>
+						<span className='bottom-span'>{props.numberOfComments}</span>
 					</div>
 				</div>
 			</div>

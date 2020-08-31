@@ -5,12 +5,13 @@ import PostItself from "../../social/post/PostItself";
 import graphqlFetch from "../../../functions/graphqlFetch";
 import gqlGetPostsQuery from "../../../functions/gqlGetPostsQuery";
 import FourOhFour from "../../container/FourOhFour";
+import { css } from "@emotion/core";
+import { PulseLoader } from "react-spinners";
 
 const SinglePostContainer = (props) => {
 	const contextPost = React.useContext(postContext);
 	const context = React.useContext(myContext);
-	//eslint-disable-next-line
-	// React.useEffect(() => contextPost.resetPosts(), []);
+
 	React.useEffect(() => {
 		getPosts(
 			gqlGetPostsQuery("SINGLE", context.accountState.user, props.postID)
@@ -21,14 +22,19 @@ const SinglePostContainer = (props) => {
 	const getPosts = (query) => {
 		graphqlFetch(query, (res) => {
 			contextPost.setPosts(res.getPosts);
-			console.log("res:", res);
+			contextPost.setIsLoading(0);
 		});
 	};
 
-	return (
-		<React.Fragment>
-			{contextPost.state.posts ? (
-				contextPost.state.posts.map((item, index) => (
+	const override = css`
+		display: block;
+		margin: 0 auto;
+	`;
+
+	return !contextPost.isLoading ? (
+		contextPost.state.posts.length ? (
+			<React.Fragment>
+				{contextPost.state.posts.map((item, index) => (
 					<PostItself
 						key={item._id}
 						_id={item._id}
@@ -41,11 +47,20 @@ const SinglePostContainer = (props) => {
 						edited={item.edited}
 						imgsmall={item.imgsmall}
 					/>
-				))
-			) : (
-				<FourOhFour type='post' />
-			)}
-		</React.Fragment>
+				))}
+			</React.Fragment>
+		) : (
+			<FourOhFour type='post' />
+		)
+	) : (
+		<div className='sweet-loading'>
+			<PulseLoader
+				css={override}
+				size={8}
+				margin={5}
+				color={"rgba(40, 94, 53,1)"}
+			/>
+		</div>
 	);
 };
 

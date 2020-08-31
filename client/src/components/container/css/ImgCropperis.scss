@@ -1,5 +1,9 @@
 .cropper-body {
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	.raw {
 		// border: 2px solid blue;
 		position: relative;
@@ -13,5 +17,24 @@
 		width: 50%;
 		// height: 200px;
 		background: white;
+	}
+	.btns {
+		button {
+			margin: 15px 20px 0 10px;
+			height: 30px;
+			width: 120px;
+			// display: none;
+			border: none;
+			outline: none;
+			border-radius: 8px;
+			color: white;
+			background-color: rgb(89, 129, 182);
+			&:active {
+				border: none;
+			}
+			&:hover {
+				cursor: pointer;
+			}
+		}
 	}
 }

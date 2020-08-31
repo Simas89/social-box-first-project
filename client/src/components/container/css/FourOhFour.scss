@@ -1,7 +1,9 @@
 .four-oh-four {
 	// border: 1px solid blue;
-	height: 140px;
+	margin-top: 50px;
+	// height: 140px;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }

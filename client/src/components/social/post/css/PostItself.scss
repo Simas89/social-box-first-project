@@ -2,7 +2,7 @@ $colorTone: rgb(115, 172, 98);
 
 .post-body {
 	position: relative;
-	margin: 0 10px 30px 10px;
+	margin: 10px 10px 20px 10px;
 	padding-bottom: 1px;
 	box-shadow: 0 0 5px 2px rgb(185, 185, 185);
 	transition: box-shadow 0.3s;
@@ -38,6 +38,7 @@ $colorTone: rgb(115, 172, 98);
 				justify-content: center;
 				align-items: center;
 				.name {
+					letter-spacing: 0.03rem;
 					font-weight: 400;
 					font-size: 1.5rem;
 					&:hover {
@@ -67,19 +68,16 @@ $colorTone: rgb(115, 172, 98);
 	}
 	.middle-section {
 		position: relative;
-		// height: 5rem;
 		// border: 1px solid green;
 		// border-top: 1px solid red;
-		// margin: 20px 50px 40px 50px;
 		display: flex;
 		flex-direction: column;
-
 		.text-box {
 			margin: 15px 50px 10px 50px;
+			overflow: hidden;
 			// border: 1px solid grey;
 			.TextareaAutosize {
 				width: 100%;
-				// position: relative;
 				margin-top: 5px;
 				overflow: hidden;
 				display: block;
@@ -87,16 +85,53 @@ $colorTone: rgb(115, 172, 98);
 				resize: none;
 				bottom: 100%;
 			}
-			.textas {
-				white-space: pre-line;
+			.post-text {
+				// border: 1px solid green;
+				overflow: hidden;
+				max-height: 500px;
+				.textas {
+					letter-spacing: 0.03rem;
+					word-spacing: 0.2rem;
+					color: rgb(50, 50, 50);
+					white-space: pre-line;
+					line-height: 1.7rem;
+					font-size: 1.1rem;
+					white-space: pre-line;
+					span {
+						user-select: text !important;
+					}
+				}
 			}
-			p {
-				font-size: 1.1rem;
-				white-space: pre-line;
-			}
-			span {
-				user-select: text !important;
-				line-height: 1.8rem;
+			.continue {
+				position: relative;
+				// position: absolute;
+				// box-shadow: 0 0 15px 7px white;
+				// z-index: 200;
+				height: 40px;
+				// width: 100%;
+				// border: 1px solid red;
+				bottom: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: flex-end;
+				background: rgb(255, 255, 255);
+				background: linear-gradient(
+					0deg,
+					rgba(255, 255, 255, 1) 60%,
+					rgba(255, 255, 255, 0) 100%
+				);
+				span {
+					color: gray;
+					font-size: 0.9rem;
+					transition: 0.2s;
+					&:hover {
+						cursor: pointer;
+						color: rgb(61, 61, 61);
+						transition: 0.2s;
+					}
+				}
+
+				// margin-top: 50px;
 			}
 		}
 		.comments-and-likes {
@@ -147,6 +182,8 @@ $colorTone: rgb(115, 172, 98);
 				}
 			}
 			.comments-content-top-grad {
+				margin-top: 5px;
+				margin-bottom: 12px;
 				// position: absolute;
 				width: 100%;
 				height: 1px;
@@ -183,11 +220,12 @@ $colorTone: rgb(115, 172, 98);
 		}
 		.add-post-comment {
 			margin: 10px 0 9px 0;
-			padding-top: 2px;
+			padding: 3px 8px 0px 8px;
 			border: 1px solid rgb(236, 236, 236);
 			border-radius: 20px;
-			overflow: hidden;
+			// overflow: hidden;
 			transition: 0.2s;
+			z-index: 5;
 		}
 		.add-post-comment-focus {
 			border: 1px solid rgb(184, 184, 184);

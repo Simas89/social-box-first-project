@@ -12,7 +12,7 @@ const NtfPanel = () => {
 	const [autoHeightMax, setAutoHeightMax] = React.useState(0);
 
 	const animatingHeightMax = () => {
-		setTimeout(() => setAutoHeightMax(450), 1);
+		setTimeout(() => setAutoHeightMax(468), 1);
 	};
 
 	React.useEffect(() => animatingHeightMax(), []);
@@ -33,7 +33,7 @@ const NtfPanel = () => {
 				<div
 					className='ntf-panel'
 					ref={bodyRef}
-					style={{ maxHeight: autoHeightMax, transition: ".3s ease-in-out" }}>
+					style={{ maxHeight: autoHeightMax }}>
 					<div className='top-sec'>
 						<span>Recent Activity</span>
 						<div className='actions'>

@@ -29,9 +29,21 @@ const PostItself = (props) => {
 	// console.log(commentText);
 	const [isCommentsBarOpen, setIsCommentsBarOpen] = React.useState(false);
 	const [isCommentTextFocus, setIsCommentTextFocus] = React.useState(0);
+	const [shouldContinueReading, setShouldContinueReading] = React.useState(0);
+	const [isContinueReading, setIsContinueReading] = React.useState(0);
 
 	const myRef = React.useRef();
-	React.useEffect(() => myRef.current.scrollToBottom(), []);
+	const postTextRef = React.useRef();
+
+	React.useEffect(() => {
+		if (postTextRef.current.offsetHeight === 500) {
+			setShouldContinueReading(1);
+		} else setShouldContinueReading(0);
+	}, [contextPost]);
+
+	React.useEffect(() => {
+		myRef.current.scrollToBottom();
+	}, []);
 
 	const trigDel = () => {
 		contextPost.delPost({ index: props.index, _id: props._id });
@@ -119,9 +131,23 @@ const PostItself = (props) => {
 							emojiDisplay={true}
 						/>
 					) : (
-						<p>
-							<Twemoji text={textContent} />
-						</p>
+						<React.Fragment>
+							<div
+								className='post-text'
+								ref={postTextRef}
+								style={{ maxHeight: isContinueReading ? "100%" : "500px" }}>
+								<p className='textas'>
+									<Twemoji text={textContent} />
+								</p>
+							</div>
+							{shouldContinueReading && !isContinueReading ? (
+								<div className='continue'>
+									<span onClick={() => setIsContinueReading(1)}>
+										Continue reading
+									</span>
+								</div>
+							) : null}
+						</React.Fragment>
 					)}
 				</div>
 				<div className='comments-and-likes'>

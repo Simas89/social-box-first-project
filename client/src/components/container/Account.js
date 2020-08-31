@@ -7,7 +7,7 @@ import verificationFetch from "../../functions/verificationFetch";
 import ImgCropperis from "./ImgCroperis";
 import graphqlFetch from "../../functions/graphqlFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRibbon } from "@fortawesome/free-solid-svg-icons";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 import Item from "./Item";
 import marketItemsDataFetch from "../../functions/marketItemsDataFetch";
 
@@ -148,22 +148,11 @@ const Account = () => {
 				)}
 				<div className={`info-div ${file && "none"}`}>
 					<div className='main-info'>
-						<p
-							className='userName'
-							onClick={() =>
-								history.push(`/app/users/${context.accountState.user}`)
-							}>
-							{context.accountState.user}
-						</p>
+						<p className='userName'>{context.accountState.user}</p>
 
 						{context.accountState.verified ? (
 							<React.Fragment>
-								<FontAwesomeIcon
-									icon={faRibbon}
-									style={{ fontSize: "35px" }}
-									color='orange'
-								/>
-								Verified
+								<i className='fas fa-ribbon ribon'></i>
 								<p>{context.accountState.email}</p>
 							</React.Fragment>
 						) : (
@@ -173,7 +162,6 @@ const Account = () => {
 								<div className='email'>
 									<div className='input'>
 										<input
-											className='emailInput'
 											type='email'
 											placeholder='Please confirm your email'></input>
 										<button onClick={accVerification}>Submit</button>
@@ -186,9 +174,12 @@ const Account = () => {
 							</div>
 						)}
 						<p>Member since {context.accountState.dateJoined.toString()} </p>
-						<div className='line'></div>
+						<div className='settings-divider'>
+							<FontAwesomeIcon className='icon' icon={faCog} />
+							<div className='line'></div>
+						</div>
 						<div className='show-online'>
-							<span>Show my online status:</span>
+							<span>Show my online status</span>
 							<input
 								className='checkbox'
 								type='checkbox'

@@ -14,7 +14,7 @@ import {
 	faBacon,
 	faCat,
 	faDog,
-	faHorseHead,
+	faUserSecret,
 } from "@fortawesome/free-solid-svg-icons";
 
 function Item(props) {
@@ -50,8 +50,8 @@ function Item(props) {
 				return faCat;
 			case "Dog":
 				return faDog;
-			case "Horse":
-				return faHorseHead;
+			case "John Doe":
+				return faUserSecret;
 
 			default:
 				return faGift;
@@ -80,8 +80,8 @@ function Item(props) {
 				return "Puffy cat";
 			case "Dog":
 				return "Agile dog with dot on his eye";
-			case "Horse":
-				return "A real horse";
+			case "John Doe":
+				return "Mr John Doe";
 
 			default:
 				return "Item";

@@ -1,6 +1,7 @@
 .four-oh-four {
-  height: 140px;
+  margin-top: 50px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

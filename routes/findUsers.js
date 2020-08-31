@@ -70,7 +70,19 @@ router.get("/", auth, (req, res) => {
 										return -1;
 									}
 								})
-						).then(() => res.status(200).json(users));
+						).then(() => {
+							users.sort((a, b) => {
+								if (
+									a.userName.toLocaleLowerCase() >
+									b.userName.toLocaleLowerCase()
+								) {
+									return 1;
+								} else {
+									return -1;
+								}
+							});
+							res.status(200).json(users);
+						});
 					}
 				).populate("imgsmall");
 			}

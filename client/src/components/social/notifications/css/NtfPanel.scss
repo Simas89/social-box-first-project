@@ -7,26 +7,28 @@
 	z-index: 10;
 	// border: 1px solid red;
 	background-color: rgb(255, 255, 255);
-	border-radius: 5px;
+	// border-radius: 5px;
+
 	box-shadow: grey 0 0 4px;
 	.top-sec {
 		position: relative;
 		border-bottom: 1px solid grey;
-		height: 48px;
+		height: 68px;
 		display: flex;
 		align-items: center;
 		> span {
 			margin-left: 20px;
 			display: block;
 			font-size: 1.2rem;
-			font-weight: bold;
+			font-weight: 500;
+			color: rgb(60, 60, 60);
 		}
 		.actions {
 			position: absolute;
 			display: flex;
 			align-items: center;
 			justify-content: flex-end;
-			border: 1px solid red;
+			// border: 1px solid red;
 			height: 100%;
 			width: 120px;
 			right: 0;

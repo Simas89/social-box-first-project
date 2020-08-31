@@ -17,6 +17,7 @@ import {
 const PostState = (props) => {
 	const initialState = { posts: [] };
 	const [state, dispatch] = React.useReducer(postReducer, initialState);
+	const [isLoading, setIsLoading] = React.useState(1);
 
 	const resetPosts = () => {
 		dispatch({ type: RESET_POSTS });
@@ -82,8 +83,7 @@ const PostState = (props) => {
 		graphqlFetch(`delComment(_id: "${data._id}")`, (res) => {});
 	};
 	// console.log(state);
-
-	console.log("PostState:", state.posts);
+	console.log("Posts:", state.posts);
 
 	return (
 		<postContext.Provider
@@ -97,6 +97,8 @@ const PostState = (props) => {
 				sendComment,
 				editComment,
 				delComment,
+				isLoading,
+				setIsLoading,
 			}}>
 			{props.children}
 		</postContext.Provider>

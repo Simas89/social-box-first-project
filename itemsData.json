@@ -9,5 +9,5 @@
 	{ "id": 7, "name": "Poo", "price": 100 },
 	{ "id": 8, "name": "Cat", "price": 45 },
 	{ "id": 9, "name": "Dog", "price": 60 },
-	{ "id": 10, "name": "Horse", "price": 350 }
+	{ "id": 10, "name": "John Doe", "price": 350 }
 ]

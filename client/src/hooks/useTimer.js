@@ -5,6 +5,9 @@ const useTimer = (isActive, seconds, callback) => {
 
 	React.useEffect(() => {
 		let interval = null;
+		if (periods === 60) {
+			setPeriods(0);
+		}
 		if (isActive) {
 			interval = setInterval(() => {
 				setPeriods(periods + 1);

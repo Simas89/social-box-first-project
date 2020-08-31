@@ -61,7 +61,7 @@ router.post("/", auth, (req, res) => {
 							req.body.fromUser,
 							`has sent you ${req.body.amount} ${req.body.itemName}${
 								req.body.amount > 1 ? "s" : ""
-							}`
+							} :gift:`
 						);
 
 						const updatedItems = result.items.map((item) => {

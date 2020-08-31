@@ -5,44 +5,73 @@
 		align-items: center;
 		height: 80px;
 		.search-bar-wrap {
+			opacity: 0.6;
 			position: relative;
 			width: 100%;
 			// border: 1px solid black;
 			display: flex;
 			justify-content: flex-start;
 			align-items: center;
+			transition: 0.2s;
 			.search-bar {
-				padding-left: 10px;
+				// padding-left: 10px;
 				position: relative;
+				margin-left: 10px;
 				// border: 1px solid red;
 				width: 50%;
 				input {
+					// margin-left: 10px;
+					// border: 1px solid red;
 					letter-spacing: 0.06rem;
 					height: 40px;
 					width: 100%;
-					padding-left: 20px;
+					// padding-left: 0px;
 					font-size: 1.2rem;
 					border: none;
 					border-bottom: 1px solid rgba(14, 46, 43, 0);
 					transition: 0.1s;
+					outline: none;
 
-					&:focus {
-						border-bottom: 1px solid rgba(14, 46, 43, 1);
-						transition: 0.2s;
-						outline: none;
-					}
+					// &:focus + .search-bar-grad {
+					// 	width: 100%;
+					// }
+				}
+				.search-bar-grad {
+					margin: auto;
+					height: 1px;
+					width: 0%;
+					transition: 0.5s;
+					background: linear-gradient(
+						90deg,
+						rgba(0, 181, 136, 0) 0%,
+						rgba(56, 181, 87, 1) 20%,
+						rgba(56, 181, 87, 1) 80%,
+						rgba(0, 255, 218, 0) 100%
+					);
+				}
+				.search-bar-grad-width {
+					width: 100%;
+					transition: 0.5s;
 				}
 			}
-			.checkbox {
-				margin: 0 5px 0 10px;
-				&:hover {
-					cursor: pointer;
+			.check-div {
+				opacity: 0;
+				transition: 0.2s;
+				.checkbox {
+					margin: 0 5px 0 10px;
+					// &:hover {
+					// 	cursor: pointer;
+					// }
+				}
+				label {
+					// &:hover {
+					// 	cursor: pointer;
+					// }
 				}
 			}
-			label {
-				&:hover {
-					cursor: pointer;
-				}
+			.opacity-1 {
+				opacity: 1;
+				transition: 0.2s;
 			}
 		}
 	}
@@ -51,6 +80,11 @@
 		margin: 10px;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		grid-gap: 10px;
+		grid-gap: 15px;
+	}
+}
+.hover {
+	&:hover {
+		cursor: pointer;
 	}
 }

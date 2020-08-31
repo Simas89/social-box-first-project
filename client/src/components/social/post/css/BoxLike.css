@@ -16,7 +16,7 @@
 
 .box-like .star-icon {
   margin-left: 10px;
-  background: linear-gradient(0deg, #ff9d09 0%, #ffab00 59%, #ffce05 100%);
+  background: linear-gradient(300deg, #ff7809 0%, #ffc400 59%, #ffe819 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }

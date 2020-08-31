@@ -9,21 +9,31 @@ import PostItself from "../social/post/PostItself";
 import PulsatingCircle from "../social/PulsatingCircle";
 import addRemoveUser from "../../functions/addRemoveUser";
 import FourOhFour from "./FourOhFour";
+import { css } from "@emotion/core";
+import { PulseLoader } from "react-spinners";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faUserPlus,
-	faCheck,
-	faRibbon,
-	faComments,
-	faEdit,
+	faCheese,
+	faGift,
+	faAppleAlt,
+	faBeer,
+	faBirthdayCake,
+	faJoint,
+	faPoo,
+	faCookie,
+	faBacon,
+	faCat,
+	faDog,
+	faUserSecret,
 } from "@fortawesome/free-solid-svg-icons";
 
 const UserProfile = (props) => {
 	const contextPost = React.useContext(postContext);
 	const context = React.useContext(myContext);
 	const [profileInfo, setProfileInfo] = React.useState({
-		isValid: true,
+		isValid: -1,
 		dateJoined: null,
 		verified: null,
 		isOnline: false,
@@ -78,11 +88,49 @@ const UserProfile = (props) => {
 		); //eslint-disable-next-line
 	}, []);
 
+	const selectIcon = (name) => {
+		switch (name) {
+			case "Apple":
+				return faAppleAlt;
+			case "Beer":
+				return faBeer;
+			case "Cake":
+				return faBirthdayCake;
+			case "Joint":
+				return faJoint;
+			case "Cheese":
+				return faCheese;
+			case "Poo":
+				return faPoo;
+			case "Cookie":
+				return faCookie;
+			case "Bacon":
+				return faBacon;
+			case "Cat":
+				return faCat;
+			case "Dog":
+				return faDog;
+			case "John Doe":
+				return faUserSecret;
+
+			default:
+				return faGift;
+		}
+	};
+
 	const items = context.accountState.items.map((item) => {
 		return {
 			key: item.id,
-			text: `${item.itemName}(${item.amount})`,
+			text: `${item.itemName} ${item.amount}`,
 			value: item.itemName,
+			image: (
+				<FontAwesomeIcon
+					className='icon'
+					icon={selectIcon(item.itemName)}
+					style={{ fontSize: "20px" }}
+					color='orange'
+				/>
+			),
 		};
 	});
 
@@ -169,8 +217,12 @@ const UserProfile = (props) => {
 	// const element = <FontAwesomeIcon icon={faCoffee} />;
 
 	// console.log(profileInfo.settings);
+	const override = css`
+		display: block;
+		margin: 0 auto;
+	`;
 
-	return (
+	return profileInfo.isValid !== -1 ? (
 		<div>
 			{profileInfo.isValid ? (
 				<div className='user-profile'>
@@ -181,100 +233,98 @@ const UserProfile = (props) => {
 								src={`data:${profileInfo.profilePic.mimetype};base64,${profileInfo.profilePic.base64}`}></img>
 						</div>
 						<div className='main-info'>
-							<div className='basic'>
-								<div className='title'>
-									<div className='userName'>{props.userName}</div>
-									<div className='pc'>
-										{profileInfo.settings &&
-											profileInfo.settings.showOnline && (
-												<PulsatingCircle isOnline={profileInfo.isOnline} />
-											)}
-									</div>
-									{props.userName !== context.accountState.user && (
-										<p
-											onClick={() =>
-												addRemoveUser(
-													props.userName,
-													profileInfo.isListed,
-													(response) => {
-														if (response.status === "CONTACT ADDED") {
-															setProfileInfo({
-																...profileInfo,
-																isListed: true,
-															});
-														} else {
-															setProfileInfo({
-																...profileInfo,
-																isListed: false,
-															});
+							<div>
+								<div className='basic'>
+									<div className='title'>
+										<div className='pc'>
+											{profileInfo.settings &&
+												profileInfo.settings.showOnline && (
+													<PulsatingCircle isOnline={profileInfo.isOnline} />
+												)}
+										</div>
+										<div className='userName'>{props.userName}</div>
+										{props.userName !== context.accountState.user && (
+											<p className='add-remove'>
+												{profileInfo.isListed ? (
+													<span>USER ADDED</span>
+												) : (
+													<FontAwesomeIcon
+														onClick={() =>
+															addRemoveUser(
+																props.userName,
+																profileInfo.isListed,
+																(response) => {
+																	if (response.status === "CONTACT ADDED") {
+																		setProfileInfo({
+																			...profileInfo,
+																			isListed: true,
+																		});
+																	} else {
+																		setProfileInfo({
+																			...profileInfo,
+																			isListed: false,
+																		});
+																	}
+																}
+															)
 														}
-													}
-												)
-											}>
-											{profileInfo.isListed ? (
-												<FontAwesomeIcon
-													className='hover-pointer'
-													icon={faCheck}
-													style={{ fontSize: "23px" }}
-												/>
-											) : (
-												<FontAwesomeIcon
-													className='hover-pointer'
-													icon={faUserPlus}
-													style={{ fontSize: "23px" }}
-												/>
-											)}
-										</p>
-									)}
-								</div>
-								{profileInfo.verified && (
-									<FontAwesomeIcon
-										icon={faRibbon}
-										style={{ fontSize: "35px" }}
-										color='orange'
-									/>
-								)}
-								{profileInfo.verified ? "Verified" : "Not verified"}
-								<br></br>
-								Member since {profileInfo.dateJoined}
-							</div>
-							{props.userName !== context.accountState.user && (
-								<div className='present'>
-									<div className='select'>
-										<Dropdown
-											onChange={onChangeDropdown}
-											className='Dropdown'
-											placeholder='Select an item'
-											fluid
-											selection
-											options={items}
-										/>
-										<input
-											onChange={onChangeAmount}
-											value={sendItem.itemAmount}
-										/>
+														className='hover-pointer'
+														icon={faUserPlus}
+														style={{ fontSize: "23px" }}
+													/>
+												)}
+											</p>
+										)}
 									</div>
-									<button onClick={handleClick} className='Button'>
-										Send
-									</button>
+									{profileInfo.verified && (
+										<i className='fas fa-ribbon ribon'></i>
+									)}
+									{profileInfo.verified ? null : "Not verified"}
+									<br></br>
+									Member since {profileInfo.dateJoined}
 								</div>
-							)}
+								{props.userName !== context.accountState.user && (
+									<div className='present'>
+										<div className='select'>
+											<FontAwesomeIcon
+												className='hover-pointer'
+												icon={faGift}
+												style={{ fontSize: "23px" }}
+												color='orange'
+											/>
+											<Dropdown
+												onChange={onChangeDropdown}
+												className='Dropdown'
+												placeholder='Select an item'
+												fluid
+												selection
+												options={items}
+											/>
+											<input
+												onChange={onChangeAmount}
+												value={sendItem.itemAmount}
+											/>
+										</div>
+										<button onClick={handleClick} className=' hover-pointer'>
+											SEND
+										</button>
+									</div>
+								)}
+							</div>
+
 							<div className='stats'>
+								<div className='top-line-grad'></div>
 								<div className='stats-box'>
-									<FontAwesomeIcon
-										icon={faEdit}
-										style={{ fontSize: "24px" }}
-										color='black'
-									/>
-									<span>{profileInfo.numberOfPosts}</span>
+									<span className='top-span'>POSTS</span>
+									<span className='bottom-span'>
+										{profileInfo.numberOfPosts}
+									</span>
 								</div>
 								<div className='stats-box'>
-									<FontAwesomeIcon
-										icon={faComments}
-										style={{ fontSize: "24px" }}
-										color='black'
-									/>
-									<span>{profileInfo.numberOfComments}</span>
+									<span className='top-span'>COMMENTS</span>
+									<span className='bottom-span'>
+										{profileInfo.numberOfComments}
+									</span>
 								</div>
 							</div>
 						</div>
@@ -301,6 +351,15 @@ const UserProfile = (props) => {
 			) : (
 				<FourOhFour type='user' />
 			)}
+		</div>
+	) : (
+		<div className='sweet-loading'>
+			<PulseLoader
+				css={override}
+				size={8}
+				margin={5}
+				color={"rgba(40, 94, 53,1)"}
+			/>
 		</div>
 	);
 };
