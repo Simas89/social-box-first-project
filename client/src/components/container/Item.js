@@ -63,23 +63,23 @@ function Item(props) {
 			case "Apple":
 				return "Fresh pink apple";
 			case "Beer":
-				return "I fucking love beer";
+				return "burp";
 			case "Cake":
-				return "A massive cake";
+				return "Its a lie..";
 			case "Joint":
 				return "Afhan kush";
 			case "Cheese":
-				return "Oh sheesus";
+				return "Lump of cheese";
 			case "Poo":
 				return "...a smiling poop";
 			case "Cookie":
-				return "A cookie you cannot say no to";
+				return "Simply cookie";
 			case "Bacon":
-				return "Smoked back bacon rasher";
+				return "Smoked bacon rasher";
 			case "Cat":
-				return "Puffy cat";
+				return "A domestic cat";
 			case "Dog":
-				return "Agile dog with dot on his eye";
+				return "Perestukinas";
 			case "John Doe":
 				return "Mr John Doe";
 

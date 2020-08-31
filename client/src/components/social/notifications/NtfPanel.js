@@ -12,7 +12,7 @@ const NtfPanel = () => {
 	const [autoHeightMax, setAutoHeightMax] = React.useState(0);
 
 	const animatingHeightMax = () => {
-		setTimeout(() => setAutoHeightMax(468), 1);
+		setTimeout(() => setAutoHeightMax(470), 1);
 	};
 
 	React.useEffect(() => animatingHeightMax(), []);
