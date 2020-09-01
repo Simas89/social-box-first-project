@@ -207,6 +207,30 @@
   height: 300px;
 }
 
+@media (max-width: 768px) {
+  .acc-body {
+    position: relative;
+    overflow: hidden;
+  }
+  .acc-body .top {
+    position: relative;
+    margin: 10px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto;
+  }
+  .acc-body .top .info-div {
+    margin-top: 10px;
+  }
+  .acc-body .top .info-div .main-info .ribon {
+    opacity: 0.8;
+    top: 380px;
+    right: -80px;
+    position: absolute;
+    font-size: 18rem;
+  }
+}
+
 .pass {
   color: #0e2e2b;
 }

@@ -1,6 +1,7 @@
 .menu {
   font-size: 2rem;
   margin-right: 10px;
+  position: relative;
   color: lightgrey;
   position: absolute;
   right: 0;
@@ -14,6 +15,7 @@
 }
 
 .popup {
+  position: relative;
   z-index: 11;
   display: grid;
   grid-template-rows: 1fr 1fr;

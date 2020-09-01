@@ -210,6 +210,37 @@
 		height: 300px;
 	}
 }
+/////////////  -----   MEADIA
+@media (max-width: 768px) {
+	.acc-body {
+		position: relative;
+		overflow: hidden;
+
+		.top {
+			position: relative;
+			margin: 10px;
+			// border: 1px solid red;
+			// border-radius: 20px;
+			overflow: hidden;
+			display: grid;
+			grid-template-columns: auto;
+			.info-div {
+				// border: 1px solid red;
+				margin-top: 10px;
+				.main-info {
+					.ribon {
+						opacity: 0.8;
+						top: 380px;
+						right: -80px;
+						// z-index: -1;
+						position: absolute;
+						font-size: 18rem;
+					}
+				}
+			}
+		}
+	}
+}
 
 ////////////// GLOBAL
 .pass {

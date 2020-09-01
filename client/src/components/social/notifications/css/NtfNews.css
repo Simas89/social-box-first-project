@@ -40,3 +40,9 @@
 .ntf-news:hover {
   background-color: #f7f7f7;
 }
+
+@media (max-width: 768px) {
+  .ntf-news {
+    right: 25px;
+  }
+}

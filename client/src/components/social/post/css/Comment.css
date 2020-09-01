@@ -1,5 +1,7 @@
 .comment-body {
   margin-bottom: 20px;
+  margin-right: 5px;
+  position: relative;
 }
 
 .comment-body .comment-top {
@@ -8,14 +10,12 @@
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
 }
 
 .comment-body .comment-top .comment-titles {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
 }
 
 .comment-body .comment-top .comment-titles .info {
@@ -23,7 +23,9 @@
 }
 
 .comment-body .comment-top .comment-titles .name {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #323232;
 }
 
 .comment-body .comment-top .comment-titles .edited-comment {
@@ -37,19 +39,28 @@
 }
 
 .comment-body .comment-top .profile-img {
+  position: relative;
   margin-left: 5px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.comment-body .comment-top .profile-img:hover {
+  cursor: pointer;
 }
 
 .comment-body .comment-top .profile-img img {
-  width: 120px;
+  width: 81px;
+  height: 60px;
 }
 
 .comment-body .comment-top .menu {
+  position: relative;
   color: lightgrey;
   position: absolute;
   right: 0;
@@ -72,10 +83,13 @@
 }
 
 .comment-body .comment-middle {
-  margin: 10px 0 0 25px;
+  position: relative;
+  margin: 0px 0 10px 85px;
+  white-space: pre-line;
 }
 
 .comment-body .comment-middle p {
+  overflow-wrap: normal;
   white-space: pre-line;
   font-size: 1rem;
   letter-spacing: 0.03rem;
@@ -85,4 +99,33 @@
 
 .cursor-pointer:hover {
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .comment-body .comment-top .comment-titles {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .comment-body .comment-top .comment-titles .info {
+    margin-left: 10px;
+  }
+  .comment-body .comment-top .comment-titles .name {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #323232;
+  }
+  .comment-body .comment-top .comment-titles .edited-comment {
+    position: absolute;
+    left: 66px;
+    top: 45px;
+  }
+  .comment-body .comment-top .comment-titles .time {
+    color: gray;
+    font-size: 0.8rem;
+  }
+  .comment-body .comment-middle {
+    position: relative;
+    margin: 5px 0 10px 30px;
+  }
 }

@@ -2,10 +2,12 @@ $colorTone: rgb(115, 172, 98);
 
 .post-body {
 	position: relative;
-	margin: 10px 10px 20px 10px;
+	margin: 20px 10px 40px 10px;
 	padding-bottom: 1px;
-	box-shadow: 0 0 5px 2px rgb(185, 185, 185);
+	box-shadow: 0 0 5px 2px rgb(240, 240, 240);
 	transition: box-shadow 0.3s;
+	border-radius: 3px;
+	border: 1px solid rgb(225, 225, 225);
 
 	.top-section {
 		position: relative;
@@ -15,11 +17,16 @@ $colorTone: rgb(115, 172, 98);
 		overflow: hidden;
 		.profile-img {
 			// background-color: lightgrey;
+			border-top-left-radius: 2px;
+			overflow: hidden;
 			height: 7rem;
 			width: 10rem;
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			&:hover {
+				cursor: pointer;
+			}
 			img {
 				width: 100%;
 			}
@@ -220,7 +227,7 @@ $colorTone: rgb(115, 172, 98);
 		}
 		.add-post-comment {
 			margin: 10px 0 9px 0;
-			padding: 3px 8px 0px 8px;
+			padding: 3px 8px 2px 8px;
 			border: 1px solid rgb(236, 236, 236);
 			border-radius: 20px;
 			// overflow: hidden;
@@ -291,6 +298,41 @@ $colorTone: rgb(115, 172, 98);
 		box-shadow: 0 0 3px $colorTone;
 		animation: pulse-dot 50 cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.7s infinite;
 		z-index: 1;
+	}
+}
+////////////////
+@media (max-width: 768px) {
+	.post-body {
+		margin: 20px 10px 30px 10px;
+		.middle-section {
+			position: relative;
+			// border: 1px solid green;
+			// border-top: 1px solid red;
+			display: flex;
+			flex-direction: column;
+			.text-box {
+				margin: 15px 10px 10px 10px;
+			}
+			.comments-and-likes {
+				margin-top: 5px;
+				.comments-info {
+					margin-right: 25px;
+				}
+
+				.modified {
+					left: 20px;
+					margin: 0;
+					color: grey;
+					position: absolute;
+					margin-bottom: 50px;
+					font-size: 0.8rem;
+				}
+			}
+		}
+		.bottom-section {
+			position: relative;
+			padding: 0 10px 0 10px;
+		}
 	}
 }
 //////////////// -----    ANIMATIONS   -----

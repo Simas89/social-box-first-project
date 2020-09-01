@@ -28,6 +28,7 @@ import {
 	faDog,
 	faUserSecret,
 } from "@fortawesome/free-solid-svg-icons";
+import { useLocation } from "react-router-dom";
 
 const UserProfile = (props) => {
 	const contextPost = React.useContext(postContext);
@@ -45,6 +46,7 @@ const UserProfile = (props) => {
 		itemName: null,
 		itemAmount: 1,
 	});
+	let location = useLocation();
 
 	React.useEffect(() => {
 		const e = { target: { value: sendItem.itemAmount } }; // FAKE e
@@ -63,6 +65,7 @@ const UserProfile = (props) => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
+				window.scrollTo(0, 0);
 				if (data.status !== "USER NOT FOUND") {
 					data.isValid = true;
 					setProfileInfo(data);
@@ -72,7 +75,8 @@ const UserProfile = (props) => {
 				console.log(err);
 			});
 
-		contextPost.resetPosts();
+		// contextPost.resetPosts();
+		// window.scrollTo(0, 0);
 		graphqlFetch(
 			gqlGetPostsQuery("USER", context.accountState.user, props.userName),
 			(res) => {
@@ -86,7 +90,7 @@ const UserProfile = (props) => {
 				contextPost.setPosts(res.getPosts);
 			}
 		); //eslint-disable-next-line
-	}, []);
+	}, [location.pathname]);
 
 	const selectIcon = (name) => {
 		switch (name) {

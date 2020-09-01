@@ -2,6 +2,8 @@
 	margin-bottom: 20px;
 	// height: 80px;
 	// border: 1px solid black;
+	margin-right: 5px;
+	position: relative;
 	.comment-top {
 		overflow: hidden;
 		position: relative;
@@ -9,17 +11,21 @@
 		height: 60px;
 		display: flex;
 		align-items: center;
-		justify-content: flex-start;
+
+		// justify-content: center;
 		.comment-titles {
 			display: flex;
 			justify-content: flex-start;
 			align-items: center;
-			width: 100%;
+			// padding-bottom: 20px;
+			// width: 100%;
 			.info {
 				margin-left: 20px;
 			}
 			.name {
-				font-size: 1.2rem;
+				font-size: 1.3rem;
+				font-weight: 400;
+				color: rgb(50, 50, 50);
 			}
 			.edited-comment {
 				position: absolute;
@@ -32,20 +38,30 @@
 		}
 
 		.profile-img {
-			// border: 2px solid red;
+			position: relative;
+			// border: 1px solid red;
 			margin-left: 5px;
 			overflow: hidden;
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			// width: 200px;
 			border-radius: 50%;
+			// transform: scale(0.4);
+			width: 60px;
+			height: 60px;
+			&:hover {
+				cursor: pointer;
+			}
 
 			img {
-				width: 120px;
+				// width: 120px;
+				width: 81px;
+				height: 60px;
 			}
 		}
 		.menu {
-			// position: relative;
+			position: relative;
 			// border: 1px solid red;
 			color: lightgrey;
 			position: absolute;
@@ -68,9 +84,13 @@
 		}
 	}
 	.comment-middle {
+		position: relative;
 		// border: 1px solid black;
-		margin: 10px 0 0 25px;
+		margin: 0px 0 10px 85px;
+		white-space: pre-line;
+
 		p {
+			overflow-wrap: normal;
 			white-space: pre-line;
 			font-size: 1rem;
 			letter-spacing: 0.03rem;
@@ -84,5 +104,39 @@
 .cursor-pointer {
 	&:hover {
 		cursor: pointer;
+	}
+}
+@media (max-width: 768px) {
+	.comment-body {
+		.comment-top {
+			.comment-titles {
+				// border: 1px solid red;
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				.info {
+					margin-left: 10px;
+				}
+				.name {
+					font-size: 1.3rem;
+					font-weight: 400;
+					color: rgb(50, 50, 50);
+				}
+				.edited-comment {
+					position: absolute;
+					left: 66px;
+					top: 45px;
+				}
+				.time {
+					color: gray;
+					font-size: 0.8rem;
+				}
+			}
+		}
+		.comment-middle {
+			position: relative;
+			// border: 1px solid black;
+			margin: 5px 0 10px 30px;
+		}
 	}
 }

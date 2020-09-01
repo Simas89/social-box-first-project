@@ -48,7 +48,11 @@ const Comment = (props) => {
 	return (
 		<div className='comment-body'>
 			<div className='comment-top'>
-				<div className='profile-img'>
+				<div
+					className='profile-img'
+					onClick={() => {
+						history.push(`/app/users/${props.userName}`);
+					}}>
 					<img
 						src={`data:${props.imgsmall.contentType};base64,${props.imgsmall.data}`}
 						alt={""}
@@ -56,7 +60,11 @@ const Comment = (props) => {
 				</div>
 				<div className='comment-titles'>
 					<div className='info cursor-pointer name'>
-						<p onClick={() => history.push(`/app/users/${props.userName}`)}>
+						<p
+							onClick={() => {
+								// window.scrollTo(0, 0);
+								history.push(`/app/users/${props.userName}`);
+							}}>
 							{props.userName}
 						</p>
 					</div>
@@ -94,9 +102,11 @@ const Comment = (props) => {
 						emojiDisplay={true}
 					/>
 				) : (
-					<p>
-						<Twemoji text={props.textContent} />
-					</p>
+					<div>
+						<p>
+							<Twemoji text={props.textContent} />
+						</p>
+					</div>
 				)}
 			</div>
 		</div>

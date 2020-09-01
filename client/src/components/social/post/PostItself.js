@@ -82,6 +82,7 @@ const PostItself = (props) => {
 			<div className='top-section'>
 				<div className='profile-img'>
 					<img
+						onClick={() => history.push(`/app/users/${props.userName}`)}
 						src={`data:${props.imgsmall.contentType};base64,${props.imgsmall.data}`}
 						alt={""}
 					/>

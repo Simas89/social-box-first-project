@@ -1,9 +1,11 @@
 .post-body {
   position: relative;
-  margin: 10px 10px 20px 10px;
+  margin: 20px 10px 40px 10px;
   padding-bottom: 1px;
-  box-shadow: 0 0 5px 2px #b9b9b9;
+  box-shadow: 0 0 5px 2px #f0f0f0;
   transition: box-shadow 0.3s;
+  border-radius: 3px;
+  border: 1px solid #e1e1e1;
 }
 
 .post-body .top-section {
@@ -15,11 +17,17 @@
 }
 
 .post-body .top-section .profile-img {
+  border-top-left-radius: 2px;
+  overflow: hidden;
   height: 7rem;
   width: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.post-body .top-section .profile-img:hover {
+  cursor: pointer;
 }
 
 .post-body .top-section .profile-img img {
@@ -218,7 +226,7 @@
 
 .post-body .bottom-section .add-post-comment {
   margin: 10px 0 9px 0;
-  padding: 3px 8px 0px 8px;
+  padding: 3px 8px 2px 8px;
   border: 1px solid #ececec;
   border-radius: 20px;
   transition: 0.2s;
@@ -285,6 +293,38 @@
   box-shadow: 0 0 3px #73ac62;
   animation: pulse-dot 50 cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.7s infinite;
   z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .post-body {
+    margin: 20px 10px 30px 10px;
+  }
+  .post-body .middle-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .post-body .middle-section .text-box {
+    margin: 15px 10px 10px 10px;
+  }
+  .post-body .middle-section .comments-and-likes {
+    margin-top: 5px;
+  }
+  .post-body .middle-section .comments-and-likes .comments-info {
+    margin-right: 25px;
+  }
+  .post-body .middle-section .comments-and-likes .modified {
+    left: 20px;
+    margin: 0;
+    color: grey;
+    position: absolute;
+    margin-bottom: 50px;
+    font-size: 0.8rem;
+  }
+  .post-body .bottom-section {
+    position: relative;
+    padding: 0 10px 0 10px;
+  }
 }
 
 @keyframes pulse-ring {

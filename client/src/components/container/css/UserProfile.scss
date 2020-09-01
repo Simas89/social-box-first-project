@@ -163,6 +163,23 @@
 		}
 	}
 }
+/////////  -----   MEDIA
+@media (max-width: 768px) {
+	.user-profile {
+		.profile-card {
+			overflow: hidden;
+			margin: 10px;
+			// border: 1px solid red;
+			display: grid;
+			grid-template-columns: auto;
+			.main-info {
+				.stats {
+					position: relative;
+				}
+			}
+		}
+	}
+}
 .hover-pointer {
 	&:hover {
 		cursor: pointer;

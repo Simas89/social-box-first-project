@@ -69,3 +69,11 @@
 .hover:hover {
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .users-page .users-page-grid {
+    margin: 10px;
+    grid-template-columns: 1fr;
+    grid-gap: 15px;
+  }
+}

@@ -148,6 +148,18 @@
   color: #303030;
 }
 
+@media (max-width: 768px) {
+  .user-profile .profile-card {
+    overflow: hidden;
+    margin: 10px;
+    display: grid;
+    grid-template-columns: auto;
+  }
+  .user-profile .profile-card .main-info .stats {
+    position: relative;
+  }
+}
+
 .hover-pointer:hover {
   cursor: pointer;
 }

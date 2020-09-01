@@ -108,12 +108,12 @@ function App(props) {
 								<FontAwesomeIcon
 									className='exit-icon'
 									icon={faRunning}
-									style={{ fontSize: "30px" }}
+									style={{ fontSize: "25px" }}
 								/>
 								<FontAwesomeIcon
 									className='exit-icon'
 									icon={faArrowRight}
-									style={{ fontSize: "20px" }}
+									style={{ fontSize: "17px" }}
 								/>
 							</div>
 							<div className='nav-links'>

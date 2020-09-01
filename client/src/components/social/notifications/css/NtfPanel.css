@@ -72,3 +72,9 @@
   bottom: 0;
   right: 5px;
 }
+
+@media (max-width: 768px) {
+  .ntf-panel {
+    width: 100%;
+  }
+}

@@ -36,7 +36,7 @@
 		margin-bottom: 60px;
 		// background-color: rgb(115, 172, 98);
 		.user-name {
-			position: relative;
+			// position: relative;
 			// border: 1px solid blue;
 			display: flex;
 			align-items: center;
@@ -56,7 +56,7 @@
 			}
 			.ribon {
 				right: -50px;
-				top: -50px;
+				bottom: -60px;
 				font-size: 14rem;
 				z-index: -1;
 				position: absolute;
