@@ -10,6 +10,7 @@ import graphqlFetch from "../../functions/graphqlFetch";
 import gqlGetPostsQuery from "../../functions/gqlGetPostsQuery";
 import { css } from "@emotion/core";
 import { PulseLoader } from "react-spinners";
+import SortPost from "./post/SortPost";
 
 const SocialWindow = () => {
 	const context = React.useContext(myContext);
@@ -74,6 +75,7 @@ const SocialWindow = () => {
 			</div>
 
 			<CreatePostBar />
+			<SortPost />
 			{isLoading && !contextPost.state.posts.length ? (
 				<div className='sweet-loading'>
 					<PulseLoader

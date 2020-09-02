@@ -1,0 +1,17 @@
+.sort-post {
+	color: rgb(99, 99, 99);
+	margin: 0 10px 0 10px;
+	// border: 1px solid black;
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	display: inline-block;
+
+	span {
+		margin-left: 5px;
+	}
+	&:hover {
+		cursor: pointer;
+	}
+}

@@ -47,7 +47,7 @@
   margin: 0 20px 0 15px;
   display: inline-block;
   font-weight: 500;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 
 .user-card .info-block .user-name p:hover {
@@ -158,7 +158,7 @@
     margin: 0 20px 0 15px;
     display: inline-block;
     font-weight: 500;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
   .user-card .info-block .user-name .ribon {
     filter: blur(4px);

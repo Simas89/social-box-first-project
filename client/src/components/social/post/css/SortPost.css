@@ -1,0 +1,16 @@
+.sort-post {
+  color: #636363;
+  margin: 0 10px 0 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  display: inline-block;
+}
+
+.sort-post span {
+  margin-left: 5px;
+}
+
+.sort-post:hover {
+  cursor: pointer;
+}
