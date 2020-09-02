@@ -76,9 +76,15 @@ const Comment = (props) => {
 						<p>{moment(parseInt(props.timestamp)).fromNow()}</p>
 					</div>
 					{props.edited && (
-						<div className='info edited-comment time'>
-							<p>Edited {moment(parseInt(props.edited)).fromNow()}</p>
-						</div>
+						<React.Fragment>
+							<div className='info'>
+								<p className='edit-dot'>•</p>
+							</div>
+							<div className='info edited-comment time'>
+								<p>Edited </p>
+								{/* {moment(parseInt(props.edited)).fromNow()} */}
+							</div>
+						</React.Fragment>
 					)}
 				</div>
 

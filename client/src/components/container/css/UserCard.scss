@@ -27,6 +27,9 @@
 		justify-content: center;
 		align-items: center;
 		// border: 1px solid blue;
+		&:hover {
+			cursor: pointer;
+		}
 	}
 	.info-block {
 		position: relative;
@@ -134,6 +137,18 @@
 					color: rgb(48, 48, 48);
 				}
 			}
+		}
+	}
+}
+@media (max-width: 768px) {
+	.user-card {
+		overflow: hidden;
+		// border: 1px solid red;
+		// border-radius: 10px;
+		height: 100px;
+		grid-template-columns: 160px auto;
+		img {
+			height: 120px;
 		}
 	}
 }

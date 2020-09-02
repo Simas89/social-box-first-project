@@ -29,7 +29,6 @@
 }
 
 .comment-body .comment-top .comment-titles .edited-comment {
-  position: absolute;
   right: 80px;
 }
 
@@ -123,6 +122,9 @@
   .comment-body .comment-top .comment-titles .time {
     color: gray;
     font-size: 0.8rem;
+  }
+  .comment-body .comment-top .comment-titles .edit-dot {
+    display: none;
   }
   .comment-body .comment-middle {
     position: relative;

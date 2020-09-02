@@ -75,7 +75,7 @@ const LandingMain = () => {
 	useTimer(1, 1, (period) => {
 		randomNum(4) === 1 && addClassShine(parseInt(windowWidth / 40));
 		// console.log(period);
-		if (period === 7) mongoose.classList.add("lil-mongoose-rise");
+		if (period === 12) mongoose.classList.add("lil-mongoose-rise");
 	});
 
 	const mongooseHide = () => {

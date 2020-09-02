@@ -28,7 +28,9 @@ const UserCard = (props) => {
 
 	return (
 		<div className='user-card'>
-			<div className='image-block'>
+			<div
+				className='image-block'
+				onClick={() => history.push(`/app/users/${props.userName}`)}>
 				<img
 					alt=''
 					src={`data:${props.imgMini.contentType};base64,${props.imgMini.data}`}></img>

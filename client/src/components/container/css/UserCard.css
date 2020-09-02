@@ -23,6 +23,10 @@
   align-items: center;
 }
 
+.user-card .image-block:hover {
+  cursor: pointer;
+}
+
 .user-card .info-block {
   position: relative;
   display: flex;
@@ -118,6 +122,17 @@
   font-weight: 600;
   font-size: 1.2rem;
   color: #303030;
+}
+
+@media (max-width: 768px) {
+  .user-card {
+    overflow: hidden;
+    height: 100px;
+    grid-template-columns: 160px auto;
+  }
+  .user-card img {
+    height: 120px;
+  }
 }
 
 .cursor-pointer:hover {
