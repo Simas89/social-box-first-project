@@ -40,11 +40,42 @@ router.get("/", auth, (req, res) => {
 										.then((res) => {
 											numberOfComments = res.length;
 										});
+
+									let stars = 0;
 									await Post.find({ userName: element.userName })
 										.select("userName")
+										.select("approves")
 										.then((res) => {
 											numberOfPosts = res.length;
+											let posts = [];
+											res.forEach((element) => {
+												posts.push(element);
+											});
+
+											posts.forEach((item) => {
+												item.approves.forEach((item) => {
+													// console.log(item.userName);
+													stars++;
+												});
+											});
 										});
+
+									// let stars = 0;
+									// await Post.find({ userName: req.header("User-Name") })
+									// 	.select("approves")
+									// 	.then((res) => {
+									// 		let posts = [];
+									// 		res.forEach((element) => {
+									// 			posts.push(element);
+									// 		});
+
+									// 		posts.forEach((item) => {
+									// 			item.approves.forEach((item) => {
+									// 				// console.log(item.userName);
+									// 				stars++;
+									// 			});
+									// 		});
+									// 	});
 
 									users.push({
 										id: element._id,
@@ -53,6 +84,7 @@ router.get("/", auth, (req, res) => {
 										isListed: found,
 										numberOfComments,
 										numberOfPosts,
+										numberOfStars: stars,
 										isOnline: calcIsOnline(element.isOnline),
 										imgMini: {
 											data: element.imgsmall.data.toString("base64"),
@@ -105,6 +137,7 @@ router.get("/", auth, (req, res) => {
 								let numberOfComments;
 								let numberOfPosts;
 
+								let stars = 0;
 								await Comment.find({ userName: result.userName })
 									.select("userName")
 									.then((res) => {
@@ -113,8 +146,22 @@ router.get("/", auth, (req, res) => {
 
 								await Post.find({ userName: result.userName })
 									.select("userName")
+									.select("approves")
 									.then((res) => {
 										numberOfPosts = res.length;
+
+										let posts = [];
+										res.forEach((element) => {
+											posts.push(element);
+										});
+										// console.log(posts);
+
+										posts.forEach((item) => {
+											item.approves.forEach((item) => {
+												// console.log(item.userName);
+												stars++;
+											});
+										});
 									});
 
 								if (result) {
@@ -125,6 +172,7 @@ router.get("/", auth, (req, res) => {
 										isListed: true,
 										numberOfComments,
 										numberOfPosts,
+										numberOfStars: stars,
 										isOnline: calcIsOnline(result.isOnline),
 										imgMini: {
 											data: result.imgsmall.data.toString("base64"),

@@ -19,6 +19,26 @@ router.get("/", async (req, res) => {
 			});
 			// console.log(isFound);
 		});
+
+	// Get likes(stars) counted
+	let stars = 0;
+
+	await Post.find({ userName: req.header("User-Name") })
+		.select("approves")
+		.then((res) => {
+			let posts = [];
+			res.forEach((element) => {
+				posts.push(element);
+			});
+
+			posts.forEach((item) => {
+				item.approves.forEach((item) => {
+					// console.log(item.userName);
+					stars++;
+				});
+			});
+		});
+
 	UserModel.findOne({ userName: req.header("User-Name") })
 		.populate("contacts")
 		.populate("imgbig")
@@ -51,6 +71,7 @@ router.get("/", async (req, res) => {
 					mimetype: result.imgbig.contentType,
 				},
 				settings: { showOnline: result.settings.showOnline },
+				stars,
 			});
 		})
 		.catch(() => res.status(200).json({ status: "USER NOT FOUND" }));

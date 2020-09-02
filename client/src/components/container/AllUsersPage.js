@@ -20,6 +20,8 @@ const AllUsersPage = () => {
 
 	const searchRef = React.useRef();
 
+	React.useEffect(() => console.log(usersState), [usersState]);
+
 	React.useEffect(() => {
 		findUsersFetch(usersState.inputValue, usersState.contactsOnly, (data) => {
 			setInitialLoad(0);
@@ -134,6 +136,7 @@ const AllUsersPage = () => {
 								imgMini={element.imgMini}
 								numberOfComments={element.numberOfComments}
 								numberOfPosts={element.numberOfPosts}
+								numberOfStars={element.numberOfStars}
 								findUsersFetchCallback={findUsersFetchCallback}
 								showOnline={element.settings.showOnline}
 							/>

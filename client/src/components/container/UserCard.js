@@ -69,6 +69,10 @@ const UserCard = (props) => {
 						<span className='top-span'>COMMENTS</span>
 						<span className='bottom-span'>{props.numberOfComments}</span>
 					</div>
+					<div className='stats-box'>
+						<span className='top-span'>STARS</span>
+						<span className='bottom-span'>{props.numberOfStars}</span>
+					</div>
 				</div>
 			</div>
 		</div>

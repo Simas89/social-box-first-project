@@ -41,6 +41,7 @@ const UserProfile = (props) => {
 		numberOfComments: 0,
 		numberOfPosts: 0,
 		profilePic: { base64: null, mimetype: "" },
+		stars: 0,
 	});
 	const [sendItem, setSendItem] = React.useState({
 		itemName: null,
@@ -65,6 +66,7 @@ const UserProfile = (props) => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
+				console.log(data);
 				window.scrollTo(0, 0);
 				if (data.status !== "USER NOT FOUND") {
 					data.isValid = true;
@@ -333,6 +335,10 @@ const UserProfile = (props) => {
 									<span className='bottom-span'>
 										{profileInfo.numberOfComments}
 									</span>
+								</div>
+								<div className='stats-box'>
+									<span className='top-span'>STARS</span>
+									<span className='bottom-span'>{profileInfo.stars}</span>
 								</div>
 							</div>
 						</div>
