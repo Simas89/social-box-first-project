@@ -80,13 +80,13 @@ const UserProfile = (props) => {
 		graphqlFetch(
 			gqlGetPostsQuery("USER", context.accountState.user, props.userName),
 			(res) => {
-				res.getPosts.sort((a, b) => {
-					return a.timestamp < b.timestamp
-						? 1
-						: b.timestamp < a.timestamp
-						? -1
-						: 0;
-				});
+				// res.getPosts.sort((a, b) => {
+				// 	return a.timestamp < b.timestamp
+				// 		? 1
+				// 		: b.timestamp < a.timestamp
+				// 		? -1
+				// 		: 0;
+				// });
 				contextPost.setPosts(res.getPosts);
 			}
 		); //eslint-disable-next-line
@@ -237,6 +237,7 @@ const UserProfile = (props) => {
 								src={`data:${profileInfo.profilePic.mimetype};base64,${profileInfo.profilePic.base64}`}></img>
 						</div>
 						<div className='main-info'>
+							<div className='top-right-menu'>•••</div>
 							<div>
 								<div className='basic'>
 									<div className='title'>
@@ -247,7 +248,7 @@ const UserProfile = (props) => {
 												)}
 										</div>
 										<div className='userName'>{props.userName}</div>
-										{props.userName !== context.accountState.user && (
+										{/* {props.userName !== context.accountState.user && (
 											<p className='add-remove'>
 												{profileInfo.isListed ? (
 													<span>USER ADDED</span>
@@ -278,13 +279,16 @@ const UserProfile = (props) => {
 													/>
 												)}
 											</p>
-										)}
+										)} */}
 									</div>
 									{profileInfo.verified && (
 										<i className='fas fa-ribbon ribon'></i>
 									)}
-									{profileInfo.verified ? null : "Not verified"}
-									<br></br>
+									{profileInfo.verified ? null : (
+										<React.Fragment>
+											Not verified<br></br>
+										</React.Fragment>
+									)}
 									Member since {profileInfo.dateJoined}
 								</div>
 								{props.userName !== context.accountState.user && (

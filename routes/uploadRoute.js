@@ -4,7 +4,7 @@ const UserModel = require("../schemas/userSchema");
 const profileImgMicro = require("../schemas/profileImgMicro");
 const profileImgSmall = require("../schemas/profileImgSmall");
 const profileImgBig = require("../schemas/profileImgBig");
-// const fs = require("fs");
+const fs = require("fs");
 
 const sharp = require("sharp");
 
@@ -24,9 +24,9 @@ router.post("/", fileUpload(), async (req, res) => {
 			.toBuffer()
 			.then((data) => {
 				buffer = data;
-				// fs.writeFile("uploads/large.png", buffer, "binary", (err) => {
-				// 	err && console.log(err);
-				// });
+				fs.writeFile("uploads/large.png", buffer, "binary", (err) => {
+					err && console.log(err);
+				});
 				// console.log(data);
 			});
 	} catch (error) {
@@ -39,9 +39,9 @@ router.post("/", fileUpload(), async (req, res) => {
 			.toBuffer()
 			.then((data) => {
 				bufferMini = data;
-				// fs.writeFile("uploads/mini.png", bufferMini, "binary", (err) => {
-				// 	err && console.log(err);
-				// });
+				fs.writeFile("uploads/mini.png", bufferMini, "binary", (err) => {
+					err && console.log(err);
+				});
 				// console.log(data);
 			});
 	} catch (error) {
@@ -54,9 +54,9 @@ router.post("/", fileUpload(), async (req, res) => {
 			.toBuffer()
 			.then((data) => {
 				bufferMicro = data;
-				// fs.writeFile("uploads/micro.png", bufferMicro, "binary", (err) => {
-				// 	err && console.log(err);
-				// });
+				fs.writeFile("uploads/micro.png", bufferMicro, "binary", (err) => {
+					err && console.log(err);
+				});
 				// console.log(data);
 			});
 	} catch (error) {

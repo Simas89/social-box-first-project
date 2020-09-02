@@ -1,8 +1,9 @@
 .user-profile .profile-card {
   overflow: hidden;
   margin: 10px;
+  border: 1px solid #dadada;
   display: grid;
-  grid-template-columns: minmax(100px, 700px) auto;
+  grid-template-columns: minmax(450px, 700px) minmax(250px, auto);
 }
 
 .user-profile .profile-card .main-img {
@@ -24,6 +25,20 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  height: 100%;
+}
+
+.user-profile .profile-card .main-info .top-right-menu {
+  font-size: 2rem;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  opacity: 0.6;
+}
+
+.user-profile .profile-card .main-info .top-right-menu:hover {
+  cursor: pointer;
+  opacity: 0.9;
 }
 
 .user-profile .profile-card .main-info .basic {
@@ -55,7 +70,8 @@
 }
 
 .user-profile .profile-card .main-info .basic .ribon {
-  opacity: 0.8;
+  filter: blur(4px);
+  opacity: 0.6;
   top: -20px;
   z-index: -1;
   position: absolute;
@@ -66,6 +82,7 @@
 }
 
 .user-profile .profile-card .main-info .present {
+  display: none;
   margin-left: 10px;
   margin-top: 10px;
 }
@@ -108,7 +125,7 @@
 }
 
 .user-profile .profile-card .main-info .stats {
-  bottom: -60px;
+  bottom: 0px;
   position: absolute;
   width: 100%;
   height: 60px;
@@ -122,10 +139,10 @@
 
 .user-profile .profile-card .main-info .stats .top-line-grad {
   position: absolute;
-  width: 80%;
+  width: 90%;
   height: 1px;
   top: 0;
-  background: linear-gradient(90deg, rgba(0, 181, 136, 0) 0%, #38b557 20%, #38b557 80%, rgba(0, 255, 218, 0) 100%);
+  background-color: #bebebe;
 }
 
 .user-profile .profile-card .main-info .stats .stats-box {
@@ -137,26 +154,50 @@
 }
 
 .user-profile .profile-card .main-info .stats .stats-box .top-span {
-  font-weight: 400;
-  font-size: 1.1rem;
-  color: #303030;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: #777777;
 }
 
 .user-profile .profile-card .main-info .stats .stats-box .bottom-span {
   font-weight: 600;
   font-size: 1.2rem;
-  color: #303030;
+  color: #5c5c5c;
 }
 
 @media (max-width: 768px) {
   .user-profile .profile-card {
-    overflow: hidden;
     margin: 10px;
-    display: grid;
     grid-template-columns: auto;
   }
-  .user-profile .profile-card .main-info .stats {
+  .user-profile .profile-card .main-info {
+    overflow: hidden;
+    height: 200px;
     position: relative;
+    margin-bottom: 00px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .user-profile .profile-card .main-info .top-right-menu {
+    top: 25px;
+    right: 15px;
+  }
+  .user-profile .profile-card .main-info .basic {
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  .user-profile .profile-card .main-info .basic .ribon {
+    filter: blur(4px);
+    opacity: 0.8;
+    top: -10px;
+    right: -65px;
+    z-index: -1;
+    position: absolute;
+    font-size: 16rem;
+    background: linear-gradient(300deg, #ff7809 0%, #ffc400 59%, #ffe819 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 

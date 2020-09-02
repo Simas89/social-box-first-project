@@ -26,21 +26,9 @@ const SocialWindow = () => {
 	const getPosts = (query) => {
 		graphqlFetch(query, (res) => {
 			setIsLoading(0);
-
-			res.getPosts.sort((a, b) => {
-				return a.timestamp < b.timestamp
-					? 1
-					: b.timestamp < a.timestamp
-					? -1
-					: 0;
-			});
-
 			contextPost.setPosts(res.getPosts);
 		});
 	};
-
-	// console.log("State:", posts);
-	// console.log(context);
 
 	let ntfCounter = contextSocial.notifications.length;
 

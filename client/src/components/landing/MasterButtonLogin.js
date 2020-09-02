@@ -24,7 +24,6 @@ const MasterButtonLogin = (props) => {
 
 	//eslint-disable-next-line
 	const logIn = () => {
-		console.log("Login");
 		logInFetch(
 			{
 				inputValueName: contextLanding.state.userInputs.userName,

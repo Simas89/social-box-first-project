@@ -105,11 +105,11 @@ const SitePresentation = () => {
 				<ul style={{ listStyleType: "none" }}>
 					<li>
 						<FontAwesomeIcon icon={faUser} />{" "}
-						<span className='user-select'>guest</span>
+						<span className='user-select'>default_guest</span>
 					</li>
 					<li>
 						<FontAwesomeIcon icon={faKey} />{" "}
-						<span className='user-select'>gg123</span>
+						<span className='user-select'>default_psw</span>
 					</li>
 				</ul>
 

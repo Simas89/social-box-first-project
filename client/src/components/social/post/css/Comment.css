@@ -87,6 +87,10 @@
   white-space: pre-line;
 }
 
+.comment-body .comment-middle span {
+  user-select: text;
+}
+
 .comment-body .comment-middle p {
   overflow-wrap: normal;
   white-space: pre-line;
@@ -94,6 +98,12 @@
   letter-spacing: 0.03rem;
   word-spacing: 0.2rem;
   color: #323232;
+}
+
+.comment-body .comment-middle .editing-mode {
+  border: 1px solid lightblue;
+  padding: 1px;
+  border-radius: 2px;
 }
 
 .cursor-pointer:hover {

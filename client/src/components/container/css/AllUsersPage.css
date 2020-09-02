@@ -22,6 +22,7 @@
 }
 
 .users-page .users-page-header .search-bar-wrap .search-bar input {
+  font-family: "MuseoModerno", cursive;
   letter-spacing: 0.06rem;
   height: 40px;
   width: 100%;
@@ -37,7 +38,7 @@
   height: 1px;
   width: 0%;
   transition: 0.5s;
-  background: linear-gradient(90deg, rgba(0, 181, 136, 0) 0%, #38b557 20%, #38b557 80%, rgba(0, 255, 218, 0) 100%);
+  background: linear-gradient(90deg, rgba(0, 181, 136, 0) 0%, #8b8b8b 20%, #8b8b8b 80%, rgba(0, 255, 218, 0) 100%);
 }
 
 .users-page .users-page-header .search-bar-wrap .search-bar .search-bar-grad-width {

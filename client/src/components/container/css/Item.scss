@@ -1,6 +1,6 @@
 .item-wrap {
 	position: relative;
-	height: 85px;
+	height: 75px;
 	// border: 1px solid black;
 	display: flex;
 	align-items: center;
@@ -10,7 +10,7 @@
 		position: absolute;
 		// border: 1px solid red;
 		z-index: -1;
-		height: 75px;
+		height: 60px;
 		width: 93%;
 		border-radius: 5px;
 		box-shadow: 0 0 3px 1px gray;
@@ -26,7 +26,7 @@
 		// border: 1px solid blue;
 		border-radius: 5px;
 		// box-shadow: 0 0 3px 1px lightgray;
-		height: 75px;
+		height: 65px;
 		width: 92%;
 		display: flex;
 		align-items: center;
@@ -57,12 +57,12 @@
 			position: absolute;
 			right: 10px;
 			// border: 1px solid green;
-			height: 50%;
+			height: 40%;
 			button {
 				width: 75px;
 				height: 100%;
 				border: none;
-				// border-radius: 5px;
+				border-radius: 3px;
 
 				&:focus {
 					outline: none;
@@ -87,12 +87,16 @@
 }
 .can-buy {
 	color: white;
-	background-color: rgb(60, 146, 60);
+	background: linear-gradient(
+		45deg,
+		rgb(21, 202, 127) 10%,
+		rgb(0, 151, 226) 100%
+	);
 	&:hover {
 		cursor: pointer;
 	}
 	&:active {
-		background-color: rgb(62, 134, 61);
+		// background-color: rgb(62, 134, 61);
 		border: 1px solid black;
 	}
 }

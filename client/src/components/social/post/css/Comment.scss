@@ -88,6 +88,9 @@
 		// border: 1px solid black;
 		margin: 0px 0 10px 85px;
 		white-space: pre-line;
+		span {
+			user-select: text;
+		}
 
 		p {
 			overflow-wrap: normal;
@@ -96,6 +99,12 @@
 			letter-spacing: 0.03rem;
 			word-spacing: 0.2rem;
 			color: rgb(50, 50, 50);
+		}
+		.editing-mode {
+			border: 1px solid lightblue;
+			padding: 1px;
+			// background-color: rgb(196, 229, 240);
+			border-radius: 2px;
 		}
 
 		// height: 100px;

@@ -91,7 +91,7 @@ const AllUsersPage = () => {
 							onChange={handleInputVal}
 							onFocus={() => setFocus(1)}
 							type='text'
-							placeholder='•••'></input>
+							placeholder='Search users...'></input>
 						<div
 							className={`search-bar-grad ${
 								focus && "search-bar-grad-width"

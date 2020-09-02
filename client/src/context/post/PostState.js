@@ -19,12 +19,44 @@ const PostState = (props) => {
 	const [state, dispatch] = React.useReducer(postReducer, initialState);
 	const [isLoading, setIsLoading] = React.useState(1);
 
+	const randomNum = (num) => {
+		const rand = Math.floor(Math.random() * (num - 0 + 1)) + 0;
+		return rand;
+	};
+
 	const resetPosts = () => {
 		dispatch({ type: RESET_POSTS });
 	};
 
 	const setPosts = (payload) => {
-		dispatch({ type: SET_POSTS, payload: payload });
+		// console.log(payload);
+		const payloadScored = payload.map((post) => {
+			const delta = Math.abs(post.timestamp - Date.now()) / 1000;
+			const hours = Math.floor(delta / 3600);
+			const score =
+				post.comments.length +
+				post.likesPack.approves.length -
+				hours / 4 +
+				randomNum(5);
+			post = { ...post, score: score };
+			return post;
+		});
+
+		// Most revelant
+		payloadScored.sort((a, b) => {
+			return a.score < b.score ? 1 : b.score < a.score ? -1 : 0;
+		});
+
+		// Latest
+		// res.getPosts.sort((a, b) => {
+		// 	return a.timestamp < b.timestamp
+		// 		? 1
+		// 		: b.timestamp < a.timestamp
+		// 		? -1
+		// 		: 0;
+		// });
+
+		dispatch({ type: SET_POSTS, payload: payloadScored });
 	};
 
 	const editPost = (payload) => {
@@ -40,7 +72,7 @@ const PostState = (props) => {
 		dispatch({ type: UPDATE_LIKES, payload: payload });
 	};
 
-	const sendComment = (data) => {
+	const sendComment = (data, callback) => {
 		// console.log(data);
 		const query = `sendComment(userName: "${data.user}",
 															comment: """${data.comment.trim()}""",
@@ -63,6 +95,7 @@ const PostState = (props) => {
 				payload: res.sendComment,
 				index: data.post.index,
 			});
+			callback();
 		});
 	};
 

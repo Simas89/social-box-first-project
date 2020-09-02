@@ -1,6 +1,6 @@
 .item-wrap {
   position: relative;
-  height: 85px;
+  height: 75px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,7 @@
   content: "";
   position: absolute;
   z-index: -1;
-  height: 75px;
+  height: 60px;
   width: 93%;
   border-radius: 5px;
   box-shadow: 0 0 3px 1px gray;
@@ -26,7 +26,7 @@
 .item-wrap .item {
   position: relative;
   border-radius: 5px;
-  height: 75px;
+  height: 65px;
   width: 92%;
   display: flex;
   align-items: center;
@@ -59,13 +59,14 @@
 .item-wrap .item .buy {
   position: absolute;
   right: 10px;
-  height: 50%;
+  height: 40%;
 }
 
 .item-wrap .item .buy button {
   width: 75px;
   height: 100%;
   border: none;
+  border-radius: 3px;
 }
 
 .item-wrap .item .buy button:focus {
@@ -91,7 +92,7 @@
 
 .can-buy {
   color: white;
-  background-color: #3c923c;
+  background: linear-gradient(45deg, #15ca7f 10%, #0097e2 100%);
 }
 
 .can-buy:hover {
@@ -99,6 +100,5 @@
 }
 
 .can-buy:active {
-  background-color: #3e863d;
   border: 1px solid black;
 }

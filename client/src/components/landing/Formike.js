@@ -14,8 +14,11 @@ const Formike = (props) => {
 	const minLengthUser = 3;
 	const minLengthPsw = 3;
 	const userInputsChange = (e, type) => {
-		const value = e.target.value.replace(/[^A-Za-z0-9]/gi, "");
+		// const value = e.target.value.replace(/[^A-Za-z0-9]/gi, "");
+		const value = e.target.value.replace(/[^A-Za-z0-9~!@#$%^&()_|/]/gi, "");
+		// const value = e.target.value;
 		contextLanding.set_user_input({ type: type, value: value });
+		console.log(value);
 	};
 
 	const isInputsValid = (type) => {

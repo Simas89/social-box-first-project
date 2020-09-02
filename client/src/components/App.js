@@ -11,7 +11,7 @@ import Container from "./container/Container";
 
 import NtfNews from "./social/notifications/NtfNews";
 import NtfPanel from "./social/notifications/NtfPanel";
-import Wave from "./Wave";
+import Wave from "../components/other/Wave";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -170,6 +170,7 @@ function App(props) {
 						</div>
 					</div>
 					<Wave />
+					{/* <Wave2 /> */}
 
 					<div className='App'>
 						<NtfNews />

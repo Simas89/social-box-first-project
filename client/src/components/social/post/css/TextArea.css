@@ -4,6 +4,13 @@
 }
 
 .txt-block .TextArea {
+  font-family: "MuseoModerno", cursive;
+  overflow-wrap: normal;
+  white-space: pre-line;
+  font-size: 1rem;
+  letter-spacing: 0.03rem;
+  word-spacing: 0.2rem;
+  color: #323232;
   padding: 15px;
   outline: none;
   border: none;

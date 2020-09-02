@@ -5,6 +5,13 @@
 	min-height: 30px;
 
 	.TextArea {
+		font-family: "MuseoModerno", cursive;
+		overflow-wrap: normal;
+		white-space: pre-line;
+		font-size: 1rem;
+		letter-spacing: 0.03rem;
+		word-spacing: 0.2rem;
+		color: rgb(50, 50, 50);
 		// z-index: 3;
 		padding: 15px;
 		// border: 1px solid blue;

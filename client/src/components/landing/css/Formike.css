@@ -41,7 +41,7 @@
 
 .form-wrapper .inputs-wrapper .single-input-wrapper {
   position: relative;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #777777;
   height: calc(47px + 1.5rem);
 }
 
@@ -64,7 +64,7 @@
 .form-wrapper .inputs-wrapper .txt-input input {
   font-family: "MuseoModerno", cursive;
   font-size: 1.5rem;
-  color: black !important;
+  color: #242424 !important;
   padding-left: 20px;
   margin-right: 40px;
 }
@@ -79,7 +79,7 @@
   padding: 20px 15px 10px 45px;
   max-height: 35vh;
   min-height: 100px;
-  color: black !important;
+  color: #242424 !important;
   font-family: "MuseoModerno", cursive;
   font-size: 1.2rem;
   letter-spacing: 0.15rem;
@@ -88,7 +88,7 @@
   outline: none;
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #777777;
   background-color: transparent !important;
   z-index: 1;
 }
@@ -115,7 +115,7 @@
 }
 
 .form-wrapper .inputs-wrapper .forma .text-area-resizer .text-area-resizer-sub {
-  background-color: black;
+  background-color: #777777;
 }
 
 .form-wrapper .inputs-wrapper .forma .text-area-resizer .sub-1 {
@@ -152,7 +152,7 @@
   position: absolute;
   top: 20px;
   color: black !important;
-  opacity: 0.6 !important;
+  opacity: 0.4 !important;
   transition: 0.2s;
 }
 
@@ -160,19 +160,19 @@
   position: absolute;
   top: 20px;
   color: black !important;
-  opacity: 1;
+  opacity: 0.8;
   transition: 0.2s;
 }
 
 .form-wrapper .inputs-wrapper .icon-fade {
   color: black;
-  opacity: 0.7;
+  opacity: 0.8;
   transition: opacity 0.2s;
 }
 
 .form-wrapper .inputs-wrapper .icon-bright {
   color: black;
-  opacity: 1;
+  opacity: 0.8;
   transition: opacity 0.2s;
 }
 

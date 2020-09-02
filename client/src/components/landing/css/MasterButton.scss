@@ -14,7 +14,7 @@ $colorTone: rgb(115, 172, 98);
 		display: flex;
 		display: grid;
 		grid-template-columns: 1fr;
-		border-bottom: 1px solid $colorPrimary;
+		border-bottom: 1px solid rgba(119, 119, 119, 0.8);
 		width: 100%;
 
 		.contents {
@@ -68,7 +68,7 @@ $colorTone: rgb(115, 172, 98);
 		justify-content: center;
 		height: 100%;
 		width: 30px;
-		border-bottom: 1px solid $colorPrimary;
+		border-bottom: 1px solid rgba(119, 119, 119, 0.8);
 
 		.radio-ring {
 			display: flex;

@@ -51,7 +51,7 @@ const UserCard = (props) => {
 						{!props.isListed ? (
 							<FontAwesomeIcon
 								onClick={handleClick}
-								className='cursor-pointer'
+								className='cursor-pointer user-add'
 								icon={faUserPlus}
 							/>
 						) : (

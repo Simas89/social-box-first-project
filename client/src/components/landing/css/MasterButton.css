@@ -12,7 +12,7 @@
   display: flex;
   display: grid;
   grid-template-columns: 1fr;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(119, 119, 119, 0.8);
   width: 100%;
 }
 
@@ -67,7 +67,7 @@
   justify-content: center;
   height: 100%;
   width: 30px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(119, 119, 119, 0.8);
 }
 
 .top-kiautas .radio .radio-ring {

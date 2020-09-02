@@ -99,14 +99,16 @@ const Comment = (props) => {
 			</div>
 			<div className='comment-middle'>
 				{editMode ? (
-					<TextArea
-						style={{ padding: "5px" }}
-						value={textContent}
-						minRows={1}
-						setText={(txt) => setTextContent(txt)}
-						iconDisplay={false}
-						emojiDisplay={true}
-					/>
+					<div className='editing-mode'>
+						<TextArea
+							// style={{ padding: "5px", border: "1px solid red" }}
+							value={textContent}
+							minRows={1}
+							setText={(txt) => setTextContent(txt)}
+							iconDisplay={false}
+							emojiDisplay={true}
+						/>
+					</div>
 				) : (
 					<div>
 						<p>

@@ -223,11 +223,14 @@ const PostItself = (props) => {
 					<TextArea
 						className='add-post-comment-textarea'
 						iconClick={() => {
-							contextPost.sendComment({
-								post: { _id: props._id, index: props.index },
-								user: context.accountState.user,
-								comment: commentText,
-							});
+							contextPost.sendComment(
+								{
+									post: { _id: props._id, index: props.index },
+									user: context.accountState.user,
+									comment: commentText,
+								},
+								() => myRef.current.scrollToBottom()
+							);
 							setCommentText("");
 						}}
 						style={{ padding: "5px 10px" }}

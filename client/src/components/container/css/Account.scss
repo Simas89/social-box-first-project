@@ -28,7 +28,7 @@
 				transition: 0.3s;
 				&:hover {
 					cursor: pointer;
-					transform: scale(1.2);
+					transform: scale(1.1);
 					transition: 0.3s;
 				}
 			}
@@ -136,9 +136,14 @@
 				// display: none;
 				border: none;
 				outline: none;
-				border-radius: 8px;
+				border-radius: 3px;
 				color: white;
-				background-color: rgb(89, 129, 182);
+				// background-color: rgb(89, 129, 182);
+				background: linear-gradient(
+					45deg,
+					rgb(21, 202, 127) 10%,
+					rgb(0, 151, 226) 100%
+				);
 				&:active {
 					border: none;
 				}

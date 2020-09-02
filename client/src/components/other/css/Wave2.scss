@@ -1,0 +1,63 @@
+// best seen at 1500px or less
+
+// html,
+// body {
+// 	height: 100%;
+// // }
+// body {
+// 	background: radial-gradient(
+// 		ellipse at center,
+// 		rgba(255, 254, 234, 1) 0%,
+// 		rgba(255, 254, 234, 1) 35%,
+// 		#b7e8eb 100%
+// 	);
+// 	overflow: hidden;
+// }
+.lol {
+	position: relative;
+	// .ocean {
+	// 	height: 1%;
+	// 	width: 100%;
+	// 	position: absolute;
+	// 	bottom: 0;
+	// 	left: 0;
+	// 	background: rgba($color: #000000, $alpha: 0);
+	// }
+
+	.wave2 {
+		// background: url("../untitled.svg") repeat-x;
+		position: absolute;
+		top: -198px;
+		width: 6400px;
+		color: white;
+		height: 198px;
+		animation: wave 70s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+		transform: translate3d(0, 0, 0);
+	}
+
+	.wave2:nth-of-type(2) {
+		top: -175px;
+		animation: wave 70s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite,
+			swell 70s ease -1.25s infinite;
+		opacity: 1;
+	}
+}
+
+@keyframes wave {
+	0% {
+		margin-left: 0;
+	}
+	100% {
+		margin-left: -1600px;
+	}
+}
+
+@keyframes swell {
+	0%,
+	100% {
+		transform: translate3d(0, -25px, 0);
+	}
+	50% {
+		transform: translate3d(0, 5px, 0);
+	}
+}
