@@ -1,5 +1,6 @@
 import {
 	SET_POSTS,
+	SORT_POSTS,
 	RESET_POSTS,
 	EDIT_POST,
 	DELETE_POST,
@@ -15,8 +16,18 @@ export default (state, action) => {
 			return { ...state, posts: action.payload };
 		}
 
+		case SORT_POSTS: {
+			return {
+				...state,
+				postSort: {
+					...state.postSort,
+					[action.payload]: !state.postSort[action.payload],
+				},
+			};
+		}
+
 		case RESET_POSTS: {
-			return { posts: [] };
+			return { ...state, posts: [] };
 		}
 
 		case EDIT_POST: {

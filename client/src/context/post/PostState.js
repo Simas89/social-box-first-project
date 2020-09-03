@@ -5,6 +5,7 @@ import graphqlFetch from "../../functions/graphqlFetch";
 
 import {
 	SET_POSTS,
+	SORT_POSTS,
 	RESET_POSTS,
 	EDIT_POST,
 	DELETE_POST,
@@ -15,7 +16,13 @@ import {
 } from "../types";
 
 const PostState = (props) => {
-	const initialState = { posts: [] };
+	const initialState = {
+		posts: [],
+		postSort: {
+			FEED: 1,
+			USER: 1,
+		},
+	};
 	const [state, dispatch] = React.useReducer(postReducer, initialState);
 	const [isLoading, setIsLoading] = React.useState(1);
 
@@ -24,11 +31,16 @@ const PostState = (props) => {
 		return rand;
 	};
 
+	const toggleSortMethod = (type) => {
+		dispatch({ type: SORT_POSTS, payload: type });
+		setPosts(state.posts, state.postSort[type]);
+	};
+
 	const resetPosts = () => {
 		dispatch({ type: RESET_POSTS });
 	};
 
-	const setPosts = (payload) => {
+	const setPosts = (payload, sortType) => {
 		// console.log(payload);
 		const payloadScored = payload.map((post) => {
 			const delta = Math.abs(post.timestamp - Date.now()) / 1000;
@@ -36,25 +48,27 @@ const PostState = (props) => {
 			const score =
 				post.comments.length +
 				post.likesPack.approves.length -
-				hours / 4 +
-				randomNum(5);
+				hours / 8 +
+				randomNum(3);
 			post = { ...post, score: score };
 			return post;
 		});
 
-		// Most revelant
-		payloadScored.sort((a, b) => {
-			return a.score < b.score ? 1 : b.score < a.score ? -1 : 0;
-		});
-
-		// Latest
-		// res.getPosts.sort((a, b) => {
-		// 	return a.timestamp < b.timestamp
-		// 		? 1
-		// 		: b.timestamp < a.timestamp
-		// 		? -1
-		// 		: 0;
-		// });
+		if (sortType) {
+			payloadScored.sort((a, b) => {
+				//Latest
+				return a.timestamp < b.timestamp
+					? 1
+					: b.timestamp < a.timestamp
+					? -1
+					: 0;
+			});
+		} else {
+			// Most relevant
+			payloadScored.sort((a, b) => {
+				return a.score < b.score ? 1 : b.score < a.score ? -1 : 0;
+			});
+		}
 
 		dispatch({ type: SET_POSTS, payload: payloadScored });
 	};
@@ -122,6 +136,9 @@ const PostState = (props) => {
 		<postContext.Provider
 			value={{
 				state,
+				isLoading,
+				setIsLoading,
+				toggleSortMethod,
 				setPosts,
 				resetPosts,
 				updatePostLikes,
@@ -130,8 +147,6 @@ const PostState = (props) => {
 				sendComment,
 				editComment,
 				delComment,
-				isLoading,
-				setIsLoading,
 			}}>
 			{props.children}
 		</postContext.Provider>

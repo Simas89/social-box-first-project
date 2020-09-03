@@ -1,6 +1,7 @@
 .user-profile .profile-card {
   overflow: hidden;
   margin: 10px;
+  margin-bottom: 20px;
   border: 1px solid #dadada;
   display: grid;
   grid-template-columns: minmax(450px, 700px) minmax(250px, auto);
@@ -168,13 +169,13 @@
 @media (max-width: 768px) {
   .user-profile .profile-card {
     margin: 10px;
+    margin-bottom: 20px;
     grid-template-columns: auto;
   }
   .user-profile .profile-card .main-info {
     overflow: hidden;
     height: 200px;
     position: relative;
-    margin-bottom: 00px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

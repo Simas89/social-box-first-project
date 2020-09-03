@@ -75,7 +75,7 @@ const SocialWindow = () => {
 			</div>
 
 			<CreatePostBar />
-			<SortPost />
+			<SortPost type='FEED' />
 			{isLoading && !contextPost.state.posts.length ? (
 				<div className='sweet-loading'>
 					<PulseLoader

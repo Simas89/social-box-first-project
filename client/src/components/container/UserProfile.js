@@ -9,6 +9,7 @@ import PostItself from "../social/post/PostItself";
 import PulsatingCircle from "../social/PulsatingCircle";
 import addRemoveUser from "../../functions/addRemoveUser";
 import FourOhFour from "./FourOhFour";
+import SortPost from "..//social/post/SortPost";
 import { css } from "@emotion/core";
 import { PulseLoader } from "react-spinners";
 
@@ -344,7 +345,7 @@ const UserProfile = (props) => {
 						</div>
 					</div>
 					<div className='social-window'>
-						{" "}
+						{contextPost.state.posts.length ? <SortPost type='USER' /> : null}
 						{contextPost.state.posts &&
 							contextPost.state.posts.map((item, index) => (
 								<PostItself

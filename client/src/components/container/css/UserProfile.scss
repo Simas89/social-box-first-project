@@ -5,6 +5,7 @@
 	.profile-card {
 		overflow: hidden;
 		margin: 10px;
+		margin-bottom: 20px;
 		// border: 1px solid red;
 		border: 1px solid rgb(218, 218, 218);
 		display: grid;
@@ -186,7 +187,7 @@
 		.profile-card {
 			// overflow: hidden;
 			margin: 10px;
-
+			margin-bottom: 20px;
 			// display: grid;
 			grid-template-columns: auto;
 
@@ -198,7 +199,7 @@
 
 				// border: 1px solid red;
 				position: relative;
-				margin-bottom: 00px;
+				// margin-bottom: 10px;
 				display: flex;
 				flex-direction: column;
 				justify-content: flex-start;
