@@ -20,7 +20,7 @@ const PostState = (props) => {
 		posts: [],
 		postSort: {
 			FEED: 1,
-			USER: 1,
+			USER: 0,
 		},
 	};
 	const [state, dispatch] = React.useReducer(postReducer, initialState);
@@ -41,7 +41,7 @@ const PostState = (props) => {
 	};
 
 	const setPosts = (payload, sortType) => {
-		// console.log(payload);
+		// console.log(sortType);
 		const payloadScored = payload.map((post) => {
 			const delta = Math.abs(post.timestamp - Date.now()) / 1000;
 			const hours = Math.floor(delta / 3600);
@@ -53,6 +53,7 @@ const PostState = (props) => {
 			post = { ...post, score: score };
 			return post;
 		});
+		// console.log("sort type:", sortType);
 
 		if (sortType) {
 			payloadScored.sort((a, b) => {

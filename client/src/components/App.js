@@ -9,6 +9,8 @@ import postContext from "../context/post/postContext";
 import Container from "./container/Container";
 // import NotificationsContentBlock from "./social/NotificationsContentBlock";
 
+import MsgIcon from "./social/notifications/MsgIcon";
+
 import NtfNews from "./social/notifications/NtfNews";
 import NtfPanel from "./social/notifications/NtfPanel";
 import Wave from "../components/other/Wave";
@@ -32,6 +34,7 @@ function App(props) {
 	const contextSocial = React.useContext(socialContext);
 	const contextPost = React.useContext(postContext);
 	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+	const [greeting, setGreeting] = React.useState("");
 
 	const history = useHistory();
 	let location = useLocation();
@@ -44,10 +47,74 @@ function App(props) {
 		document.title = "Simas Zurauskas | App";
 		// window.scrollTo(0, 0);
 		window.addEventListener("resize", resizeEvent);
+
 		return () => {
 			window.removeEventListener("resize", resizeEvent);
 		};
 	}, []);
+
+	React.useEffect(
+		() =>
+			setGreeting(() => {
+				const hour = new Date().getHours();
+				console.log("check", hour);
+
+				switch (hour) {
+					case 1:
+						return `Staying late? ${context.accountState.user}`;
+					case 2:
+						return `Staying late? ${context.accountState.user}`;
+					case 3:
+						return `Staying late? ${context.accountState.user}`;
+					case 4:
+						return `Staying late?, ${context.accountState.user}`;
+					case 5:
+						return `Good Morning, ${context.accountState.user}`;
+					case 6:
+						return `Good Morning, ${context.accountState.user}`;
+					case 7:
+						return `Good Morning, ${context.accountState.user}`;
+					case 8:
+						return `Good Morning, ${context.accountState.user}`;
+					case 9:
+						return `Good Morning, ${context.accountState.user}`;
+					case 10:
+						return `Good Morning, ${context.accountState.user}`;
+					case 11:
+						return `Good Morning, ${context.accountState.user}`;
+					case 12:
+						return `Good Afternoon, ${context.accountState.user}`;
+					case 13:
+						return `Good Afternoon, ${context.accountState.user}`;
+					case 14:
+						return `Good Afternoon, ${context.accountState.user}`;
+					case 15:
+						return `Good Afternoon, ${context.accountState.user}`;
+					case 16:
+						return `Good Afternoon, ${context.accountState.user}`;
+					case 17:
+						return `Good Afternoon, ${context.accountState.user}`;
+					case 18:
+						return `Good Evening, ${context.accountState.user}`;
+					case 19:
+						return `Good Evening, ${context.accountState.user}`;
+					case 20:
+						return `Good Evening, ${context.accountState.user}`;
+					case 21:
+						return `Good Evening, ${context.accountState.user}`;
+					case 22:
+						return `Good Evening, ${context.accountState.user}`;
+					case 23:
+						return `Staying late? ${context.accountState.user}`;
+					case 24:
+						return `Staying late? ${context.accountState.user}`;
+
+					default:
+						return `Welcome back, ${context.accountState.user}`;
+				}
+			}),
+		[context]
+	);
 	const parseLines = (num) => {
 		let arr = [];
 		for (let i = 0; i < num; i++) {
@@ -79,8 +146,6 @@ function App(props) {
 		randomNum(5) === 1 && addClassShine(parseInt(windowWidth / 40));
 	});
 
-	// useTimer(true, 3, (periods) => console.log("callback", periods));
-
 	return (
 		context.accountState.logged && (
 			<React.Fragment>
@@ -93,12 +158,8 @@ function App(props) {
 						<div className='mask'></div>
 						<div className='top-bar-content'>
 							<div>
-								<h1 className='h1-main'>
-									{`Welcome back, ${context.accountState.user} `}
-								</h1>
-								<h1 className='h1-second'>
-									{`Welcome back, ${context.accountState.user} `}
-								</h1>
+								<h1 className='h1-main'>{greeting}</h1>
+								<h1 className='h1-second'>{greeting}</h1>
 							</div>
 							<div
 								className='exit'
@@ -174,6 +235,7 @@ function App(props) {
 
 					<div className='App'>
 						<NtfNews />
+						<MsgIcon />
 						{contextSocial.isNotificationOpen && <NtfPanel />}
 						{/* {contextSocial.isNotificationOpen && <NotificationsContentBlock />} */}
 

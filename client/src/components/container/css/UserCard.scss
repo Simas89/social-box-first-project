@@ -35,7 +35,7 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-evenly;
+		// justify-content: space-evenly;
 		margin-bottom: 60px;
 		// border: 1px solid blue;
 		// background-color: rgb(115, 172, 98);
@@ -46,6 +46,7 @@
 			align-items: center;
 			// margin-top: 20px;
 			margin-left: 25px;
+			margin-top: 30px;
 			color: rgb(48, 48, 48);
 
 			p {
@@ -85,7 +86,7 @@
 		}
 		.user-icon {
 			position: absolute;
-			right: 5px;
+			right: 7px;
 			top: 5px;
 			color: rgb(75, 75, 75);
 			// opacity: 0.3;
@@ -160,7 +161,7 @@
 		overflow: hidden;
 		// border: 1px solid red;
 		// border-radius: 10px;
-		height: 100px;
+		height: 120px;
 		grid-template-columns: 150px auto;
 		.image-block {
 			display: flex;
@@ -174,13 +175,18 @@
 			}
 		}
 		.info-block {
+			.user-icon {
+				top: 40px;
+			}
 			.user-name {
+				margin-top: 10px;
 				p {
 					margin: 0 20px 0 15px;
 					display: inline-block;
 					font-weight: 500;
-					font-size: 1.3rem;
+					font-size: 1.1rem;
 				}
+
 				.ribon {
 					filter: blur(4px);
 					right: -40px;

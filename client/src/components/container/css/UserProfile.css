@@ -22,7 +22,6 @@
 
 .user-profile .profile-card .main-info {
   position: relative;
-  margin-bottom: 60px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -173,8 +172,9 @@
     grid-template-columns: auto;
   }
   .user-profile .profile-card .main-info {
+    border: 1px solid black;
     overflow: hidden;
-    height: 200px;
+    height: 300px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -190,12 +190,12 @@
   }
   .user-profile .profile-card .main-info .basic .ribon {
     filter: blur(4px);
-    opacity: 0.8;
+    opacity: 0.6;
     top: -10px;
     right: -65px;
     z-index: -1;
     position: absolute;
-    font-size: 16rem;
+    font-size: 24rem;
     background: linear-gradient(300deg, #ff7809 0%, #ffc400 59%, #ffe819 100%);
     background-clip: text;
     -webkit-text-fill-color: transparent;

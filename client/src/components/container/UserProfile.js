@@ -90,7 +90,8 @@ const UserProfile = (props) => {
 				// 		? -1
 				// 		: 0;
 				// });
-				contextPost.setPosts(res.getPosts);
+				contextPost.setPosts(res.getPosts, !contextPost.state.postSort.USER);
+				console.log(contextPost.state.postSort.USER);
 			}
 		); //eslint-disable-next-line
 	}, [location.pathname]);

@@ -26,8 +26,9 @@ const SocialWindow = () => {
 
 	const getPosts = (query) => {
 		graphqlFetch(query, (res) => {
+			console.log(contextPost.state.postSort.FEED);
 			setIsLoading(0);
-			contextPost.setPosts(res.getPosts);
+			contextPost.setPosts(res.getPosts, !contextPost.state.postSort.FEED);
 		});
 	};
 

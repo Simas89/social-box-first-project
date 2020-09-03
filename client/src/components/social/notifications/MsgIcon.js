@@ -1,10 +1,10 @@
 import React from "react";
-import "./css/NtfNews.css";
+import "./css/MsgIcon.css";
 import socialContext from "../../../context/social/socialContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
-const NtfNews = () => {
+const MsgIcon = () => {
 	const contextSocial = React.useContext(socialContext);
 
 	const handleClick = () => {
@@ -20,22 +20,18 @@ const NtfNews = () => {
 	// console.log(contextSocial);
 
 	return (
-		<div className='ntf-news' onClick={handleClick}>
+		<div className='msg-icon' onClick={handleClick}>
 			<div
 				className={`${
-					contextSocial.notificationUnread ? "counter red" : "counter"
+					contextSocial.notificationUnread ? "counter " : "counter"
 				}`}>
-				<div>
-					{contextSocial.notificationUnread
-						? contextSocial.notificationUnread
-						: contextSocial.notificationRead}
-				</div>
+				<div>0</div>
 			</div>
 			<div className='ntf-news-icon'>
-				<FontAwesomeIcon icon={faBell} style={{ fontSize: "22px" }} />
+				<FontAwesomeIcon icon={faEnvelope} style={{ fontSize: "22px" }} />
 			</div>
 		</div>
 	);
 };
 
-export default NtfNews;
+export default MsgIcon;

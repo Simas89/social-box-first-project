@@ -33,7 +33,7 @@ const Wave = () => {
 								repeatCount='indefinite'
 								// fill='url(#grad1)'
 								attributeName='d'
-								dur='200s'
+								dur='100s'
 								attributeType='XML'
 								values='
             M0 77 

@@ -120,11 +120,18 @@ router.get("/", auth, (req, res) => {
 			}
 			if (JSON.parse(req.header("myContactsOnly"))) {
 				//////////////////  LOCAL SEARCH
+				// console.log(resultTOP.list);
+
 				const filtered = [];
 				resultTOP.list.forEach((element) => {
-					if (element.userName.includes(req.header("searchValue")))
+					if (
+						element.userName
+							.toLowerCase()
+							.includes(req.header("searchValue").toLowerCase())
+					)
 						filtered.push(element.userName);
 				});
+				// console.log(filtered);
 
 				let users = [];
 				Promise.all(
@@ -163,6 +170,7 @@ router.get("/", auth, (req, res) => {
 											});
 										});
 									});
+								// console.log(stars);
 
 								if (result) {
 									users.push({

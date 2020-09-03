@@ -1,0 +1,48 @@
+.msg-icon {
+  position: absolute;
+  top: -20px;
+  right: 140px;
+  height: 42px;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: grey 0 0 4px;
+  z-index: 12;
+  cursor: pointer;
+}
+
+.msg-icon .counter {
+  position: absolute;
+  top: -10px;
+  right: -12px;
+  width: 24px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: grey;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.msg-icon .red {
+  background-color: #db2828;
+}
+
+.msg-icon .ntf-news-icon {
+  margin: auto;
+  font-size: 0.8rem;
+}
+
+.msg-icon:hover {
+  background-color: #f7f7f7;
+}
+
+@media (max-width: 768px) {
+  .msg-icon {
+    right: 100px;
+  }
+}

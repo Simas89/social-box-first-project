@@ -18,6 +18,8 @@ const AllUsersPage = () => {
 	const [initialLoad, setInitialLoad] = React.useState(1);
 	const history = useHistory();
 
+	// console.log(usersState);
+
 	const searchRef = React.useRef();
 
 	React.useEffect(() => console.log(usersState), [usersState]);

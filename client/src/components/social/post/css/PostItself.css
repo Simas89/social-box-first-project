@@ -64,6 +64,17 @@
   display: none;
 }
 
+.post-body .top-section .post-info-top .user-titles .ribon-round {
+  margin-left: 2px;
+  box-shadow: 0 0 1px 2px rgba(255, 166, 0, 0.514);
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .post-body .top-section .post-info-top .date-posted {
   font-size: 0.8rem;
 }
@@ -161,6 +172,12 @@
   margin-left: 5px;
 }
 
+.post-body .middle-section .comments-and-likes .comments-info .fa-comment-alt {
+  background: linear-gradient(300deg, #ff7809 0%, #ffc400 59%, #ffe819 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .post-body .middle-section .comments-and-likes .modified {
   left: 50px;
   margin: 0;
@@ -197,7 +214,7 @@
   margin-bottom: 12px;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, rgba(0, 181, 136, 0) 0%, #38b557 20%, #38b557 80%, rgba(0, 255, 218, 0) 100%);
+  background: linear-gradient(90deg, rgba(0, 181, 136, 0) 0%, #50bd6b 20%, #50bd6b 80%, rgba(0, 255, 218, 0) 100%);
 }
 
 .post-body .bottom-section .comments-add {

@@ -65,11 +65,11 @@ const SitePresentation = () => {
 					</li>
 					<div className='br'></div>
 					<li>
-						<span className='bolder'>Get notifications.</span> If user adds you
-						to his contact list, sends you a present, likes or comments on your
-						post, you'll get a notification. Notifications comes with link to
-						that user or a particular post Notifications can then be marked as
-						'seen' or deleted.
+						<span className='bolder'>Get notifications.</span> If a user adds
+						you to his contact list, sends you a present, likes or comments on
+						your post, you'll get a notification. Notifications comes with link
+						to that user or a particular post Notifications can then be marked
+						as 'seen' or deleted.
 					</li>
 					<div className='br'></div>
 					<li>

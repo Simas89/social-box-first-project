@@ -13,7 +13,7 @@ import PulsatingCircle from "../PulsatingCircle";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Twemoji } from "react-emoji-render";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRibbon, faComments } from "@fortawesome/free-solid-svg-icons";
+import { faRibbon } from "@fortawesome/free-solid-svg-icons";
 
 const PostItself = (props) => {
 	// 💩
@@ -95,11 +95,13 @@ const PostItself = (props) => {
 							{props.userName}
 						</span>
 						{props.isVerified && (
-							<FontAwesomeIcon
-								icon={faRibbon}
-								style={{ fontSize: "18px" }}
-								color='orange'
-							/>
+							<div className='ribon-round'>
+								<FontAwesomeIcon
+									icon={faRibbon}
+									style={{ fontSize: "12px" }}
+									color='orange'
+								/>
+							</div>
 						)}
 						<PulsatingCircle
 							className='PulsatingCircle'
@@ -162,12 +164,15 @@ const PostItself = (props) => {
 					)}
 					{contextPost.state.posts[props.index].comments.length ? (
 						<div onClick={openComments} className='comments-info'>
-							<FontAwesomeIcon
-								icon={faComments}
+							{/* <FontAwesomeIcon
+								icon={faCommentAlt}
 								style={{ fontSize: "22px" }}
 								color='rgb(114, 170, 98)'
-							/>
-							<span>
+							/> */}
+							<i
+								className='fas fa-comment-alt'
+								style={{ fontSize: "22px" }}></i>
+							<span style={{ color: "gray" }}>
 								{contextPost.state.posts[props.index].comments.length}
 							</span>
 						</div>

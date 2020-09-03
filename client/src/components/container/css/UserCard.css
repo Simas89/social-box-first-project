@@ -32,7 +32,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   margin-bottom: 60px;
 }
 
@@ -40,6 +39,7 @@
   display: flex;
   align-items: center;
   margin-left: 25px;
+  margin-top: 30px;
   color: #303030;
 }
 
@@ -76,7 +76,7 @@
 
 .user-card .info-block .user-icon {
   position: absolute;
-  right: 5px;
+  right: 7px;
   top: 5px;
   color: #4b4b4b;
   font-size: 1.2rem;
@@ -141,7 +141,7 @@
 @media (max-width: 768px) {
   .user-card {
     overflow: hidden;
-    height: 100px;
+    height: 120px;
     grid-template-columns: 150px auto;
   }
   .user-card .image-block {
@@ -154,11 +154,17 @@
   .user-card .image-block img {
     height: 120px;
   }
+  .user-card .info-block .user-icon {
+    top: 40px;
+  }
+  .user-card .info-block .user-name {
+    margin-top: 10px;
+  }
   .user-card .info-block .user-name p {
     margin: 0 20px 0 15px;
     display: inline-block;
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
   .user-card .info-block .user-name .ribon {
     filter: blur(4px);

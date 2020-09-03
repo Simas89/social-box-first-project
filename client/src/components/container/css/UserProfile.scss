@@ -28,7 +28,7 @@
 		.main-info {
 			// border: 1px solid red;
 			position: relative;
-			margin-bottom: 60px;
+			// margin-bottom: 60px;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-evenly;
@@ -193,9 +193,9 @@
 
 			.main-info {
 				// margin-top: 15px;
-				// border: 1px solid black;
+				border: 1px solid black;
 				overflow: hidden;
-				height: 200px;
+				height: 300px;
 
 				// border: 1px solid red;
 				position: relative;
@@ -216,12 +216,12 @@
 					overflow: hidden;
 					.ribon {
 						filter: blur(4px);
-						opacity: 0.8;
+						opacity: 0.6;
 						top: -10px;
 						right: -65px;
 						z-index: -1;
 						position: absolute;
-						font-size: 16rem;
+						font-size: 24rem;
 						background: linear-gradient(
 							300deg,
 							rgb(255, 120, 9) 0%,
