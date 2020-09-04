@@ -12,6 +12,7 @@ import FourOhFour from "./FourOhFour";
 import SortPost from "..//social/post/SortPost";
 import { css } from "@emotion/core";
 import { PulseLoader } from "react-spinners";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -48,7 +49,13 @@ const UserProfile = (props) => {
 		itemName: null,
 		itemAmount: 1,
 	});
+	const [isUserMenuOpen, setIsUserMenuOpen] = React.useState(false);
 	let location = useLocation();
+
+	const menuRef = React.useRef();
+	useOutsideClick(menuRef, () => {
+		isUserMenuOpen && setIsUserMenuOpen(false);
+	});
 
 	React.useEffect(() => {
 		const e = { target: { value: sendItem.itemAmount } }; // FAKE e
@@ -83,13 +90,6 @@ const UserProfile = (props) => {
 		graphqlFetch(
 			gqlGetPostsQuery("USER", context.accountState.user, props.userName),
 			(res) => {
-				// res.getPosts.sort((a, b) => {
-				// 	return a.timestamp < b.timestamp
-				// 		? 1
-				// 		: b.timestamp < a.timestamp
-				// 		? -1
-				// 		: 0;
-				// });
 				contextPost.setPosts(res.getPosts, !contextPost.state.postSort.USER);
 				console.log(contextPost.state.postSort.USER);
 			}
@@ -215,15 +215,6 @@ const UserProfile = (props) => {
 		}
 	};
 
-	// console.log(props);
-	// const handleClick = () => {
-	// 	addRemoveUser(props.userName, props.isListed, (response) => {
-	// 		console.log(response);
-	// 		// props.findUsersFetchCallback();
-	// 	});
-	// };
-	// const element = <FontAwesomeIcon icon={faCoffee} />;
-
 	// console.log(profileInfo.settings);
 	const override = css`
 		display: block;
@@ -241,7 +232,20 @@ const UserProfile = (props) => {
 								src={`data:${profileInfo.profilePic.mimetype};base64,${profileInfo.profilePic.base64}`}></img>
 						</div>
 						<div className='main-info'>
-							<div className='top-right-menu'>•••</div>
+							<div
+								className='top-right-menu'
+								onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
+								•••
+							</div>
+							{isUserMenuOpen ? (
+								<div className='user-menu' ref={menuRef}>
+									<div className='user-menu-block'>
+										<div className='user-menu-btn'>
+											<span>add remove</span>
+										</div>
+									</div>
+								</div>
+							) : null}
 							<div>
 								<div className='basic'>
 									<div className='title'>
@@ -252,38 +256,6 @@ const UserProfile = (props) => {
 												)}
 										</div>
 										<div className='userName'>{props.userName}</div>
-										{/* {props.userName !== context.accountState.user && (
-											<p className='add-remove'>
-												{profileInfo.isListed ? (
-													<span>USER ADDED</span>
-												) : (
-													<FontAwesomeIcon
-														onClick={() =>
-															addRemoveUser(
-																props.userName,
-																profileInfo.isListed,
-																(response) => {
-																	if (response.status === "CONTACT ADDED") {
-																		setProfileInfo({
-																			...profileInfo,
-																			isListed: true,
-																		});
-																	} else {
-																		setProfileInfo({
-																			...profileInfo,
-																			isListed: false,
-																		});
-																	}
-																}
-															)
-														}
-														className='hover-pointer'
-														icon={faUserPlus}
-														style={{ fontSize: "23px" }}
-													/>
-												)}
-											</p>
-										)} */}
 									</div>
 									{profileInfo.verified && (
 										<i className='fas fa-ribbon ribon'></i>

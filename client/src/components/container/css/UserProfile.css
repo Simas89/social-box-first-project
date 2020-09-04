@@ -41,6 +41,41 @@
   opacity: 0.9;
 }
 
+.user-profile .profile-card .main-info .user-menu {
+  position: absolute;
+  width: 150px;
+  top: 50px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-profile .profile-card .main-info .user-menu .user-menu-block {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-profile .profile-card .main-info .user-menu .user-menu-block .user-menu-btn {
+  border: 1px solid gray;
+  border-radius: 3px;
+  height: 90%;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-profile .profile-card .main-info .user-menu .user-menu-block .user-menu-btn span {
+  color: #5f5f5f;
+}
+
+.user-profile .profile-card .main-info .user-menu .user-menu-block .user-menu-btn:hover {
+  cursor: pointer;
+}
+
 .user-profile .profile-card .main-info .basic {
   margin-left: 10px;
 }
