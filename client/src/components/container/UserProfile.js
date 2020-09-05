@@ -13,6 +13,7 @@ import SortPost from "..//social/post/SortPost";
 import { css } from "@emotion/core";
 import { PulseLoader } from "react-spinners";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import PresentMode from "./PresentMode";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -36,6 +37,7 @@ const UserProfile = (props) => {
 	const contextPost = React.useContext(postContext);
 	const context = React.useContext(myContext);
 	const [profileInfo, setProfileInfo] = React.useState({
+		isListed: false,
 		isValid: -1,
 		dateJoined: null,
 		verified: null,
@@ -50,6 +52,7 @@ const UserProfile = (props) => {
 		itemAmount: 1,
 	});
 	const [isUserMenuOpen, setIsUserMenuOpen] = React.useState(false);
+	const [presentMode, setPresentMode] = React.useState(false);
 	let location = useLocation();
 
 	const menuRef = React.useRef();
@@ -215,6 +218,13 @@ const UserProfile = (props) => {
 		}
 	};
 
+	const addRUser = () => {
+		addRemoveUser(props.userName, profileInfo.isListed, () => {
+			setProfileInfo({ ...profileInfo, isListed: !profileInfo.isListed });
+			setIsUserMenuOpen(false);
+		});
+	};
+
 	// console.log(profileInfo.settings);
 	const override = css`
 		display: block;
@@ -231,91 +241,123 @@ const UserProfile = (props) => {
 								alt=''
 								src={`data:${profileInfo.profilePic.mimetype};base64,${profileInfo.profilePic.base64}`}></img>
 						</div>
-						<div className='main-info'>
-							<div
-								className='top-right-menu'
-								onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
-								•••
-							</div>
-							{isUserMenuOpen ? (
-								<div className='user-menu' ref={menuRef}>
-									<div className='user-menu-block'>
-										<div className='user-menu-btn'>
-											<span>add remove</span>
+						{!presentMode ? (
+							<div className='main-info'>
+								{props.userName !== context.accountState.user ? (
+									<div
+										className='top-right-menu'
+										onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
+										•••
+									</div>
+								) : null}
+								{isUserMenuOpen ? (
+									<div className='user-menu' ref={menuRef}>
+										<div className='user-menu-block'>
+											<div className='user-menu-btn' onClick={addRUser}>
+												<span>{`${
+													profileInfo.isListed ? "remove" : "add"
+												} user`}</span>
+											</div>
 										</div>
 									</div>
-								</div>
-							) : null}
-							<div>
-								<div className='basic'>
-									<div className='title'>
-										<div className='pc'>
-											{profileInfo.settings &&
-												profileInfo.settings.showOnline && (
-													<PulsatingCircle isOnline={profileInfo.isOnline} />
-												)}
+								) : null}
+								<div>
+									<div className='basic'>
+										<div className='title'>
+											<div className='pc'>
+												{profileInfo.settings &&
+													profileInfo.settings.showOnline && (
+														<PulsatingCircle isOnline={profileInfo.isOnline} />
+													)}
+											</div>
+											<div className='userName'>{props.userName}</div>
 										</div>
-										<div className='userName'>{props.userName}</div>
+										{profileInfo.verified && (
+											<i className='fas fa-ribbon ribon'></i>
+										)}
+										{profileInfo.verified ? null : (
+											<React.Fragment>
+												Not verified<br></br>
+											</React.Fragment>
+										)}
+										Joined {profileInfo.dateJoined}
 									</div>
-									{profileInfo.verified && (
-										<i className='fas fa-ribbon ribon'></i>
-									)}
-									{profileInfo.verified ? null : (
-										<React.Fragment>
-											Not verified<br></br>
-										</React.Fragment>
-									)}
-									Member since {profileInfo.dateJoined}
-								</div>
-								{props.userName !== context.accountState.user && (
-									<div className='present'>
-										<div className='select'>
-											<FontAwesomeIcon
-												className='hover-pointer'
-												icon={faGift}
-												style={{ fontSize: "23px" }}
-												color='orange'
-											/>
-											<Dropdown
-												onChange={onChangeDropdown}
-												className='Dropdown'
-												placeholder='Select an item'
-												fluid
-												selection
-												options={items}
-											/>
-											<input
-												onChange={onChangeAmount}
-												value={sendItem.itemAmount}
-											/>
+									{props.userName !== context.accountState.user ? (
+										<div className='btns'>
+											<div className='btn'>
+												<span>Start chat</span>
+											</div>
+											<div className='btn' onClick={() => setPresentMode(true)}>
+												<span>Send a present</span>
+											</div>
 										</div>
-										<button onClick={handleClick} className=' hover-pointer'>
-											SEND
-										</button>
-									</div>
-								)}
-							</div>
+									) : null}
 
-							<div className='stats'>
-								<div className='top-line-grad'></div>
-								<div className='stats-box'>
-									<span className='top-span'>POSTS</span>
-									<span className='bottom-span'>
-										{profileInfo.numberOfPosts}
-									</span>
+									{props.userName !== context.accountState.user && (
+										<div className='user-icon'>
+											{!profileInfo.isListed ? (
+												<FontAwesomeIcon
+													onClick={addRUser}
+													className='cursor-pointer user-add'
+													icon={faUserPlus}
+												/>
+											) : (
+												<span className='user-added'>USER ADDED</span>
+											)}
+										</div>
+									)}
+									{props.userName !== context.accountState.user && (
+										<div className='present'>
+											<div className='select'>
+												<FontAwesomeIcon
+													className='hover-pointer'
+													icon={faGift}
+													style={{ fontSize: "23px" }}
+													color='orange'
+												/>
+												<Dropdown
+													onChange={onChangeDropdown}
+													className='Dropdown'
+													placeholder='Select an item'
+													fluid
+													selection
+													options={items}
+												/>
+												<input
+													onChange={onChangeAmount}
+													value={sendItem.itemAmount}
+												/>
+											</div>
+											<button onClick={handleClick} className=' hover-pointer'>
+												SEND
+											</button>
+										</div>
+									)}
 								</div>
-								<div className='stats-box'>
-									<span className='top-span'>COMMENTS</span>
-									<span className='bottom-span'>
-										{profileInfo.numberOfComments}
-									</span>
-								</div>
-								<div className='stats-box'>
-									<span className='top-span'>STARS</span>
-									<span className='bottom-span'>{profileInfo.stars}</span>
+
+								<div className='stats'>
+									<div className='top-line-grad'></div>
+									<div className='stats-box'>
+										<span className='top-span'>POSTS</span>
+										<span className='bottom-span'>
+											{profileInfo.numberOfPosts}
+										</span>
+									</div>
+									<div className='stats-box'>
+										<span className='top-span'>COMMENTS</span>
+										<span className='bottom-span'>
+											{profileInfo.numberOfComments}
+										</span>
+									</div>
+									<div className='stats-box'>
+										<span className='top-span'>STARS</span>
+										<span className='bottom-span'>{profileInfo.stars}</span>
+									</div>
 								</div>
 							</div>
-						</div>
+						) : (
+							<PresentMode presentModeClose={() => setPresentMode(false)} />
+						)}
 					</div>
 					<div className='social-window'>
 						{contextPost.state.posts.length ? <SortPost type='USER' /> : null}

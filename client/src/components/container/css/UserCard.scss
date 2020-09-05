@@ -86,13 +86,14 @@
 		}
 		.user-icon {
 			position: absolute;
-			right: 7px;
-			top: 5px;
+			right: 12px;
+			top: 80px;
 			color: rgb(75, 75, 75);
 			// opacity: 0.3;
 			font-size: 1.2rem;
-			margin-left: 42px;
+			margin-left: 50px;
 			.user-add {
+				margin-right: 0px;
 				opacity: 0.2;
 				&:hover {
 					opacity: 0.4;
@@ -177,6 +178,17 @@
 		.info-block {
 			.user-icon {
 				top: 40px;
+				margin-left: 50px;
+				.user-add {
+					margin-right: 0px;
+				}
+
+				.user-added {
+					margin: 0;
+					font-size: 0.8rem;
+					color: rgb(75, 75, 75);
+					opacity: 0.5;
+				}
 			}
 			.user-name {
 				margin-top: 10px;

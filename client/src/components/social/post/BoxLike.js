@@ -39,8 +39,8 @@ const BoxLike = (props) => {
 
 	const islikesMaxed = () => {
 		const score =
-			contextPost.state.posts[props.index].likesPack.approves.length < 5
-				? contextPost.state.posts[props.index].likesPack.approves.length * 2
+			contextPost.state.posts[props.index].likesPack.approves.length <= 5
+				? contextPost.state.posts[props.index].likesPack.approves.length * 3
 				: 10;
 		return score;
 	};

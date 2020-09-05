@@ -176,7 +176,6 @@ const Account = () => {
 								</div>
 							</div>
 						)}
-						<p>Member since {context.accountState.dateJoined.toString()} </p>
 						<div className='settings-divider'>
 							<FontAwesomeIcon className='icon' icon={faCog} />
 							<div className='line'></div>

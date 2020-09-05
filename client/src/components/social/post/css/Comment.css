@@ -101,6 +101,8 @@
 }
 
 .comment-body .comment-middle .editing-mode {
+  color: #323232;
+  margin-right: 10px;
   border: 1px solid lightblue;
   padding: 1px;
   border-radius: 2px;

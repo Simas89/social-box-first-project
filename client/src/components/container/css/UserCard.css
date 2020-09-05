@@ -76,14 +76,15 @@
 
 .user-card .info-block .user-icon {
   position: absolute;
-  right: 7px;
-  top: 5px;
+  right: 12px;
+  top: 80px;
   color: #4b4b4b;
   font-size: 1.2rem;
-  margin-left: 42px;
+  margin-left: 50px;
 }
 
 .user-card .info-block .user-icon .user-add {
+  margin-right: 0px;
   opacity: 0.2;
 }
 
@@ -156,6 +157,16 @@
   }
   .user-card .info-block .user-icon {
     top: 40px;
+    margin-left: 50px;
+  }
+  .user-card .info-block .user-icon .user-add {
+    margin-right: 0px;
+  }
+  .user-card .info-block .user-icon .user-added {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #4b4b4b;
+    opacity: 0.5;
   }
   .user-card .info-block .user-name {
     margin-top: 10px;

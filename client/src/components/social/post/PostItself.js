@@ -126,13 +126,15 @@ const PostItself = (props) => {
 			<div className='middle-section'>
 				<div className='text-box'>
 					{editMode ? (
-						<TextArea
-							value={textContent}
-							minRows={1}
-							setText={(txt) => setTextContent(txt)}
-							iconDisplay={false}
-							emojiDisplay={true}
-						/>
+						<div className='edit-mode'>
+							<TextArea
+								value={textContent}
+								minRows={1}
+								setText={(txt) => setTextContent(txt)}
+								iconDisplay={false}
+								emojiDisplay={true}
+							/>
+						</div>
 					) : (
 						<React.Fragment>
 							<div

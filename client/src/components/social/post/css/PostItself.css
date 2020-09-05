@@ -98,7 +98,13 @@
   overflow: hidden;
 }
 
-.post-body .middle-section .text-box .TextareaAutosize {
+.post-body .middle-section .text-box .edit-mode {
+  border: 1px solid lightblue;
+  padding: 1px;
+  border-radius: 2px;
+}
+
+.post-body .middle-section .text-box .edit-mode .TextareaAutosize {
   width: 100%;
   margin-top: 5px;
   overflow: hidden;

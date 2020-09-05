@@ -1,0 +1,44 @@
+.present-mode {
+	position: relative;
+	// border: 1px solid orange;
+	height: 100%;
+	width: 100%;
+	.close {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		border: 1px solid rgb(177, 177, 177);
+		border-radius: 3px;
+		height: 25px;
+		width: 25px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&:hover {
+			cursor: pointer;
+			border-color: gray;
+			.plank {
+				background-color: gray;
+			}
+		}
+		.plank {
+			position: absolute;
+			width: 80%;
+			background-color: rgb(177, 177, 177);
+			height: 3px;
+			border-radius: 2px;
+		}
+		.plank-1 {
+			transform: rotate(45deg);
+		}
+		.plank-2 {
+			transform: rotate(135deg);
+		}
+	}
+}
+@media (max-width: 768px) {
+	.present-mode {
+		height: 300px;
+	}
+}

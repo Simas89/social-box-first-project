@@ -94,14 +94,20 @@ $colorTone: rgb(115, 172, 98);
 			margin: 15px 50px 10px 50px;
 			overflow: hidden;
 			// border: 1px solid grey;
-			.TextareaAutosize {
-				width: 100%;
-				margin-top: 5px;
-				overflow: hidden;
-				display: block;
-				// width: 100px;
-				resize: none;
-				bottom: 100%;
+
+			.edit-mode {
+				border: 1px solid lightblue;
+				padding: 1px;
+				border-radius: 2px;
+				.TextareaAutosize {
+					width: 100%;
+					margin-top: 5px;
+					overflow: hidden;
+					display: block;
+					// width: 100px;
+					resize: none;
+					bottom: 100%;
+				}
 			}
 			.post-text {
 				// border: 1px solid green;
