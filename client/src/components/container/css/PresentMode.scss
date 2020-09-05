@@ -3,6 +3,18 @@
 	// border: 1px solid orange;
 	height: 100%;
 	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.under-construction {
+		background-image: url(../../../img/construction.png);
+		height: 100%;
+		width: 100%;
+		background-repeat: no-repeat;
+		background-position: center;
+		text-align: center;
+		padding-top: 20px;
+	}
 	.close {
 		position: absolute;
 		top: 5px;

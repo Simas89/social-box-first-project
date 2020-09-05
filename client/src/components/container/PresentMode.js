@@ -8,6 +8,11 @@ const PresentMode = (props) => {
 				<div className='plank plank-1'></div>
 				<div className='plank plank-2'></div>
 			</div>
+			{props.underConstruction ? (
+				<div className='under-construction'>
+					<span>Under construction..</span>
+				</div>
+			) : null}
 		</div>
 	);
 };

@@ -2,6 +2,19 @@
   position: relative;
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.present-mode .under-construction {
+  background-image: url(../../../img/construction.png);
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  padding-top: 20px;
 }
 
 .present-mode .close {

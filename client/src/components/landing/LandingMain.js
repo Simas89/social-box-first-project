@@ -82,7 +82,6 @@ const LandingMain = () => {
 		console.log("hide");
 		mongoose.classList.add("lil-mongoose-hide");
 	};
-
 	return (
 		<React.Fragment>
 			<div className='landing-main'>

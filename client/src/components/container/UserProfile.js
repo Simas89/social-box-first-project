@@ -356,7 +356,10 @@ const UserProfile = (props) => {
 								</div>
 							</div>
 						) : (
-							<PresentMode presentModeClose={() => setPresentMode(false)} />
+							<PresentMode
+								presentModeClose={() => setPresentMode(false)}
+								underConstruction={1}
+							/>
 						)}
 					</div>
 					<div className='social-window'>
