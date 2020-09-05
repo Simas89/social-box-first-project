@@ -14,6 +14,7 @@ import { css } from "@emotion/core";
 import { PulseLoader } from "react-spinners";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import PresentMode from "./PresentMode";
+import chatContext from "../../context/chat/chatContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -36,6 +37,7 @@ import { useLocation } from "react-router-dom";
 const UserProfile = (props) => {
 	const contextPost = React.useContext(postContext);
 	const context = React.useContext(myContext);
+	const contextChat = React.useContext(chatContext);
 	const [profileInfo, setProfileInfo] = React.useState({
 		isListed: false,
 		isValid: -1,
@@ -284,7 +286,9 @@ const UserProfile = (props) => {
 									</div>
 									{props.userName !== context.accountState.user ? (
 										<div className='btns'>
-											<div className='btn'>
+											<div
+												className='btn'
+												onClick={() => contextChat.addTarget(props.userName)}>
 												<span>Start chat</span>
 											</div>
 											<div className='btn' onClick={() => setPresentMode(true)}>

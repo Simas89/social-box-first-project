@@ -1,12 +1,33 @@
 // @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap");
 // Utilities
 @import "./utilities/_variables";
+.chat-fixed-frame {
+	// border: 1px solid red;
+	position: fixed;
+	height: 0px;
+	width: 100%;
+	margin: auto;
+	z-index: 10;
+	bottom: 0;
+
+	.chat-app-frame {
+		position: relative;
+		height: 100%;
+		// border: 1px solid black;
+		max-width: 1524px;
+		margin: auto;
+		display: flex;
+		justify-content: flex-end;
+		transition: 0.3s;
+	}
+}
 
 .main {
 	// max-width: 100vw;
 	// border: 1px solid blue;
 	// overflow: hidden;
 	height: 500px;
+
 	.top-bar {
 		overflow: hidden;
 		position: relative;

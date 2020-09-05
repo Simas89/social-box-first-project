@@ -1,0 +1,117 @@
+.chat-main {
+  background-color: white;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid gray;
+  border-radius: 3px;
+  width: 250px;
+  height: 400px;
+  bottom: 400px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-main .top {
+  border-bottom: 1px solid gray;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.chat-main .top .target-name {
+  margin-left: 20px;
+}
+
+.chat-main .top .close {
+  position: absolute;
+  right: 5px;
+  border-radius: 3px;
+  height: 23px;
+  width: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-main .top .close:hover {
+  cursor: pointer;
+}
+
+.chat-main .top .close:hover .plank {
+  background-color: gray;
+}
+
+.chat-main .top .close .plank {
+  position: absolute;
+  width: 70%;
+  background-color: #b1b1b1;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.chat-main .top .close .plank-1 {
+  transform: rotate(45deg);
+}
+
+.chat-main .top .close .plank-2 {
+  transform: rotate(135deg);
+}
+
+.chat-main .middle {
+  flex-grow: 1;
+}
+
+.chat-main .bottom {
+  border-top: 1px solid gray;
+}
+
+.chat-main .bottom .txt-area-core {
+  padding: 5px;
+  font-family: "MuseoModerno", cursive;
+  overflow-wrap: normal;
+  white-space: pre-line;
+  font-size: 0.9rem;
+  letter-spacing: 0.02rem;
+  word-spacing: 0.2rem;
+  color: #323232;
+  outline: none;
+  border: none;
+  width: 100%;
+  display: block;
+  resize: none;
+  max-height: 200px;
+  min-height: 70px;
+}
+
+.chat-main .bottom .txt-area-core:active {
+  outline: none;
+}
+
+.chat-main .bottom .txt-area-core:focused {
+  outline: none;
+}
+
+.chat-main .bottom .under-text-area {
+  position: relative;
+  height: 40px;
+  border-top: 1px solid green;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.chat-main .bottom .under-text-area .send {
+  margin-right: 10px;
+  border: 1px solid #7b9fc0;
+  border-radius: 3px;
+  width: 100px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-main .bottom .under-text-area .send:hover {
+  cursor: pointer;
+}

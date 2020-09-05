@@ -6,6 +6,7 @@ import ContextState from "./context/account/ContextState";
 import SocialState from "./context/social/SocialState";
 import LandingState from "./context/landing/LandingState";
 import PostState from ".//context/post/PostState";
+import ChatState from "./context/chat/ChatState";
 // import Landing from "./Landing";
 import LandingMain from "./components/landing/LandingMain";
 
@@ -20,10 +21,12 @@ ReactDOM.render(
 			<ContextState>
 				<SocialState>
 					<LandingState>
-						<PostState>
-							<Route exact path='/' component={LandingMain} />
-							<Route path='/app' component={App} />
-						</PostState>
+						<ChatState>
+							<PostState>
+								<Route exact path='/' component={LandingMain} />
+								<Route path='/app' component={App} />
+							</PostState>
+						</ChatState>
 					</LandingState>
 				</SocialState>
 			</ContextState>

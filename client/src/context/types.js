@@ -24,3 +24,7 @@ export const UPDATE_LIKES = "UPDATE_LIKES";
 export const SEND_COMMENT = "SEND_COMMENT";
 export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
+
+// CHAT
+export const ADD_TARGET = "ADD_TARGET";
+export const REMOVE_TARGET = "REMOVE_TARGET";

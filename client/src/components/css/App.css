@@ -1,3 +1,22 @@
+.chat-fixed-frame {
+  position: fixed;
+  height: 0px;
+  width: 100%;
+  margin: auto;
+  z-index: 10;
+  bottom: 0;
+}
+
+.chat-fixed-frame .chat-app-frame {
+  position: relative;
+  height: 100%;
+  max-width: 1524px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+  transition: 0.3s;
+}
+
 .main {
   height: 500px;
 }

@@ -5,6 +5,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import myContext from "../context/account/myContext";
 import socialContext from "../context/social/socialContext";
 import postContext from "../context/post/postContext";
+import chatContext from "../context/chat/chatContext";
 
 import Container from "./container/Container";
 // import NotificationsContentBlock from "./social/NotificationsContentBlock";
@@ -26,6 +27,8 @@ import {
 
 import useTimer from "../hooks/useTimer";
 
+import Chat from "./social/chat/Chat";
+
 function App(props) {
 	// override landings page body overflow hidden
 	document.querySelector("body").style.overflow = "auto";
@@ -33,6 +36,7 @@ function App(props) {
 	const context = React.useContext(myContext);
 	const contextSocial = React.useContext(socialContext);
 	const contextPost = React.useContext(postContext);
+	const contextChat = React.useContext(chatContext);
 	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 	const [greeting, setGreeting] = React.useState("");
 
@@ -149,6 +153,22 @@ function App(props) {
 	return (
 		context.accountState.logged && (
 			<React.Fragment>
+				<div className='chat-fixed-frame'>
+					<div
+						className='chat-app-frame'
+						style={{
+							maxWidth: `${
+								contextChat.state.targets.length > 1 ? "100%" : "1524px"
+							}`,
+						}}>
+						{contextChat.state.targets.map((target, index) => {
+							return (
+								<Chat key={target.name} index={index} userName={target.name} />
+							);
+						})}
+					</div>
+				</div>
+
 				<div className='main'>
 					<div className='top-bar'>
 						<div className='top-bar-shader'>

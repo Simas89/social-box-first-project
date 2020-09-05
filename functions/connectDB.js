@@ -10,9 +10,17 @@ const connectDB = () => {
 			useFindAndModify: false,
 		}
 	);
+
 	const db = mongoose.connection;
+
 	db.on("error", console.error.bind(console, "connection error:"));
-	db.once("open", () => console.log("---Conected to DB!---"));
+	db.once("open", () => {
+		console.log("---Conected to DB!---");
+
+		db.collection("comments")
+			.watch()
+			.on("change", (data) => " console.log(data.documentKey)");
+	});
 	mongoose.set("useFindAndModify", true); /// WTF
 };
 

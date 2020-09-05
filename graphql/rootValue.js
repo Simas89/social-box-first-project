@@ -221,6 +221,7 @@ const rootValue = {
 	editPost: async (args) => {
 		console.log(args);
 		let editTime;
+
 		await Post.findByIdAndUpdate(
 			args._id,
 			{ textContent: args.textContent, edited: Date.now() },
