@@ -39,6 +39,7 @@ function App(props) {
 	const contextChat = React.useContext(chatContext);
 	const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 	const [greeting, setGreeting] = React.useState("");
+	// console.log(contextChat);
 
 	const history = useHistory();
 	let location = useLocation();
@@ -61,7 +62,7 @@ function App(props) {
 		() =>
 			setGreeting(() => {
 				const hour = new Date().getHours();
-				console.log("check", hour);
+				// console.log("check", hour);
 
 				switch (hour) {
 					case 1:

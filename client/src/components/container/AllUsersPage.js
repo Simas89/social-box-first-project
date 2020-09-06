@@ -22,7 +22,7 @@ const AllUsersPage = () => {
 
 	const searchRef = React.useRef();
 
-	React.useEffect(() => console.log(usersState), [usersState]);
+	// React.useEffect(() => console.log(usersState), [usersState]);
 
 	React.useEffect(() => {
 		findUsersFetch(usersState.inputValue, usersState.contactsOnly, (data) => {

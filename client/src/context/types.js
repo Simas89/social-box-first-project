@@ -28,3 +28,5 @@ export const DELETE_COMMENT = "DELETE_COMMENT";
 // CHAT
 export const ADD_TARGET = "ADD_TARGET";
 export const REMOVE_TARGET = "REMOVE_TARGET";
+export const SET_MESSAGE_INPUT = "SET_MESSAGE_INPUT";
+export const SEND_A_MESSAGE = "SEND_A_MESSAGE";

@@ -1,9 +1,6 @@
-const { buildSchema } = require("graphql");
-
-const schema = buildSchema(`
+const typeDefs = `
 	type Query{
     emailMe(guest: String, email: String, msg: String) : String
-
     addPost(token : String, textContent: String): String
     getPosts(TYPE: String, clientUserName: String, target: String ) : [POST]
     editPost(_id: String, textContent: String) : String
@@ -12,15 +9,24 @@ const schema = buildSchema(`
     sendComment(userName: String, comment: String, postID: String) : [COMMENT]
     delComment(_id: String) : String
     editComment(_id: String, textContent: String) : String
-
     setOnlineParam(userName: String, param: String) : Boolean
+    
+    test(userName: String): String!
 
   }
+  type Mutation{
+    sendChatMsg(userName: String, target: String, content: String): String!
+  }
+  type Subscription{
+    count: Int
+  }
+
+
   type POST{
     _id: String
     userName: String
     isVerified: Boolean
-    textContent: String 
+    textContent: String
     timestamp: String
     isOnline: Boolean
     edited: String
@@ -38,7 +44,6 @@ const schema = buildSchema(`
     edited: String
 
   }
- 
 
   type IMG{
     contentType: String
@@ -54,9 +59,6 @@ const schema = buildSchema(`
     imgmicro: String
   }
 
+  `;
 
-  `);
-
-module.exports = schema;
-
-// timestamp: { type: Date, default: Date.now },
+module.exports = typeDefs;

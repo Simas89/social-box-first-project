@@ -1,6 +1,13 @@
 const express = require("express");
 const path = require("path");
-const { graphqlHTTP } = require("express-graphql");
+const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
+const { makeExecutableSchema } = require("graphql-tools");
+
+const { PubSub } = require("apollo-server");
+const pubsub = new PubSub();
+
+const typeDefs = require("./graphql/typeDefs");
+const resolvers = require("./graphql/resolvers");
 
 const cors = require("cors");
 // Import routes
@@ -16,9 +23,6 @@ const sendPresentRoute = require("./routes/sendpresent");
 const notificationsRoute = require("./routes/notifications");
 const uploadRoute = require("./routes/uploadRoute");
 const delAccRoute = require("./routes/delete");
-//GraphQL
-const schema = require("./graphql/schema");
-const rootValue = require("./graphql/rootValue");
 // Import functions
 const connectDB = require("./functions/connectDB");
 const loadItemsSpecs = require("./functions/loadItemsSpecs");
@@ -37,16 +41,19 @@ app.use((req, res, next) => {
 	next();
 });
 
-//GraphQL
-app.use(
-	"/graphql",
-	graphqlHTTP({
-		schema: schema,
-		rootValue: rootValue,
-		graphiql: true,
-	})
-);
-//////// Routes
+///////////  GraphQL
+// Put together a schema
+const schema = makeExecutableSchema({
+	typeDefs,
+	resolvers,
+});
+// The GraphQL endpoint
+app.use("/graphql", graphqlExpress({ schema, context: { pubsub } }));
+// app.use("/graphql", bodyParser.json(), graphqlExpress({ schema }));
+// GraphiQL, a visual editor for queries
+app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
+
+//////// REST Routes
 app.use("/verification", verification);
 app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);

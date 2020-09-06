@@ -1,18 +1,24 @@
 import React from "react";
 import chatReducer from "./chatReducer";
 import chatContext from "./chatContext";
-import graphqlFetch from "../../functions/graphqlFetch";
+// import { ApolloConsumer, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 
-import { ADD_TARGET, REMOVE_TARGET } from "../types";
+import {
+	ADD_TARGET,
+	REMOVE_TARGET,
+	SET_MESSAGE_INPUT,
+	SEND_A_MESSAGE,
+} from "../types";
 
 const ChatState = (props) => {
 	const initialState = {
-		targets: [{ name: "Simas", input: "" }],
+		targets: [{ name: "bot001", input: "" }],
 	};
 	const [state, dispatch] = React.useReducer(chatReducer, initialState);
 
-	const setInput = (value) => {
-		console.log(value);
+	const setMsgInput = (payload) => {
+		dispatch({ type: SET_MESSAGE_INPUT, payload: payload });
 	};
 	const addTarget = (target) => {
 		dispatch({ type: ADD_TARGET, payload: target });
@@ -20,10 +26,25 @@ const ChatState = (props) => {
 	const removeTarget = (target) => {
 		dispatch({ type: REMOVE_TARGET, payload: target });
 	};
-	console.log(state);
+	const sendAMessage = (data) => {
+		props.apollo
+			.mutate({
+				mutation: gql`
+					mutation {
+						sendChatMsg(userName: "${data.sender}", target: "${
+					state.targets[data.index].name
+				}",content: "${state.targets[data.index].input}")
+					}
+				`,
+			})
+			.then((result) => console.log(result));
+		dispatch({ type: SEND_A_MESSAGE, payload: data.index });
+	};
+	console.log("chat", state);
 
 	return (
-		<chatContext.Provider value={{ state, setInput, addTarget, removeTarget }}>
+		<chatContext.Provider
+			value={{ state, setMsgInput, addTarget, removeTarget, sendAMessage }}>
 			{props.children}
 		</chatContext.Provider>
 	);

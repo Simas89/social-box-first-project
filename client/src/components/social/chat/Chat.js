@@ -23,11 +23,23 @@ const Chat = (props) => {
 				<TextareaAutosize
 					className='txt-area-core'
 					placeholder='Message..'
-					value={contextChat.state.input}
-					onChange={(e) => contextChat.setInput(e.target.value)}
+					value={contextChat.state.targets[props.index].input}
+					onChange={(e) =>
+						contextChat.setMsgInput({
+							value: e.target.value,
+							index: props.index,
+						})
+					}
 				/>
 				<div className='under-text-area'>
-					<div className='send'>
+					<div
+						className='send'
+						onClick={() =>
+							contextChat.sendAMessage({
+								index: props.index,
+								sender: context.accountState.user,
+							})
+						}>
 						<span>SEND</span>
 					</div>
 				</div>
