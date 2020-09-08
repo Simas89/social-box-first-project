@@ -3,6 +3,8 @@ const UserModel = require("../schemas/userSchema");
 const getConvertedItemsData = require("../functions/getConvertedItemsData");
 const auth = require("../middleware/auth");
 const ntf = require("../functions/ntf");
+const loadItemsSpecs = require("../functions/loadItemsSpecs");
+const itemsSpecs = loadItemsSpecs();
 
 const router = express.Router();
 

@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken");
 const calcIsOnline = require("../middleware/calcIsOnline");
 const ntf = require("../functions/ntf");
 require("dotenv").config();
+import { PubSub } from "graphql-subscriptions";
+const pubsub = new PubSub();
 
 const commentConverter = (comments) => {
 	return comments.map((comment) => {
@@ -91,7 +93,21 @@ const approvesConverter = (post) => {
 };
 
 const rootValue = {
-	Subscription: {},
+	Subscription: {
+		count: {
+			subscribe(parent, args, ctx, info) {
+				let count = 0;
+				setInterval(() => {
+					count++;
+					pubsub.publish("count", {
+						count,
+					});
+				}, 1000);
+
+				return pubsub.asyncIterator("count");
+			},
+		},
+	},
 	Mutation: {
 		sendChatMsg: (parent, args, { pubsub }) => {
 			console.log(args);

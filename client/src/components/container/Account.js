@@ -41,7 +41,7 @@ const Account = () => {
 	};
 
 	// console.log(psw);
-	// console.log(delAcc)d;
+	// console.log(delAcc);
 
 	const history = useHistory();
 

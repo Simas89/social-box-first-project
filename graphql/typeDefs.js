@@ -1,4 +1,10 @@
 const typeDefs = `
+  type Subscription {
+    count: Int
+  }
+  type Mutation{
+    sendChatMsg(userName: String, target: String, content: String): String!
+  }
 	type Query{
     emailMe(guest: String, email: String, msg: String) : String
     addPost(token : String, textContent: String): String
@@ -14,12 +20,7 @@ const typeDefs = `
     test(userName: String): String!
 
   }
-  type Mutation{
-    sendChatMsg(userName: String, target: String, content: String): String!
-  }
-  type Subscription{
-    count: Int
-  }
+
 
 
   type POST{

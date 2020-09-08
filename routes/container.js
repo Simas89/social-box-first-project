@@ -2,7 +2,9 @@ const express = require("express");
 const UserModel = require("../schemas/userSchema");
 const userStateReturn = require("../functions/userStateReturn");
 const auth = require("../middleware/auth");
+const loadItemsSpecs = require("../functions/loadItemsSpecs");
 
+const itemsSpecs = loadItemsSpecs();
 const router = express.Router();
 
 const getItemsDataIndexOfItemName = (itemName) => {

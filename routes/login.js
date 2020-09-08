@@ -8,7 +8,7 @@ require("dotenv").config();
 const router = express.Router();
 
 router.post("/", (req, res) => {
-	// console.log(req.body);
+	console.log(req.body);
 	let isRememberMe = false;
 	if (req.body.rememberMe) {
 		isRememberMe = true;
