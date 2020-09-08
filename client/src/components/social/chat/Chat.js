@@ -6,7 +6,7 @@ import myContext from "../../../context/account/myContext";
 
 const Chat = (props) => {
 	// React.useEffect(() => {
-	// 	contextChat.socket.on("reply", (msg) => console.log(msg));
+	// 	props.socket.on("reply", (msg) => console.log(msg));
 	// }, []);
 
 	const contextChat = React.useContext(chatContext);
