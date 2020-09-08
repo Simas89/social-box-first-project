@@ -96,6 +96,7 @@ const rootValue = {
 	Subscription: {
 		count: {
 			subscribe(parent, args, ctx, info) {
+				// console.log(info);
 				let count = 0;
 				setInterval(() => {
 					count++;
@@ -109,8 +110,9 @@ const rootValue = {
 		},
 	},
 	Mutation: {
-		sendChatMsg: (parent, args, { pubsub }) => {
-			console.log(args);
+		sendChatMsg: (parent, args, ctx) => {
+			// ctx.io.emit("message", "waaaaaaaaa");
+			// console.log(ctx);
 			return "Yay!";
 		},
 	},

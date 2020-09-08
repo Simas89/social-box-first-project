@@ -11,6 +11,11 @@ import {
 	SEND_A_MESSAGE,
 } from "../types";
 
+import io from "socket.io-client";
+const socket = io();
+
+// socket.on("reply", (msg) => console.log(msg));
+
 const ChatState = (props) => {
 	const initialState = {
 		targets: [{ name: "bot001", input: "" }],
@@ -27,24 +32,36 @@ const ChatState = (props) => {
 		dispatch({ type: REMOVE_TARGET, payload: target });
 	};
 	const sendAMessage = (data) => {
-		props.apollo
-			.mutate({
-				mutation: gql`
-					mutation {
-						sendChatMsg(userName: "${data.sender}", target: "${
-					state.targets[data.index].name
-				}",content: "${state.targets[data.index].input}")
-					}
-				`,
-			})
-			.then((result) => console.log(result));
+		socket.emit("chat", {
+			userName: data.sender,
+			target: state.targets[data.index].name,
+			msg: state.targets[data.index].input,
+		});
+		// props.apollo
+		// 	.mutate({
+		// 		mutation: gql`
+		// 			mutation {
+		// 				sendChatMsg(userName: "${data.sender}", target: "${
+		// 			state.targets[data.index].name
+		// 		}",content: "${state.targets[data.index].input}")
+		// 			}
+		// 		`,
+		// 	})
+		// 	.then((result) => console.log(result));
 		dispatch({ type: SEND_A_MESSAGE, payload: data.index });
 	};
 	console.log("chat", state);
 
 	return (
 		<chatContext.Provider
-			value={{ state, setMsgInput, addTarget, removeTarget, sendAMessage }}>
+			value={{
+				socket,
+				state,
+				setMsgInput,
+				addTarget,
+				removeTarget,
+				sendAMessage,
+			}}>
 			{props.children}
 		</chatContext.Provider>
 	);

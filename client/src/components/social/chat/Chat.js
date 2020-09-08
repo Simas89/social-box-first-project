@@ -5,6 +5,10 @@ import chatContext from "../../../context/chat/chatContext";
 import myContext from "../../../context/account/myContext";
 
 const Chat = (props) => {
+	React.useEffect(() => {
+		contextChat.socket.on("reply", (msg) => console.log(msg));
+	}, []);
+
 	const contextChat = React.useContext(chatContext);
 	const context = React.useContext(myContext);
 	return (
@@ -24,22 +28,23 @@ const Chat = (props) => {
 					className='txt-area-core'
 					placeholder='Message..'
 					value={contextChat.state.targets[props.index].input}
-					onChange={(e) =>
+					onChange={(e) => {
 						contextChat.setMsgInput({
 							value: e.target.value,
 							index: props.index,
-						})
-					}
+						});
+					}}
 				/>
 				<div className='under-text-area'>
 					<div
 						className='send'
-						onClick={() =>
+						onClick={() => {
+							// socket.emit("chat", "hjgscjhgbsjshbcjcshbjhvscjhsbjhvcbjhsb");
 							contextChat.sendAMessage({
 								index: props.index,
 								sender: context.accountState.user,
-							})
-						}>
+							});
+						}}>
 						<span>SEND</span>
 					</div>
 				</div>

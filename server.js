@@ -6,6 +6,7 @@ import { createServer } from "http";
 import { execute, subscribe } from "graphql";
 import { SubscriptionServer } from "subscriptions-transport-ws";
 import { makeExecutableSchema } from "graphql-tools";
+import socketIO from "socket.io";
 // Import routes
 const verification = require("./routes/verification");
 const loginRoute = require("./routes/login");
@@ -67,6 +68,7 @@ const schema = makeExecutableSchema({
 //////   Apollo
 const apolloServer = new ApolloServer({
 	schema: schema,
+	// context: { io },
 });
 apolloServer.applyMiddleware({ app });
 const server = createServer(app);
@@ -74,7 +76,7 @@ const server = createServer(app);
 // Run server
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
-	console.log(`--- AE-SUB PORT ${PORT} ---`);
+	console.log(`--- Express A.sub PORT: ${PORT} ---`);
 	new SubscriptionServer(
 		{
 			execute,
@@ -86,4 +88,16 @@ server.listen(PORT, () => {
 			// path: "/subscriptions",
 		}
 	);
+});
+
+const socket = socketIO(server);
+socket.on("connection", (socket) => {
+	console.log("A client connected", socket.id);
+	// Just to current socket user
+	socket.emit("message", `Hello World! ${socket.id}`);
+	socket.broadcast.emit("message", "hi all, but not me");
+	socket.on("chat", (data) => {
+		console.log(data);
+		socket.emit("reply", data);
+	});
 });
