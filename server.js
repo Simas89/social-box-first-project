@@ -6,7 +6,7 @@ import { createServer } from "http";
 import { execute, subscribe } from "graphql";
 import { SubscriptionServer } from "subscriptions-transport-ws";
 import { makeExecutableSchema } from "graphql-tools";
-import sIO from "socket.io";
+import socketIO from "socket.io";
 // Import routes
 const verification = require("./routes/verification");
 const loginRoute = require("./routes/login");
@@ -47,9 +47,9 @@ app.use("/sendpresent", sendPresentRoute);
 app.use("/notifications", notificationsRoute);
 app.use("/upload", uploadRoute);
 app.use("/delete", delAccRoute);
-// app.get("/socket", (req, res) => {
-// 	res.send({ response: "Server is up and running." }).status(200);
-// });
+app.get("/socket", (req, res) => {
+	res.send({ response: "Server is up and running." }).status(200);
+});
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
@@ -76,6 +76,18 @@ const apolloServer = new ApolloServer({
 apolloServer.applyMiddleware({ app });
 const server = createServer(app);
 
+const socket = socketIO(server);
+socket.of("/socket").on("connection", (socket) => {
+	console.log("A client connected", socket.id);
+	// Just to current socket user
+	socket.emit("message", `Hello World! ${socket.id}`);
+	socket.broadcast.emit("message", "hi all, but not me");
+	socket.on("chat", (data) => {
+		console.log(data);
+		socket.emit("reply", data);
+	});
+});
+
 // Run server
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
@@ -91,18 +103,6 @@ server.listen(PORT, () => {
 			// path: "/subscriptions",
 		}
 	);
-});
-
-const socketIO = sIO(server);
-socketIO.on("connection", (socket) => {
-	console.log("A client connected", socket.id);
-	// Just to current socket user
-	socket.emit("message", `Hello World! ${socket.id}`);
-	socket.broadcast.emit("message", "hi all, but not me");
-	socket.on("chat", (data) => {
-		console.log(data);
-		socket.emit("reply", data);
-	});
 });
 
 // socket.configure(function () {
