@@ -50,21 +50,6 @@ app.use("/delete", delAccRoute);
 app.get("/socket", (req, res) => {
 	res.send({ response: "Server is up and running." }).status(200);
 });
-app.post("/socket", (req, res) => {
-	res.send({ response: "Server is up and running." }).status(200);
-});
-app.get("/socket.io", (req, res) => {
-	res.send({ response: "Server is up and running." }).status(200);
-});
-app.post("/socket.io", (req, res) => {
-	res.send({ response: "Server is up and running." }).status(200);
-});
-app.get("/socket/socket.io", (req, res) => {
-	res.send({ response: "Server is up and running." }).status(200);
-});
-app.post("/socket/socket.io", (req, res) => {
-	res.send({ response: "Server is up and running." }).status(200);
-});
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
@@ -109,7 +94,7 @@ server.listen(PORT, () => {
 });
 
 const socket = socketIO(server);
-socket.on("connection", (socket) => {
+socket.of("/socket").on("connection", (socket) => {
 	console.log("A client connected", socket.id);
 	// Just to current socket user
 	socket.emit("message", `Hello World! ${socket.id}`);
