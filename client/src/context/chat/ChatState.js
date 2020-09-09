@@ -3,7 +3,7 @@ import chatReducer from "./chatReducer";
 import chatContext from "./chatContext";
 // import { ApolloConsumer, gql } from "@apollo/client";
 import { gql } from "@apollo/client";
-import IO from "socket.io-client";
+import io from "socket.io-client";
 
 import {
 	ADD_TARGET,
@@ -11,14 +11,13 @@ import {
 	SET_MESSAGE_INPUT,
 	SEND_A_MESSAGE,
 } from "../types";
-const socket = IO();
+const socket = io("/socket", {});
+socket.on("reply", (rep) => console.log(rep));
 
-// socket.on("reply", (rep) => console.log(rep));
+// import io from "socket.io-client";
+// const socket = io();
 
 const ChatState = (props) => {
-	React.useEffect(() => {
-		socket.on("connect", (rep) => console.log("Connected client"));
-	}, []);
 	const initialState = {
 		targets: [{ name: "bot001", input: "" }],
 	};

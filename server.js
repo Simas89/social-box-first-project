@@ -6,7 +6,7 @@ import { createServer } from "http";
 import { execute, subscribe } from "graphql";
 import { SubscriptionServer } from "subscriptions-transport-ws";
 import { makeExecutableSchema } from "graphql-tools";
-import IO from "socket.io";
+import socketIO from "socket.io";
 // Import routes
 const verification = require("./routes/verification");
 const loginRoute = require("./routes/login");
@@ -76,11 +76,13 @@ const apolloServer = new ApolloServer({
 apolloServer.applyMiddleware({ app });
 const server = createServer(app);
 
-const socket = IO(server);
+const socket = socketIO(server);
 
-socket.set("transports", ["websocket"]);
-socket.on("connection", (socket) => {
+socket.of("/socket").on("connection", (socket) => {
 	console.log("A client connected", socket.id);
+	// Just to current socket user
+	socket.emit("message", `Hello World! ${socket.id}`);
+	socket.broadcast.emit("message", "hi all, but not me");
 	socket.on("chat", (data) => {
 		console.log(data);
 		socket.emit("reply", data);
@@ -96,7 +98,6 @@ server.listen(PORT, () => {
 			execute,
 			subscribe,
 			schema,
-			context: { lol: 123 },
 		},
 		{
 			server: server,
@@ -104,3 +105,10 @@ server.listen(PORT, () => {
 		}
 	);
 });
+
+// socket.configure(function () {
+// 	socket.set("transports", ["xhr-polling"]);
+// 	socket.set("polling duration", 10);
+// });
+
+//heroku features:enable http-session-affinity
