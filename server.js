@@ -47,9 +47,9 @@ app.use("/sendpresent", sendPresentRoute);
 app.use("/notifications", notificationsRoute);
 app.use("/upload", uploadRoute);
 app.use("/delete", delAccRoute);
-app.get("/socket", (req, res) => {
-	res.send({ response: "Server is up and running." }).status(200);
-});
+// app.get("/socket", (req, res) => {
+// 	res.send({ response: "Server is up and running." }).status(200);
+// });
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
@@ -93,21 +93,21 @@ server.listen(PORT, () => {
 	);
 });
 
-const socket = socketIO(server);
-socket.of("/socket").on("connection", (socket) => {
-	console.log("A client connected", socket.id);
-	// Just to current socket user
-	socket.emit("message", `Hello World! ${socket.id}`);
-	socket.broadcast.emit("message", "hi all, but not me");
-	socket.on("chat", (data) => {
-		console.log(data);
-		socket.emit("reply", data);
-	});
-});
+// const socket = socketIO(server);
+// socket.of("/socket").on("connection", (socket) => {
+// 	console.log("A client connected", socket.id);
+// 	// Just to current socket user
+// 	socket.emit("message", `Hello World! ${socket.id}`);
+// 	socket.broadcast.emit("message", "hi all, but not me");
+// 	socket.on("chat", (data) => {
+// 		console.log(data);
+// 		socket.emit("reply", data);
+// 	});
+// });
 
-socket.configure(function () {
-	socket.set("transports", ["xhr-polling"]);
-	socket.set("polling duration", 10);
-});
+// socket.configure(function () {
+// 	socket.set("transports", ["xhr-polling"]);
+// 	socket.set("polling duration", 10);
+// });
 
 //heroku features:enable http-session-affinity
