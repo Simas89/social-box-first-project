@@ -77,7 +77,11 @@ apolloServer.applyMiddleware({ app });
 const server = createServer(app);
 
 const socket = socketIO(server);
-socket.of("/socket").on("connection", (socket) => {
+
+socket.set("transports", ["xhr-polling"]);
+// socket.set("polling duration", 10);
+
+socket.on("connection", (socket) => {
 	console.log("A client connected", socket.id);
 	// Just to current socket user
 	socket.emit("message", `Hello World! ${socket.id}`);

@@ -11,7 +11,7 @@ import {
 	SET_MESSAGE_INPUT,
 	SEND_A_MESSAGE,
 } from "../types";
-const socket = io("https://www.simaszurauskas.dev/socket", {
+const socket = io({
 	rejectUnauthorized: false,
 });
 socket.on("reply", (rep) => console.log(rep));
