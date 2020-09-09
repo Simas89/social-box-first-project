@@ -6,7 +6,7 @@ import { createServer } from "http";
 import { execute, subscribe } from "graphql";
 import { SubscriptionServer } from "subscriptions-transport-ws";
 import { makeExecutableSchema } from "graphql-tools";
-// import socketIO from "socket.io";
+import IO from "socket.io";
 // Import routes
 const verification = require("./routes/verification");
 const loginRoute = require("./routes/login");
@@ -76,21 +76,21 @@ const apolloServer = new ApolloServer({
 apolloServer.applyMiddleware({ app });
 const server = createServer(app);
 
-// const socket = socketIO(server);
+const socket = IO(server);
 
 // socket.set("transports", ["websocket"]);
-// // socket.set("polling duration", 10);
+// socket.set("polling duration", 10);
 
-// socket.on("connection", (socket) => {
-// 	console.log("A client connected", socket.id);
-// 	// Just to current socket user
-// 	socket.emit("message", `Hello World! ${socket.id}`);
-// 	socket.broadcast.emit("message", "hi all, but not me");
-// 	socket.on("chat", (data) => {
-// 		console.log(data);
-// 		socket.emit("reply", data);
-// 	});
-// });
+socket.on("connection", (socket) => {
+	console.log("A client connected", socket.id);
+	// Just to current socket user
+	socket.emit("message", `Hello World! ${socket.id}`);
+	socket.broadcast.emit("message", "hi all, but not me");
+	socket.on("chat", (data) => {
+		console.log(data);
+		socket.emit("reply", data);
+	});
+});
 
 // Run server
 const PORT = process.env.PORT || 8080;

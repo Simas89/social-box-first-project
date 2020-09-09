@@ -3,7 +3,7 @@ import chatReducer from "./chatReducer";
 import chatContext from "./chatContext";
 // import { ApolloConsumer, gql } from "@apollo/client";
 import { gql } from "@apollo/client";
-import io from "socket.io-client";
+import IO from "socket.io-client";
 
 import {
 	ADD_TARGET,
@@ -11,7 +11,8 @@ import {
 	SET_MESSAGE_INPUT,
 	SEND_A_MESSAGE,
 } from "../types";
-// const socket = io();
+const socket = IO("/", { secure: true });
+socket.on("connect", (rep) => console.log("Connected client"));
 // socket.on("reply", (rep) => console.log(rep));
 
 // import io from "socket.io-client";
@@ -33,11 +34,11 @@ const ChatState = (props) => {
 		dispatch({ type: REMOVE_TARGET, payload: target });
 	};
 	const sendAMessage = (data) => {
-		// socket.emit("chat", {
-		// 	userName: data.sender,
-		// 	target: state.targets[data.index].name,
-		// 	msg: state.targets[data.index].input,
-		// });
+		socket.emit("chat", {
+			userName: data.sender,
+			target: state.targets[data.index].name,
+			msg: state.targets[data.index].input,
+		});
 		// props.apollo
 		// 	.mutate({
 		// 		mutation: gql`
