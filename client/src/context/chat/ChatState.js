@@ -11,14 +11,14 @@ import {
 	SET_MESSAGE_INPUT,
 	SEND_A_MESSAGE,
 } from "../types";
-const socket = IO("wss://www.simaszurauskas.dev/", { secure: true });
-socket.on("connect", (rep) => console.log("Connected client"));
+const socket = IO();
+
 // socket.on("reply", (rep) => console.log(rep));
 
-// import io from "socket.io-client";
-// const socket = io();
-
 const ChatState = (props) => {
+	React.useEffect(() => {
+		socket.on("connect", (rep) => console.log("Connected client"));
+	}, []);
 	const initialState = {
 		targets: [{ name: "bot001", input: "" }],
 	};

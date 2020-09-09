@@ -78,14 +78,9 @@ const server = createServer(app);
 
 const socket = IO(server);
 
-// socket.set("transports", ["websocket"]);
-// socket.set("polling duration", 10);
-
+socket.set("transports", ["websocket"]);
 socket.on("connection", (socket) => {
 	console.log("A client connected", socket.id);
-	// Just to current socket user
-	socket.emit("message", `Hello World! ${socket.id}`);
-	socket.broadcast.emit("message", "hi all, but not me");
 	socket.on("chat", (data) => {
 		console.log(data);
 		socket.emit("reply", data);
@@ -101,6 +96,7 @@ server.listen(PORT, () => {
 			execute,
 			subscribe,
 			schema,
+			context: { lol: 123 },
 		},
 		{
 			server: server,
@@ -108,10 +104,3 @@ server.listen(PORT, () => {
 		}
 	);
 });
-
-// socket.configure(function () {
-socket.set("transports", ["xhr-polling"]);
-// 	socket.set("polling duration", 10);
-// });
-
-//heroku features:enable http-session-affinity
