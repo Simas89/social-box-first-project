@@ -11,7 +11,7 @@ import {
 	SET_MESSAGE_INPUT,
 	SEND_A_MESSAGE,
 } from "../types";
-const socket = IO("/", { secure: true });
+const socket = IO("https://localhost:80", { secure: true });
 socket.on("connect", (rep) => console.log("Connected client"));
 // socket.on("reply", (rep) => console.log(rep));
 
