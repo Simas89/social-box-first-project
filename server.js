@@ -6,7 +6,7 @@ import { createServer } from "http";
 import { execute, subscribe } from "graphql";
 import { SubscriptionServer } from "subscriptions-transport-ws";
 import { makeExecutableSchema } from "graphql-tools";
-import socketIO from "socket.io";
+import sIO from "socket.io";
 // Import routes
 const verification = require("./routes/verification");
 const loginRoute = require("./routes/login");
@@ -93,17 +93,17 @@ server.listen(PORT, () => {
 	);
 });
 
-// const socket = socketIO(server);
-// socket.of("/socket").on("connection", (socket) => {
-// 	console.log("A client connected", socket.id);
-// 	// Just to current socket user
-// 	socket.emit("message", `Hello World! ${socket.id}`);
-// 	socket.broadcast.emit("message", "hi all, but not me");
-// 	socket.on("chat", (data) => {
-// 		console.log(data);
-// 		socket.emit("reply", data);
-// 	});
-// });
+const socketIO = sIO(server);
+socketIO.on("connection", (socket) => {
+	console.log("A client connected", socket.id);
+	// Just to current socket user
+	socket.emit("message", `Hello World! ${socket.id}`);
+	socket.broadcast.emit("message", "hi all, but not me");
+	socket.on("chat", (data) => {
+		console.log(data);
+		socket.emit("reply", data);
+	});
+});
 
 // socket.configure(function () {
 // 	socket.set("transports", ["xhr-polling"]);
