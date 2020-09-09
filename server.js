@@ -109,3 +109,5 @@ socket.configure(function () {
 	socket.set("transports", ["xhr-polling"]);
 	socket.set("polling duration", 10);
 });
+
+//heroku features:enable http-session-affinity
