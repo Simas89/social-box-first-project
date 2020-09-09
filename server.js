@@ -110,7 +110,7 @@ server.listen(PORT, () => {
 });
 
 // socket.configure(function () {
-// 	socket.set("transports", ["xhr-polling"]);
+socket.set("transports", ["xhr-polling"]);
 // 	socket.set("polling duration", 10);
 // });
 
