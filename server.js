@@ -47,6 +47,9 @@ app.use("/sendpresent", sendPresentRoute);
 app.use("/notifications", notificationsRoute);
 app.use("/upload", uploadRoute);
 app.use("/delete", delAccRoute);
+app.get("/", (req, res) => {
+	res.send({ response: "Server is up and running." }).status(200);
+});
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
