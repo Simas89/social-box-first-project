@@ -47,7 +47,7 @@ app.use("/sendpresent", sendPresentRoute);
 app.use("/notifications", notificationsRoute);
 app.use("/upload", uploadRoute);
 app.use("/delete", delAccRoute);
-app.get("/", (req, res) => {
+app.get("/socket", (req, res) => {
 	res.send({ response: "Server is up and running." }).status(200);
 });
 

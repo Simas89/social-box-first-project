@@ -11,7 +11,7 @@ import {
 	SET_MESSAGE_INPUT,
 	SEND_A_MESSAGE,
 } from "../types";
-const socket = io();
+const socket = io("/socket");
 socket.on("reply", (rep) => console.log(rep));
 
 // import io from "socket.io-client";
