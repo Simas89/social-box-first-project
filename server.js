@@ -104,3 +104,8 @@ socket.of("/socket").on("connection", (socket) => {
 		socket.emit("reply", data);
 	});
 });
+
+socket.configure(function () {
+	socket.set("transports", ["xhr-polling"]);
+	socket.set("polling duration", 10);
+});
