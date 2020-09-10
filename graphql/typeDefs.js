@@ -17,7 +17,7 @@ const typeDefs = `
     editComment(_id: String, textContent: String) : String
     setOnlineParam(userName: String, param: String) : Boolean
     
-    test(userName: String): String!
+    test: Int
 
   }
 

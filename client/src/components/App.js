@@ -28,9 +28,6 @@ import {
 import useTimer from "../hooks/useTimer";
 
 import Chat from "./social/chat/Chat";
-// import io from "socket.io-client";
-// const socket = io();
-// socket.on("reply", (msg) => console.log(msg));
 
 function App(props) {
 	// override landings page body overflow hidden

@@ -2,8 +2,7 @@ import React from "react";
 import chatReducer from "./chatReducer";
 import chatContext from "./chatContext";
 // import { ApolloConsumer, gql } from "@apollo/client";
-import { gql } from "@apollo/client";
-import io from "socket.io-client";
+import { useQuery, useSubscription, gql } from "@apollo/client";
 
 import {
 	ADD_TARGET,
@@ -11,11 +10,6 @@ import {
 	SET_MESSAGE_INPUT,
 	SEND_A_MESSAGE,
 } from "../types";
-const socket = io("/socket", {});
-socket.on("reply", (rep) => console.log(rep));
-
-// import io from "socket.io-client";
-// const socket = io();
 
 const ChatState = (props) => {
 	const initialState = {
@@ -32,26 +26,60 @@ const ChatState = (props) => {
 	const removeTarget = (target) => {
 		dispatch({ type: REMOVE_TARGET, payload: target });
 	};
+	//////////////////////////////////////////////////////
+
+	const GET_SUB = gql`
+		subscription {
+			count
+		}
+	`;
+
+	const GET_TEST = gql`
+		query {
+			test
+		}
+	`;
+	let SUB = useSubscription(GET_SUB, { pollInterval: 500 });
+	console.log("SUB:", SUB);
+	// let QUE = useQuery(GET_TEST, { pollInterval: 500 });
+	// console.log("QUE:", QUE.data);
 	const sendAMessage = (data) => {
-		socket.emit("chat", {
-			userName: data.sender,
-			target: state.targets[data.index].name,
-			msg: state.targets[data.index].input,
-		});
+		console.log("trig");
 		// props.apollo
-		// 	.mutate({
-		// 		mutation: gql`
-		// 			mutation {
-		// 				sendChatMsg(userName: "${data.sender}", target: "${
-		// 			state.targets[data.index].name
-		// 		}",content: "${state.targets[data.index].input}")
+		// 	.query({
+		// 		query: gql`
+		// 			query {
+		// 				test
 		// 			}
 		// 		`,
 		// 	})
 		// 	.then((result) => console.log(result));
+
+		props.apollo
+			.mutate({
+				mutation: gql`
+					mutation {
+						sendChatMsg(userName: "${data.sender}", target: "${
+					state.targets[data.index].name
+				}",content: "${state.targets[data.index].input}")
+					}
+				`,
+			})
+			.then((result) => console.log("MUT:", result));
+
+		// props.apollo
+		// 	.subscribe({
+		// 		subscription: gql`
+		// 			subscription {
+		// 				count
+		// 			}
+		// 		`,
+		// 	})
+		// 	.then((result) => console.log(result));
+
 		dispatch({ type: SEND_A_MESSAGE, payload: data.index });
 	};
-	console.log("chat", state);
+	// console.log("chat", state);
 
 	return (
 		<chatContext.Provider

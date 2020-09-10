@@ -91,32 +91,68 @@ const approvesConverter = (post) => {
 
 	return approves;
 };
+// Subscription: {
+// 	count: {
+// 		subscribe(parent, args, ctx, info) {
+// 			console.log("Sub");
+// 			console.log(ctx);
+// 			let count = 0;
+// 			setInterval(() => {
+// 				count++;
+// 				pubsub.publish("count", {
+// 					count,
+// 				});
+// 			}, 1000);
+
+// 			return pubsub.asyncIterator("count");
+// 		},
+// 	},
+// },
+
+let testNumber = 3;
+const CHANNEL = "my-sub-channel";
 
 const rootValue = {
 	Subscription: {
 		count: {
 			subscribe(parent, args, ctx, info) {
-				// console.log(info);
-				let count = 0;
-				setInterval(() => {
-					count++;
-					pubsub.publish("count", {
-						count,
+				console.log("Sub");
+				// setInterval(() => {
+				// pubsub.publish("count", {
+				// 	count: testNumber,
+				// });
+				// }, 1000);
+				setTimeout(() => {
+					pubsub.publish(CHANNEL, {
+						count: testNumber,
 					});
-				}, 1000);
+				}, 1);
 
-				return pubsub.asyncIterator("count");
+				return pubsub.asyncIterator(CHANNEL);
 			},
 		},
 	},
 	Mutation: {
 		sendChatMsg: (parent, args, ctx) => {
-			// ctx.io.emit("message", "waaaaaaaaa");
+			testNumber++;
+			console.log("Mut");
 			// console.log(ctx);
-			return "Yay!";
+			pubsub.publish(CHANNEL, {
+				count: testNumber,
+			});
+
+			return "Back from muatation";
 		},
 	},
 	Query: {
+		test: () => {
+			console.log("test query", testNumber);
+			testNumber++;
+			pubsub.publish(CHANNEL, {
+				count: testNumber,
+			});
+			return testNumber;
+		},
 		addPost: async (parent, args) => {
 			let userResult;
 			const decoded = jwt.verify(args.token, process.env.JWT_SECRET);
