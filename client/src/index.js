@@ -17,7 +17,7 @@ import {
 } from "subscriptions-transport-ws";
 
 const link = new WebSocketLink({
-	uri: `ws://localhost:8080/graphql`,
+	uri: `ws://www.simaszurauskas.dev/graphql`,
 	options: {
 		reconnect: true,
 	},
