@@ -19,17 +19,25 @@ const SitePresentation = () => {
 				<div className='logo react'></div>
 				<div className='logo node'></div>
 			</div>
+
 			<div>
 				<br></br>
 				<br></br>
-				<p className='p-title'>
-					Welcome to my freshly baked MERN stack app.
-					<Twemoji style={{ fontSize: "1.5rem" }} text={":sunglasses:"} />
-				</p>
+				<p className='p-title'>Welcome to my freshly baked MERN stack app!</p>
 				<p className='p-title-des'>
-					This is ssl certified social network platform with database and
-					network performace in mind, where you can:
+					This is a social network platform with database and network performace
+					in mind.
 				</p>
+				<div className='under-construction'></div>
+				<p className='p-title'>
+					Please note that site is under active development, please watch
+					yourself around..
+					<Twemoji
+						style={{ fontSize: "2rem" }}
+						text={":construction_worker:"}
+					/>
+				</p>
+				<p className='p-title'>Current features:</p>
 
 				<ul>
 					<li>
@@ -139,10 +147,7 @@ const SitePresentation = () => {
 			<br></br>
 			<p className='the-end'>•••</p>
 			<br></br>
-			<p>
-				I'm currently living in Ipswich UK. I'm up for all types of work, so go
-				ahead and contact me.
-			</p>
+
 			<ul style={{ listStyleType: "none" }}>
 				<li>
 					<FontAwesomeIcon icon={faEnvelope} />{" "}

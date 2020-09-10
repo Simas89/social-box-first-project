@@ -3,6 +3,16 @@
   margin-right: 10px;
 }
 
+.site-presentation .under-construction {
+  background-image: url(../../../img/construction.png);
+  height: 300px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  padding-top: 20px;
+}
+
 .site-presentation .informacione {
   background-color: white;
   display: grid;
