@@ -12,6 +12,8 @@ import {
 } from "../types";
 
 const ChatState = (props) => {
+	const SOCKET_URI = process.env.REACT_APP_SOCKET_URI;
+	console.log(SOCKET_URI);
 	const initialState = {
 		targets: [{ name: "bot001", input: "" }],
 	};

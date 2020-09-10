@@ -11,13 +11,9 @@ import ChatState from "./context/chat/ChatState";
 import LandingMain from "./components/landing/LandingMain";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { WebSocketLink } from "@apollo/client/link/ws";
-import {
-	SubscriptionClient,
-	addGraphQLSubscriptions,
-} from "subscriptions-transport-ws";
 
 const link = new WebSocketLink({
-	uri: `wss://www.simaszurauskas.dev/graphql`,
+	uri: process.env.REACT_APP_SOCKET_URI, //`wss://www.simaszurauskas.dev/graphql``ws://localhost:8080/graphql`
 	options: {
 		reconnect: true,
 	},
@@ -27,9 +23,6 @@ const client = new ApolloClient({
 	uri: "/graphql",
 	cache: new InMemoryCache(),
 });
-
-// ,
-// 	"proxy": "http://localhost:8080"
 
 ReactDOM.render(
 	// <React.StrictMode>
