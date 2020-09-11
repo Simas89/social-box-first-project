@@ -1,6 +1,10 @@
 const typeDefs = `
   type Subscription {
-    messages(userName: String): [Message!]
+    messages(userName: String): MSG_PACK
+  }
+  type MSG_PACK {
+    target: String
+    msg: [Message]
   }
   type Message {
     id: ID!

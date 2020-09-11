@@ -2,7 +2,7 @@ import {
 	ADD_TARGET,
 	REMOVE_TARGET,
 	SET_MESSAGE_INPUT,
-	SEND_A_MESSAGE,
+	UPDATE_MESSAGES,
 } from "../types";
 
 export default (state, { type, payload }) => {
@@ -17,10 +17,18 @@ export default (state, { type, payload }) => {
 
 			if (canInsert)
 				if (newTargets.length < 5) {
-					newTargets.unshift({ name: payload, input: "" });
+					newTargets.unshift({
+						name: payload,
+						input: "",
+						msgData: [],
+					});
 				} else {
 					newTargets.shift();
-					newTargets.unshift({ name: payload, input: "" });
+					newTargets.unshift({
+						name: payload,
+						input: "",
+						msgData: [],
+					});
 				}
 			return { ...state, targets: newTargets };
 		}
@@ -42,11 +50,18 @@ export default (state, { type, payload }) => {
 			return { ...state, targets: newTargets };
 		}
 
-		case SEND_A_MESSAGE: {
+		case UPDATE_MESSAGES: {
 			let newTargets = state.targets;
-			newTargets[payload].input = "";
 
-			return { ...state };
+			// console.log(newTargets);
+			const index = newTargets
+				.map((e) => e.name)
+				.indexOf(payload.messages.target);
+			// console.log("index:", index, payload.messages.target);
+
+			newTargets[index].msgData = payload.messages.msg;
+
+			return { ...state, targets: newTargets };
 		}
 
 		default:

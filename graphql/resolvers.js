@@ -96,7 +96,7 @@ let testNumber = 3;
 const CHANNEL = "my-sub-channel";
 
 const subscribers = [];
-const messages = [{ id: 5452, user: "UserizZ", content: "Hello" }];
+const messages = [];
 const onMessagesUpdates = (fn) => subscribers.push(fn);
 console.log(messages);
 
@@ -122,9 +122,15 @@ const rootValue = {
 			});
 			// subscribers.forEach((fn) => fn());
 			console.log("args:", args);
-			console.log(messages);
-			pubsub.publish(args.userName, { messages });
-			pubsub.publish(args.target, { messages });
+			// console.log(messages);
+			// const pack = { messages: { target: "Test user", msg: messages } };
+			// console.log(pack.messages);
+			pubsub.publish(args.userName, {
+				messages: { target: args.target, msg: messages },
+			});
+			pubsub.publish(args.target, {
+				messages: { target: args.userName, msg: messages },
+			});
 			return id;
 		},
 	},

@@ -59,7 +59,11 @@
 }
 
 .chat-main .middle {
+  margin: 0 5px;
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
 }
 
 .chat-main .bottom {

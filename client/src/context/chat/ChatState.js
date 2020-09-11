@@ -5,22 +5,29 @@ import chatContext from "./chatContext";
 import accContext from "../account/myContext";
 
 // import { ApolloConsumer, gql } from "@apollo/client";
-import { useQuery, useSubscription, gql } from "@apollo/client";
+import { useSubscription, gql } from "@apollo/client";
 
 import {
 	ADD_TARGET,
 	REMOVE_TARGET,
 	SET_MESSAGE_INPUT,
-	SEND_A_MESSAGE,
+	UPDATE_MESSAGES,
 } from "../types";
 
 const ChatState = (props) => {
 	const contextAcc = React.useContext(accContext);
 
 	const initialState = {
-		targets: [{ name: "bot001", input: "" }],
+		targets: [
+			{
+				name: "RacoonX",
+				input: "",
+				msgData: [],
+			},
+		],
 	};
 	const [state, dispatch] = React.useReducer(chatReducer, initialState);
+	// console.log(state);
 
 	const setMsgInput = (payload) => {
 		dispatch({ type: SET_MESSAGE_INPUT, payload: payload });
@@ -31,55 +38,56 @@ const ChatState = (props) => {
 	const removeTarget = (target) => {
 		dispatch({ type: REMOVE_TARGET, payload: target });
 	};
-	//////////////////////////////////////////////////////
+
+	///////////////////////////////////////////////
 
 	const GET_MESSAGES = gql`
-		subscription {
-			messages(userName: "${contextAcc.accountState.user}") {
+	subscription {
+		messages(userName: "${contextAcc.accountState.user}") {
+			target
+			msg
+			{
 				id
 				content
 				user
 			}
 		}
-	`;
-	// console.log(contextAcc.accountState.user);
-	const Messages = () => {
-		// console.log("sub sub");
-		const res = useSubscription(GET_MESSAGES);
-		if (!res.data) {
-			return null;
-		} else console.log("Chat msg", res.data.messages);
-	};
-	Messages();
+	}
+`;
 
-	// const
+	useSubscription(GET_MESSAGES, {
+		onSubscriptionData: ({ subscriptionData: { data } }) => {
+			console.log(data);
 
-	const sendAMessage = (data) => {
-		props.apollo.mutate({
-			mutation: gql`mutation {
-				postMessage(userName: "${contextAcc.accountState.user}",target: "${
-				state.targets[data.index].name
-			}",  content: """${state.targets[data.index].input}""")
-			}`,
-		});
+			const index = state.targets
+				.map((e) => e.name)
+				.indexOf(data.messages.target);
+			console.log("index:", index, data.messages.target);
 
-		// props.apollo.mutate({
-		// 	mutation: gql`
-		// 			mutation {
-		// 				sendChatMsg(userName: "${data.sender}", target: "${
-		// 		state.targets[data.index].name
-		// 	}",content: "${state.targets[data.index].input}")
-		// 			}
-		// 		`,
-		// });
+			if (index !== -1) {
+				dispatch({ type: UPDATE_MESSAGES, payload: data });
+			} else {
+				console.log("Need to add target");
+				dispatch({ type: ADD_TARGET, payload: data.messages.target });
+				dispatch({ type: UPDATE_MESSAGES, payload: data });
+			}
+			setTimeout(() => console.log("ChatState:", state), 1);
+		},
+	});
 
-		dispatch({ type: SEND_A_MESSAGE, payload: data.index });
-	};
-	// console.log("chat", state);
+	//////////////////////////////////////////////////////
+
+	// console.log("ChatState:", state);
 
 	return (
 		<chatContext.Provider
-			value={{ state, setMsgInput, addTarget, removeTarget, sendAMessage }}>
+			value={{
+				state,
+				apollo: props.apollo,
+				setMsgInput,
+				addTarget,
+				removeTarget,
+			}}>
 			{props.children}
 		</chatContext.Provider>
 	);

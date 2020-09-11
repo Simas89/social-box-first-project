@@ -3,10 +3,29 @@ import "./css/Chat.css";
 import TextareaAutosize from "react-textarea-autosize";
 import chatContext from "../../../context/chat/chatContext";
 import myContext from "../../../context/account/myContext";
+import { gql } from "@apollo/client";
+import Msg from "./Msg";
 
 const Chat = (props) => {
 	const contextChat = React.useContext(chatContext);
 	const context = React.useContext(myContext);
+
+	const sendAMessage = (index) => {
+		contextChat.apollo.mutate({
+			mutation: gql`mutation {
+				postMessage(userName: "${context.accountState.user}",target: "${
+				contextChat.state.targets[index].name
+			}",  content: """${contextChat.state.targets[props.index].input}""")
+			}`,
+		});
+		contextChat.setMsgInput({
+			value: "",
+			index: index,
+		});
+	};
+
+	// console.log(contextChat.state.targets[props.index]);
+
 	return (
 		<div className='chat-main'>
 			<div className='top'>
@@ -18,7 +37,17 @@ const Chat = (props) => {
 					<div className='plank plank-2'></div>
 				</div>
 			</div>
-			<div className='middle'></div>
+			<div className='middle'>
+				{contextChat.state.targets[props.index].msgData.map((msg) => {
+					return (
+						<Msg
+							key={msg.id}
+							content={msg.content}
+							own={msg.user === context.accountState.user}
+						/>
+					);
+				})}
+			</div>
 			<div className='bottom'>
 				<TextareaAutosize
 					className='txt-area-core'
@@ -32,15 +61,7 @@ const Chat = (props) => {
 					}}
 				/>
 				<div className='under-text-area'>
-					<div
-						className='send'
-						onClick={() => {
-							// socket.emit("chat", "hjgscjhgbsjshbcjcshbjhvscjhsbjhvcbjhsb");
-							contextChat.sendAMessage({
-								index: props.index,
-								sender: context.accountState.user,
-							});
-						}}>
+					<div className='send' onClick={() => sendAMessage(props.index)}>
 						<span>SEND</span>
 					</div>
 				</div>

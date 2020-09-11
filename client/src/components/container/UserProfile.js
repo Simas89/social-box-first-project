@@ -79,7 +79,7 @@ const UserProfile = (props) => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
+				// console.log(data);
 				window.scrollTo(0, 0);
 				if (data.status !== "USER NOT FOUND") {
 					data.isValid = true;

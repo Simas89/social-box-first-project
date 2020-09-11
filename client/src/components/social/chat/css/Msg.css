@@ -1,0 +1,13 @@
+.msg {
+  max-width: 80%;
+}
+
+.other {
+  border: 1px solid red;
+  margin-right: auto;
+}
+
+.own {
+  border: 1px solid green;
+  margin-left: auto;
+}

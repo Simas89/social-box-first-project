@@ -25,9 +25,10 @@ import {
 	faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-import useTimer from "../hooks/useTimer";
+// import useTimer from "../hooks/useTimer";
 
 import Chat from "./social/chat/Chat";
+// import { useSubscription, gql } from "@apollo/client";
 
 function App(props) {
 	// override landings page body overflow hidden
@@ -43,6 +44,8 @@ function App(props) {
 
 	const history = useHistory();
 	let location = useLocation();
+
+	//////////////////////////////////////
 	const resizeEvent = () => {
 		setWindowWidth(window.innerWidth);
 		// console.log("resizeEvent");
@@ -127,29 +130,29 @@ function App(props) {
 		}
 		return arr;
 	};
-	const randomNum = (num) => {
-		const rand = Math.floor(Math.random() * (num - 0 + 1)) + 0;
-		return rand;
-	};
+	// const randomNum = (num) => {
+	// 	const rand = Math.floor(Math.random() * (num - 0 + 1)) + 0;
+	// 	return rand;
+	// };
 
-	const addClassShine = (num) => {
-		const target = document.querySelector(`.col-${randomNum(num)}`);
-		// target.classList.add("shine");
-		try {
-			target.style.opacity = 0.8;
-			// console.log(target);
-			setTimeout(() => (target.style.opacity = 0.2), randomNum(15) * 1000);
-		} catch (error) {
-			// console.log(error);
-		}
-	};
+	// const addClassShine = (num) => {
+	// 	const target = document.querySelector(`.col-${randomNum(num)}`);
+	// 	// target.classList.add("shine");
+	// 	try {
+	// 		target.style.opacity = 0.8;
+	// 		// console.log(target);
+	// 		setTimeout(() => (target.style.opacity = 0.2), randomNum(15) * 1000);
+	// 	} catch (error) {
+	// 		// console.log(error);
+	// 	}
+	// };
 
-	useTimer(1, 1, (ticks) => {
-		if (ticks === 60) {
-			contextSocial.notificationsPull({ action: "REFRESH" });
-		}
-		randomNum(5) === 1 && addClassShine(parseInt(windowWidth / 40));
-	});
+	// useTimer(1, 1, (ticks) => {
+	// 	if (ticks === 60) {
+	// 		contextSocial.notificationsPull({ action: "REFRESH" });
+	// 	}
+	// 	randomNum(5) === 1 && addClassShine(parseInt(windowWidth / 40));
+	// });
 
 	return (
 		context.accountState.logged && (
