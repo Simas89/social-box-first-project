@@ -1,11 +1,17 @@
 const typeDefs = `
   type Subscription {
-    count: Int
+    messages(userName: String): [Message!]
+  }
+  type Message {
+    id: ID!
+    user: String!
+    content: String!
   }
   type Mutation{
-    sendChatMsg(userName: String, target: String, content: String): String!
+    postMessage(userName: String!,target: String!, content: String!): ID!
   }
 	type Query{
+    messages: [Message!]
     emailMe(guest: String, email: String, msg: String) : String
     addPost(token : String, textContent: String): String
     getPosts(TYPE: String, clientUserName: String, target: String ) : [POST]

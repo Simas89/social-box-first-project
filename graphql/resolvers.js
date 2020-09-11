@@ -91,64 +91,49 @@ const approvesConverter = (post) => {
 
 	return approves;
 };
-// Subscription: {
-// 	count: {
-// 		subscribe(parent, args, ctx, info) {
-// 			console.log("Sub");
-// 			console.log(ctx);
-// 			let count = 0;
-// 			setInterval(() => {
-// 				count++;
-// 				pubsub.publish("count", {
-// 					count,
-// 				});
-// 			}, 1000);
-
-// 			return pubsub.asyncIterator("count");
-// 		},
-// 	},
-// },
 
 let testNumber = 3;
 const CHANNEL = "my-sub-channel";
 
+const subscribers = [];
+const messages = [{ id: 5452, user: "UserizZ", content: "Hello" }];
+const onMessagesUpdates = (fn) => subscribers.push(fn);
+console.log(messages);
+
 const rootValue = {
 	Subscription: {
-		count: {
-			subscribe(parent, args, ctx, info) {
-				console.log("Sub");
-				// setInterval(() => {
-				// pubsub.publish("count", {
-				// 	count: testNumber,
-				// });
-				// }, 1000);
-				setTimeout(() => {
-					pubsub.publish(CHANNEL, {
-						count: testNumber,
-					});
-				}, 1);
-
-				return pubsub.asyncIterator(CHANNEL);
+		messages: {
+			subscribe: (parent, args) => {
+				console.log("sub:", args);
+				// const channel = Math.random().toString(36).slice(2, 15);
+				// onMessagesUpdates(() => pubsub.publish(channel, { messages }));
+				// setTimeout(() => pubsub.publish(channel, { messages }), 0);
+				return pubsub.asyncIterator(args.userName);
 			},
 		},
 	},
 	Mutation: {
-		sendChatMsg: (parent, args, ctx) => {
-			testNumber++;
-			console.log("Mut");
-			// console.log(ctx);
-			pubsub.publish(CHANNEL, {
-				count: testNumber,
+		postMessage: (parent, args) => {
+			const id = messages.length;
+			messages.push({
+				id,
+				user: args.userName,
+				content: args.content,
 			});
-
-			return "Back from muatation";
+			// subscribers.forEach((fn) => fn());
+			console.log("args:", args);
+			console.log(messages);
+			pubsub.publish(args.userName, { messages });
+			pubsub.publish(args.target, { messages });
+			return id;
 		},
 	},
 	Query: {
+		messages: () => messages,
 		test: () => {
 			console.log("test query", testNumber);
 			testNumber++;
-			pubsub.publish(CHANNEL, {
+			pubsub.publish("Simas", {
 				count: testNumber,
 			});
 			return testNumber;

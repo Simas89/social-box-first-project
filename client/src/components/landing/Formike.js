@@ -18,7 +18,7 @@ const Formike = (props) => {
 		const value = e.target.value.replace(/[^A-Za-z0-9~!@#$%^&()_|/]/gi, "");
 		// const value = e.target.value;
 		contextLanding.set_user_input({ type: type, value: value });
-		console.log(value);
+		// console.log(value);
 	};
 
 	const isInputsValid = (type) => {

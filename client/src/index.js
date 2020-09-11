@@ -33,8 +33,8 @@ ReactDOM.render(
 		/>
 		<ApolloProvider client={client}>
 			<BrowserRouter>
-				<ChatState apollo={client}>
-					<ContextState>
+				<ContextState>
+					<ChatState apollo={client}>
 						<SocialState>
 							<LandingState>
 								<PostState>
@@ -43,8 +43,8 @@ ReactDOM.render(
 								</PostState>
 							</LandingState>
 						</SocialState>
-					</ContextState>
-				</ChatState>
+					</ChatState>
+				</ContextState>
 			</BrowserRouter>
 		</ApolloProvider>
 	</React.Fragment>,

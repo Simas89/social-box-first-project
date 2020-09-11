@@ -17,7 +17,7 @@ const logInFetch = async (logData, callback) => {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			console.log(data);
+			// console.log(data);
 			callback(data);
 		})
 		.catch((err) => console.log(err));

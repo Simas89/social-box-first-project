@@ -55,7 +55,7 @@ const ContextState = (props) => {
 		setAccountState(cloneState);
 	};
 	const logIn = (data) => {
-		console.log(data);
+		// console.log(data);
 		// console.log(data);
 		data.rememberMe
 			? localStorage.setItem("rememberme", data.token)
