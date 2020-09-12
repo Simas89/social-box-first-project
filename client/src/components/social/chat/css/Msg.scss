@@ -1,12 +1,25 @@
 .msg {
-	max-width: 80%;
+	max-width: 90%;
+	word-wrap: break-word;
+	border-radius: 15px;
+	padding: 5px;
+	margin-top: 10px;
+	letter-spacing: 0.06rem;
 }
 .other {
-	border: 1px solid red;
-	margin-right: auto;
+	// border: 1px solid red;
+	background-color: rgb(240, 240, 240);
+	// margin-left: 15px;
+	// margin-right: auto;
+	align-self: flex-start;
 }
 .own {
-	border: 1px solid green;
+	// border: 1px solid green;
+	background-color: rgb(47, 168, 69);
+	color: white;
+	font-weight: 300;
 	// align-self: flex-end;
-	margin-left: auto;
+	// margin-right: 15px;
+	// margin-left: auto;
+	align-self: flex-end;
 }

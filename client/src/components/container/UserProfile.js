@@ -96,7 +96,7 @@ const UserProfile = (props) => {
 			gqlGetPostsQuery("USER", context.accountState.user, props.userName),
 			(res) => {
 				contextPost.setPosts(res.getPosts, !contextPost.state.postSort.USER);
-				console.log(contextPost.state.postSort.USER);
+				// console.log(contextPost.state.postSort.USER);
 			}
 		); //eslint-disable-next-line
 	}, [location.pathname]);

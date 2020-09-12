@@ -1,6 +1,7 @@
 const UserModel = require("../schemas/userSchema");
 const Post = require("../schemas/post");
 const Comment = require("../schemas/comment");
+import Chat from "../schemas/chat";
 const mailer = require("../functions/mailer");
 const jwt = require("jsonwebtoken");
 const calcIsOnline = require("../middleware/calcIsOnline");
@@ -92,57 +93,65 @@ const approvesConverter = (post) => {
 	return approves;
 };
 
-let testNumber = 3;
-const CHANNEL = "my-sub-channel";
-
-const subscribers = [];
-const messages = [];
-const onMessagesUpdates = (fn) => subscribers.push(fn);
-console.log(messages);
-
 const rootValue = {
 	Subscription: {
 		messages: {
 			subscribe: (parent, args) => {
 				console.log("sub:", args);
-				// const channel = Math.random().toString(36).slice(2, 15);
-				// onMessagesUpdates(() => pubsub.publish(channel, { messages }));
-				// setTimeout(() => pubsub.publish(channel, { messages }), 0);
 				return pubsub.asyncIterator(args.userName);
 			},
 		},
 	},
 	Mutation: {
-		postMessage: (parent, args) => {
-			const id = messages.length;
-			messages.push({
-				id,
-				user: args.userName,
-				content: args.content,
-			});
-			// subscribers.forEach((fn) => fn());
-			console.log("args:", args);
-			// console.log(messages);
-			// const pack = { messages: { target: "Test user", msg: messages } };
-			// console.log(pack.messages);
+		postMessage: async (parent, args) => {
+			const stringid1 = args.userName + args.target;
+			const stringid2 = args.target + args.userName;
+			let messagesChat = [];
+
+			await Chat.findOne()
+				.or([{ stringid: stringid1 }, { stringid: stringid2 }])
+				.then((res) => {
+					if (res) {
+						res.messages.push({
+							id: res.messages.length,
+							user: args.userName,
+							content: args.content,
+						});
+						messagesChat = res.messages;
+						res.save();
+					} else {
+						const chat = new Chat({
+							stringid: stringid1,
+							messages: [
+								{
+									id: 0,
+									user: args.userName,
+									content: args.content,
+								},
+							],
+						});
+						messagesChat = chat.messages;
+						chat.save();
+					}
+				});
+
 			pubsub.publish(args.userName, {
-				messages: { target: args.target, msg: messages },
+				messages: { target: args.target, msg: messagesChat },
 			});
 			pubsub.publish(args.target, {
-				messages: { target: args.userName, msg: messages },
+				messages: { target: args.userName, msg: messagesChat },
 			});
-			return id;
+			// return id;
 		},
 	},
 	Query: {
 		messages: () => messages,
 		test: () => {
-			console.log("test query", testNumber);
-			testNumber++;
+			console.log("test query");
 			pubsub.publish("Simas", {
-				count: testNumber,
+				count: 100,
 			});
-			return testNumber;
+			return 100;
 		},
 		addPost: async (parent, args) => {
 			let userResult;

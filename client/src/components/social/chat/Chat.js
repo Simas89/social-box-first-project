@@ -5,10 +5,21 @@ import chatContext from "../../../context/chat/chatContext";
 import myContext from "../../../context/account/myContext";
 import { gql } from "@apollo/client";
 import Msg from "./Msg";
+import { Scrollbars } from "react-custom-scrollbars";
 
 const Chat = (props) => {
 	const contextChat = React.useContext(chatContext);
 	const context = React.useContext(myContext);
+	const myRef = React.useRef(null);
+	React.useEffect(() => {
+		console.log(
+			myRef.current.view.scroll({
+				top: 1000000,
+				left: 0,
+				behavior: "smooth",
+			})
+		);
+	}, [contextChat.state.targets[props.index].msgData]);
 
 	const sendAMessage = (index) => {
 		contextChat.apollo.mutate({
@@ -18,10 +29,10 @@ const Chat = (props) => {
 			}",  content: """${contextChat.state.targets[props.index].input}""")
 			}`,
 		});
-		contextChat.setMsgInput({
-			value: "",
-			index: index,
-		});
+		// contextChat.setMsgInput({
+		// 	value: "",
+		// 	index: index,
+		// });
 	};
 
 	// console.log(contextChat.state.targets[props.index]);
@@ -38,15 +49,27 @@ const Chat = (props) => {
 				</div>
 			</div>
 			<div className='middle'>
-				{contextChat.state.targets[props.index].msgData.map((msg) => {
-					return (
-						<Msg
-							key={msg.id}
-							content={msg.content}
-							own={msg.user === context.accountState.user}
-						/>
-					);
-				})}
+				<Scrollbars
+					className='scroll-bar'
+					ref={myRef}
+					style={{ behavior: "smooth" }}
+					autoHide
+					autoHideTimeout={2000}
+					autoHideDuration={200}
+					thumbMinSize={3}
+					universal={true}>
+					<div className='middle-content'>
+						{contextChat.state.targets[props.index].msgData.map((msg) => {
+							return (
+								<Msg
+									key={msg.id}
+									content={msg.content}
+									own={msg.user === context.accountState.user}
+								/>
+							);
+						})}
+					</div>
+				</Scrollbars>
 			</div>
 			<div className='bottom'>
 				<TextareaAutosize

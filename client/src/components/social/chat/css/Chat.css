@@ -59,11 +59,31 @@
 }
 
 .chat-main .middle {
-  margin: 0 5px;
+  position: relative;
   flex-grow: 1;
+  overflow: hidden;
+}
+
+.chat-main .middle .scroll-bar > div:nth-child(1) {
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.chat-main .middle .scroll-bar > div:nth-child(2) {
+  display: none !important;
+}
+
+.chat-main .middle .scroll-bar > div:nth-child(3) {
+  display: none !important;
+}
+
+.chat-main .middle .scroll-bar .middle-content {
   display: flex;
   flex-direction: column;
-  height: 250px;
+  padding: 0 5px;
+  margin-right: 7px;
 }
 
 .chat-main .bottom {

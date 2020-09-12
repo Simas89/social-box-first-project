@@ -12,7 +12,7 @@ const typeDefs = `
     content: String!
   }
   type Mutation{
-    postMessage(userName: String!,target: String!, content: String!): ID!
+    postMessage(userName: String!,target: String!, content: String!): ID
   }
 	type Query{
     messages: [Message!]
