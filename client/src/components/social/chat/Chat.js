@@ -6,6 +6,8 @@ import myContext from "../../../context/account/myContext";
 import { gql } from "@apollo/client";
 import Msg from "./Msg";
 import { Scrollbars } from "react-custom-scrollbars";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
 const Chat = (props) => {
 	const contextChat = React.useContext(chatContext);
@@ -34,9 +36,30 @@ const Chat = (props) => {
 	};
 
 	return (
-		<div className='chat-main'>
+		<div
+			className={`chat-main ${
+				!contextChat.state.targets[props.index].isWindowOpen && "chat-main-min"
+			}`}
+			style={{ width: `${contextChat.isMobile ? "100vw" : "250px"}` }}>
 			<div className='top'>
 				<span className='target-name'>{props.userName}</span>
+				<div
+					className='minimize'
+					onClick={() =>
+						contextChat.setChatWindowState({
+							index: props.index,
+							set: !contextChat.state.targets[props.index].isWindowOpen,
+						})
+					}>
+					<FontAwesomeIcon
+						className='icon'
+						icon={
+							contextChat.state.targets[props.index].isWindowOpen
+								? faAngleDown
+								: faAngleUp
+						}
+					/>
+				</div>
 				<div
 					className='close'
 					onClick={() => contextChat.removeTarget(props.index)}>

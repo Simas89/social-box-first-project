@@ -25,7 +25,7 @@
 	position: relative;
 	border: 1px solid gray;
 	border-radius: 3px;
-	width: 250px;
+	// width: 250px;
 	height: 400px;
 	bottom: 400px;
 	z-index: 10;
@@ -35,11 +35,33 @@
 	flex-direction: column;
 	.top {
 		border-bottom: 1px solid gray;
-		height: 40px;
+		height: 30px;
 		display: flex;
 		align-items: center;
 		.target-name {
 			margin-left: 20px;
+			font-size: 1rem;
+		}
+		.minimize {
+			position: absolute;
+			right: 35px;
+			height: 23px;
+			width: 23px;
+			// border: 1px solid rgb(177, 177, 177);
+			border-radius: 3px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			&:hover {
+				cursor: pointer;
+				& > .icon {
+					color: gray;
+				}
+			}
+			.icon {
+				color: rgb(177, 177, 177);
+				font-size: 1.5rem;
+			}
 		}
 		.close {
 			position: absolute;
@@ -100,7 +122,7 @@
 				// border: 1px solid blue;
 				display: flex;
 				flex-direction: column;
-				padding: 0 5px;
+				padding: 0 10px 0 5px;
 				margin-right: 7px;
 			}
 		}
@@ -108,25 +130,30 @@
 
 	.bottom {
 		// padding: 5px;
-		border-top: 1px solid gray;
+		// border-top: 1px solid gray;
+		padding-top: 3px;
+		margin: 0 5px;
 		.txt-area-core {
-			padding: 5px;
+			padding: 8px 5px 5px 10px;
+
 			font-family: "MuseoModerno", cursive;
 			overflow-wrap: normal;
 			white-space: pre-line;
+			line-height: 1.2rem;
 			font-size: 0.9rem;
 			letter-spacing: 0.02rem;
 			word-spacing: 0.2rem;
 			color: rgb(50, 50, 50);
 			outline: none;
-			border: none;
-			// border: 1px solid red;
+
+			border: 1px solid gray;
+			border-radius: 20px;
 			width: 100%;
 			// height: 100%;
 			display: block;
 			resize: none;
 			max-height: 200px;
-			min-height: 70px;
+			min-height: 34px;
 			&:active {
 				outline: none;
 			}
@@ -137,7 +164,7 @@
 		.under-text-area {
 			position: relative;
 			height: 40px;
-			border-top: 1px solid green;
+			// border-top: 1px solid gray;
 			display: flex;
 			justify-content: flex-end;
 			align-items: center;
@@ -155,5 +182,15 @@
 				}
 			}
 		}
+	}
+}
+.chat-main-min {
+	height: 35px;
+	bottom: 30px;
+	.middle {
+		height: 0;
+	}
+	.bottom {
+		height: 0;
 	}
 }

@@ -1,8 +1,10 @@
 import {
 	ADD_TARGET,
 	REMOVE_TARGET,
+	REMOVE_TARGET_ALL,
 	SET_MESSAGE_INPUT,
 	UPDATE_MESSAGES,
+	CHAT_WINDOW_STATE,
 } from "../types";
 
 export default (state, { type, payload }) => {
@@ -20,13 +22,15 @@ export default (state, { type, payload }) => {
 					newTargets.unshift({
 						name: payload,
 						input: "",
+						isWindowOpen: true,
 						msgData: [],
 					});
 				} else {
-					newTargets.shift();
+					// newTargets.shift();
 					newTargets.unshift({
 						name: payload,
 						input: "",
+						isWindowOpen: true,
 						msgData: [],
 					});
 				}
@@ -37,6 +41,10 @@ export default (state, { type, payload }) => {
 			let newTargets = state.targets;
 			newTargets.splice(payload, 1);
 
+			return { ...state, targets: newTargets };
+		}
+		case REMOVE_TARGET_ALL: {
+			let newTargets = [];
 			return { ...state, targets: newTargets };
 		}
 
@@ -60,6 +68,14 @@ export default (state, { type, payload }) => {
 			// console.log("index:", index, payload.messages.target);
 
 			newTargets[index].msgData = payload.messages.msg;
+
+			return { ...state, targets: newTargets };
+		}
+
+		case CHAT_WINDOW_STATE: {
+			let newTargets = state.targets;
+
+			newTargets[payload.index].isWindowOpen = payload.set;
 
 			return { ...state, targets: newTargets };
 		}

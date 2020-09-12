@@ -10,6 +10,13 @@ require("dotenv").config();
 import { PubSub } from "graphql-subscriptions";
 const pubsub = new PubSub();
 
+const updateUserOnline = (userName) => {
+	UserModel.findOneAndUpdate(
+		{ userName },
+		{ isOnline: Date.now() }
+	).then((res) => {});
+};
+
 const commentConverter = (comments) => {
 	return comments.map((comment) => {
 		return {
@@ -104,6 +111,7 @@ const rootValue = {
 	},
 	Mutation: {
 		postMessage: async (parent, args) => {
+			updateUserOnline(args.userName);
 			const stringid1 = args.userName + args.target;
 			const stringid2 = args.target + args.userName;
 			let messagesChat = [];

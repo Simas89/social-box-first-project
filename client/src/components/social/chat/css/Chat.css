@@ -13,7 +13,6 @@
   position: relative;
   border: 1px solid gray;
   border-radius: 3px;
-  width: 250px;
   height: 400px;
   bottom: 400px;
   z-index: 10;
@@ -23,13 +22,38 @@
 
 .chat-main .top {
   border-bottom: 1px solid gray;
-  height: 40px;
+  height: 30px;
   display: flex;
   align-items: center;
 }
 
 .chat-main .top .target-name {
   margin-left: 20px;
+  font-size: 1rem;
+}
+
+.chat-main .top .minimize {
+  position: absolute;
+  right: 35px;
+  height: 23px;
+  width: 23px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-main .top .minimize:hover {
+  cursor: pointer;
+}
+
+.chat-main .top .minimize:hover > .icon {
+  color: gray;
+}
+
+.chat-main .top .minimize .icon {
+  color: #b1b1b1;
+  font-size: 1.5rem;
 }
 
 .chat-main .top .close {
@@ -92,30 +116,33 @@
 .chat-main .middle .scroll-bar .middle-content {
   display: flex;
   flex-direction: column;
-  padding: 0 5px;
+  padding: 0 10px 0 5px;
   margin-right: 7px;
 }
 
 .chat-main .bottom {
-  border-top: 1px solid gray;
+  padding-top: 3px;
+  margin: 0 5px;
 }
 
 .chat-main .bottom .txt-area-core {
-  padding: 5px;
+  padding: 8px 5px 5px 10px;
   font-family: "MuseoModerno", cursive;
   overflow-wrap: normal;
   white-space: pre-line;
+  line-height: 1.2rem;
   font-size: 0.9rem;
   letter-spacing: 0.02rem;
   word-spacing: 0.2rem;
   color: #323232;
   outline: none;
-  border: none;
+  border: 1px solid gray;
+  border-radius: 20px;
   width: 100%;
   display: block;
   resize: none;
   max-height: 200px;
-  min-height: 70px;
+  min-height: 34px;
 }
 
 .chat-main .bottom .txt-area-core:active {
@@ -129,7 +156,6 @@
 .chat-main .bottom .under-text-area {
   position: relative;
   height: 40px;
-  border-top: 1px solid green;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -148,4 +174,17 @@
 
 .chat-main .bottom .under-text-area .send:hover {
   cursor: pointer;
+}
+
+.chat-main-min {
+  height: 35px;
+  bottom: 30px;
+}
+
+.chat-main-min .middle {
+  height: 0;
+}
+
+.chat-main-min .bottom {
+  height: 0;
 }
