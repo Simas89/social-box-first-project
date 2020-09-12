@@ -73,6 +73,21 @@
   right: 5px;
 }
 
+.ntf-panel .middle .scroll-bar > div:nth-child(1) {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.ntf-panel .middle .scroll-bar > div:nth-child(2) {
+  display: none !important;
+}
+
+.ntf-panel .middle .scroll-bar > div:nth-child(3) {
+  display: none !important;
+}
+
 @media (max-width: 768px) {
   .ntf-panel {
     width: 100%;

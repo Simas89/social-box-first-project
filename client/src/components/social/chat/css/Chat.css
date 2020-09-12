@@ -1,35 +1,52 @@
-::-webkit-scrollbar-track:vertical {
-  display: none;
-  width: 1px;
+::-webkit-scrollbar:vertical {
+  width: 2px;
 }
 
-::-webkit-scrollbar:vertical {
-  width: 1px;
+::-webkit-scrollbar-thumb:vertical:window-inactive {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track:vertical {
+  display: none;
 }
 
 .chat-main {
   background-color: white;
   overflow: hidden;
   position: relative;
-  border: 1px solid gray;
-  border-radius: 3px;
-  height: 400px;
-  bottom: 400px;
+  box-shadow: 0 0 3px 1px lightgray;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 320px;
+  bottom: 320px;
+  margin-right: 5px;
   z-index: 10;
+  width: 250px;
   display: flex;
   flex-direction: column;
 }
 
 .chat-main .top {
-  border-bottom: 1px solid gray;
-  height: 30px;
+  border-bottom: 1px solid lightgray;
+  height: 45px;
   display: flex;
   align-items: center;
+  transition: background-color 0.2s;
+}
+
+.chat-main .top:hover {
+  background-color: #f3f3f3;
+  transition: background-color 0.2s;
 }
 
 .chat-main .top .target-name {
   margin-left: 20px;
   font-size: 1rem;
+}
+
+.chat-main .top .target-name:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .chat-main .top .minimize {
@@ -121,8 +138,9 @@
 }
 
 .chat-main .bottom {
-  padding-top: 3px;
-  margin: 0 5px;
+  border-top: 1px solid lightgray;
+  background-color: transparent;
+  padding: 3px 5px 0 5px;
 }
 
 .chat-main .bottom .txt-area-core {
@@ -136,7 +154,7 @@
   word-spacing: 0.2rem;
   color: #323232;
   outline: none;
-  border: 1px solid gray;
+  border: 1px solid lightgray;
   border-radius: 20px;
   width: 100%;
   display: block;
@@ -187,4 +205,9 @@
 
 .chat-main-min .bottom {
   height: 0;
+}
+
+.mobile {
+  margin: 0 10px;
+  width: 100vw;
 }

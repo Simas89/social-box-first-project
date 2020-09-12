@@ -56,6 +56,7 @@ const NtfPanel = () => {
 					</div>
 					<div className='middle'>
 						<Scrollbars
+							className='scroll-bar'
 							// style={{ transition: "2.4s" }}
 							ref={scrollRef}
 							onScroll={testRef}

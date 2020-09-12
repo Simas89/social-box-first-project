@@ -3,19 +3,19 @@
 // 	width: 1px;
 // }
 
-::-webkit-scrollbar-thumb:vertical:window-inactive {
-	// display: none;
+::-webkit-scrollbar:vertical {
+	width: 2px;
 }
-// ::-webkit-scrollbar-track-piece {
-// 	display: none;
-// }
+::-webkit-scrollbar-thumb:vertical:window-inactive {
+	width: 2px;
+}
 ::-webkit-scrollbar-track:vertical {
 	display: none;
-	width: 1px;
 }
-::-webkit-scrollbar:vertical {
-	width: 1px;
-}
+// ::-webkit-scrollbar-track:vertical:active {
+// 	// display: none;
+// 	width: 5px;
+// }
 
 .chat-main {
 	background-color: white;
@@ -23,24 +23,37 @@
 	// position: absolute;
 	overflow: hidden;
 	position: relative;
-	border: 1px solid gray;
-	border-radius: 3px;
+	// border: 1px solid rgb(196, 196, 196);
+	box-shadow: 0 0 3px 1px lightgray;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	// width: 250px;
-	height: 400px;
-	bottom: 400px;
+	height: 320px;
+	bottom: 320px;
+	margin-right: 5px;
 	z-index: 10;
+	width: 250px;
 	// margin-right: 10px;
 
 	display: flex;
 	flex-direction: column;
 	.top {
-		border-bottom: 1px solid gray;
-		height: 30px;
+		border-bottom: 1px solid lightgray;
+		height: 45px;
 		display: flex;
 		align-items: center;
+		transition: background-color 0.2s;
+		&:hover {
+			background-color: rgb(243, 243, 243);
+			transition: background-color 0.2s;
+		}
 		.target-name {
 			margin-left: 20px;
 			font-size: 1rem;
+			&:hover {
+				cursor: pointer;
+				text-decoration: underline;
+			}
 		}
 		.minimize {
 			position: absolute;
@@ -130,9 +143,9 @@
 
 	.bottom {
 		// padding: 5px;
-		// border-top: 1px solid gray;
-		padding-top: 3px;
-		margin: 0 5px;
+		border-top: 1px solid lightgray;
+		background-color: transparent;
+		padding: 3px 5px 0 5px;
 		.txt-area-core {
 			padding: 8px 5px 5px 10px;
 
@@ -146,7 +159,7 @@
 			color: rgb(50, 50, 50);
 			outline: none;
 
-			border: 1px solid gray;
+			border: 1px solid lightgray;
 			border-radius: 20px;
 			width: 100%;
 			// height: 100%;
@@ -193,4 +206,8 @@
 	.bottom {
 		height: 0;
 	}
+}
+.mobile {
+	margin: 0 10px;
+	width: 100vw;
 }

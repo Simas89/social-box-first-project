@@ -1,12 +1,13 @@
 .msg {
   max-width: 90%;
   word-wrap: break-word;
-  border-radius: 15px;
-  padding: 5px;
-  margin-top: 5px;
+  border-radius: 17px;
+  padding: 10px;
+  margin-top: 2px;
   letter-spacing: 0.06rem;
   line-height: 1.2rem;
   color: #2e2e2e;
+  white-space: pre-line;
 }
 
 .other {
@@ -15,7 +16,7 @@
 }
 
 .own {
-  background-color: #2fa845;
+  background: linear-gradient(45deg, #0fc579 10%, #01be85 100%);
   color: white;
   font-weight: 300;
   align-self: flex-end;

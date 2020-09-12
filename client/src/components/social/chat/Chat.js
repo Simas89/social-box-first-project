@@ -39,8 +39,7 @@ const Chat = (props) => {
 		<div
 			className={`chat-main ${
 				!contextChat.state.targets[props.index].isWindowOpen && "chat-main-min"
-			}`}
-			style={{ width: `${contextChat.isMobile ? "100vw" : "250px"}` }}>
+			} ${contextChat.isMobile && "mobile"}`}>
 			<div className='top'>
 				<span className='target-name'>{props.userName}</span>
 				<div
