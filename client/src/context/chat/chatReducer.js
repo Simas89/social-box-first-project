@@ -2,6 +2,7 @@ import {
 	ADD_TARGET,
 	REMOVE_TARGET,
 	REMOVE_TARGET_ALL,
+	SET_ONLY_ONE_TARGET_ID0,
 	SET_MESSAGE_INPUT,
 	UPDATE_MESSAGES,
 	CHAT_WINDOW_STATE,
@@ -76,6 +77,14 @@ export default (state, { type, payload }) => {
 			let newTargets = state.targets;
 
 			newTargets[payload.index].isWindowOpen = payload.set;
+
+			return { ...state, targets: newTargets };
+		}
+
+		case SET_ONLY_ONE_TARGET_ID0: {
+			let newTargets = [state.targets[state.targets.length - 1]];
+
+			console.log("stripping targets");
 
 			return { ...state, targets: newTargets };
 		}

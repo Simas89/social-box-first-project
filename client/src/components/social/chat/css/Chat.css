@@ -1,13 +1,14 @@
-::-webkit-scrollbar:vertical {
+::-webkit-scrollbar {
   width: 2px;
 }
 
-::-webkit-scrollbar-thumb:vertical:window-inactive {
+::-webkit-scrollbar:vertical {
   width: 2px;
 }
 
 ::-webkit-scrollbar-track:vertical {
   display: none;
+  width: 2px;
 }
 
 .chat-main {
@@ -35,7 +36,7 @@
 }
 
 .chat-main .top:hover {
-  background-color: #f3f3f3;
+  background-color: #ebebeb;
   transition: background-color 0.2s;
 }
 
@@ -120,14 +121,6 @@
   overflow-x: hidden !important;
   padding-bottom: 20px;
   position: relative;
-}
-
-.chat-main .middle .scroll-bar > div:nth-child(2) {
-  display: none !important;
-}
-
-.chat-main .middle .scroll-bar > div:nth-child(3) {
-  display: none !important;
 }
 
 .chat-main .middle .scroll-bar .middle-content {

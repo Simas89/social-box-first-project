@@ -7,6 +7,7 @@ import {
 	ADD_TARGET,
 	REMOVE_TARGET,
 	REMOVE_TARGET_ALL,
+	SET_ONLY_ONE_TARGET_ID0,
 	SET_MESSAGE_INPUT,
 	UPDATE_MESSAGES,
 	CHAT_WINDOW_STATE,
@@ -28,7 +29,8 @@ const ChatState = (props) => {
 	const [isMobile, setIsMobile] = React.useState(
 		window.innerWidth >= 420 ? false : true
 	);
-
+	if (isMobile && state.targets.length > 1)
+		dispatch({ type: SET_ONLY_ONE_TARGET_ID0 });
 	const resizeEvent = () => {
 		window.innerWidth >= 420 ? setIsMobile(false) : setIsMobile(true);
 	};

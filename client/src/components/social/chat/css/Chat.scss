@@ -1,16 +1,17 @@
-// ::-webkit-scrollbar {
-// 	// background: transparent;
-// 	width: 1px;
-// }
+::-webkit-scrollbar {
+	// background: transparent;
+	width: 2px;
+}
 
 ::-webkit-scrollbar:vertical {
 	width: 2px;
 }
-::-webkit-scrollbar-thumb:vertical:window-inactive {
-	width: 2px;
-}
+// ::-webkit-scrollbar-thumb:vertical:window-inactive {
+// 	width: 2px;
+// }
 ::-webkit-scrollbar-track:vertical {
 	display: none;
+	width: 2px;
 }
 // ::-webkit-scrollbar-track:vertical:active {
 // 	// display: none;
@@ -44,7 +45,7 @@
 		align-items: center;
 		transition: background-color 0.2s;
 		&:hover {
-			background-color: rgb(243, 243, 243);
+			background-color: rgb(235, 235, 235);
 			transition: background-color 0.2s;
 		}
 		.target-name {
@@ -126,10 +127,10 @@
 				position: relative;
 			}
 			& > div:nth-child(2) {
-				display: none !important;
+				// display: none !important;
 			}
 			& > div:nth-child(3) {
-				display: none !important;
+				// display: none !important;
 			}
 			.middle-content {
 				// border: 1px solid blue;
