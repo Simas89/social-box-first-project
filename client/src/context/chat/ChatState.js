@@ -19,11 +19,11 @@ const ChatState = (props) => {
 
 	const initialState = {
 		targets: [
-			{
-				name: "RacoonX",
-				input: "",
-				msgData: [],
-			},
+			// {
+			// 	name: "RacoonX",
+			// 	input: "",
+			// 	msgData: [],
+			// },
 		],
 	};
 	const [state, dispatch] = React.useReducer(chatReducer, initialState);
@@ -57,12 +57,12 @@ const ChatState = (props) => {
 
 	useSubscription(GET_MESSAGES, {
 		onSubscriptionData: ({ subscriptionData: { data } }) => {
-			console.log(data);
+			// console.log(data);
 
 			const index = state.targets
 				.map((e) => e.name)
 				.indexOf(data.messages.target);
-			console.log("index:", index, data.messages.target);
+			// console.log("index:", index, data.messages.target);
 
 			if (index !== -1) {
 				dispatch({ type: UPDATE_MESSAGES, payload: data });

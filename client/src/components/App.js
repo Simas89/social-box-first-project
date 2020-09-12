@@ -165,11 +165,16 @@ function App(props) {
 								contextChat.state.targets.length > 1 ? "100%" : "1524px"
 							}`,
 						}}>
-						{contextChat.state.targets.map((target, index) => {
-							return (
-								<Chat key={target.name} index={index} userName={target.name} />
-							);
-						})}
+						{contextChat.state.targets &&
+							contextChat.state.targets.map((target, index) => {
+								return (
+									<Chat
+										key={target.name}
+										index={index}
+										userName={target.name}
+									/>
+								);
+							})}
 					</div>
 				</div>
 

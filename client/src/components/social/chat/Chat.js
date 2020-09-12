@@ -12,13 +12,11 @@ const Chat = (props) => {
 	const context = React.useContext(myContext);
 	const myRef = React.useRef(null);
 	React.useEffect(() => {
-		console.log(
-			myRef.current.view.scroll({
-				top: 1000000,
-				left: 0,
-				behavior: "smooth",
-			})
-		);
+		myRef.current.view.scroll({
+			top: 1000000,
+			left: 0,
+			behavior: "smooth",
+		}); // eslint-disable-next-line
 	}, [contextChat.state.targets[props.index].msgData]);
 
 	const sendAMessage = (index) => {
@@ -34,8 +32,6 @@ const Chat = (props) => {
 		// 	index: index,
 		// });
 	};
-
-	// console.log(contextChat.state.targets[props.index]);
 
 	return (
 		<div className='chat-main'>
@@ -59,15 +55,16 @@ const Chat = (props) => {
 					thumbMinSize={3}
 					universal={true}>
 					<div className='middle-content'>
-						{contextChat.state.targets[props.index].msgData.map((msg) => {
-							return (
-								<Msg
-									key={msg.id}
-									content={msg.content}
-									own={msg.user === context.accountState.user}
-								/>
-							);
-						})}
+						{contextChat.state.targets.length &&
+							contextChat.state.targets[props.index].msgData.map((msg) => {
+								return (
+									<Msg
+										key={msg.id}
+										content={msg.content}
+										own={msg.user === context.accountState.user}
+									/>
+								);
+							})}
 					</div>
 				</Scrollbars>
 			</div>

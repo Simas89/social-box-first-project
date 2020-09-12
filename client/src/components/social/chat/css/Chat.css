@@ -1,3 +1,12 @@
+::-webkit-scrollbar-track:vertical {
+  display: none;
+  width: 1px;
+}
+
+::-webkit-scrollbar:vertical {
+  width: 1px;
+}
+
 .chat-main {
   background-color: white;
   overflow: hidden;
@@ -62,10 +71,11 @@
   position: relative;
   flex-grow: 1;
   overflow: hidden;
+  margin-right: 2px;
 }
 
 .chat-main .middle .scroll-bar > div:nth-child(1) {
-  overflow-y: scroll !important;
+  overflow-y: auto !important;
   overflow-x: hidden !important;
   padding-bottom: 20px;
   position: relative;
