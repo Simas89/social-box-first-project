@@ -11,15 +11,31 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
 const Chat = (props) => {
 	const contextChat = React.useContext(chatContext);
+	const [msgOpacity, setMsgOpacity] = React.useState(0);
 	const context = React.useContext(myContext);
 	const myRef = React.useRef(null);
+
 	React.useEffect(() => {
-		myRef.current.view.scroll({
-			top: 1000000,
-			left: 0,
-			behavior: "smooth",
-		}); // eslint-disable-next-line
+		if (contextChat.state.targets[props.index].canScroll) {
+			myRef.current.view.scroll({
+				top: 1000000,
+				left: 0,
+				behavior: "smooth",
+			});
+		} // eslint-disable-next-line
+		else {
+			myRef.current.scrollToBottom();
+		}
+		/////////////////////////////////////////////////
+		//////////////////////////////////////////////////
+		// eslint-disable-next-line
 	}, [contextChat.state.targets[props.index].msgData]);
+
+	React.useEffect(() => {
+		setMsgOpacity(contextChat.state.targets[props.index].canScroll);
+		// console.log("msgOpacity", msgOpacity);
+		// eslint-disable-next-line
+	}, [contextChat.state.targets[props.index].canScroll]);
 
 	const sendAMessage = (index) => {
 		contextChat.apollo.mutate({
@@ -33,6 +49,49 @@ const Chat = (props) => {
 		// 	value: "",
 		// 	index: index,
 		// });
+	};
+	// const isClose = (date, index) => {
+	// 	console.log({
+	// 		date: date,
+	// 		index: index,
+	// 		dif: difIndexDate(index),
+	// 	});
+	// 	// console.log(contextChat.state.targets[props.index].msgData[index].date);
+	// 	return true;
+	// };
+
+	const isClose = (index) => {
+		let valuePrev = null;
+		let valueNext = null;
+		let userPrev = null;
+		let userNext = null;
+
+		try {
+			valuePrev =
+				contextChat.state.targets[props.index].msgData[index - 1].date;
+			userPrev = contextChat.state.targets[props.index].msgData[index - 1].user;
+		} catch (error) {}
+		try {
+			valueNext =
+				contextChat.state.targets[props.index].msgData[index + 1].date;
+			userNext = contextChat.state.targets[props.index].msgData[index + 1].user;
+		} catch (error) {}
+
+		const difPrev =
+			contextChat.state.targets[props.index].msgData[index].date - valuePrev;
+
+		const difNext =
+			valueNext - contextChat.state.targets[props.index].msgData[index].date;
+		// console.log(dif);
+		const result = {
+			prev: Math.floor(difPrev / 1000),
+			next: Math.floor(difNext / 1000),
+			mePrev: userPrev === context.accountState.user,
+			meNext: userNext === context.accountState.user,
+		};
+
+		// console.log(result);
+		return result;
 	};
 
 	return (
@@ -78,15 +137,22 @@ const Chat = (props) => {
 					universal={true}>
 					<div className='middle-content'>
 						{contextChat.state.targets.length &&
-							contextChat.state.targets[props.index].msgData.map((msg) => {
-								return (
-									<Msg
-										key={msg.id}
-										content={msg.content}
-										own={msg.user === context.accountState.user}
-									/>
-								);
-							})}
+							contextChat.state.targets[props.index].msgData.map(
+								(msg, index) => {
+									{
+										/* isClose(index); */
+									}
+									return (
+										<Msg
+											key={msg.id}
+											content={msg.content}
+											own={msg.user === context.accountState.user}
+											msgOpacity={msgOpacity}
+											isClose={isClose(index)}
+										/>
+									);
+								}
+							)}
 					</div>
 				</Scrollbars>
 			</div>

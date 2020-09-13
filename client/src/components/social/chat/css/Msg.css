@@ -1,8 +1,9 @@
 .msg {
+  opacity: 0;
   max-width: 90%;
   word-wrap: break-word;
-  border-radius: 17px;
-  padding: 10px;
+  border-radius: 18px;
+  padding: 9px;
   margin-top: 2px;
   letter-spacing: 0.06rem;
   line-height: 1.2rem;
@@ -20,4 +21,29 @@
   color: white;
   font-weight: 300;
   align-self: flex-end;
+}
+
+.opacity1 {
+  opacity: 1;
+  transition: opacity 0.1s;
+}
+
+.close-BR {
+  border-bottom-right-radius: 5px;
+}
+
+.close-TR {
+  border-top-right-radius: 5px;
+}
+
+.close-BL {
+  border-bottom-left-radius: 5px;
+}
+
+.close-TL {
+  border-top-left-radius: 5px;
+}
+
+.margin-far {
+  margin-bottom: 10px;
 }

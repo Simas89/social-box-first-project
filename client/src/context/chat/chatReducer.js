@@ -6,6 +6,7 @@ import {
 	SET_MESSAGE_INPUT,
 	UPDATE_MESSAGES,
 	CHAT_WINDOW_STATE,
+	SET_CAN_SCROLL,
 } from "../types";
 
 export default (state, { type, payload }) => {
@@ -24,6 +25,7 @@ export default (state, { type, payload }) => {
 						name: payload,
 						input: "",
 						isWindowOpen: true,
+						canScroll: false,
 						msgData: [],
 					});
 				} else {
@@ -32,6 +34,7 @@ export default (state, { type, payload }) => {
 						name: payload,
 						input: "",
 						isWindowOpen: true,
+						canScroll: false,
 						msgData: [],
 					});
 				}
@@ -41,11 +44,16 @@ export default (state, { type, payload }) => {
 		case REMOVE_TARGET: {
 			let newTargets = state.targets;
 			newTargets.splice(payload, 1);
-
 			return { ...state, targets: newTargets };
 		}
+
 		case REMOVE_TARGET_ALL: {
 			let newTargets = [];
+			return { ...state, targets: newTargets };
+		}
+
+		case SET_ONLY_ONE_TARGET_ID0: {
+			let newTargets = [state.targets[state.targets.length - 1]];
 			return { ...state, targets: newTargets };
 		}
 
@@ -55,37 +63,28 @@ export default (state, { type, payload }) => {
 				...newTargets[payload.index],
 				input: payload.value,
 			};
-
 			return { ...state, targets: newTargets };
 		}
 
 		case UPDATE_MESSAGES: {
 			let newTargets = state.targets;
-
-			// console.log(newTargets);
 			const index = newTargets
 				.map((e) => e.name)
 				.indexOf(payload.messages.target);
-			// console.log("index:", index, payload.messages.target);
-
 			newTargets[index].msgData = payload.messages.msg;
-
 			return { ...state, targets: newTargets };
 		}
 
 		case CHAT_WINDOW_STATE: {
 			let newTargets = state.targets;
-
 			newTargets[payload.index].isWindowOpen = payload.set;
-
 			return { ...state, targets: newTargets };
 		}
 
-		case SET_ONLY_ONE_TARGET_ID0: {
-			let newTargets = [state.targets[state.targets.length - 1]];
-
-			console.log("stripping targets");
-
+		case SET_CAN_SCROLL: {
+			let newTargets = state.targets;
+			const index = newTargets.map((e) => e.name).indexOf(payload.target);
+			newTargets[index].canScroll = payload.set;
 			return { ...state, targets: newTargets };
 		}
 

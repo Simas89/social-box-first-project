@@ -2,7 +2,7 @@ import React from "react";
 import chatReducer from "./chatReducer";
 import chatContext from "./chatContext";
 import accContext from "../account/myContext";
-import { useSubscription, gql } from "@apollo/client";
+import { useSubscription, gql, useLazyQuery } from "@apollo/client";
 import {
 	ADD_TARGET,
 	REMOVE_TARGET,
@@ -11,26 +11,29 @@ import {
 	SET_MESSAGE_INPUT,
 	UPDATE_MESSAGES,
 	CHAT_WINDOW_STATE,
+	SET_CAN_SCROLL,
 } from "../types";
 
 const ChatState = (props) => {
 	const contextAcc = React.useContext(accContext);
 	const initialState = {
 		targets: [
-			{
-				name: "RacoonX",
-				input: "",
-				isWindowOpen: true,
-				msgData: [],
-			},
+			// {
+			// 	name: "RacoonX",
+			// 	input: "",
+			// 	isWindowOpen: true,
+			// 	canScroll: false,
+			// 	msgData: [],
+			// },
 		],
 	};
 	const [state, dispatch] = React.useReducer(chatReducer, initialState);
 	const [isMobile, setIsMobile] = React.useState(
 		window.innerWidth >= 420 ? false : true
 	);
-	if (isMobile && state.targets.length > 1)
+	if (isMobile && state.targets.length > 1) {
 		dispatch({ type: SET_ONLY_ONE_TARGET_ID0 });
+	}
 	const resizeEvent = () => {
 		window.innerWidth >= 420 ? setIsMobile(false) : setIsMobile(true);
 	};
@@ -42,6 +45,36 @@ const ChatState = (props) => {
 	}, []);
 
 	const GET_MESSAGES = gql`
+		query($target: String) {
+			messages(userName: "${contextAcc.accountState.user}", target: $target) {
+				target
+				msg
+				{
+					id
+					content
+					user
+					date
+				}
+			}
+		}
+	`;
+	const [getMessagesQUE] = useLazyQuery(GET_MESSAGES, {
+		fetchPolicy: "network-only",
+		onCompleted: (data) => {
+			console.log(data);
+			dispatch({ type: UPDATE_MESSAGES, payload: data });
+			const timeoutID = window.setTimeout(() => {
+				dispatch({
+					type: SET_CAN_SCROLL,
+					payload: { target: data.messages.target, set: true },
+				});
+				clearTimeout(timeoutID);
+			}, 1);
+		},
+	});
+
+	// console.log(getMessagesQUEdata.data);
+	const SUB_MESSAGES = gql`
 	subscription {
 		messages(userName: "${contextAcc.accountState.user}") {
 			target
@@ -50,11 +83,12 @@ const ChatState = (props) => {
 				id
 				content
 				user
+				date
 			}
 		}
 	}
 `;
-	useSubscription(GET_MESSAGES, {
+	useSubscription(SUB_MESSAGES, {
 		onSubscriptionData: ({ subscriptionData: { data } }) => {
 			// console.log(data);
 
@@ -68,6 +102,13 @@ const ChatState = (props) => {
 				} else {
 					dispatch({ type: ADD_TARGET, payload: data.messages.target });
 					dispatch({ type: UPDATE_MESSAGES, payload: data });
+					const timeoutID = setTimeout(() => {
+						dispatch({
+							type: SET_CAN_SCROLL,
+							payload: { target: data.messages.target, set: true },
+						});
+						clearTimeout(timeoutID);
+					}, 1);
 				}
 				setTimeout(() => console.log("ChatState:", state), 1);
 			} else {
@@ -77,6 +118,12 @@ const ChatState = (props) => {
 					dispatch({ type: REMOVE_TARGET_ALL });
 					dispatch({ type: ADD_TARGET, payload: data.messages.target });
 					dispatch({ type: UPDATE_MESSAGES, payload: data });
+					setTimeout(() => {
+						dispatch({
+							type: SET_CAN_SCROLL,
+							payload: { target: data.messages.target, set: true },
+						});
+					}, 1);
 				}
 			}
 		},
@@ -86,6 +133,8 @@ const ChatState = (props) => {
 		dispatch({ type: SET_MESSAGE_INPUT, payload: payload });
 	};
 	const addTarget = (target) => {
+		getMessagesQUE({ variables: { target } });
+
 		if (!isMobile) {
 			dispatch({ type: ADD_TARGET, payload: target });
 		} else {
@@ -99,6 +148,12 @@ const ChatState = (props) => {
 	const setChatWindowState = (data) => {
 		dispatch({
 			type: CHAT_WINDOW_STATE,
+			payload: { index: data.index, set: data.set },
+		});
+	};
+	const setCanScroll = (data) => {
+		dispatch({
+			type: SET_CAN_SCROLL,
 			payload: { index: data.index, set: data.set },
 		});
 	};
@@ -116,6 +171,7 @@ const ChatState = (props) => {
 				addTarget,
 				removeTarget,
 				setChatWindowState,
+				setCanScroll,
 			}}>
 			{props.children}
 		</chatContext.Provider>

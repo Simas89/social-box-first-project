@@ -113,7 +113,7 @@
   position: relative;
   flex-grow: 1;
   overflow: hidden;
-  margin-right: 2px;
+  margin-right: 0px;
 }
 
 .chat-main .middle .scroll-bar > div:nth-child(1) {

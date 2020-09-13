@@ -1,8 +1,9 @@
 .msg {
+	opacity: 0;
 	max-width: 90%;
 	word-wrap: break-word;
-	border-radius: 17px;
-	padding: 10px;
+	border-radius: 18px;
+	padding: 9px;
 	margin-top: 2px;
 	letter-spacing: 0.06rem;
 	line-height: 1.2rem;
@@ -10,15 +11,10 @@
 	white-space: pre-line;
 }
 .other {
-	// border: 1px solid red;
 	background-color: rgb(240, 240, 240);
-	// margin-left: 15px;
-	// margin-right: auto;
 	align-self: flex-start;
 }
 .own {
-	// border: 1px solid green;
-	// background-color: rgb(47, 168, 69);
 	background: linear-gradient(
 		45deg,
 		rgb(15, 197, 121) 10%,
@@ -26,8 +22,25 @@
 	);
 	color: white;
 	font-weight: 300;
-	// align-self: flex-end;
-	// margin-right: 15px;
-	// margin-left: auto;
 	align-self: flex-end;
+}
+.opacity1 {
+	opacity: 1;
+	transition: opacity 0.1s;
+}
+.close-BR {
+	border-bottom-right-radius: 5px;
+}
+.close-TR {
+	border-top-right-radius: 5px;
+}
+.close-BL {
+	border-bottom-left-radius: 5px;
+}
+.close-TL {
+	border-top-left-radius: 5px;
+}
+
+.margin-far {
+	margin-bottom: 10px;
 }

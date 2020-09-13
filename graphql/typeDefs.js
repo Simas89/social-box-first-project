@@ -7,15 +7,17 @@ const typeDefs = `
     msg: [Message]
   }
   type Message {
-    id: ID!
+    id: String!
     user: String!
     content: String!
+    date: String
   }
   type Mutation{
     postMessage(userName: String!,target: String!, content: String!): ID
   }
 	type Query{
-    messages: [Message!]
+    messages(userName: String, target: String): MSG_PACK
+
     emailMe(guest: String, email: String, msg: String) : String
     addPost(token : String, textContent: String): String
     getPosts(TYPE: String, clientUserName: String, target: String ) : [POST]

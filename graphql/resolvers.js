@@ -9,6 +9,8 @@ const ntf = require("../functions/ntf");
 require("dotenv").config();
 import { PubSub } from "graphql-subscriptions";
 const pubsub = new PubSub();
+import { v4 as uuidv4 } from "uuid";
+// console.log(uuidv4().toString());
 
 const updateUserOnline = (userName) => {
 	UserModel.findOneAndUpdate(
@@ -121,9 +123,10 @@ const rootValue = {
 				.then((res) => {
 					if (res) {
 						res.messages.push({
-							id: res.messages.length,
+							id: uuidv4().slice(24),
 							user: args.userName,
 							content: args.content,
+							date: Date.now(),
 						});
 						messagesChat = res.messages;
 						res.save();
@@ -132,17 +135,19 @@ const rootValue = {
 							stringid: stringid1,
 							messages: [
 								{
-									id: 0,
+									id: uuidv4().slice(24),
 									user: args.userName,
 									content: args.content,
+									date: Date.now(),
 								},
 							],
 						});
 						messagesChat = chat.messages;
+
 						chat.save();
 					}
 				});
-
+			// console.log(messagesChat);
 			pubsub.publish(args.userName, {
 				messages: { target: args.target, msg: messagesChat },
 			});
@@ -153,7 +158,33 @@ const rootValue = {
 		},
 	},
 	Query: {
-		messages: () => messages,
+		messages: async (parent, args) => {
+			updateUserOnline(args.userName);
+			const stringid1 = args.userName + args.target;
+			const stringid2 = args.target + args.userName;
+			let messagesChat = [];
+			console.log(args, stringid1, stringid2);
+
+			await Chat.findOne()
+				.or([{ stringid: stringid1 }, { stringid: stringid2 }])
+				.then((res) => {
+					if (res) {
+						messagesChat = res.messages;
+					} else {
+						const chat = new Chat({
+							stringid: stringid1,
+							messages: [],
+						});
+						messagesChat = chat.messages;
+						chat.save();
+					}
+				});
+
+			return {
+				target: args.target,
+				msg: messagesChat,
+			};
+		},
 		test: () => {
 			console.log("test query");
 			pubsub.publish("Simas", {

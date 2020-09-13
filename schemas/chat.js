@@ -7,9 +7,11 @@ const Chat = new Schema({
 
 	messages: [
 		{
-			id: { type: Number },
+			id: { type: String },
 			user: { type: String },
 			content: { type: String },
+			// seen: { type: Boolean, default: false },
+			date: { type: Date, default: Date.now },
 		},
 	],
 });
