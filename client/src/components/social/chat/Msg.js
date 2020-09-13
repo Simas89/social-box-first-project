@@ -1,8 +1,12 @@
 import React from "react";
 import "./css/Msg.css";
 import { Twemoji } from "react-emoji-render";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 const Msg = (props) => {
+	const [deleteStage, setDeleteStage] = React.useState(false);
+	const msgRef = React.useRef(null);
+
 	React.useEffect(() => {
 		// console.log(props.isClose);
 	}, []);
@@ -31,15 +35,21 @@ const Msg = (props) => {
 		}
 	};
 	calsClasses();
+	useOutsideClick(msgRef, () => {
+		setDeleteStage(false);
+	});
 
 	return (
-		<div
-			className={`${mainClasses} ${cornerClasses} ${
-				props.msgOpacity && "opacity1"
-			}`}>
-			<span>
-				<Twemoji text={`${props.content}`} />
-			</span>
+		<div className='msg-wrap' ref={msgRef}>
+			<div
+				className={`${mainClasses} ${cornerClasses} ${
+					props.msgOpacity && "opacity1"
+				} ${deleteStage ? "delete-stage" : "no-del-stage"}`}
+				onClick={() => setDeleteStage(!deleteStage)}>
+				<span>
+					<Twemoji text={`${props.content}`} />
+				</span>
+			</div>
 		</div>
 	);
 };

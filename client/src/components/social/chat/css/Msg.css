@@ -1,4 +1,10 @@
-.msg {
+.msg-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.msg-wrap .msg {
+  position: relative;
   opacity: 0;
   max-width: 90%;
   word-wrap: break-word;
@@ -9,41 +15,55 @@
   line-height: 1.2rem;
   color: #2e2e2e;
   white-space: pre-line;
+  transition: right 0.2s;
 }
 
-.other {
+.msg-wrap .other {
   background-color: #f0f0f0;
   align-self: flex-start;
+  left: 0 !important;
 }
 
-.own {
+.msg-wrap .own {
+  right: 0px;
   background: linear-gradient(45deg, #24d197 10%, #00be85 100%);
   color: white;
   font-weight: 300;
   align-self: flex-end;
+  transition: right 0.2s;
 }
 
-.opacity1 {
+.msg-wrap .opacity1 {
   opacity: 1;
   transition: opacity 0.1s;
 }
 
-.close-BR {
+.msg-wrap .close-BR {
   border-bottom-right-radius: 5px;
 }
 
-.close-TR {
+.msg-wrap .close-TR {
   border-top-right-radius: 5px;
 }
 
-.close-BL {
+.msg-wrap .close-BL {
   border-bottom-left-radius: 5px;
 }
 
-.close-TL {
+.msg-wrap .close-TL {
   border-top-left-radius: 5px;
 }
 
-.margin-far {
+.msg-wrap .margin-far {
   margin-bottom: 10px;
+}
+
+.msg-wrap .delete-stage {
+  right: 30px;
+  transition: right 0.2s;
+}
+
+.msg-wrap .no-del-stage {
+  right: 0px;
+  transition: right 0.2s;
 }

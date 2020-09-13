@@ -88,6 +88,7 @@ const ChatState = (props) => {
 		}
 	}
 `;
+
 	useSubscription(SUB_MESSAGES, {
 		onSubscriptionData: ({ subscriptionData: { data } }) => {
 			// console.log(data);

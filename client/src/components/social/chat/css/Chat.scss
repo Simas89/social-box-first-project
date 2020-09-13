@@ -135,9 +135,10 @@
 			}
 			.middle-content {
 				// border: 1px solid blue;
+				position: relative;
 				display: flex;
 				flex-direction: column;
-				padding: 0 10px 0 5px;
+				padding: 0 5px 0 5px;
 				margin-right: 7px;
 			}
 		}

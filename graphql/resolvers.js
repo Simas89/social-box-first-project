@@ -106,8 +106,8 @@ const rootValue = {
 	Subscription: {
 		messages: {
 			subscribe: (parent, args) => {
-				console.log("sub:", args);
-				return pubsub.asyncIterator(args.userName);
+				console.log("sub-messages:", args.userName);
+				if (args.userName) return pubsub.asyncIterator(args.userName);
 			},
 		},
 	},
