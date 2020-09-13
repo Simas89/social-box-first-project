@@ -36,7 +36,7 @@
 }
 
 .chat-main .top:hover {
-  background-color: #ebebeb;
+  background-color: #fafafa;
   transition: background-color 0.2s;
 }
 
@@ -133,10 +133,14 @@
 .chat-main .bottom {
   border-top: 1px solid lightgray;
   background-color: transparent;
-  padding: 3px 5px 0 5px;
+  padding: 5px 5px 5px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .chat-main .bottom .txt-area-core {
+  overflow: hidden;
   padding: 8px 5px 5px 10px;
   font-family: "MuseoModerno", cursive;
   overflow-wrap: normal;
@@ -154,6 +158,7 @@
   resize: none;
   max-height: 200px;
   min-height: 34px;
+  transition: 0.2s;
 }
 
 .chat-main .bottom .txt-area-core:active {
@@ -164,32 +169,42 @@
   outline: none;
 }
 
-.chat-main .bottom .under-text-area {
-  position: relative;
-  height: 40px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+.chat-main .bottom .focus {
+  border: 1px solid #9c9c9c;
+  transition: 0.2s;
 }
 
-.chat-main .bottom .under-text-area .send {
-  margin-right: 10px;
-  border: 1px solid #7b9fc0;
+.chat-main .bottom .send {
   border-radius: 3px;
-  width: 100px;
+  width: 40px;
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.chat-main .bottom .under-text-area .send:hover {
+.chat-main .bottom .send .icon {
+  opacity: 0.3;
+  color: gray;
+  font-size: 1.5rem;
+  transition: opacity 0.2s;
+}
+
+.chat-main .bottom .send .ready-to-send {
+  transition: opacity 0.2s;
+  opacity: 1;
+  background: linear-gradient(300deg, #ff7809 0%, #ffc400 59%, #ffe819 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.chat-main .bottom .send .ready-to-send:hover {
   cursor: pointer;
 }
 
 .chat-main-min {
-  height: 35px;
-  bottom: 30px;
+  height: 65px;
+  bottom: 42px;
 }
 
 .chat-main-min .middle {
@@ -198,9 +213,18 @@
 
 .chat-main-min .bottom {
   height: 0;
+  display: none;
 }
 
 .mobile {
   margin: 0 10px;
   width: 100vw;
+}
+
+.mobile .top .minimize {
+  right: 85px;
+}
+
+.mobile .top .close {
+  right: 20px;
 }

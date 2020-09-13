@@ -12,6 +12,7 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 const Chat = (props) => {
 	const contextChat = React.useContext(chatContext);
 	const [msgOpacity, setMsgOpacity] = React.useState(0);
+	const [focus, setFocus] = React.useState(false);
 	const context = React.useContext(myContext);
 	const myRef = React.useRef(null);
 
@@ -45,20 +46,11 @@ const Chat = (props) => {
 			}",  content: """${contextChat.state.targets[props.index].input}""")
 			}`,
 		});
-		// contextChat.setMsgInput({
-		// 	value: "",
-		// 	index: index,
-		// });
+		contextChat.setMsgInput({
+			value: "",
+			index: index,
+		});
 	};
-	// const isClose = (date, index) => {
-	// 	console.log({
-	// 		date: date,
-	// 		index: index,
-	// 		dif: difIndexDate(index),
-	// 	});
-	// 	// console.log(contextChat.state.targets[props.index].msgData[index].date);
-	// 	return true;
-	// };
 
 	const isClose = (index) => {
 		let valuePrev = null;
@@ -82,7 +74,7 @@ const Chat = (props) => {
 
 		const difNext =
 			valueNext - contextChat.state.targets[props.index].msgData[index].date;
-		// console.log(dif);
+
 		const result = {
 			prev: Math.floor(difPrev / 1000),
 			next: Math.floor(difNext / 1000),
@@ -90,7 +82,6 @@ const Chat = (props) => {
 			meNext: userNext === context.accountState.user,
 		};
 
-		// console.log(result);
 		return result;
 	};
 
@@ -158,8 +149,10 @@ const Chat = (props) => {
 			</div>
 			<div className='bottom'>
 				<TextareaAutosize
-					className='txt-area-core'
+					className={`txt-area-core ${focus && "focus"}`}
 					placeholder='Message..'
+					onFocus={() => setFocus(true)}
+					onBlur={() => setFocus(false)}
 					value={contextChat.state.targets[props.index].input}
 					onChange={(e) => {
 						contextChat.setMsgInput({
@@ -168,10 +161,23 @@ const Chat = (props) => {
 						});
 					}}
 				/>
-				<div className='under-text-area'>
-					<div className='send' onClick={() => sendAMessage(props.index)}>
-						<span>SEND</span>
-					</div>
+
+				<div
+					className='send'
+					onClick={() =>
+						contextChat.state.targets[props.index].input &&
+						sendAMessage(props.index)
+					}>
+					<i
+						className={`fas fa-paper-plane icon ${
+							contextChat.state.targets[props.index].input && "ready-to-send"
+						}`}></i>
+					{/* <FontAwesomeIcon
+							className={`icon ${
+								contextChat.state.targets[props.index].input && "ready-to-send"
+							}`}
+							icon={faPaperPlane}
+						/> */}
 				</div>
 			</div>
 		</div>
