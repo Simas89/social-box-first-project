@@ -1,5 +1,6 @@
 import React from "react";
 import "./css/Msg.css";
+import { Twemoji } from "react-emoji-render";
 
 const Msg = (props) => {
 	React.useEffect(() => {
@@ -36,7 +37,9 @@ const Msg = (props) => {
 			className={`${mainClasses} ${cornerClasses} ${
 				props.msgOpacity && "opacity1"
 			}`}>
-			<span>{`${props.content}`}</span>
+			<span>
+				<Twemoji text={`${props.content}`} />
+			</span>
 		</div>
 	);
 };
