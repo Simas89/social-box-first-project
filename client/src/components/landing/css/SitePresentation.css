@@ -112,10 +112,6 @@
   font-weight: 500;
 }
 
-.site-presentation .user-select {
-  user-select: text;
-}
-
 .site-presentation .br {
   margin: 0.6rem;
 }

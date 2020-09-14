@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
-  user-select: none;
   box-sizing: border-box;
   font-family: "MuseoModerno", cursive;
 }
@@ -180,7 +179,6 @@ body {
 .landing-main .box-content p {
   color: black;
   margin: 0 5px 0 0;
-  user-select: none;
 }
 
 .landing-main .box-content .form-navigaror {
@@ -233,13 +231,8 @@ body {
   align-items: center;
 }
 
-.footer span {
-  user-select: none;
-}
-
 .footer p {
   z-index: 1;
-  user-select: text;
   color: white;
 }
 

@@ -11,7 +11,7 @@ $nodeDark: rgb(62, 134, 61);
 @import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
-	user-select: none;
+	// user-select: none;
 	box-sizing: border-box;
 	font-family: "MuseoModerno", cursive;
 }
@@ -193,7 +193,7 @@ body {
 		p {
 			color: $colorPrimary;
 			margin: 0 5px 0 0;
-			user-select: none;
+			// user-select: none;
 		}
 
 		.form-navigaror {
@@ -247,11 +247,11 @@ body {
 	justify-content: center;
 	align-items: center;
 	span {
-		user-select: none;
+		// user-select: none;
 	}
 	p {
 		z-index: 1;
-		user-select: text;
+		// user-select: text;
 		// border: 1px solid white;
 		color: white;
 	}

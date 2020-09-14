@@ -31,7 +31,6 @@
   font-size: 2rem;
   color: black;
   z-index: 1;
-  user-select: none;
 }
 
 .form-wrapper .inputs-wrapper {
@@ -183,7 +182,6 @@
 
 .form-wrapper .inputs-wrapper .log-reg-switch {
   font-size: 1.1rem;
-  user-select: none;
   margin-top: 10px;
   margin-left: 20px;
   color: black;

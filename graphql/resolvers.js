@@ -106,8 +106,8 @@ const rootValue = {
 	Subscription: {
 		messages: {
 			subscribe: (parent, args) => {
-				console.log("sub-messages:", args.userName);
-				if (args.userName) return pubsub.asyncIterator(args.userName);
+				console.log("sub:", args);
+				return pubsub.asyncIterator(args.userName);
 			},
 		},
 	},
@@ -123,7 +123,7 @@ const rootValue = {
 				.then((res) => {
 					if (res) {
 						res.messages.push({
-							id: uuidv4().slice(24),
+							id: uuidv4(),
 							user: args.userName,
 							content: args.content,
 							date: Date.now(),
@@ -147,7 +147,7 @@ const rootValue = {
 						chat.save();
 					}
 				});
-			// console.log(messagesChat);
+			console.log(messagesChat);
 			pubsub.publish(args.userName, {
 				messages: { target: args.target, msg: messagesChat },
 			});

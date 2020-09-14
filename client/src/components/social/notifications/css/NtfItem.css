@@ -1,5 +1,4 @@
 .ntf-item {
-  user-select: none;
   position: relative;
   display: grid;
   grid-template-columns: 64px auto 40px;

@@ -87,10 +87,6 @@
   white-space: pre-line;
 }
 
-.comment-body .comment-middle span {
-  user-select: text;
-}
-
 .comment-body .comment-middle p {
   overflow-wrap: normal;
   white-space: pre-line;

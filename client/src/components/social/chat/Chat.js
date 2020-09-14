@@ -26,17 +26,37 @@ const Chat = (props) => {
 		} // eslint-disable-next-line
 		else {
 			myRef.current.scrollToBottom();
-		}
-		/////////////////////////////////////////////////
-		//////////////////////////////////////////////////
-		// eslint-disable-next-line
+		} // eslint-disable-next-line
 	}, [contextChat.state.targets[props.index].msgData]);
 
 	React.useEffect(() => {
 		setMsgOpacity(contextChat.state.targets[props.index].canScroll);
-		// console.log("msgOpacity", msgOpacity);
 		// eslint-disable-next-line
 	}, [contextChat.state.targets[props.index].canScroll]);
+
+	React.useEffect(() => {
+		if (contextChat.state.targets[props.index].input) {
+			updateIsTyping(true);
+		} else {
+			updateIsTyping(false);
+		}
+		// eslint-disable-next-line
+	}, [contextChat.state.targets[props.index].input]);
+
+	const updateIsTyping = (set) => {
+		// contextChat.apollo.mutate({
+		// 	mutation: gql`mutation {
+		// 		updateIsTyping(userName: "${context.accountState.user}",target: "${
+		// 		contextChat.state.targets[props.index].name
+		// 	}",  set: ${set})
+		// 	}`,
+		// });
+		// console.log(
+		// 	context.accountState.user,
+		// 	contextChat.state.targets[props.index].name,
+		// 	set
+		// );
+	};
 
 	const sendAMessage = (index) => {
 		contextChat.apollo.mutate({
@@ -130,9 +150,6 @@ const Chat = (props) => {
 						{contextChat.state.targets.length &&
 							contextChat.state.targets[props.index].msgData.map(
 								(msg, index) => {
-									{
-										/* isClose(index); */
-									}
 									return (
 										<Msg
 											key={msg.id}

@@ -91,6 +91,12 @@ const ChatState = (props) => {
 
 	useSubscription(SUB_MESSAGES, {
 		onSubscriptionData: ({ subscriptionData: { data } }) => {
+			console.log(data);
+		},
+	});
+
+	useSubscription(SUB_MESSAGES, {
+		onSubscriptionData: ({ subscriptionData: { data } }) => {
 			// console.log(data);
 
 			const index = state.targets

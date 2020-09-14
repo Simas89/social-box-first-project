@@ -82,7 +82,6 @@
 
 .main .top-bar .top-bar-content .exit .exit-icon {
   z-index: 2;
-  user-select: none;
   top: 15px;
   right: 15px;
   color: white;

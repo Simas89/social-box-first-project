@@ -1,6 +1,7 @@
 const typeDefs = `
   type Subscription {
     messages(userName: String): MSG_PACK
+    
   }
   type MSG_PACK {
     target: String
@@ -14,6 +15,7 @@ const typeDefs = `
   }
   type Mutation{
     postMessage(userName: String!,target: String!, content: String!): ID
+
   }
 	type Query{
     messages(userName: String, target: String): MSG_PACK

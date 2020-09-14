@@ -128,10 +128,6 @@
   white-space: pre-line;
 }
 
-.post-body .middle-section .text-box .post-text .textas span {
-  user-select: text !important;
-}
-
 .post-body .middle-section .text-box .continue {
   position: relative;
   height: 40px;
