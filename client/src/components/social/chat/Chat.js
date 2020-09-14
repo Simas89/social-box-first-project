@@ -43,19 +43,18 @@ const Chat = (props) => {
 		// eslint-disable-next-line
 	}, [contextChat.state.targets[props.index].input]);
 
+	React.useEffect(() => {
+		console.log(contextChat.state.targets[props.index].isTyping);
+	}, [contextChat.state.targets[props.index].isTyping]);
+
 	const updateIsTyping = (set) => {
-		// contextChat.apollo.mutate({
-		// 	mutation: gql`mutation {
-		// 		updateIsTyping(userName: "${context.accountState.user}",target: "${
-		// 		contextChat.state.targets[props.index].name
-		// 	}",  set: ${set})
-		// 	}`,
-		// });
-		// console.log(
-		// 	context.accountState.user,
-		// 	contextChat.state.targets[props.index].name,
-		// 	set
-		// );
+		contextChat.apollo.mutate({
+			mutation: gql`mutation {
+				updateIsTyping(userName: "${context.accountState.user}",target: "${
+				contextChat.state.targets[props.index].name
+			}",  set: ${set})
+			}`,
+		});
 	};
 
 	const sendAMessage = (index) => {
@@ -66,6 +65,7 @@ const Chat = (props) => {
 			}",  content: """${contextChat.state.targets[props.index].input}""")
 			}`,
 		});
+		updateIsTyping(false);
 		contextChat.setMsgInput({
 			value: "",
 			index: index,
@@ -161,6 +161,11 @@ const Chat = (props) => {
 									);
 								}
 							)}
+						<div className='typing'>
+							{contextChat.state.targets[props.index].isTyping ? (
+								<span>typing...</span>
+							) : null}
+						</div>
 					</div>
 				</Scrollbars>
 			</div>
@@ -169,7 +174,10 @@ const Chat = (props) => {
 					className={`txt-area-core ${focus && "focus"}`}
 					placeholder='Message..'
 					onFocus={() => setFocus(true)}
-					onBlur={() => setFocus(false)}
+					onBlur={() => {
+						setFocus(false);
+						updateIsTyping(false);
+					}}
 					value={contextChat.state.targets[props.index].input}
 					onChange={(e) => {
 						contextChat.setMsgInput({

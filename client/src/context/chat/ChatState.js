@@ -12,7 +12,10 @@ import {
 	UPDATE_MESSAGES,
 	CHAT_WINDOW_STATE,
 	SET_CAN_SCROLL,
+	SET_IS_TYPING,
 } from "../types";
+
+let timeoutId = {};
 
 const ChatState = (props) => {
 	const contextAcc = React.useContext(accContext);
@@ -20,14 +23,16 @@ const ChatState = (props) => {
 		targets: [
 			// {
 			// 	name: "RacoonX",
+			//  msgData: [],
 			// 	input: "",
 			// 	isWindowOpen: true,
 			// 	canScroll: false,
-			// 	msgData: [],
+			//  isTyping: false,
 			// },
 		],
 	};
 	const [state, dispatch] = React.useReducer(chatReducer, initialState);
+	// console.log(state);
 	const [isMobile, setIsMobile] = React.useState(
 		window.innerWidth >= 420 ? false : true
 	);
@@ -61,7 +66,7 @@ const ChatState = (props) => {
 	const [getMessagesQUE] = useLazyQuery(GET_MESSAGES, {
 		fetchPolicy: "network-only",
 		onCompleted: (data) => {
-			console.log(data);
+			// console.log(data);
 			dispatch({ type: UPDATE_MESSAGES, payload: data });
 			const timeoutID = window.setTimeout(() => {
 				dispatch({
@@ -89,15 +94,42 @@ const ChatState = (props) => {
 	}
 `;
 
-	useSubscription(SUB_MESSAGES, {
+	const SUB_ISTYPING = gql`
+		subscription {
+			isTyping(userName: "${contextAcc.accountState.user}") {
+				set
+				userName
+			}
+		}
+	`;
+	useSubscription(SUB_ISTYPING, {
 		onSubscriptionData: ({ subscriptionData: { data } }) => {
-			console.log(data);
+			clearTimeout(timeoutId[data.isTyping.userName]);
+			if (data.isTyping.set) {
+				dispatch({
+					type: SET_IS_TYPING,
+					payload: { userName: data.isTyping.userName, set: true },
+				});
+				timeoutId[data.isTyping.userName] = setTimeout(() => {
+					clearTimeout(timeoutId[data.isTyping.userName]);
+					dispatch({
+						type: SET_IS_TYPING,
+						payload: { userName: data.isTyping.userName, set: false },
+					});
+				}, 3000);
+			} else {
+				dispatch({
+					type: SET_IS_TYPING,
+					payload: { userName: data.isTyping.userName, set: false },
+				});
+			}
 		},
 	});
 
+	//////////////////////////////////////////////////////////////////////////////
 	useSubscription(SUB_MESSAGES, {
 		onSubscriptionData: ({ subscriptionData: { data } }) => {
-			// console.log(data);
+			console.log(data);
 
 			const index = state.targets
 				.map((e) => e.name)
@@ -117,7 +149,7 @@ const ChatState = (props) => {
 						clearTimeout(timeoutID);
 					}, 1);
 				}
-				setTimeout(() => console.log("ChatState:", state), 1);
+				// setTimeout(() => console.log("ChatState:", state), 1);
 			} else {
 				if (index !== -1) {
 					dispatch({ type: UPDATE_MESSAGES, payload: data });

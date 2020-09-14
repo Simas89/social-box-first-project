@@ -106,8 +106,14 @@ const rootValue = {
 	Subscription: {
 		messages: {
 			subscribe: (parent, args) => {
-				console.log("sub:", args);
+				console.log("sub-messages:", args);
 				return pubsub.asyncIterator(args.userName);
+			},
+		},
+		isTyping: {
+			subscribe: (parent, args) => {
+				console.log("sub-isTyping:", args);
+				return pubsub.asyncIterator(args.userName + "isTyping");
 			},
 		},
 	},
@@ -147,14 +153,25 @@ const rootValue = {
 						chat.save();
 					}
 				});
-			console.log(messagesChat);
+
+			// console.log(messagesChat);
 			pubsub.publish(args.userName, {
 				messages: { target: args.target, msg: messagesChat },
 			});
 			pubsub.publish(args.target, {
 				messages: { target: args.userName, msg: messagesChat },
 			});
+
 			// return id;
+		},
+		updateIsTyping: (parent, args) => {
+			console.log(args);
+			pubsub.publish(args.target + "isTyping", {
+				isTyping: {
+					set: args.set,
+					userName: args.userName,
+				},
+			});
 		},
 	},
 	Query: {

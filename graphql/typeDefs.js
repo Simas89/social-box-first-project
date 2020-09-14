@@ -1,7 +1,12 @@
 const typeDefs = `
   type Subscription {
     messages(userName: String): MSG_PACK
+    isTyping(userName: String): isTypingPack
     
+  }
+  type isTypingPack{
+    set: Boolean
+    userName: String
   }
   type MSG_PACK {
     target: String
@@ -15,6 +20,7 @@ const typeDefs = `
   }
   type Mutation{
     postMessage(userName: String!,target: String!, content: String!): ID
+    updateIsTyping(userName: String!,target: String!, set: Boolean!): ID
 
   }
 	type Query{
@@ -32,7 +38,6 @@ const typeDefs = `
     setOnlineParam(userName: String, param: String) : Boolean
     
     test: Int
-
   }
 
 

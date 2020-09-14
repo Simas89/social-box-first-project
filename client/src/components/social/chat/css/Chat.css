@@ -119,7 +119,6 @@
 .chat-main .middle .scroll-bar > div:nth-child(1) {
   overflow-y: auto !important;
   overflow-x: hidden !important;
-  padding-bottom: 20px;
   position: relative;
 }
 
@@ -129,6 +128,20 @@
   flex-direction: column;
   padding: 0 5px 0 5px;
   margin-right: 7px;
+}
+
+.chat-main .middle .scroll-bar .middle-content .typing {
+  margin: auto;
+  height: 20px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-main .middle .scroll-bar .middle-content .typing span {
+  font-size: 0.8rem;
+  color: gray;
 }
 
 .chat-main .bottom {

@@ -7,6 +7,7 @@ import {
 	UPDATE_MESSAGES,
 	CHAT_WINDOW_STATE,
 	SET_CAN_SCROLL,
+	SET_IS_TYPING,
 } from "../types";
 
 export default (state, { type, payload }) => {
@@ -23,19 +24,21 @@ export default (state, { type, payload }) => {
 				if (newTargets.length < 5) {
 					newTargets.unshift({
 						name: payload,
+						msgData: [],
 						input: "",
 						isWindowOpen: true,
 						canScroll: false,
-						msgData: [],
+						isTyping: false,
 					});
 				} else {
 					// newTargets.shift();
 					newTargets.unshift({
 						name: payload,
+						msgData: [],
 						input: "",
 						isWindowOpen: true,
 						canScroll: false,
-						msgData: [],
+						isTyping: false,
 					});
 				}
 			return { ...state, targets: newTargets };
@@ -86,6 +89,20 @@ export default (state, { type, payload }) => {
 			const index = newTargets.map((e) => e.name).indexOf(payload.target);
 			newTargets[index].canScroll = payload.set;
 			return { ...state, targets: newTargets };
+		}
+
+		case SET_IS_TYPING: {
+			const index = state.targets.map((e) => e.name).indexOf(payload.userName);
+			if (index !== -1) {
+				let newTargets = state.targets;
+				if (payload.set) {
+					newTargets[index].isTyping = true;
+				} else {
+					newTargets[index].isTyping = false;
+				}
+
+				return { ...state, targets: newTargets };
+			} else return state;
 		}
 
 		default:
