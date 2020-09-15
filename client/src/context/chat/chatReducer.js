@@ -106,13 +106,6 @@ export default (state, { type, payload }) => {
 			} else return state;
 		}
 
-		case DELETE_MSG: {
-			let newTargets = state.targets;
-			// console.log(newTargets[payload.targetIndex].msgData[payload.msgIndex]);
-			newTargets[payload.targetIndex].msgData.splice(payload.msgIndex, 1);
-			return { ...state, targets: newTargets };
-		}
-
 		default:
 			return state;
 	}

@@ -8,6 +8,7 @@ import Msg from "./Msg";
 import { Scrollbars } from "react-custom-scrollbars";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router-dom";
 
 const Chat = (props) => {
 	const contextChat = React.useContext(chatContext);
@@ -15,6 +16,7 @@ const Chat = (props) => {
 	const [focus, setFocus] = React.useState(false);
 	const context = React.useContext(myContext);
 	const myRef = React.useRef(null);
+	const history = useHistory();
 
 	React.useEffect(() => {
 		if (contextChat.state.targets[props.index].canScroll) {
@@ -39,7 +41,7 @@ const Chat = (props) => {
 			updateIsTyping(true);
 		} else {
 			updateIsTyping(false);
-		}
+		} // eslint-disable-next-line
 	}, [contextChat.state.targets[props.index].input]);
 
 	const updateIsTyping = (set) => {
@@ -112,10 +114,15 @@ const Chat = (props) => {
 	return (
 		<div
 			className={`chat-main ${
-				!contextChat.state.targets[props.index].isWindowOpen && "chat-main-min"
+				!contextChat.state.targets[props.index].isWindowOpen &&
+				"chat-main-min chat-main-min-mob"
 			} ${contextChat.isMobile && "mobile"}`}>
 			<div className='top'>
-				<span className='target-name'>{props.userName}</span>
+				<span
+					className='target-name'
+					onClick={() => history.push(`/app/users/${props.userName}`)}>{`${
+					props.userName
+				} ${contextChat.state.targets[props.index].msgData.length}`}</span>
 				<div
 					className='minimize'
 					onClick={() =>
@@ -162,6 +169,7 @@ const Chat = (props) => {
 											isClose={isClose(index)}
 											key={msg.id}
 											deleteMsg={() => deleteMsg(index)}
+											isDeleted={msg.content === "DELETED_MSG" && true}
 										/>
 									);
 								}

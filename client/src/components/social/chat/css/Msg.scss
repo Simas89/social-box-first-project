@@ -62,6 +62,14 @@
 		align-self: flex-end;
 		transition: right 0.2s;
 	}
+	.is-deleted {
+		border: 1px solid gray;
+		color: gray;
+
+		background: white;
+		padding: 5px;
+		font-size: 0.8rem;
+	}
 
 	////////////////////////////////
 

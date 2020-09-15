@@ -18,7 +18,7 @@ const Msg = (props) => {
 		const sec = 15;
 		mainClasses = `msg  ${props.own ? "own" : "other"} } ${
 			props.isClose.next > sec && "margin-far"
-		}`;
+		} ${props.isDeleted && "is-deleted"}`;
 		cornerClasses = "";
 		if (props.own) {
 			cornerClasses = `${
@@ -47,9 +47,11 @@ const Msg = (props) => {
 				className={`${mainClasses} ${cornerClasses} ${
 					props.msgOpacity && "opacity1"
 				} ${deleteStage ? "delete-stage" : "no-del-stage"}`}
-				onClick={() => setDeleteStage(!deleteStage)}>
+				onClick={() => !props.isDeleted && setDeleteStage(!deleteStage)}>
 				<span>
-					<Twemoji text={`${props.content}`} />
+					<Twemoji
+						text={`${props.isDeleted ? "message removed.." : props.content}`}
+					/>
 				</span>
 				{props.own && deleteStage ? (
 					<div className='delete' onClick={props.deleteMsg}>

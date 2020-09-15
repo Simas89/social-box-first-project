@@ -61,6 +61,14 @@
   transition: right 0.2s;
 }
 
+.msg-wrap .is-deleted {
+  border: 1px solid gray;
+  color: gray;
+  background: white;
+  padding: 5px;
+  font-size: 0.8rem;
+}
+
 .msg-wrap .opacity1 {
   opacity: 1;
   transition: opacity 0.1s;

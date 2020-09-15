@@ -13,7 +13,6 @@ import {
 	CHAT_WINDOW_STATE,
 	SET_CAN_SCROLL,
 	SET_IS_TYPING,
-	DELETE_MSG,
 } from "../types";
 
 let timeoutId = {};
