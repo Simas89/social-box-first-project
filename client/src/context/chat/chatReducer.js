@@ -8,6 +8,7 @@ import {
 	CHAT_WINDOW_STATE,
 	SET_CAN_SCROLL,
 	SET_IS_TYPING,
+	DELETE_MSG,
 } from "../types";
 
 export default (state, { type, payload }) => {
@@ -103,6 +104,13 @@ export default (state, { type, payload }) => {
 
 				return { ...state, targets: newTargets };
 			} else return state;
+		}
+
+		case DELETE_MSG: {
+			let newTargets = state.targets;
+			// console.log(newTargets[payload.targetIndex].msgData[payload.msgIndex]);
+			newTargets[payload.targetIndex].msgData.splice(payload.msgIndex, 1);
+			return { ...state, targets: newTargets };
 		}
 
 		default:

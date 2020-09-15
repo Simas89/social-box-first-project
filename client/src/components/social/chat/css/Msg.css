@@ -1,4 +1,5 @@
 .msg-wrap {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -16,6 +17,33 @@
   color: #2e2e2e;
   white-space: pre-line;
   transition: right 0.2s;
+}
+
+.msg-wrap .msg .delete {
+  width: 30px;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation-duration: 0.3s;
+  animation-name: fadein;
+}
+
+.msg-wrap .msg .delete:hover {
+  cursor: pointer;
+}
+
+.msg-wrap .msg .delete:hover .delete-icon {
+  color: #d42222;
+  transition: color 0.1s;
+}
+
+.msg-wrap .msg .delete .delete-icon {
+  color: #cacaca;
+  transition: color 0.1s;
 }
 
 .msg-wrap .other {
@@ -66,4 +94,16 @@
 .msg-wrap .no-del-stage {
   right: 0px;
   transition: right 0.2s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -2,6 +2,8 @@ import React from "react";
 import "./css/Msg.css";
 import { Twemoji } from "react-emoji-render";
 import useOutsideClick from "../../../hooks/useOutsideClick";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Msg = (props) => {
 	const [deleteStage, setDeleteStage] = React.useState(false);
@@ -49,6 +51,11 @@ const Msg = (props) => {
 				<span>
 					<Twemoji text={`${props.content}`} />
 				</span>
+				{props.own && deleteStage ? (
+					<div className='delete' onClick={props.deleteMsg}>
+						<FontAwesomeIcon className='delete-icon' icon={faTimesCircle} />
+					</div>
+				) : null}
 			</div>
 		</div>
 	);

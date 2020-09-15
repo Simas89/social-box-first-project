@@ -40,12 +40,7 @@ const Chat = (props) => {
 		} else {
 			updateIsTyping(false);
 		}
-		// eslint-disable-next-line
 	}, [contextChat.state.targets[props.index].input]);
-
-	React.useEffect(() => {
-		console.log(contextChat.state.targets[props.index].isTyping);
-	}, [contextChat.state.targets[props.index].isTyping]);
 
 	const updateIsTyping = (set) => {
 		contextChat.apollo.mutate({
@@ -104,6 +99,15 @@ const Chat = (props) => {
 
 		return result;
 	};
+	const deleteMsg = (msgIndex) => {
+		contextChat.apollo.mutate({
+			mutation: gql`mutation {
+				deleteMsg(index: "${msgIndex}", userName: "${
+				context.accountState.user
+			}", target: "${contextChat.state.targets[props.index].name}")
+			}`,
+		});
+	};
 
 	return (
 		<div
@@ -152,11 +156,12 @@ const Chat = (props) => {
 								(msg, index) => {
 									return (
 										<Msg
-											key={msg.id}
 											content={msg.content}
 											own={msg.user === context.accountState.user}
 											msgOpacity={msgOpacity}
 											isClose={isClose(index)}
+											key={msg.id}
+											deleteMsg={() => deleteMsg(index)}
 										/>
 									);
 								}

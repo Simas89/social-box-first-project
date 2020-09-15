@@ -13,6 +13,7 @@ import {
 	CHAT_WINDOW_STATE,
 	SET_CAN_SCROLL,
 	SET_IS_TYPING,
+	DELETE_MSG,
 } from "../types";
 
 let timeoutId = {};
@@ -129,8 +130,6 @@ const ChatState = (props) => {
 	//////////////////////////////////////////////////////////////////////////////
 	useSubscription(SUB_MESSAGES, {
 		onSubscriptionData: ({ subscriptionData: { data } }) => {
-			console.log(data);
-
 			const index = state.targets
 				.map((e) => e.name)
 				.indexOf(data.messages.target);
@@ -196,6 +195,13 @@ const ChatState = (props) => {
 			payload: { index: data.index, set: data.set },
 		});
 	};
+	const deleteMsg = (id, msgIndex, targetIndex) => {
+		console.log(id, msgIndex, targetIndex);
+		// dispatch({
+		// 	type: DELETE_MSG,
+		// 	payload: { msgIndex, targetIndex },
+		// });
+	};
 
 	//////////////////////////////////////////////////////
 	// console.log("ChatState:", state);
@@ -211,6 +217,7 @@ const ChatState = (props) => {
 				removeTarget,
 				setChatWindowState,
 				setCanScroll,
+				deleteMsg,
 			}}>
 			{props.children}
 		</chatContext.Provider>

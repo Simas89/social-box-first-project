@@ -21,6 +21,7 @@ const typeDefs = `
   type Mutation{
     postMessage(userName: String!,target: String!, content: String!): ID
     updateIsTyping(userName: String!,target: String!, set: Boolean!): ID
+    deleteMsg(index: String,userName: String, target: String): ID
 
   }
 	type Query{

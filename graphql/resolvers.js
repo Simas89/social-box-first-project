@@ -173,6 +173,25 @@ const rootValue = {
 				},
 			});
 		},
+		deleteMsg: (parent, args) => {
+			console.log(args);
+			updateUserOnline(args.userName);
+			const stringid1 = args.userName + args.target;
+			const stringid2 = args.target + args.userName;
+			Chat.findOne()
+				.or([{ stringid: stringid1 }, { stringid: stringid2 }])
+				.then((res) => {
+					res.messages[args.index].content = "DELETED_MSG";
+					res.save();
+
+					pubsub.publish(args.userName, {
+						messages: { target: args.target, msg: res.messages },
+					});
+					pubsub.publish(args.target, {
+						messages: { target: args.userName, msg: res.messages },
+					});
+				});
+		},
 	},
 	Query: {
 		messages: async (parent, args) => {

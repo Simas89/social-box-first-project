@@ -1,8 +1,9 @@
 .msg-wrap {
-	// position: relative;
+	position: relative;
 	// border: 1px solid red;
 	display: flex;
 	flex-direction: column;
+	// border: 1px solid gray;
 
 	.msg {
 		position: relative;
@@ -17,6 +18,31 @@
 		color: rgb(46, 46, 46);
 		white-space: pre-line;
 		transition: right 0.2s;
+		.delete {
+			// border: 1px solid red;
+			width: 30px;
+			position: absolute;
+			height: 100%;
+			top: 0;
+			right: -30px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			animation-duration: 0.3s;
+			animation-name: fadein;
+
+			&:hover {
+				cursor: pointer;
+				.delete-icon {
+					color: rgb(212, 34, 34);
+					transition: color 0.1s;
+				}
+			}
+			.delete-icon {
+				color: rgb(202, 202, 202);
+				transition: color 0.1s;
+			}
+		}
 	}
 	.other {
 		background-color: rgb(240, 240, 240);
@@ -36,6 +62,8 @@
 		align-self: flex-end;
 		transition: right 0.2s;
 	}
+
+	////////////////////////////////
 
 	.opacity1 {
 		opacity: 1;
@@ -64,5 +92,18 @@
 	.no-del-stage {
 		right: 0px;
 		transition: right 0.2s;
+	}
+}
+
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
 	}
 }
