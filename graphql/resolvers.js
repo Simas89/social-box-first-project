@@ -10,6 +10,7 @@ require("dotenv").config();
 import { PubSub } from "graphql-subscriptions";
 const pubsub = new PubSub();
 import { v4 as uuidv4 } from "uuid";
+import Chatntf from "../schemas/chatntf";
 // console.log(uuidv4().toString());
 
 const updateUserOnline = (userName) => {
@@ -153,14 +154,78 @@ const rootValue = {
 						chat.save();
 					}
 				});
-
-			// console.log(messagesChat);
 			pubsub.publish(args.userName, {
 				messages: { target: args.target, msg: messagesChat },
 			});
 			pubsub.publish(args.target, {
 				messages: { target: args.userName, msg: messagesChat },
 			});
+
+			////////////////////////////////////////////////////////////////////////////   for sender
+			await Chatntf.findOne({ userName: args.userName }).then(async (res) => {
+				let imgsmall;
+				await UserModel.findOne({ userName: args.target })
+					.select("imgsmall")
+					.then((res) => {
+						imgsmall = res.imgsmall;
+					});
+
+				if (!res) {
+					res = new Chatntf({ userName: args.userName, chats: [] });
+				}
+
+				const index = res.chats.findIndex(
+					(element) => element.user === args.target
+				);
+				if (index !== -1) {
+					res.chats.splice(index, 1);
+				}
+
+				res.chats.unshift({
+					user: args.target,
+					lastMsg: args.content,
+					imgsmall,
+					// seen: { type: Boolean, default: false },
+					date: Date.now(),
+				});
+
+				// console.log(res);
+				res.save();
+			});
+			/////////////////////////////////////////////////   for receiver
+			await Chatntf.findOne({ userName: args.target }).then(async (res) => {
+				let imgsmall;
+				await UserModel.findOne({ userName: args.userName })
+					.select("imgsmall")
+					.then((res) => {
+						imgsmall = res.imgsmall;
+					});
+
+				if (!res) {
+					res = new Chatntf({ userName: args.target, chats: [] });
+				}
+
+				const index = res.chats.findIndex(
+					(element) => element.user === args.userName
+				);
+				if (index !== -1) {
+					res.chats.splice(index, 1);
+				}
+
+				res.chats.unshift({
+					user: args.userName,
+					lastMsg: args.content,
+					imgsmall,
+					// seen: { type: Boolean, default: false },
+					date: Date.now(),
+				});
+
+				// console.log(res);
+				res.save();
+			});
+			console.log("done");
+
+			// console.log(messagesChat);
 
 			// return id;
 		},
@@ -194,6 +259,30 @@ const rootValue = {
 		},
 	},
 	Query: {
+		getChatsNtf: async (parent, args) => {
+			let chats = [];
+			await Chatntf.findOne({ userName: args.userName })
+				.populate({
+					path: "chats",
+					populate: { path: "imgsmall", model: "ProfileImgSmall" },
+				})
+				.then((res) => {
+					res.chats.forEach((element) => {
+						chats.push({
+							_id: element._id,
+							user: element.user,
+							lastMsg: element.lastMsg,
+							date: element.date,
+							imgsmall: {
+								contentType: element.imgsmall.contentType,
+								data: element.imgsmall.data.toString("base64"),
+							},
+						});
+					});
+				});
+
+			return chats;
+		},
 		messages: async (parent, args) => {
 			updateUserOnline(args.userName);
 			const stringid1 = args.userName + args.target;

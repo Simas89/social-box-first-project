@@ -24,8 +24,17 @@ const typeDefs = `
     deleteMsg(index: String,userName: String, target: String): ID
 
   }
+  type CHAT_NTF {
+    _id: String
+    user: String
+    lastMsg: String
+    date: String
+    imgsmall: IMG
+ 
+  }
 	type Query{
     messages(userName: String, target: String): MSG_PACK
+    getChatsNtf(userName: String): [CHAT_NTF]
 
     emailMe(guest: String, email: String, msg: String) : String
     addPost(token : String, textContent: String): String

@@ -13,6 +13,8 @@ import {
 	CHAT_WINDOW_STATE,
 	SET_CAN_SCROLL,
 	SET_IS_TYPING,
+	SET_NTF_OPEN,
+	SET_NTF_DATA,
 } from "../types";
 
 let timeoutId = {};
@@ -30,9 +32,11 @@ const ChatState = (props) => {
 			//  isTyping: false,
 			// },
 		],
+		isNtfOpen: true,
+		chatsNtf: [],
 	};
 	const [state, dispatch] = React.useReducer(chatReducer, initialState);
-	// console.log(state);
+	console.log(state);
 	const [isMobile, setIsMobile] = React.useState(
 		window.innerWidth >= 420 ? false : true
 	);
@@ -48,6 +52,28 @@ const ChatState = (props) => {
 			window.removeEventListener("resize", resizeEvent);
 		};
 	}, []);
+
+	const GET_CHATS_NTF = gql`
+		query {
+			getChatsNtf(userName: "${contextAcc.accountState.user}"){
+				_id
+				user
+				lastMsg
+				date
+				imgsmall{
+					contentType
+					data
+				}
+			}
+		}
+	`;
+	const [getChatsNtfQUE] = useLazyQuery(GET_CHATS_NTF, {
+		fetchPolicy: "network-only",
+		onCompleted: (data) => {
+			dispatch({ type: SET_NTF_DATA, payload: data.getChatsNtf });
+		},
+	});
+	/////////////////////////////////////////////////////
 
 	const GET_MESSAGES = gql`
 		query($target: String) {
@@ -194,12 +220,16 @@ const ChatState = (props) => {
 			payload: { index: data.index, set: data.set },
 		});
 	};
-	const deleteMsg = (id, msgIndex, targetIndex) => {
-		console.log(id, msgIndex, targetIndex);
-		// dispatch({
-		// 	type: DELETE_MSG,
-		// 	payload: { msgIndex, targetIndex },
-		// });
+
+	const setNtfOpen = (set) => {
+		if (set) {
+			console.log("Query time");
+			getChatsNtfQUE();
+		}
+		dispatch({
+			type: SET_NTF_OPEN,
+			payload: set,
+		});
 	};
 
 	//////////////////////////////////////////////////////
@@ -216,7 +246,8 @@ const ChatState = (props) => {
 				removeTarget,
 				setChatWindowState,
 				setCanScroll,
-				deleteMsg,
+
+				setNtfOpen,
 			}}>
 			{props.children}
 		</chatContext.Provider>

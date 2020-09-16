@@ -35,3 +35,5 @@ export const UPDATE_MESSAGES = "UPDATE_MESSAGES";
 export const CHAT_WINDOW_STATE = "CHAT_WINDOW_STATE";
 export const SET_CAN_SCROLL = "SET_CAN_SCROLL";
 export const SET_IS_TYPING = "SET_IS_TYPING";
+export const SET_NTF_OPEN = "SET_NTF_OPEN";
+export const SET_NTF_DATA = "SET_NTF_DATA";

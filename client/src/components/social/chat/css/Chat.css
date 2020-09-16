@@ -104,7 +104,6 @@
 }
 
 .chat-main .middle {
-  border: 2px solid red;
   flex-grow: 1;
   margin-right: 0px;
 }
@@ -115,7 +114,6 @@
 }
 
 .chat-main .middle .scroll-bar .middle-content {
-  border: 1px solid blue;
   display: flex;
   flex-direction: column;
   padding: 0 5px 0 5px;

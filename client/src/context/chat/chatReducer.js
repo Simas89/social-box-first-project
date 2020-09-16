@@ -8,7 +8,8 @@ import {
 	CHAT_WINDOW_STATE,
 	SET_CAN_SCROLL,
 	SET_IS_TYPING,
-	DELETE_MSG,
+	SET_NTF_OPEN,
+	SET_NTF_DATA,
 } from "../types";
 
 export default (state, { type, payload }) => {
@@ -104,6 +105,14 @@ export default (state, { type, payload }) => {
 
 				return { ...state, targets: newTargets };
 			} else return state;
+		}
+
+		case SET_NTF_OPEN: {
+			return { ...state, isNtfOpen: payload };
+		}
+
+		case SET_NTF_DATA: {
+			return { ...state, chatsNtf: payload };
 		}
 
 		default:

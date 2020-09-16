@@ -1,13 +1,16 @@
 import React from "react";
 import "./css/NtfNews.css";
 import socialContext from "../../../context/social/socialContext";
+import chatContext from "../../../context/chat/chatContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 const NtfNews = () => {
 	const contextSocial = React.useContext(socialContext);
+	const contextChat = React.useContext(chatContext);
 
 	const handleClick = () => {
+		contextChat.setNtfOpen(false);
 		if (contextSocial.isNotificationOpen) {
 			contextSocial.notificationBarOff();
 			contextSocial.notificationsPaginationSet(1);

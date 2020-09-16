@@ -1,31 +1,24 @@
 import React from "react";
 import "./css/MsgIcon.css";
+import chatContext from "../../../context/chat/chatContext";
 import socialContext from "../../../context/social/socialContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 const MsgIcon = () => {
+	const contextChat = React.useContext(chatContext);
 	const contextSocial = React.useContext(socialContext);
 
 	const handleClick = () => {
-		if (contextSocial.isNotificationOpen) {
-			contextSocial.notificationBarOff();
-			contextSocial.notificationsPaginationSet(1);
-		} else {
-			contextSocial.notificationsPull({ action: "REFRESH" });
-			contextSocial.notificationBarOn();
-		}
+		console.log(contextChat.state.isNtfOpen);
+		contextChat.setNtfOpen(!contextChat.state.isNtfOpen);
+		contextSocial.notificationBarOff();
 	};
-
-	// console.log(contextSocial);
 
 	return (
 		<div className='msg-icon' onClick={handleClick}>
-			<div
-				className={`${
-					contextSocial.notificationUnread ? "counter " : "counter"
-				}`}>
-				<div>0</div>
+			<div className='counter'>
+				<div>{contextChat.state.chatsNtf.length}</div>
 			</div>
 			<div className='ntf-news-icon'>
 				<FontAwesomeIcon icon={faEnvelope} style={{ fontSize: "22px" }} />

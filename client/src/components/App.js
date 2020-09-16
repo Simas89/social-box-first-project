@@ -14,6 +14,7 @@ import MsgIcon from "./social/notifications/MsgIcon";
 
 import NtfNews from "./social/notifications/NtfNews";
 import NtfPanel from "./social/notifications/NtfPanel";
+import Dropaz from "./social/notifications/Dropaz";
 import Wave from "../components/other/Wave";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -266,6 +267,7 @@ function App(props) {
 						<NtfNews />
 						<MsgIcon />
 						{contextSocial.isNotificationOpen && <NtfPanel />}
+						{contextChat.state.isNtfOpen && <Dropaz />}
 						{/* {contextSocial.isNotificationOpen && <NotificationsContentBlock />} */}
 
 						<Container {...props} />
