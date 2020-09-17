@@ -119,6 +119,9 @@ const rootValue = {
 		},
 	},
 	Mutation: {
+		delAllNotifications: (parent, args) => {
+			console.log("trig", args);
+		},
 		postMessage: async (parent, args) => {
 			updateUserOnline(args.userName);
 			const stringid1 = args.userName + args.target;
@@ -273,6 +276,7 @@ const rootValue = {
 							user: element.user,
 							lastMsg: element.lastMsg,
 							date: element.date,
+							seen: element.seen,
 							imgsmall: {
 								contentType: element.imgsmall.contentType,
 								data: element.imgsmall.data.toString("base64"),
@@ -280,6 +284,7 @@ const rootValue = {
 						});
 					});
 				});
+			// console.log(chats);
 
 			return chats;
 		},

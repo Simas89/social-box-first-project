@@ -27,6 +27,14 @@ const Dropaz = () => {
 		// console.log("scrollmax:", scrollmax);
 		// console.log("SUM - ", scrollmax - scrollRef.current.viewScrollTop);
 	};
+	const allDelete = () => {
+		console.log("ALL DELETE CHAT");
+		contextChat.delAllNotifications();
+	};
+
+	const allAsRead = () => {
+		console.log("ALL AS READ CHAT");
+	};
 	return (
 		<React.Fragment>
 			<div
@@ -34,7 +42,18 @@ const Dropaz = () => {
 				ref={bodyRef}
 				style={{ maxHeight: autoHeightMax }}>
 				<div className='top-sec'>
-					<span>Chats</span>
+					<span>Recent Messages</span>
+					{contextChat.state.chatsNtf.length ? (
+						<div className='actions-box'>
+							<span className='action-span' onClick={allAsRead}>
+								Mark all as read
+							</span>
+							<span className='dot-span'>•</span>
+							<span className='action-span' onClick={allDelete}>
+								Delete all
+							</span>
+						</div>
+					) : null}
 				</div>
 				<div className='middle'>
 					<Scrollbars
@@ -51,17 +70,22 @@ const Dropaz = () => {
 						autoHideDuration={200}
 						thumbMinSize={3}
 						universal={true}>
-						{contextChat.state.chatsNtf.map((element) => {
-							return (
-								<NtfItem2
-									key={element._id}
-									user={element.user}
-									lastMsg={element.lastMsg}
-									date={element.date}
-									imgsmall={element.imgsmall}
-								/>
-							);
-						})}
+						{contextChat.state.chatsNtf.length ? (
+							contextChat.state.chatsNtf.map((element) => {
+								return (
+									<NtfItem2
+										key={element._id}
+										user={element.user}
+										lastMsg={element.lastMsg}
+										date={element.date}
+										seen={element.seen}
+										imgsmall={element.imgsmall}
+									/>
+								);
+							})
+						) : (
+							<p className='empty'>Looks like nothing here..</p>
+						)}
 					</Scrollbars>
 				</div>
 				<div className='bottom'></div>

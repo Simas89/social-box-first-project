@@ -22,12 +22,14 @@ const typeDefs = `
     postMessage(userName: String!,target: String!, content: String!): ID
     updateIsTyping(userName: String!,target: String!, set: Boolean!): ID
     deleteMsg(index: String,userName: String, target: String): ID
+    delAllNotifications(userName: String): ID
 
   }
   type CHAT_NTF {
     _id: String
     user: String
     lastMsg: String
+    seen: Boolean
     date: String
     imgsmall: IMG
  

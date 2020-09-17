@@ -10,6 +10,7 @@ import {
 	SET_IS_TYPING,
 	SET_NTF_OPEN,
 	SET_NTF_DATA,
+	DEL_ALL_NOTIFICATIONS,
 } from "../types";
 
 export default (state, { type, payload }) => {
@@ -113,6 +114,10 @@ export default (state, { type, payload }) => {
 
 		case SET_NTF_DATA: {
 			return { ...state, chatsNtf: payload };
+		}
+
+		case DEL_ALL_NOTIFICATIONS: {
+			return { ...state, chatsNtf: [] };
 		}
 
 		default:

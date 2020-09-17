@@ -10,7 +10,7 @@ const Chatntf = new Schema({
 			user: { type: String },
 			lastMsg: { type: String },
 			imgsmall: { type: mongoose.Schema.ObjectId, ref: "ProfileImgSmall" },
-			// seen: { type: Boolean, default: false },
+			seen: { type: Boolean, default: false },
 			date: { type: Date, default: Date.now },
 		},
 	],

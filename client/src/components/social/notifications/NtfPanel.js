@@ -29,47 +29,49 @@ const NtfPanel = () => {
 	};
 	return (
 		<React.Fragment>
-			{contextSocial.notifications.length !== 0 && (
-				<div
-					className='ntf-panel'
-					ref={bodyRef}
-					style={{ maxHeight: autoHeightMax }}>
-					<div className='top-sec'>
-						<span>Recent Activity</span>
-						<div className='actions'>
-							<div className='dots'>•••</div>
+			<div
+				className='ntf-panel'
+				ref={bodyRef}
+				style={{ maxHeight: autoHeightMax }}>
+				<div className='top-sec'>
+					<span>Notifications</span>
+					{contextSocial.notifications.length ? (
+						<div className='actions-box'>
 							<span
-								className='seen'
+								className='action-span'
 								onClick={() =>
 									contextSocial.notificationsPull({ action: "SEEN_ALL" })
 								}>
-								seen all
+								Mark all as read
 							</span>
+							<span className='dot-span'>•</span>
 							<span
-								className='del'
+								className='action-span'
 								onClick={() =>
 									contextSocial.notificationsPull({ action: "DELETE_ALL" })
 								}>
-								delete all
+								Delete all
 							</span>
 						</div>
-					</div>
-					<div className='middle'>
-						<Scrollbars
-							className='scroll-bar'
-							// style={{ transition: "2.4s" }}
-							ref={scrollRef}
-							onScroll={testRef}
-							// onClick={() => console.log(myRef)}
-							autoHeight
-							autoHeightMin={0}
-							autoHeightMax={400}
-							autoHide
-							autoHideTimeout={2000}
-							autoHideDuration={200}
-							thumbMinSize={3}
-							universal={true}>
-							{contextSocial.notifications.map((item) => (
+					) : null}
+				</div>
+				<div className='middle'>
+					<Scrollbars
+						className='scroll-bar'
+						// style={{ transition: "2.4s" }}
+						ref={scrollRef}
+						onScroll={testRef}
+						// onClick={() => console.log(myRef)}
+						autoHeight
+						autoHeightMin={0}
+						autoHeightMax={400}
+						autoHide
+						autoHideTimeout={2000}
+						autoHideDuration={200}
+						thumbMinSize={3}
+						universal={true}>
+						{contextSocial.notifications.length ? (
+							contextSocial.notifications.map((item) => (
 								<NtfItem
 									key={item._id}
 									link={item.messageBody.link}
@@ -80,12 +82,14 @@ const NtfPanel = () => {
 									isSeen={item.isSeen}
 									id={item._id}
 								/>
-							))}
-						</Scrollbars>
-					</div>
-					<div className='bottom'></div>
+							))
+						) : (
+							<p className='empty'>Looks like nothing here..</p>
+						)}
+					</Scrollbars>
 				</div>
-			)}
+				<div className='bottom'></div>
+			</div>
 		</React.Fragment>
 	);
 };

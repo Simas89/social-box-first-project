@@ -124,13 +124,13 @@ const NtfItem = (props) => {
 	};
 
 	return (
-		<div className={`ntf-item ${!props.isSeen && "unseen"}`} onClick={seenOne}>
+		<div className={`ntf-item ${!props.isSeen && "unseen"}`}>
 			<img
 				alt=''
 				src={`data:${props.imgMini.mimetype};base64,${props.imgMini.data}`}
 			/>
 
-			<div className='middle'>
+			<div className='middle' onClick={seenOne}>
 				<div className='main-text'>{ntfContent()}</div>
 				<div className='under'>
 					<p className='date'>{moment(props.timestamp).fromNow()}</p>

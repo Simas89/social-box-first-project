@@ -80,7 +80,7 @@ const SocialState = (props) => {
 					type: NOTIFICATIONS_UPDATE,
 					payload: data,
 				});
-				if (data.length === 0) notificationBarOff();
+				// if (data.length === 0) notificationBarOff();
 			})
 			.catch((err) => {
 				//ignoring error here

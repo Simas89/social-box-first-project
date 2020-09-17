@@ -15,6 +15,7 @@ import {
 	SET_IS_TYPING,
 	SET_NTF_OPEN,
 	SET_NTF_DATA,
+	DEL_ALL_NOTIFICATIONS,
 } from "../types";
 
 let timeoutId = {};
@@ -60,6 +61,7 @@ const ChatState = (props) => {
 				user
 				lastMsg
 				date
+				seen
 				imgsmall{
 					contentType
 					data
@@ -232,6 +234,19 @@ const ChatState = (props) => {
 		});
 	};
 
+	const delAllNotifications = () => {
+		props.apollo.mutate({
+			mutation: gql`
+				mutation {
+					delAllNotifications(userName: "${contextAcc.accountState.user}")
+				}
+			`,
+		});
+		dispatch({
+			type: DEL_ALL_NOTIFICATIONS,
+		});
+	};
+
 	//////////////////////////////////////////////////////
 	// console.log("ChatState:", state);
 
@@ -248,6 +263,7 @@ const ChatState = (props) => {
 				setCanScroll,
 
 				setNtfOpen,
+				delAllNotifications,
 			}}>
 			{props.children}
 		</chatContext.Provider>

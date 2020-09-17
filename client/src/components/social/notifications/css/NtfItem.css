@@ -13,10 +13,12 @@
 }
 
 .ntf-item:hover .last .dot {
+  display: block;
   opacity: 0.5;
 }
 
 .ntf-item:hover .last .delete-icon {
+  display: block;
   opacity: 0.5;
 }
 
@@ -32,6 +34,16 @@
 
 .ntf-item .middle .main-text {
   margin-left: 10px;
+}
+
+.ntf-item .middle .main-text .ntf2-user-span {
+  font-weight: 500;
+  color: #333333;
+}
+
+.ntf-item .middle .main-text .ntf2-user-msgtext {
+  margin-left: 5px;
+  font-size: 1rem;
 }
 
 .ntf-item .middle .under {
@@ -66,6 +78,7 @@
   right: 5px;
   color: #888888;
   opacity: 0;
+  display: none;
   bottom: 30px;
 }
 
@@ -76,6 +89,7 @@
 .ntf-item .last .delete-icon {
   z-index: 9;
   opacity: 0;
+  display: none;
   position: absolute;
   color: #888888;
   right: 5px;

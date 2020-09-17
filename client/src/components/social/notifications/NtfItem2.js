@@ -36,24 +36,24 @@ const NtfItem = (props) => {
 	};
 
 	return (
-		<div className={`ntf-item ${!props.isSeen && "unseen"}`} onClick={trigMain}>
+		<div className={`ntf-item ${!props.seen && "unseen"}`}>
 			<img
 				alt=''
 				src={`data:${props.imgsmall.contentType};base64,${props.imgsmall.data}`}
 			/>
 
-			<div className='middle'>
+			<div className='middle' onClick={trigMain}>
 				<div className='main-text'>
-					<span to={`/app/users/${props.user}`}>{props.user}</span>
+					<span className='ntf2-user-span'>{props.user}:</span>
 
-					{<Twemoji text={props.lastMsg} />}
+					{<Twemoji className='ntf2-user-msgtext' text={props.lastMsg} />}
 				</div>
 				<div className='under'>
 					<p className='date'>{moment(parseInt(props.date)).fromNow()}</p>
 				</div>
 			</div>
 			<div className='last'>
-				{!props.isSeen ? <i className='fas fa-exclamation '></i> : null}
+				{!props.seen ? <i className='fas fa-exclamation '></i> : null}
 				<div className='dot' ref={seenRef} onClick={trigSeen}>
 					•
 				</div>

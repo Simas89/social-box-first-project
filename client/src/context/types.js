@@ -37,3 +37,4 @@ export const SET_CAN_SCROLL = "SET_CAN_SCROLL";
 export const SET_IS_TYPING = "SET_IS_TYPING";
 export const SET_NTF_OPEN = "SET_NTF_OPEN";
 export const SET_NTF_DATA = "SET_NTF_DATA";
+export const DEL_ALL_NOTIFICATIONS = "DEL_ALL_NOTIFICATIONS";
