@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import socialContext from "../../../context/social/socialContext";
 import postContext from "../../../context/post/postContext";
 import myContext from "../../../context/account/myContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 import graphqlFetch from "../../../functions/graphqlFetch";
 import gqlGetPostsQuery from "../../../functions/gqlGetPostsQuery";
@@ -105,6 +107,7 @@ const NtfItem = (props) => {
 	};
 
 	const delRef = React.useRef(null);
+	const seenRef = React.useRef(null);
 
 	const seenOne = (e) => {
 		if (e.target !== delRef.current) {
@@ -121,10 +124,7 @@ const NtfItem = (props) => {
 	};
 
 	return (
-		<div className='ntf-item' onClick={seenOne}>
-			<div className='ntf-grad'>
-				<div className='ntf-grad-line'></div>
-			</div>
+		<div className={`ntf-item ${!props.isSeen && "unseen"}`} onClick={seenOne}>
 			<img
 				alt=''
 				src={`data:${props.imgMini.mimetype};base64,${props.imgMini.data}`}
@@ -138,9 +138,13 @@ const NtfItem = (props) => {
 			</div>
 			<div className='last'>
 				{!props.isSeen ? <i className='fas fa-exclamation'></i> : null}
-				<p ref={delRef} className='delete' onClick={deleteOne}>
-					delete
-				</p>
+				<div className='dot' ref={seenRef} onClick={seenOne}>
+					•
+				</div>
+				<i
+					className='fas fa-times-circle delete-icon'
+					ref={delRef}
+					onClick={deleteOne}></i>
 			</div>
 		</div>
 	);

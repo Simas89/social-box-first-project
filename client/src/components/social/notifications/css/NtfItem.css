@@ -1,32 +1,23 @@
 .ntf-item {
   position: relative;
   display: grid;
-  grid-template-columns: 64px auto 40px;
-  margin: 3px 3px;
+  grid-template-columns: 64px auto 35px;
   min-height: 50px;
-  background-color: white;
+  overflow: hidden;
   transition: background-color 0.2s;
 }
 
-.ntf-item:hover .ntf-grad .ntf-grad-line {
-  width: 90%;
+.ntf-item:hover {
+  background: linear-gradient(90deg, #d7e4e4 10%, #dcfafa 100%);
+  cursor: pointer;
 }
 
-.ntf-item .ntf-grad {
-  position: absolute;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  bottom: -1px;
+.ntf-item:hover .last .dot {
+  opacity: 0.5;
 }
 
-.ntf-item .ntf-grad .ntf-grad-line {
-  width: 0%;
-  height: 1px;
-  transition: 0.2s;
-  margin: 0 auto;
-  background: linear-gradient(90deg, rgba(0, 181, 136, 0) 0%, rgba(56, 181, 87, 0.6) 20%, rgba(56, 181, 87, 0.6) 80%, rgba(0, 255, 218, 0) 100%);
+.ntf-item:hover .last .delete-icon {
+  opacity: 0.5;
 }
 
 .ntf-item img {
@@ -54,37 +45,49 @@
 }
 
 .ntf-item .last {
+  width: 30px;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
-.ntf-item .last i {
-  font-size: 24px;
+.ntf-item .last .fa-exclamation {
+  font-size: 18px;
   display: block;
-  margin-bottom: 10px;
+  margin-left: 3px;
+  color: gray;
+  background: linear-gradient(300deg, #ff0909 0%, #f73b3b 59%, #fac564 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.ntf-item .last .delete {
-  color: darkred;
+.ntf-item .last .dot {
   position: absolute;
-  bottom: 0;
-  display: block;
-  font-size: 0.8rem;
+  font-size: 3rem;
+  right: 5px;
+  color: #888888;
   opacity: 0;
-  transition: 0.1s;
+  bottom: 30px;
 }
 
-.ntf-item .last .delete:hover {
-  cursor: pointer;
-  text-decoration: underline;
-  transition: 0.1s;
+.ntf-item .last .dot:hover {
+  opacity: 0.8;
 }
 
-.ntf-item .last:hover .delete {
+.ntf-item .last .delete-icon {
+  z-index: 9;
+  opacity: 0;
+  position: absolute;
+  color: #888888;
+  right: 5px;
+  bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.ntf-item .last .delete-icon:hover {
   opacity: 0.8;
 }
 
 .unseen {
   background-color: #cbe6f7;
+  background: linear-gradient(90deg, #dfe6e6 10%, #e8ffff 100%);
 }

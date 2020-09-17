@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/NtfPanel.css";
 import { Scrollbars } from "react-custom-scrollbars";
-import NtfItem from "./Dropaz";
+import NtfItem2 from "./NtfItem2";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 import chatContext from "../../../context/chat/chatContext";
 
@@ -53,9 +53,13 @@ const Dropaz = () => {
 						universal={true}>
 						{contextChat.state.chatsNtf.map((element) => {
 							return (
-								<p key={element._id}>
-									{element.user} : {element.lastMsg}
-								</p>
+								<NtfItem2
+									key={element._id}
+									user={element.user}
+									lastMsg={element.lastMsg}
+									date={element.date}
+									imgsmall={element.imgsmall}
+								/>
 							);
 						})}
 					</Scrollbars>

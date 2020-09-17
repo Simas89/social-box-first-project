@@ -76,7 +76,7 @@
 .ntf-panel .middle .scroll-bar > div:nth-child(1) {
 	overflow-y: auto !important;
 	overflow-x: hidden !important;
-	padding-bottom: 20px;
+	/* padding-bottom: 20px; */
 	position: relative;
 }
 

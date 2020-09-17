@@ -3,40 +3,32 @@
 	// user-select: none;
 	position: relative;
 	display: grid;
-	grid-template-columns: 64px auto 40px;
-	margin: 3px 3px;
+	grid-template-columns: 64px auto 35px;
+	// margin: 3px 3px;
 	min-height: 50px;
-	background-color: white;
+	overflow: hidden;
+	// background: linear-gradient(
+	// 	90deg,
+	// 	rgb(223, 230, 230) 10%,
+	// 	rgb(232, 255, 255) 100%
+	// );
 	transition: background-color 0.2s;
 	// z-index: 3;
-	&:hover .ntf-grad .ntf-grad-line {
-		width: 90%;
+	&:hover {
+		background: linear-gradient(
+			90deg,
+			rgb(215, 228, 228) 10%,
+			rgb(220, 250, 250) 100%
+		);
+		cursor: pointer;
+	}
+	&:hover .last .dot {
+		opacity: 0.5;
+	}
+	&:hover .last .delete-icon {
+		opacity: 0.5;
 	}
 
-	.ntf-grad {
-		// z-index: 1;
-		position: absolute;
-
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: flex-end;
-		bottom: -1px;
-
-		.ntf-grad-line {
-			width: 0%;
-			height: 1px;
-			transition: 0.2s;
-			margin: 0 auto;
-			background: linear-gradient(
-				90deg,
-				rgba(0, 181, 136, 0) 0%,
-				rgba(56, 181, 87, 0.6) 20%,
-				rgba(56, 181, 87, 0.6) 80%,
-				rgba(0, 255, 218, 0) 100%
-			);
-		}
-	}
 	img {
 		height: 50px;
 	}
@@ -59,32 +51,48 @@
 		}
 	}
 	.last {
+		width: 30px;
 		// border: 1px solid red;
 		display: flex;
 		align-items: center;
-		justify-content: center;
-		i {
-			font-size: 24px;
+		.fa-exclamation {
+			font-size: 18px;
 			display: block;
-			margin-bottom: 10px;
+			margin-left: 3px;
+			color: gray;
+			background: linear-gradient(
+				300deg,
+				rgb(255, 9, 9) 0%,
+				rgb(247, 59, 59) 59%,
+				rgb(250, 197, 100) 100%
+			);
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
 		}
-		.delete {
-			color: darkred;
+		.dot {
+			// border: 1px solid black;
 			position: absolute;
-			bottom: 0;
-			display: block;
-			font-size: 0.8rem;
+			font-size: 3rem;
+			right: 5px;
+			color: rgb(136, 136, 136);
 			opacity: 0;
-			transition: 0.1s;
+			bottom: 30px;
 			&:hover {
-				cursor: pointer;
-				text-decoration: underline;
-				// opacity: 1;
-				transition: 0.1s;
+				opacity: 0.8;
 			}
 		}
-		&:hover .delete {
-			opacity: 0.8;
+		.delete-icon {
+			z-index: 9;
+			// border: 1px solid black;
+			opacity: 0;
+			position: absolute;
+			color: rgb(136, 136, 136);
+			right: 5px;
+			bottom: 10px;
+			font-size: 0.9rem;
+			&:hover {
+				opacity: 0.8;
+			}
 		}
 	}
 	// &:hover {
@@ -95,4 +103,9 @@
 
 .unseen {
 	background-color: rgb(203, 230, 247);
+	background: linear-gradient(
+		90deg,
+		rgb(223, 230, 230) 10%,
+		rgb(232, 255, 255) 100%
+	);
 }
