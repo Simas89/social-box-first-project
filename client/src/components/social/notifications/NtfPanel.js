@@ -19,7 +19,9 @@ const NtfPanel = () => {
 
 	useOutsideClick(bodyRef, () => {
 		contextSocial.notificationBarOff();
+		console.log("Click outside Ntf");
 	});
+	console.log(bodyRef);
 
 	const testRef = () => {
 		// const scrollmax = 53 * contextSocial.notifications.length - 448;

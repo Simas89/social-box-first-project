@@ -11,6 +11,8 @@ import {
 	SET_NTF_OPEN,
 	SET_NTF_DATA,
 	DEL_ALL_NOTIFICATIONS,
+	DEL_ONE_NOTIFICATION,
+	MARK_ALL_NOTIFICATIONS,
 } from "../types";
 
 export default (state, { type, payload }) => {
@@ -118,6 +120,22 @@ export default (state, { type, payload }) => {
 
 		case DEL_ALL_NOTIFICATIONS: {
 			return { ...state, chatsNtf: [] };
+		}
+
+		case DEL_ONE_NOTIFICATION: {
+			const index = state.chatsNtf.map((e) => e._id).indexOf(payload);
+			let newChatsNtf = [...state.chatsNtf];
+			newChatsNtf.splice(index, 1);
+
+			return { ...state, chatsNtf: newChatsNtf };
+		}
+
+		case MARK_ALL_NOTIFICATIONS: {
+			let newChatsNtf = state.chatsNtf.map((element) => {
+				return { ...element, seen: true };
+			});
+
+			return { ...state, chatsNtf: newChatsNtf };
 		}
 
 		default:

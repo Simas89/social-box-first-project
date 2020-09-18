@@ -7,7 +7,7 @@ import chatContext from "../../../context/chat/chatContext";
 
 const Dropaz = () => {
 	const contextChat = React.useContext(chatContext);
-	const bodyRef = React.useRef(null);
+	const myRef = React.useRef(null);
 	const scrollRef = React.useRef(null);
 	const [autoHeightMax, setAutoHeightMax] = React.useState(0);
 
@@ -17,7 +17,7 @@ const Dropaz = () => {
 
 	React.useEffect(() => animatingHeightMax(), []);
 
-	useOutsideClick(bodyRef, () => {
+	useOutsideClick(myRef, () => {
 		contextChat.setNtfOpen(false);
 	});
 
@@ -28,18 +28,17 @@ const Dropaz = () => {
 		// console.log("SUM - ", scrollmax - scrollRef.current.viewScrollTop);
 	};
 	const allDelete = () => {
-		console.log("ALL DELETE CHAT");
 		contextChat.delAllNotifications();
 	};
 
 	const allAsRead = () => {
-		console.log("ALL AS READ CHAT");
+		contextChat.markAllNotifications();
 	};
 	return (
 		<React.Fragment>
 			<div
 				className='ntf-panel'
-				ref={bodyRef}
+				ref={myRef}
 				style={{ maxHeight: autoHeightMax }}>
 				<div className='top-sec'>
 					<span>Recent Messages</span>
@@ -75,6 +74,7 @@ const Dropaz = () => {
 								return (
 									<NtfItem2
 										key={element._id}
+										id={element._id}
 										user={element.user}
 										lastMsg={element.lastMsg}
 										date={element.date}

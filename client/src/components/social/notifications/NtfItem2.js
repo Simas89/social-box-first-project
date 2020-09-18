@@ -26,7 +26,7 @@ const NtfItem = (props) => {
 		console.log("trigSeen");
 	};
 	const trigDel = (e) => {
-		console.log("trigDel");
+		contextChat.delOneNotification(props.id);
 	};
 	const trigMain = (e) => {
 		if (e.target !== seenRef.current && e.target !== delRef.current) {

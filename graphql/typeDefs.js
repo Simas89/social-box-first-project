@@ -23,6 +23,8 @@ const typeDefs = `
     updateIsTyping(userName: String!,target: String!, set: Boolean!): ID
     deleteMsg(index: String,userName: String, target: String): ID
     delAllNotifications(userName: String): ID
+    delOneNotification(userName: String, id: String): ID
+    markAllNotifications(userName: String): ID
 
   }
   type CHAT_NTF {

@@ -119,8 +119,25 @@ const rootValue = {
 		},
 	},
 	Mutation: {
+		markAllNotifications: (parent, args) => {
+			Chatntf.findOne({ userName: args.userName }).then((res) => {
+				res.chats.forEach((element) => (element.seen = true));
+				res.save();
+			});
+		},
 		delAllNotifications: (parent, args) => {
-			console.log("trig", args);
+			Chatntf.findOneAndUpdate(
+				{ userName: args.userName },
+				{ chats: [] }
+			).then(() => {});
+		},
+		delOneNotification: (parent, args) => {
+			Chatntf.findOne({ userName: args.userName }).then((res) => {
+				const index = res.chats.map((element) => element._id).indexOf(args.id);
+				res.chats.splice(index, 1);
+				res.save();
+			});
+			return null;
 		},
 		postMessage: async (parent, args) => {
 			updateUserOnline(args.userName);

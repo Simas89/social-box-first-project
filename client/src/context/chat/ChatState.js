@@ -16,6 +16,8 @@ import {
 	SET_NTF_OPEN,
 	SET_NTF_DATA,
 	DEL_ALL_NOTIFICATIONS,
+	DEL_ONE_NOTIFICATION,
+	MARK_ALL_NOTIFICATIONS,
 } from "../types";
 
 let timeoutId = {};
@@ -33,7 +35,7 @@ const ChatState = (props) => {
 			//  isTyping: false,
 			// },
 		],
-		isNtfOpen: true,
+		isNtfOpen: false,
 		chatsNtf: [],
 	};
 	const [state, dispatch] = React.useReducer(chatReducer, initialState);
@@ -247,6 +249,37 @@ const ChatState = (props) => {
 		});
 	};
 
+	const delOneNotification = (id) => {
+		props.apollo.mutate({
+			mutation: gql`
+				mutation {
+					delOneNotification(userName: "${contextAcc.accountState.user}", id: "${id}")
+				}
+			`,
+		});
+
+		setTimeout(() => {
+			dispatch({
+				type: DEL_ONE_NOTIFICATION,
+				payload: id,
+			});
+		}, 1);
+
+		// setNtfOpen(true);
+	};
+	const markAllNotifications = () => {
+		props.apollo.mutate({
+			mutation: gql`
+				mutation {
+					markAllNotifications(userName: "${contextAcc.accountState.user}")
+				}
+			`,
+		});
+		dispatch({
+			type: MARK_ALL_NOTIFICATIONS,
+		});
+	};
+
 	//////////////////////////////////////////////////////
 	// console.log("ChatState:", state);
 
@@ -264,6 +297,8 @@ const ChatState = (props) => {
 
 				setNtfOpen,
 				delAllNotifications,
+				delOneNotification,
+				markAllNotifications,
 			}}>
 			{props.children}
 		</chatContext.Provider>

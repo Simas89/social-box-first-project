@@ -120,9 +120,9 @@ const Chat = (props) => {
 			<div className='top'>
 				<span
 					className='target-name'
-					onClick={() => history.push(`/app/users/${props.userName}`)}>{`${
-					props.userName
-				} ${contextChat.state.targets[props.index].msgData.length}`}</span>
+					onClick={() =>
+						history.push(`/app/users/${props.userName}`)
+					}>{`${props.userName}`}</span>
 				<div
 					className='minimize'
 					onClick={() =>
@@ -157,28 +157,25 @@ const Chat = (props) => {
 					autoHideDuration={200}
 					thumbMinSize={3}
 					universal={true}>
-					<div className='middle-content'>
-						{contextChat.state.targets.length &&
-							contextChat.state.targets[props.index].msgData.map(
-								(msg, index) => {
-									return (
-										<Msg
-											content={msg.content}
-											own={msg.user === context.accountState.user}
-											msgOpacity={msgOpacity}
-											isClose={isClose(index)}
-											key={msg.id}
-											deleteMsg={() => deleteMsg(index)}
-											isDeleted={msg.content === "DELETED_MSG" && true}
-										/>
-									);
-								}
-							)}
-						<div className='typing'>
-							{contextChat.state.targets[props.index].isTyping ? (
-								<span>typing...</span>
-							) : null}
-						</div>
+					{/* <div className='middle-content'> */}
+					{contextChat.state.targets.length &&
+						contextChat.state.targets[props.index].msgData.map((msg, index) => {
+							return (
+								<Msg
+									content={msg.content}
+									own={msg.user === context.accountState.user}
+									msgOpacity={msgOpacity}
+									isClose={isClose(index)}
+									key={msg.id}
+									deleteMsg={() => deleteMsg(index)}
+									isDeleted={msg.content === "DELETED_MSG" && true}
+								/>
+							);
+						})}
+					<div className='typing'>
+						{contextChat.state.targets[props.index].isTyping ? (
+							<span>typing...</span>
+						) : null}
 					</div>
 				</Scrollbars>
 			</div>
