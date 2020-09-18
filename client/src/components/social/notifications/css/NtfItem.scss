@@ -15,11 +15,11 @@
 	transition: background-color 0.2s;
 	// z-index: 3;
 	&:hover {
-		background: linear-gradient(
-			90deg,
-			rgb(215, 228, 228) 10%,
-			rgb(220, 250, 250) 100%
-		);
+		// background: linear-gradient(
+		// 	90deg,
+		// 	rgb(215, 228, 228) 10%,
+		// 	rgb(220, 250, 250) 100%
+		// );
 		cursor: pointer;
 	}
 	&:hover .last .dot {
@@ -114,10 +114,10 @@
 }
 
 .unseen {
-	background-color: rgb(203, 230, 247);
-	background: linear-gradient(
-		90deg,
-		rgb(223, 230, 230) 10%,
-		rgb(232, 255, 255) 100%
-	);
+	// background-color: rgb(203, 230, 247);
+	// background: linear-gradient(
+	// 	90deg,
+	// 	rgb(223, 230, 230) 10%,
+	// 	rgb(232, 255, 255) 100%
+	// );
 }

@@ -8,7 +8,6 @@
 }
 
 .ntf-item:hover {
-  background: linear-gradient(90deg, #d7e4e4 10%, #dcfafa 100%);
   cursor: pointer;
 }
 
@@ -96,9 +95,4 @@
 
 .ntf-item .last .delete-icon:hover {
   opacity: 0.8;
-}
-
-.unseen {
-  background-color: #cbe6f7;
-  background: linear-gradient(90deg, #dfe6e6 10%, #e8ffff 100%);
 }
