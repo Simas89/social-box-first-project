@@ -2,7 +2,12 @@ const typeDefs = `
   type Subscription {
     messages(userName: String): MSG_PACK
     isTyping(userName: String): isTypingPack
+    ntfs(userName: String): ntfs_pack
     
+  }
+  type ntfs_pack{
+    new: Int
+    old: Int
   }
   type isTypingPack{
     set: Boolean
@@ -25,6 +30,7 @@ const typeDefs = `
     delAllNotifications(userName: String): ID
     delOneNotification(userName: String, id: String): ID
     markAllNotifications(userName: String): ID
+    markOneNotification(userName: String,target: String): ID
 
   }
   type CHAT_NTF {

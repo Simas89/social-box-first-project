@@ -116,7 +116,12 @@ const Chat = (props) => {
 			className={`chat-main ${
 				!contextChat.state.targets[props.index].isWindowOpen &&
 				"chat-main-min chat-main-min-mob"
-			} ${contextChat.isMobile && "mobile"}`}>
+			} ${contextChat.isMobile && "mobile"}`}
+			onClick={() =>
+				contextChat.markOneNotification(
+					contextChat.state.targets[props.index].name
+				)
+			}>
 			<div className='top'>
 				<span
 					className='target-name'

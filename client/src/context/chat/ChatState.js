@@ -18,6 +18,8 @@ import {
 	DEL_ALL_NOTIFICATIONS,
 	DEL_ONE_NOTIFICATION,
 	MARK_ALL_NOTIFICATIONS,
+	MARK_ONE_NOTIFICATION,
+	SET_NTFS,
 } from "../types";
 
 let timeoutId = {};
@@ -36,10 +38,27 @@ const ChatState = (props) => {
 			// },
 		],
 		isNtfOpen: false,
-		chatsNtf: [],
+		chatsNtf: [
+			// {
+			// 	date: "1600449495790",
+			// 	imgsmall: {
+			// 		contentType: "image/png",
+			// 		data: "ygfhghgfjhg",
+			// 	},
+			// 	lastMsg: "gggg",
+			// 	seen: true,
+			// 	user: "Aidas",
+			// 	_id: "5f64ebd7cb4eb331443b1038",
+			// },
+		],
+		ntfs: {
+			new: 0,
+			old: 0,
+		},
 	};
 	const [state, dispatch] = React.useReducer(chatReducer, initialState);
 	console.log(state);
+
 	const [isMobile, setIsMobile] = React.useState(
 		window.innerWidth >= 420 ? false : true
 	);
@@ -108,22 +127,25 @@ const ChatState = (props) => {
 		},
 	});
 
-	// console.log(getMessagesQUEdata.data);
-	const SUB_MESSAGES = gql`
+	/////////////////////////////////////////////////////////
+	const SUB_NTFS = gql`
 	subscription {
-		messages(userName: "${contextAcc.accountState.user}") {
-			target
-			msg
-			{
-				id
-				content
-				user
-				date
-			}
+		ntfs(userName: "${contextAcc.accountState.user}") {
+			new
+			old
 		}
 	}
 `;
-
+	useSubscription(SUB_NTFS, {
+		onSubscriptionData: ({ subscriptionData: { data } }) => {
+			console.log("SUB_NTFS", data);
+			dispatch({
+				type: SET_NTFS,
+				payload: data,
+			});
+		},
+	});
+	/////////////////////////////////////////////////////////
 	const SUB_ISTYPING = gql`
 		subscription {
 			isTyping(userName: "${contextAcc.accountState.user}") {
@@ -155,8 +177,21 @@ const ChatState = (props) => {
 			}
 		},
 	});
-
-	//////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////
+	const SUB_MESSAGES = gql`
+	subscription {
+		messages(userName: "${contextAcc.accountState.user}") {
+			target
+			msg
+			{
+				id
+				content
+				user
+				date
+			}
+		}
+	}
+`;
 	useSubscription(SUB_MESSAGES, {
 		onSubscriptionData: ({ subscriptionData: { data } }) => {
 			const index = state.targets
@@ -224,10 +259,8 @@ const ChatState = (props) => {
 			payload: { index: data.index, set: data.set },
 		});
 	};
-
 	const setNtfOpen = (set) => {
 		if (set) {
-			console.log("Query time");
 			getChatsNtfQUE();
 		}
 		dispatch({
@@ -235,7 +268,6 @@ const ChatState = (props) => {
 			payload: set,
 		});
 	};
-
 	const delAllNotifications = () => {
 		props.apollo.mutate({
 			mutation: gql`
@@ -280,6 +312,21 @@ const ChatState = (props) => {
 		});
 	};
 
+	const markOneNotification = (target) => {
+		props.apollo.mutate({
+			mutation: gql`
+				mutation {
+					markOneNotification(userName: "${contextAcc.accountState.user}",target: "${target}")
+				}
+			`,
+		});
+		// console.log(target);
+		dispatch({
+			type: MARK_ONE_NOTIFICATION,
+			payload: target,
+		});
+	};
+
 	//////////////////////////////////////////////////////
 	// console.log("ChatState:", state);
 
@@ -299,6 +346,7 @@ const ChatState = (props) => {
 				delAllNotifications,
 				delOneNotification,
 				markAllNotifications,
+				markOneNotification,
 			}}>
 			{props.children}
 		</chatContext.Provider>

@@ -10,27 +10,13 @@ const NtfItem = (props) => {
 	const delRef = React.useRef(null);
 	const seenRef = React.useRef(null);
 
-	const seenOne = (e) => {
-		if (e.target !== delRef.current) {
-			console.log("SEEN");
-		}
-	};
-
-	const deleteOne = (e) => {
-		if (e.target === delRef.current) {
-			console.log("DELETE");
-		}
-	};
-
-	const trigSeen = (e) => {
-		console.log("trigSeen");
-	};
 	const trigDel = (e) => {
 		contextChat.delOneNotification(props.id);
 	};
 	const trigMain = (e) => {
 		if (e.target !== seenRef.current && e.target !== delRef.current) {
 			contextChat.addTarget(props.user);
+			contextChat.markOneNotification(props.user);
 			contextChat.setNtfOpen(false);
 		}
 	};
@@ -54,9 +40,7 @@ const NtfItem = (props) => {
 			</div>
 			<div className='last'>
 				{!props.seen ? <i className='fas fa-exclamation '></i> : null}
-				<div className='dot' ref={seenRef} onClick={trigSeen}>
-					•
-				</div>
+
 				<i
 					className='fas fa-times-circle delete-icon'
 					ref={delRef}

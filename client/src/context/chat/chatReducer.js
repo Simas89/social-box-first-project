@@ -13,6 +13,8 @@ import {
 	DEL_ALL_NOTIFICATIONS,
 	DEL_ONE_NOTIFICATION,
 	MARK_ALL_NOTIFICATIONS,
+	MARK_ONE_NOTIFICATION,
+	SET_NTFS,
 } from "../types";
 
 export default (state, { type, payload }) => {
@@ -136,6 +138,19 @@ export default (state, { type, payload }) => {
 			});
 
 			return { ...state, chatsNtf: newChatsNtf };
+		}
+
+		case MARK_ONE_NOTIFICATION: {
+			const index = state.chatsNtf.map((e) => e.user).indexOf(payload);
+			let newChatsNtf = [...state.chatsNtf];
+			newChatsNtf[index] = { ...newChatsNtf[index], seen: true };
+
+			return { ...state, chatsNtf: newChatsNtf };
+		}
+
+		case SET_NTFS: {
+			console.log(payload);
+			return { ...state, ntfs: payload.ntfs };
 		}
 
 		default:

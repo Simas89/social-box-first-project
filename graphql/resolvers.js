@@ -103,8 +103,31 @@ const approvesConverter = (post) => {
 	return approves;
 };
 
+const ntfUpdater = (user) => {
+	Chatntf.findOne({ userName: user }).then((res) => {
+		if (res) {
+			let neww = 0;
+			res.chats.forEach((element) => element.seen === false && neww++);
+			// console.log(neww);
+			pubsub.publish(user + "ntfs", {
+				ntfs: { new: neww, old: res.chats.length },
+			});
+		}
+	});
+};
+
 const rootValue = {
 	Subscription: {
+		ntfs: {
+			subscribe: (parent, args) => {
+				console.log("sub-ntfs", args);
+				setTimeout(() => {
+					ntfUpdater(args.userName);
+				}, 1000);
+
+				return pubsub.asyncIterator(args.userName + "ntfs");
+			},
+		},
 		messages: {
 			subscribe: (parent, args) => {
 				console.log("sub-messages:", args);
@@ -119,23 +142,36 @@ const rootValue = {
 		},
 	},
 	Mutation: {
+		markOneNotification: (parent, args) => {
+			Chatntf.findOne({ userName: args.userName }).then(async (res) => {
+				const index = res.chats.map((e) => e.user).indexOf(args.target);
+				if (index !== -1) {
+					res.chats[index].seen = true;
+					await res.save();
+					ntfUpdater(args.userName);
+				}
+			});
+		},
 		markAllNotifications: (parent, args) => {
-			Chatntf.findOne({ userName: args.userName }).then((res) => {
+			Chatntf.findOne({ userName: args.userName }).then(async (res) => {
 				res.chats.forEach((element) => (element.seen = true));
-				res.save();
+				await res.save();
+				ntfUpdater(args.userName);
 			});
 		},
 		delAllNotifications: (parent, args) => {
-			Chatntf.findOneAndUpdate(
-				{ userName: args.userName },
-				{ chats: [] }
-			).then(() => {});
+			Chatntf.findOneAndUpdate({ userName: args.userName }, { chats: [] }).then(
+				() => {
+					ntfUpdater(args.userName);
+				}
+			);
 		},
 		delOneNotification: (parent, args) => {
-			Chatntf.findOne({ userName: args.userName }).then((res) => {
+			Chatntf.findOne({ userName: args.userName }).then(async (res) => {
 				const index = res.chats.map((element) => element._id).indexOf(args.id);
 				res.chats.splice(index, 1);
-				res.save();
+				await res.save();
+				ntfUpdater(args.userName);
 			});
 			return null;
 		},
@@ -174,6 +210,7 @@ const rootValue = {
 						chat.save();
 					}
 				});
+
 			pubsub.publish(args.userName, {
 				messages: { target: args.target, msg: messagesChat },
 			});
@@ -205,8 +242,8 @@ const rootValue = {
 					user: args.target,
 					lastMsg: args.content,
 					imgsmall,
-					// seen: { type: Boolean, default: false },
 					date: Date.now(),
+					seen: true,
 				});
 
 				// console.log(res);
@@ -217,7 +254,7 @@ const rootValue = {
 				let imgsmall;
 				await UserModel.findOne({ userName: args.userName })
 					.select("imgsmall")
-					.then((res) => {
+					.then(async (res) => {
 						imgsmall = res.imgsmall;
 					});
 
@@ -236,21 +273,19 @@ const rootValue = {
 					user: args.userName,
 					lastMsg: args.content,
 					imgsmall,
-					// seen: { type: Boolean, default: false },
 					date: Date.now(),
+					seen: false,
 				});
 
-				// console.log(res);
-				res.save();
+				await res.save();
+				// ntfUpdater(args.target);
+
+				// pubsub.publish(args.userName + "ntfs", {
+				// 	ntfs: { new: 5, old: 3 },
+				// });
 			});
-			console.log("done");
-
-			// console.log(messagesChat);
-
-			// return id;
 		},
 		updateIsTyping: (parent, args) => {
-			console.log(args);
 			pubsub.publish(args.target + "isTyping", {
 				isTyping: {
 					set: args.set,
@@ -301,7 +336,6 @@ const rootValue = {
 						});
 					});
 				});
-			// console.log(chats);
 
 			return chats;
 		},
@@ -357,7 +391,6 @@ const rootValue = {
 			await post.save();
 			return "OK";
 		},
-
 		getPosts: async (parent, args) => {
 			// console.log(args);
 			let post = [];
@@ -439,7 +472,6 @@ const rootValue = {
 				return post;
 			}
 		},
-
 		likePost: async (parent, args) => {
 			console.log(args);
 			let likesPack = {};
@@ -470,7 +502,6 @@ const rootValue = {
 
 			return likesPack;
 		},
-
 		editPost: async (parent, args) => {
 			console.log(args);
 			let editTime;
@@ -485,13 +516,11 @@ const rootValue = {
 
 			return editTime;
 		},
-
 		delPost: async (parent, args) => {
 			console.log("del post trig:", args);
 			Post.findByIdAndDelete(args._id).then((res) => {});
 			Comment.deleteMany({ postID: args._id }).then((res) => {});
 		},
-
 		sendComment: async (parent, args) => {
 			// console.log(args);
 			let comment = {};
@@ -531,7 +560,6 @@ const rootValue = {
 			// console.log(conv);
 			return [conv];
 		},
-
 		editComment: async (parent, args) => {
 			let editTime;
 			await Comment.findByIdAndUpdate(
@@ -544,11 +572,9 @@ const rootValue = {
 
 			return editTime;
 		},
-
 		delComment: async (parent, args) => {
 			Comment.findByIdAndDelete(args._id).then((res) => {});
 		},
-
 		setOnlineParam: async (parent, args) => {
 			// console.log(args);
 			const param = args.param === "true" ? true : false;
@@ -564,7 +590,6 @@ const rootValue = {
 				});
 			return param;
 		},
-
 		/////
 		emailMe: async (parent, args) => {
 			console.log(args);
@@ -586,9 +611,3 @@ const rootValue = {
 };
 
 module.exports = rootValue;
-
-// "@material-ui/core": "^4.11.0",
-// "@material-ui/icons": "^4.9.1",
-// "@testing-library/jest-dom": "^4.2.4",
-// "@testing-library/react": "^9.5.0",
-// "@testing-library/user-event": "^7.2.1",
