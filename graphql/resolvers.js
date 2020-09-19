@@ -106,9 +106,11 @@ const approvesConverter = (post) => {
 const ntfUpdater = (user) => {
 	Chatntf.findOne({ userName: user }).then((res) => {
 		if (res) {
-			let neww = 0;
-			res.chats.forEach((element) => element.seen === false && neww++);
-			// console.log(neww);
+			let neww = [];
+			res.chats.forEach(
+				(element) => element.seen === false && neww.push(element.user)
+			);
+			console.log(neww);
 			pubsub.publish(user + "ntfs", {
 				ntfs: { new: neww, old: res.chats.length },
 			});
@@ -142,6 +144,17 @@ const rootValue = {
 		},
 	},
 	Mutation: {
+		reportIfNtfSeen: (parent, args) => {
+			console.log(args);
+			Chatntf.findOne({ userName: args.userName }).then(async (res) => {
+				const index = res.chats.map((e) => e.user).indexOf(args.target);
+				if (index !== -1) {
+					res.chats[index].seen = args.seen;
+					await res.save();
+					ntfUpdater(args.userName);
+				}
+			});
+		},
 		markOneNotification: (parent, args) => {
 			Chatntf.findOne({ userName: args.userName }).then(async (res) => {
 				const index = res.chats.map((e) => e.user).indexOf(args.target);

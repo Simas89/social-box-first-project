@@ -52,12 +52,12 @@ const ChatState = (props) => {
 			// },
 		],
 		ntfs: {
-			new: 0,
+			new: [],
 			old: 0,
 		},
 	};
 	const [state, dispatch] = React.useReducer(chatReducer, initialState);
-	console.log(state);
+	React.useEffect(() => console.log(state), [state]);
 
 	const [isMobile, setIsMobile] = React.useState(
 		window.innerWidth >= 420 ? false : true
@@ -138,11 +138,13 @@ const ChatState = (props) => {
 `;
 	useSubscription(SUB_NTFS, {
 		onSubscriptionData: ({ subscriptionData: { data } }) => {
-			console.log("SUB_NTFS", data);
-			dispatch({
-				type: SET_NTFS,
-				payload: data,
-			});
+			if (data) {
+				console.log("SUB_NTFS", data);
+				dispatch({
+					type: SET_NTFS,
+					payload: data,
+				});
+			}
 		},
 	});
 	/////////////////////////////////////////////////////////
@@ -194,6 +196,7 @@ const ChatState = (props) => {
 `;
 	useSubscription(SUB_MESSAGES, {
 		onSubscriptionData: ({ subscriptionData: { data } }) => {
+			console.log(data);
 			const index = state.targets
 				.map((e) => e.name)
 				.indexOf(data.messages.target);
@@ -201,6 +204,11 @@ const ChatState = (props) => {
 			if (!isMobile) {
 				if (index !== -1) {
 					dispatch({ type: UPDATE_MESSAGES, payload: data });
+					reportIfNtfSeen(
+						data.messages.target,
+						true,
+						data.messages.msg[data.messages.msg.length - 1].user
+					);
 				} else {
 					dispatch({ type: ADD_TARGET, payload: data.messages.target });
 					dispatch({ type: UPDATE_MESSAGES, payload: data });
@@ -211,25 +219,71 @@ const ChatState = (props) => {
 						});
 						clearTimeout(timeoutID);
 					}, 1);
+					reportIfNtfSeen(
+						data.messages.target,
+						false,
+						data.messages.msg[data.messages.msg.length - 1].user
+					);
 				}
 				// setTimeout(() => console.log("ChatState:", state), 1);
 			} else {
 				if (index !== -1) {
 					dispatch({ type: UPDATE_MESSAGES, payload: data });
+					reportIfNtfSeen(
+						data.messages.target,
+						true,
+						data.messages.msg[data.messages.msg.length - 1].user
+					);
 				} else {
 					dispatch({ type: REMOVE_TARGET_ALL });
 					dispatch({ type: ADD_TARGET, payload: data.messages.target });
 					dispatch({ type: UPDATE_MESSAGES, payload: data });
-					setTimeout(() => {
+					const timeoutID = setTimeout(() => {
 						dispatch({
 							type: SET_CAN_SCROLL,
 							payload: { target: data.messages.target, set: true },
 						});
+						clearTimeout(timeoutID);
 					}, 1);
+					reportIfNtfSeen(
+						data.messages.target,
+						false,
+						data.messages.msg[data.messages.msg.length - 1].user
+					);
 				}
 			}
 		},
 	});
+	const reportIfNtfSeen = (target, seen, lastMsgUser) => {
+		if (lastMsgUser !== contextAcc.accountState.user) {
+			let reallySeen = false;
+			if (seen) {
+				const windowOpen = state.ntfs.new.includes(target);
+				reallySeen = !windowOpen;
+
+				const index = state.targets
+					.map((element) => element.name)
+					.indexOf(target);
+				if (!state.targets[index].isWindowOpen) reallySeen = false;
+
+				// console.log("index", index);
+
+				// state.targets.
+
+				props.apollo.mutate({
+					mutation: gql`mutation {
+					reportIfNtfSeen(userName: "${contextAcc.accountState.user}", target: "${target}",seen: ${reallySeen})
+				}`,
+				});
+			} else {
+				props.apollo.mutate({
+					mutation: gql`mutation {
+					reportIfNtfSeen(userName: "${contextAcc.accountState.user}", target: "${target}",seen: ${seen})
+				}`,
+				});
+			}
+		}
+	};
 	//////////////////////////////////////////////////////
 	const setMsgInput = (payload) => {
 		dispatch({ type: SET_MESSAGE_INPUT, payload: payload });
@@ -280,7 +334,6 @@ const ChatState = (props) => {
 			type: DEL_ALL_NOTIFICATIONS,
 		});
 	};
-
 	const delOneNotification = (id) => {
 		props.apollo.mutate({
 			mutation: gql`
@@ -290,11 +343,12 @@ const ChatState = (props) => {
 			`,
 		});
 
-		setTimeout(() => {
+		const timeoutID = setTimeout(() => {
 			dispatch({
 				type: DEL_ONE_NOTIFICATION,
 				payload: id,
 			});
+			clearTimeout(timeoutID);
 		}, 1);
 
 		// setNtfOpen(true);
@@ -311,7 +365,6 @@ const ChatState = (props) => {
 			type: MARK_ALL_NOTIFICATIONS,
 		});
 	};
-
 	const markOneNotification = (target) => {
 		props.apollo.mutate({
 			mutation: gql`

@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import socialContext from "../../../context/social/socialContext";
 import postContext from "../../../context/post/postContext";
 import myContext from "../../../context/account/myContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 import graphqlFetch from "../../../functions/graphqlFetch";
 import gqlGetPostsQuery from "../../../functions/gqlGetPostsQuery";

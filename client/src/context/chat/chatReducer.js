@@ -23,8 +23,11 @@ export default (state, { type, payload }) => {
 			let newTargets = state.targets;
 
 			let canInsert = 1;
-			newTargets.forEach((element) => {
-				if (element.name === payload) canInsert = 0;
+			newTargets.forEach((element, index) => {
+				if (element.name === payload) {
+					canInsert = 0;
+					newTargets[index] = { ...newTargets[index], isWindowOpen: true };
+				}
 			});
 
 			if (canInsert)
@@ -149,7 +152,7 @@ export default (state, { type, payload }) => {
 		}
 
 		case SET_NTFS: {
-			console.log(payload);
+			// console.log(payload);
 			return { ...state, ntfs: payload.ntfs };
 		}
 

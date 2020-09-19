@@ -288,7 +288,10 @@ const UserProfile = (props) => {
 										<div className='btns'>
 											<div
 												className='btn'
-												onClick={() => contextChat.addTarget(props.userName)}>
+												onClick={() => {
+													contextChat.markOneNotification(props.userName);
+													contextChat.addTarget(props.userName);
+												}}>
 												<span>Start chat</span>
 											</div>
 											<div className='btn' onClick={() => setPresentMode(true)}>

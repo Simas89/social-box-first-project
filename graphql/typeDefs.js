@@ -6,7 +6,7 @@ const typeDefs = `
     
   }
   type ntfs_pack{
-    new: Int
+    new: [String]
     old: Int
   }
   type isTypingPack{
@@ -31,6 +31,7 @@ const typeDefs = `
     delOneNotification(userName: String, id: String): ID
     markAllNotifications(userName: String): ID
     markOneNotification(userName: String,target: String): ID
+    reportIfNtfSeen(userName: String, target: String, seen: Boolean): ID
 
   }
   type CHAT_NTF {

@@ -111,31 +111,45 @@ const Chat = (props) => {
 		});
 	};
 
+	const setChatSeen = () => {
+		try {
+			if (
+				contextChat.state.ntfs.new.includes(
+					contextChat.state.targets[props.index].name
+				)
+			) {
+				contextChat.markOneNotification(
+					contextChat.state.targets[props.index].name
+				);
+			}
+		} catch (error) {}
+	};
+
 	return (
 		<div
 			className={`chat-main ${
 				!contextChat.state.targets[props.index].isWindowOpen &&
 				"chat-main-min chat-main-min-mob"
-			} ${contextChat.isMobile && "mobile"}`}
-			onClick={() =>
-				contextChat.markOneNotification(
-					contextChat.state.targets[props.index].name
-				)
-			}>
+			} ${contextChat.isMobile && "mobile"}`}>
 			<div className='top'>
 				<span
 					className='target-name'
 					onClick={() =>
 						history.push(`/app/users/${props.userName}`)
 					}>{`${props.userName}`}</span>
+				{contextChat.state.ntfs.new.includes(props.userName) ? (
+					<div className='unread-dot'></div>
+				) : null}
 				<div
 					className='minimize'
-					onClick={() =>
+					onClick={() => {
 						contextChat.setChatWindowState({
 							index: props.index,
 							set: !contextChat.state.targets[props.index].isWindowOpen,
-						})
-					}>
+						});
+						!contextChat.state.targets[props.index].isWindowOpen &&
+							setChatSeen();
+					}}>
 					<FontAwesomeIcon
 						className='icon'
 						icon={
@@ -152,7 +166,7 @@ const Chat = (props) => {
 					<div className='plank plank-2'></div>
 				</div>
 			</div>
-			<div className='middle'>
+			<div className='middle' onClick={setChatSeen}>
 				<Scrollbars
 					className='scroll-bar'
 					ref={myRef}
@@ -162,29 +176,32 @@ const Chat = (props) => {
 					autoHideDuration={200}
 					thumbMinSize={3}
 					universal={true}>
-					{/* <div className='middle-content'> */}
-					{contextChat.state.targets.length &&
-						contextChat.state.targets[props.index].msgData.map((msg, index) => {
-							return (
-								<Msg
-									content={msg.content}
-									own={msg.user === context.accountState.user}
-									msgOpacity={msgOpacity}
-									isClose={isClose(index)}
-									key={msg.id}
-									deleteMsg={() => deleteMsg(index)}
-									isDeleted={msg.content === "DELETED_MSG" && true}
-								/>
-							);
-						})}
-					<div className='typing'>
-						{contextChat.state.targets[props.index].isTyping ? (
-							<span>typing...</span>
-						) : null}
+					<div className='middle-content'>
+						{contextChat.state.targets.length &&
+							contextChat.state.targets[props.index].msgData.map(
+								(msg, index) => {
+									return (
+										<Msg
+											content={msg.content}
+											own={msg.user === context.accountState.user}
+											msgOpacity={msgOpacity}
+											isClose={isClose(index)}
+											key={msg.id}
+											deleteMsg={() => deleteMsg(index)}
+											isDeleted={msg.content === "DELETED_MSG" && true}
+										/>
+									);
+								}
+							)}
+						<div className='typing'>
+							{contextChat.state.targets[props.index].isTyping ? (
+								<span>typing...</span>
+							) : null}
+						</div>
 					</div>
 				</Scrollbars>
 			</div>
-			<div className='bottom'>
+			<div className='bottom' onClick={setChatSeen}>
 				<TextareaAutosize
 					className={`txt-area-core ${focus && "focus"}`}
 					placeholder='Message..'

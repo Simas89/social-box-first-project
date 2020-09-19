@@ -17,10 +17,10 @@ const MsgIcon = () => {
 
 	return (
 		<div className='msg-icon' onClick={handleClick}>
-			<div className={`counter ${contextChat.state.ntfs.new && "red"}`}>
+			<div className={`counter ${contextChat.state.ntfs.new.length && "red"}`}>
 				<div>
-					{contextChat.state.ntfs.new
-						? contextChat.state.ntfs.new
+					{contextChat.state.ntfs.new.length
+						? contextChat.state.ntfs.new.length
 						: contextChat.state.ntfs.old}
 				</div>
 			</div>

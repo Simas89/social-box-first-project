@@ -41,43 +41,32 @@ const SitePresentation = () => {
 
 				<ul>
 					<li>
-						<span className='bolder'>Create and delete your account.</span>{" "}
-						Password is encrypted and compared with bcrypt. Password is never
-						kept exposed, auth routes are accessed using JWT.
-					</li>
-
-					<div className='br'></div>
-					<li>
-						<span className='bolder'>Upgrade your account.</span> By confirming
-						on activationg link sent to an email using JWT. After that you'll
-						get 'Confirmed account' ribon that others can see.
+						<span className='bolder'>Real time chat.</span> Built with GraphQL
+						subscriptions, Apollo and web sockets. chat has indication if other
+						user is currently typing and option to delete your message. Works
+						with multiple users at once.
 					</li>
 					<div className='br'></div>
 					<li>
 						<span className='bolder'>Create posts and write comments.</span>{" "}
 						Edit or delete your own. Time of edit will be displayed if edited.
 					</li>
-
 					<div className='br'></div>
+
 					<li>
-						<span className='bolder'>Upload profile picture.</span> Crop it to
-						your liking before upload. Once uploaded it will be converted to
-						three different sizes and used in different areas in application
-						where downloading a large size image is not optimal.
+						<span className='bolder'>Get notifications.</span>
+						There are two types of notifications: Your chat messages. Where you
+						can read and accsses your latest chats. And miscelanious. Where you
+						get notified if a user adds you to his contact list, sends you a
+						present, likes or comments on your post. Notifications comes with
+						link to that user or a particular post Notifications can then be
+						marked as 'seen' or deleted.
 					</li>
 					<div className='br'></div>
 					<li>
 						<span className='bolder'>Search other people profiles.</span> See
 						what they are doing, add them to your list and get their posts an
 						your feed.
-					</li>
-					<div className='br'></div>
-					<li>
-						<span className='bolder'>Get notifications.</span> If a user adds
-						you to his contact list, sends you a present, likes or comments on
-						your post, you'll get a notification. Notifications comes with link
-						to that user or a particular post Notifications can then be marked
-						as 'seen' or deleted.
 					</li>
 					<div className='br'></div>
 					<li>
@@ -92,6 +81,28 @@ const SitePresentation = () => {
 					<div className='br'></div>
 
 					<li>
+						<span className='bolder'>Create and delete your account.</span>{" "}
+						Password is encrypted and compared with bcrypt. Password is never
+						kept exposed, auth routes are accessed using JWT.
+					</li>
+
+					<div className='br'></div>
+					<li>
+						<span className='bolder'>Upgrade your account.</span> By confirming
+						on activationg link sent to an email using JWT. After that you'll
+						get 'Confirmed account' ribon that others can see.
+					</li>
+					<div className='br'></div>
+
+					<li>
+						<span className='bolder'>Upload profile picture.</span> Crop it to
+						your liking before upload. Once uploaded it will be converted to
+						three different sizes and used in different areas in application
+						where downloading a large size image is not optimal.
+					</li>
+					<div className='br'></div>
+
+					<li>
 						<span className='bolder'>Emoji support.</span>{" "}
 					</li>
 					<div className='br'></div>
@@ -100,10 +111,6 @@ const SitePresentation = () => {
 					</li>
 				</ul>
 
-				<p>
-					As it's first release, thre is more to come. Live chat and more to be
-					integrated soon.
-				</p>
 				<br></br>
 				<p>
 					Please give it a try. Create new account, or use guest account
