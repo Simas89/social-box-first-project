@@ -203,7 +203,6 @@ body {
 }
 
 .landing-main .box-content .form-navigaror .form-navigator-button-hide.form-navigator-button-hide:hover > .form-navigator-button {
-  box-shadow: 0px 0px 3px 3px rgba(100, 99, 77, 0.2);
   transform: scale(2);
   transition: transform 0.2s;
 }

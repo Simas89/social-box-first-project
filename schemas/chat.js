@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const Chat = new Schema({
 	stringid: { type: String },
+	seen: {},
 
 	messages: [
 		{

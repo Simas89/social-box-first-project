@@ -42,9 +42,9 @@ const SitePresentation = () => {
 				<ul>
 					<li>
 						<span className='bolder'>Real time chat.</span> Built with GraphQL
-						subscriptions, Apollo and web sockets. chat has indication if other
-						user is currently typing and option to delete your message. Works
-						with multiple users at once.
+						subscriptions, Apollo and web sockets. Chat indicates if other user
+						is currently typing and has option to delete your previous messages.
+						Works with multiple users at once.
 					</li>
 					<div className='br'></div>
 					<li>

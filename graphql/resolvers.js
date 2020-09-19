@@ -110,7 +110,7 @@ const ntfUpdater = (user) => {
 			res.chats.forEach(
 				(element) => element.seen === false && neww.push(element.user)
 			);
-			console.log(neww);
+			// console.log(neww);
 			pubsub.publish(user + "ntfs", {
 				ntfs: { new: neww, old: res.chats.length },
 			});
@@ -145,7 +145,7 @@ const rootValue = {
 	},
 	Mutation: {
 		reportIfNtfSeen: (parent, args) => {
-			console.log(args);
+			// console.log(args);
 			Chatntf.findOne({ userName: args.userName }).then(async (res) => {
 				const index = res.chats.map((e) => e.user).indexOf(args.target);
 				if (index !== -1) {
@@ -197,21 +197,30 @@ const rootValue = {
 			await Chat.findOne()
 				.or([{ stringid: stringid1 }, { stringid: stringid2 }])
 				.then((res) => {
+					let id = uuidv4().slice(24);
 					if (res) {
+						const copy = res.seen;
+						const newObj = { [args.userName]: id };
+						res.seen = { ...copy, ...newObj };
+
 						res.messages.push({
-							id: uuidv4(),
+							id,
 							user: args.userName,
 							content: args.content,
 							date: Date.now(),
 						});
 						messagesChat = res.messages;
+						// console.log(res);
 						res.save();
 					} else {
+						let seen = {};
+						seen[args.userName] = id;
 						const chat = new Chat({
 							stringid: stringid1,
+							seen,
 							messages: [
 								{
-									id: uuidv4().slice(24),
+									id,
 									user: args.userName,
 									content: args.content,
 									date: Date.now(),
@@ -219,6 +228,7 @@ const rootValue = {
 							],
 						});
 						messagesChat = chat.messages;
+						// console.log(chat);
 
 						chat.save();
 					}

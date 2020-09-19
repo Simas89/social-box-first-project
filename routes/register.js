@@ -47,7 +47,7 @@ router.post("/", (req, res) => {
 					});
 
 					const newContact = new ContactsList({
-						list: [],
+						list: [{ userName: "Simas" }],
 					});
 					const newNotifications = new Notifications({
 						list: [],
