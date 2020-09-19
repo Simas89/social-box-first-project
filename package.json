@@ -32,10 +32,10 @@
 		"nodemailer": "^6.4.11",
 		"sharp": "^0.26.0",
 		"subscriptions-transport-ws": "^0.9.18",
-		"uuid": "^8.3.0"
+		"uuid": "^8.3.0",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0"
 	},
 	"devDependencies": {
-		"babel-plugin-transform-object-rest-spread": "^6.26.0",
 		"nodemon": "^2.0.4"
 	}
 }
