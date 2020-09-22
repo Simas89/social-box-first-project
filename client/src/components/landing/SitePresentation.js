@@ -4,10 +4,10 @@ import "./css/SitePresentation.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
-	faEnvelope,
-	faPhone,
 	faUser,
 	faKey,
+	faMobileAlt,
+	faAt,
 } from "@fortawesome/free-solid-svg-icons";
 
 const SitePresentation = () => {
@@ -157,11 +157,11 @@ const SitePresentation = () => {
 
 			<ul style={{ listStyleType: "none" }}>
 				<li>
-					<FontAwesomeIcon icon={faEnvelope} />{" "}
+					<FontAwesomeIcon icon={faAt} />{" "}
 					<span className='user-select'>simaszurauskas@gmail.com</span>
 				</li>
 				<li>
-					<FontAwesomeIcon icon={faPhone} />{" "}
+					<FontAwesomeIcon icon={faMobileAlt} />{" "}
 					<span className='user-select'>07428642217</span>
 				</li>
 			</ul>

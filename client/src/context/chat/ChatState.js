@@ -139,7 +139,7 @@ const ChatState = (props) => {
 	useSubscription(SUB_NTFS, {
 		onSubscriptionData: ({ subscriptionData: { data } }) => {
 			if (data) {
-				console.log("SUB_NTFS", data);
+				// console.log("SUB_NTFS", data);
 				dispatch({
 					type: SET_NTFS,
 					payload: data,
@@ -254,6 +254,21 @@ const ChatState = (props) => {
 			}
 		},
 	});
+	///////////////////////////////////////////////////////
+	const SUB_SEEN = gql`
+subscription {
+	seenId(userName: "${contextAcc.accountState.user}")
+}
+`;
+
+	useSubscription(SUB_SEEN, {
+		onSubscriptionData: ({ subscriptionData: { data } }) => {
+			console.log("SUB_SEEN", data);
+		},
+	});
+
+	///////////////////////////////////////////////////////
+
 	const reportIfNtfSeen = (target, seen, lastMsgUser) => {
 		if (lastMsgUser !== contextAcc.accountState.user) {
 			let reallySeen = false;
@@ -270,6 +285,7 @@ const ChatState = (props) => {
 
 				// state.targets.
 
+				// if (true)
 				props.apollo.mutate({
 					mutation: gql`mutation {
 					reportIfNtfSeen(userName: "${contextAcc.accountState.user}", target: "${target}",seen: ${reallySeen})

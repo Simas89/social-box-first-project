@@ -29,6 +29,7 @@ const userSchema = mongoose.Schema({
 	settings: {
 		showOnline: { type: Boolean, default: true },
 	},
+	loginCounter: { type: Number, default: 0 },
 });
 
 module.exports = mongoose.model("UserModel", userSchema);

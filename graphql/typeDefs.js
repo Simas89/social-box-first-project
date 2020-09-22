@@ -3,6 +3,7 @@ const typeDefs = `
     messages(userName: String): MSG_PACK
     isTyping(userName: String): isTypingPack
     ntfs(userName: String): ntfs_pack
+    seenId(userName: String): String
     
   }
   type ntfs_pack{

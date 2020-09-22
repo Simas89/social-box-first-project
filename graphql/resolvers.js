@@ -106,10 +106,11 @@ const approvesConverter = (post) => {
 const ntfUpdater = (user) => {
 	Chatntf.findOne({ userName: user }).then((res) => {
 		if (res) {
+			// console.log(res);
 			let neww = [];
-			res.chats.forEach(
-				(element) => element.seen === false && neww.push(element.user)
-			);
+			res.chats.forEach((element) => {
+				element.seen === false && neww.push(element.user);
+			});
 			// console.log(neww);
 			pubsub.publish(user + "ntfs", {
 				ntfs: { new: neww, old: res.chats.length },
@@ -118,11 +119,40 @@ const ntfUpdater = (user) => {
 	});
 };
 
+const seenChatMessageUpdater = async (userName, target) => {
+	const stringid1 = userName + target;
+	const stringid2 = target + userName;
+	// console.log("seenChatMessageUpdater");
+
+	await Chat.findOne()
+		.or([{ stringid: stringid1 }, { stringid: stringid2 }])
+		.then((res) => {
+			res.seen = {
+				...res.seen,
+				[userName]: res.messages[res.messages.length - 1].id,
+			};
+			res.save();
+			// console.log(res.seen);
+			// console.log(res.messages[res.messages.length - 1].id);
+
+			pubsub.publish(target + "seenId", {
+				seenId: res.messages[res.messages.length - 1].id + userName,
+			});
+		});
+};
+
 const rootValue = {
 	Subscription: {
+		seenId: {
+			subscribe: (parent, args) => {
+				// console.log("seenId", args);
+
+				return pubsub.asyncIterator(args.userName + "seenId");
+			},
+		},
 		ntfs: {
 			subscribe: (parent, args) => {
-				console.log("sub-ntfs", args);
+				// console.log("sub-ntfs", args);
 				setTimeout(() => {
 					ntfUpdater(args.userName);
 				}, 1000);
@@ -132,31 +162,38 @@ const rootValue = {
 		},
 		messages: {
 			subscribe: (parent, args) => {
-				console.log("sub-messages:", args);
+				// console.log("sub-messages:", args);
 				return pubsub.asyncIterator(args.userName);
 			},
 		},
 		isTyping: {
 			subscribe: (parent, args) => {
-				console.log("sub-isTyping:", args);
+				// console.log("sub-isTyping:", args);
 				return pubsub.asyncIterator(args.userName + "isTyping");
 			},
 		},
 	},
 	Mutation: {
-		reportIfNtfSeen: (parent, args) => {
-			// console.log(args);
-			Chatntf.findOne({ userName: args.userName }).then(async (res) => {
-				const index = res.chats.map((e) => e.user).indexOf(args.target);
+		reportIfNtfSeen: async (parent, args) => {
+			await Chatntf.findOne({ userName: args.userName }).then(async (res) => {
+				const index = await res.chats.map((e) => e.user).indexOf(args.target);
+				// console.log(res.chats[index].seen);
+
 				if (index !== -1) {
-					res.chats[index].seen = args.seen;
-					await res.save();
-					ntfUpdater(args.userName);
+					if (res.chats[index]) {
+						res.chats[index].seen = args.seen;
+						await res.save();
+						ntfUpdater(args.userName);
+					}
 				}
 			});
+
+			if (args.seen) {
+				seenChatMessageUpdater(args.userName, args.target);
+			}
 		},
-		markOneNotification: (parent, args) => {
-			Chatntf.findOne({ userName: args.userName }).then(async (res) => {
+		markOneNotification: async (parent, args) => {
+			await Chatntf.findOne({ userName: args.userName }).then(async (res) => {
 				const index = res.chats.map((e) => e.user).indexOf(args.target);
 				if (index !== -1) {
 					res.chats[index].seen = true;
@@ -164,6 +201,7 @@ const rootValue = {
 					ntfUpdater(args.userName);
 				}
 			});
+			seenChatMessageUpdater(args.userName, args.target);
 		},
 		markAllNotifications: (parent, args) => {
 			Chatntf.findOne({ userName: args.userName }).then(async (res) => {
@@ -196,12 +234,10 @@ const rootValue = {
 
 			await Chat.findOne()
 				.or([{ stringid: stringid1 }, { stringid: stringid2 }])
-				.then((res) => {
+				.then(async (res) => {
 					let id = uuidv4().slice(24);
 					if (res) {
-						const copy = res.seen;
-						const newObj = { [args.userName]: id };
-						res.seen = { ...copy, ...newObj };
+						res.seen = { ...res.seen, [args.userName]: id };
 
 						res.messages.push({
 							id,
@@ -211,13 +247,14 @@ const rootValue = {
 						});
 						messagesChat = res.messages;
 						// console.log(res);
-						res.save();
+						await res.save();
+						// seenChatMessageUpdater(args.userName, args.target);
 					} else {
-						let seen = {};
-						seen[args.userName] = id;
+						// let seen = {};
+						// seen[args.userName] = id;
 						const chat = new Chat({
 							stringid: stringid1,
-							seen,
+							seen: ([args.userName] = id),
 							messages: [
 								{
 									id,

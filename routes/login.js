@@ -59,10 +59,15 @@ router.post("/", (req, res) => {
 						if (err) {
 							console.log(err);
 							res.status(500).json("ERROR GENERATING TOKEN");
+						} else {
+							result.loginCounter++;
+							result.save();
+							res
+								.status(200)
+								.json(
+									userStateReturn(result, "LOGGING IN", token, isRememberMe)
+								);
 						}
-						res
-							.status(200)
-							.json(userStateReturn(result, "LOGGING IN", token, isRememberMe));
 					}
 				);
 			}
