@@ -15,6 +15,7 @@ import {
 	MARK_ALL_NOTIFICATIONS,
 	MARK_ONE_NOTIFICATION,
 	SET_NTFS,
+	SET_OTHER_USER_MESSAGE_SEEN,
 } from "../types";
 
 export default (state, { type, payload }) => {
@@ -154,6 +155,27 @@ export default (state, { type, payload }) => {
 		case SET_NTFS: {
 			// console.log(payload);
 			return { ...state, ntfs: payload.ntfs };
+		}
+
+		case SET_OTHER_USER_MESSAGE_SEEN: {
+			const index = state.targets.map((e) => e.name).indexOf(payload.target);
+			// console.log(state.targets);
+			// console.log(payload);
+			// console.log("index", index);
+			if (index !== -1) {
+				const msgIndex = state.targets[index].msgData
+					.map((element) => element.id)
+					.indexOf(payload.id);
+
+				console.log(msgIndex);
+
+				state.targets[index].msgData[msgIndex] = {
+					...state.targets[index].msgData[msgIndex],
+					seen: true,
+				};
+			}
+
+			return { ...state };
 		}
 
 		default:

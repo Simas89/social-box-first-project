@@ -71,6 +71,13 @@
   font-size: 0.8rem;
 }
 
+.msg-wrap .seen {
+  color: #00be85;
+  top: 21px;
+  left: -15px;
+  position: absolute;
+}
+
 .msg-wrap .opacity1 {
   opacity: 1;
   transition: opacity 0.1s;

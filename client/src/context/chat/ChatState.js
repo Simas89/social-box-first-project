@@ -20,6 +20,7 @@ import {
 	MARK_ALL_NOTIFICATIONS,
 	MARK_ONE_NOTIFICATION,
 	SET_NTFS,
+	SET_OTHER_USER_MESSAGE_SEEN,
 } from "../types";
 
 let timeoutId = {};
@@ -257,13 +258,20 @@ const ChatState = (props) => {
 	///////////////////////////////////////////////////////
 	const SUB_SEEN = gql`
 subscription {
-	seenId(userName: "${contextAcc.accountState.user}")
+	seenId(userName: "${contextAcc.accountState.user}"){
+		target
+		id
+	}
 }
 `;
 
 	useSubscription(SUB_SEEN, {
 		onSubscriptionData: ({ subscriptionData: { data } }) => {
 			console.log("SUB_SEEN", data);
+			dispatch({
+				type: SET_OTHER_USER_MESSAGE_SEEN,
+				payload: { target: data.seenId.target, id: data.seenId.id },
+			});
 		},
 	});
 

@@ -20,11 +20,12 @@ const Chat = (props) => {
 
 	React.useEffect(() => {
 		if (contextChat.state.targets[props.index].canScroll) {
-			myRef.current.view.scroll({
-				top: 1000000,
-				left: 0,
-				behavior: "smooth",
-			});
+			// myRef.current.view.scroll({
+			// 	top: 1000000,
+			// 	left: 0,
+			// 	behavior: "smooth",
+			// });
+			myRef.current.scrollToBottom();
 		} // eslint-disable-next-line
 		else {
 			myRef.current.scrollToBottom();
@@ -170,7 +171,7 @@ const Chat = (props) => {
 				<Scrollbars
 					className='scroll-bar'
 					ref={myRef}
-					style={{ behavior: "smooth" }}
+					// style={{ behavior: "smooth" }}
 					autoHide
 					autoHideTimeout={2000}
 					autoHideDuration={200}
@@ -187,6 +188,7 @@ const Chat = (props) => {
 											msgOpacity={msgOpacity}
 											isClose={isClose(index)}
 											key={msg.id}
+											seen={msg.seen}
 											deleteMsg={() => deleteMsg(index)}
 											isDeleted={msg.content === "DELETED_MSG" && true}
 										/>

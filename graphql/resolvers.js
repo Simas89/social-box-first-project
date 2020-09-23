@@ -136,7 +136,10 @@ const seenChatMessageUpdater = async (userName, target) => {
 			// console.log(res.messages[res.messages.length - 1].id);
 
 			pubsub.publish(target + "seenId", {
-				seenId: res.messages[res.messages.length - 1].id + userName,
+				seenId: {
+					target: userName,
+					id: res.messages[res.messages.length - 1].id,
+				},
 			});
 		});
 };

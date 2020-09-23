@@ -3,8 +3,12 @@ const typeDefs = `
     messages(userName: String): MSG_PACK
     isTyping(userName: String): isTypingPack
     ntfs(userName: String): ntfs_pack
-    seenId(userName: String): String
+    seenId(userName: String): seenId_pack
     
+  }
+  type seenId_pack{
+    target: String
+    id: String
   }
   type ntfs_pack{
     new: [String]

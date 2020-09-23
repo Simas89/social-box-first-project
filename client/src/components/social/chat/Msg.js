@@ -18,7 +18,7 @@ const Msg = (props) => {
 		const sec = 15;
 		mainClasses = `msg  ${props.own ? "own" : "other"} } ${
 			props.isClose.next > sec && "margin-far"
-		} ${props.isDeleted && "is-deleted"}`;
+		} ${props.isDeleted && "is-deleted"} `;
 		cornerClasses = "";
 		if (props.own) {
 			cornerClasses = `${
@@ -48,6 +48,7 @@ const Msg = (props) => {
 					props.msgOpacity && "opacity1"
 				} ${deleteStage ? "delete-stage" : "no-del-stage"}`}
 				onClick={() => !props.isDeleted && setDeleteStage(!deleteStage)}>
+				{props.seen && <i className='seen fas fa-check-circle'></i>}
 				<span>
 					<Twemoji
 						text={`${props.isDeleted ? "message removed.." : props.content}`}
