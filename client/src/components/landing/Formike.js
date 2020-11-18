@@ -292,7 +292,7 @@ const Formike = (props) => {
 				) : (
 					<LandingLogged />
 				))}
-			{/*-----------------------------------             CONTACT MODE             ---------------------------------*/}
+			{/*-----------------------------------             CONTACT MODE             ----------------------------------*/}
 			{props.type === "CONTACT" && (
 				<React.Fragment>
 					<h1>Contact Me</h1>
