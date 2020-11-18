@@ -18,7 +18,7 @@ const LandingState = (props) => {
 		LR: 0,
 		rememberMe: 0,
 
-		userInputs: { userName: "", psw1: "", psw2: "" },
+		userInputs: { userName: "default_guest", psw1: "default_psw", psw2: "" },
 		msgInputs: { guest: "", email: "", msg: "" },
 		focused: {
 			userName: false,
