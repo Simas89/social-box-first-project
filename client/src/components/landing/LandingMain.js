@@ -89,10 +89,10 @@ const LandingMain = () => {
           {parseLines(parseInt(windowWidth / 40))}
         </div>
 
-        <div className="title">
-          <h1 className="simas">Hello. My name is Simas Zurauskas and </h1>
-          <div>
-            <h1 className="full-stack">I AM A FULL-STACK WEB DEVELOPER</h1>
+//         <div className="title">
+//           <h1 className="simas">Hello. My name is Simas Zurauskas and </h1>
+//           <div>
+            <h1 className="full-stack">Social Media Sand-Box</h1>
             <h1 className="full-stack-second">
               I AM A FULL-STACK WEB DEVELOPER
             </h1>
