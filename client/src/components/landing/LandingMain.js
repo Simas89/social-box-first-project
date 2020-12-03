@@ -94,7 +94,7 @@ const LandingMain = () => {
 //           <div>
             <h1 className="full-stack">Social Media Sand-Box</h1>
             <h1 className="full-stack-second">
-              I AM A FULL-STACK WEB DEVELOPER
+              Social Media Sand-Box
             </h1>
           </div>
         </div>
