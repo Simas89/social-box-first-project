@@ -53,7 +53,7 @@ function App(props) {
 	};
 
 	React.useEffect(() => {
-		document.title = "Simas Zurauskas | App";
+		document.title = "App";
 		// window.scrollTo(0, 0);
 		window.addEventListener("resize", resizeEvent);
 
