@@ -148,7 +148,7 @@ const LandingMain = () => {
         </div>
         <div className="footer">
           <p>
-            <span>2020 </span>SimasZurauskas@gmail.com
+            <span>2021 </span>SimasZurauskas@gmail.com
           </p>
         </div>
       </div>
